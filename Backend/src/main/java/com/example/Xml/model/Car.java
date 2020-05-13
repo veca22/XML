@@ -51,9 +51,7 @@ public class Car {
     @Column(nullable = false)
     private double averageRating = 0;
 
-    //private ArrayList<String> comments = new ArrayList<String>();
-
-    public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, @Range(min = 0, max = 5) int childSeats, double averageRating, ArrayList<String> comments) {
+    public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, @Range(min = 0, max = 5) int childSeats, double averageRating) {
         this.id = id;
         this.carBrand = carBrand;
         this.carType = carType;
@@ -65,8 +63,6 @@ public class Car {
         this.distanceAllowed = distanceAllowed;
         this.childSeats = childSeats;
         this.averageRating = averageRating;
-        //this.comments = comments;
-        //this.comments = new ArrayList<String>();
     }
 
     public Car() {}
@@ -158,12 +154,5 @@ public class Car {
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
-
-//    public ArrayList<String> getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(ArrayList<String> comments) {
-//        this.comments = comments;
-//    }
+    
 }
