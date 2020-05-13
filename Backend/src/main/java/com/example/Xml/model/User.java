@@ -17,12 +17,19 @@ public class User {
     private String password;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(String email, String password, Role role) {
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
+    public User(String email, String password, Role role, UserStatus status) {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.status = status;
     }
 
     public User() {
@@ -59,5 +66,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 }
