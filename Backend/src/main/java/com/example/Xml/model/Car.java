@@ -34,6 +34,9 @@ public class Car {
     private int price;
 
     @Column(nullable = false)
+    private int discount;
+
+    @Column(nullable = false)
     @Range(min = 0, max = 1000000)
     private float mileage;
 

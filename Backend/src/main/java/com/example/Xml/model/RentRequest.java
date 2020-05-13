@@ -25,7 +25,7 @@ public class RentRequest {
     private Set<Car> carsForRent;
 
     @ManyToOne
-    @JoinColumn(name = "endUser_id", nullable = false)
+    @JoinColumn(name = "end_user_id", nullable = false)
     private EndUser endUser;
 
     public Long getId() {
