@@ -38,6 +38,7 @@ public class Car {
     private float mileage;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private CarStatus carStatus;
 
     @Column(nullable = false)
