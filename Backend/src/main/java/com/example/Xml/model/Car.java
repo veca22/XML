@@ -54,13 +54,14 @@ public class Car {
     @Column(nullable = false)
     private double averageRating = 0;
 
-    public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, @Range(min = 0, max = 5) int childSeats, double averageRating) {
+    public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, @Range(min = 0, max = 5) int childSeats, double averageRating) {
         this.id = id;
         this.carBrand = carBrand;
         this.carType = carType;
         this.fuelType = fuelType;
         this.transmissionType = transmissionType;
         this.price = price;
+        this.discount = discount;
         this.mileage = mileage;
         this.carStatus = carStatus;
         this.distanceAllowed = distanceAllowed;
@@ -156,6 +157,14 @@ public class Car {
 
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
     
 }
