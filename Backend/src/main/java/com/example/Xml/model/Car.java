@@ -48,13 +48,16 @@ public class Car {
     private float distanceAllowed;
 
     @Column(nullable = false)
+    private boolean collisionDamageWaiver = false;
+
+    @Column(nullable = false)
     @Range(min = 0, max = 5)
     private int childSeats;
 
     @Column(nullable = false)
     private double averageRating = 0;
 
-    public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, @Range(min = 0, max = 5) int childSeats, double averageRating) {
+    public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {
         this.id = id;
         this.carBrand = carBrand;
         this.carType = carType;
@@ -65,6 +68,7 @@ public class Car {
         this.mileage = mileage;
         this.carStatus = carStatus;
         this.distanceAllowed = distanceAllowed;
+        this.collisionDamageWaiver = collisionDamageWaiver;
         this.childSeats = childSeats;
         this.averageRating = averageRating;
     }
