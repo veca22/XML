@@ -13,7 +13,19 @@ services:
       static-network:
         ipv4_address: 172.20.0.2
 
-  
+  gateway:
+    image: gateway
+    build:
+      context: ./services/gateway
+      dockerfile: Dockerfile
+    tty: true
+    ports: 
+      - "8084:8084"
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+
 
 networks:
   static-network:
