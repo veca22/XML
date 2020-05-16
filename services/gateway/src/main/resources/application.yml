@@ -22,5 +22,11 @@ spring:
               - Path=/ad/**
             filters:
               - RewritePath=/ad/(?<path>.*), /$\{path}
+	- id: gps
+            uri: lb://gps
+            predicates:
+              - Path=/gps/**
+            filters:
+              - RewritePath=/gps/(?<path>.*), /$\{path}
 
 
