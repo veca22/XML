@@ -13,6 +13,22 @@ services:
       static-network:
         ipv4_address: 172.20.0.2
 
+
+  authentication-service:
+    image: authenticatione_service
+    build:
+      context: ./services/authenticationService
+      dockerfile: Dockerfile
+    tty: true
+    ports: 
+      - "8087:8087"
+    networks:
+      - static-network
+    depends_on: 
+      - consul-server
+
+    
+
   admin-service:
      image: admin_service
      build:
@@ -37,6 +53,7 @@ services:
        - static-network
      depends_on:
        - consul-server
+
   gps-service:
      image: gps_service
      build:
@@ -49,6 +66,7 @@ services:
        - static-network
      depends_on:
        - consul-server
+
   gateway:
     image: gateway
     build:
