@@ -18,5 +18,5 @@ public class GatewayApplication {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
-	//dodajem komentar
+	//dodajem komentar222
 }
