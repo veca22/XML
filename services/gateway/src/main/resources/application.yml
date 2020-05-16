@@ -9,4 +9,11 @@ spring:
       discovery:
         locator:
           enabled: true
+        routes:
+          - id: admin
+            uri: lb://admin
+            predicates:
+              - Path=/admin/**
+            filters:
+              - RewritePath=/admin/(?<path>.*), /$\{path}
 
