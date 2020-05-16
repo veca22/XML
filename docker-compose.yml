@@ -54,6 +54,19 @@ services:
      depends_on:
        - consul-server
 
+  gps-service:
+     image: gps_service
+     build:
+       context: ./services/gpsService
+       dockerfile: Dockerfile
+     tty: true
+     ports:
+       - "8088:8088"
+     networks:
+       - static-network
+     depends_on:
+       - consul-server
+
   gateway:
     image: gateway
     build:
