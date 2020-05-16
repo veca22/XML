@@ -16,4 +16,11 @@ spring:
               - Path=/admin/**
             filters:
               - RewritePath=/admin/(?<path>.*), /$\{path}
+	- id: ad
+            uri: lb://ad
+            predicates:
+              - Path=/ad/**
+            filters:
+              - RewritePath=/ad/(?<path>.*), /$\{path}
+
 

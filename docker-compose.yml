@@ -25,6 +25,18 @@ services:
        - static-network
      depends_on:
        - consul-server
+  ad-service:
+     image: ad_service
+     build:
+       context: ./services/adService
+       dockerfile: Dockerfile
+     tty: true
+     ports:
+       - "8085:8085"
+     networks:
+       - static-network
+     depends_on:
+       - consul-server
   gateway:
     image: gateway
     build:
