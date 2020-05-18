@@ -67,6 +67,19 @@ services:
      depends_on:
        - consul-server
 
+  renting-service:
+    image: renting_service
+    build:
+      context: ./services/rentingService
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - "8090:8090"
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+
   gateway:
     image: gateway
     build:

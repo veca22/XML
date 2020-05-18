@@ -24,18 +24,24 @@ spring:
               - Path=/admin/**
             filters:
               - RewritePath=/admin/(?<path>.*), /$\{path}
-	- id: ad
+          - id: ad
             uri: lb://ad
             predicates:
               - Path=/ad/**
             filters:
               - RewritePath=/ad/(?<path>.*), /$\{path}
-	- id: gps
+          - id: gps
             uri: lb://gps
             predicates:
               - Path=/gps/**
             filters:
               - RewritePath=/gps/(?<path>.*), /$\{path}
+          - id: renting
+            uri: lb://renting
+            predicates:
+              - Path=/renting/**
+            filters:
+              - RewritePath=/renting/(?<path>.*), /$\{path}
 
 
 
