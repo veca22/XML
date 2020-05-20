@@ -1,12 +1,10 @@
-package com.example.Xml.model;
+package com.agent.backend.model;
+
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
-public class EndUser {
-
+public class Admin  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,9 +27,7 @@ public class EndUser {
     @Column(name = "phone_number",nullable = false)
     private String phoneNumber;
 
-
-
-    public EndUser() {
+    public Admin() {
     }
 
     public Long getId() {

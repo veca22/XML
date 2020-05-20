@@ -1,4 +1,4 @@
-package com.example.Xml.model;
+package com.agent.backend.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
