@@ -2,6 +2,7 @@ package com.example.Xml.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class EndUser {
@@ -28,10 +29,7 @@ public class EndUser {
     @Column(name = "phone_number",nullable = false)
     private String phoneNumber;
 
-    @ManyToMany
-    @JoinTable(name = "enduser_rented", joinColumns = @JoinColumn(name = "endentity_id"),
-            inverseJoinColumns = @JoinColumn(name = "ad_id"))
-    private List<Ad> rentedCars;
+
 
     public EndUser() {
     }

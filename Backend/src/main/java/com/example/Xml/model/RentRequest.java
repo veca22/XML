@@ -25,8 +25,8 @@ public class RentRequest {
     private Set<Car> carsForRent;
 
     @ManyToOne
-    @JoinColumn(name = "end_user_id", nullable = false)
-    private EndUser endUser;
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     public Long getId() {
         return id;
@@ -68,11 +68,11 @@ public class RentRequest {
         this.carsForRent = carsForRent;
     }
 
-    public EndUser getEndUser() {
-        return endUser;
+    public Client getClient() {
+        return client;
     }
 
-    public void setEndUser(EndUser endUser) {
-        this.endUser = endUser;
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
