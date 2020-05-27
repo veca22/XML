@@ -14,6 +14,21 @@ services:
         ipv4_address: 172.20.0.2
 
 
+  postgres:
+    image: 'postgres'
+    container_name: postgres
+    restart: always
+    networks:
+      -  static-network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ftn  
+      - POSTGRES_DB=Services
+      - REGISTRY_HOST=consul-server
+    ports:
+      - "5432:5432"
+    tty: true
+
   authentication-service:
     image: authenticatione_service
     build:
@@ -37,10 +52,17 @@ services:
      tty: true
      ports:
        - "8086:8086"
+     environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ftn
+      DATABASE_DOMAIN: postgres
+      REGISTRY_HOST: consul-server
+      POSTGRES_DB: Services
      networks:
        - static-network
      depends_on:
        - consul-server
+       - postgres
   ad-service:
      image: ad_service
      build:
@@ -49,10 +71,17 @@ services:
      tty: true
      ports:
        - "8085:8085"
+     environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ftn
+      DATABASE_DOMAIN: postgres
+      REGISTRY_HOST: consul-server
+      POSTGRES_DB: Services
      networks:
        - static-network
      depends_on:
        - consul-server
+       - postgres
 
   gps-service:
      image: gps_service
