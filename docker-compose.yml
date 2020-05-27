@@ -37,12 +37,18 @@ services:
     tty: true
     ports: 
       - "8087:8087"
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ftn
+      DATABASE_DOMAIN: postgres
+      REGISTRY_HOST: consul-server
+      POSTGRES_DB: Services
     networks:
       - static-network
     depends_on: 
       - consul-server
+      - postgres
 
-    
 
   admin-service:
      image: admin_service
@@ -104,10 +110,17 @@ services:
     tty: true
     ports:
       - "8090:8090"
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ftn
+      DATABASE_DOMAIN: postgres
+      REGISTRY_HOST: consul-server
+      POSTGRES_DB: Services
     networks:
       - static-network
     depends_on:
       - consul-server
+      - postgres
 
   gateway:
     image: gateway
