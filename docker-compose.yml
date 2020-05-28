@@ -28,6 +28,8 @@ services:
     ports:
       - "5432:5432"
     tty: true
+    depends_on:
+      - consul-server
 
   authentication-service:
     image: authenticatione_service
@@ -48,7 +50,7 @@ services:
     depends_on: 
       - consul-server
       - postgres
-
+      - admin-service
 
   admin-service:
      image: admin_service
@@ -69,6 +71,7 @@ services:
      depends_on:
        - consul-server
        - postgres
+
   ad-service:
      image: ad_service
      build:
@@ -88,6 +91,7 @@ services:
      depends_on:
        - consul-server
        - postgres
+       - admin-service
 
   gps-service:
      image: gps_service
@@ -101,6 +105,7 @@ services:
        - static-network
      depends_on:
        - consul-server
+       - admin-service
 
   renting-service:
     image: renting_service
@@ -121,6 +126,7 @@ services:
     depends_on:
       - consul-server
       - postgres
+      - admin-service
 
   gateway:
     image: gateway
