@@ -1,13 +1,16 @@
 .sidenav-container {
   height: 100%;
+
 }
 
 .sidenav {
   width: 200px;
+
+
 }
 
 .mat-nav-list{
-  background-color: khaki;
+  background-color: coral;
 }
 .mat-toolbar.mat-primary {
   position: sticky;
