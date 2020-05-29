@@ -10,6 +10,7 @@
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isAdministrator()">
+      <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
   </mat-sidenav>

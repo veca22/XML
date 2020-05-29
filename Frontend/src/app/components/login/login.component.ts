@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../model/user';
+import {UserService} from '../../services/user.service';
+import {Role} from '../../model/role';
+import {Router} from '@angular/router';
+import {UserStatus} from '../../model/userStatus';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +15,12 @@ export class LoginComponent implements OnInit {
 
   private loginForm: FormGroup;
   private submitted = false;
+  private user: User;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -30,6 +39,62 @@ export class LoginComponent implements OnInit {
     // Stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
+    }
+
+    // this.user = this.userService.getUser(this.f.email.value);
+    // console.log(this.f.email.value);
+    // console.log(this.user);
+    // this.attemptLogin();
+    this.reverse();
+  }
+
+  public whichRole(role: string) {
+    if (role === 'ADMINISTRATOR') {
+      return Role.ADMINISTRATOR;
+    } else if (role === 'AGENT') {
+      return Role.AGENT;
+    } else if (role === 'ENDUSER') {
+      return Role.ENDUSER;
+    } else if (role === 'FIRM') {
+      return Role.FIRM;
+    } else {
+      return null;
+    }
+  }
+
+  public whichStatus(status: string) {
+    if (status === 'ACCEPTED') {
+      return UserStatus.ACCEPTED;
+    } else if (status === 'AWAITING_APPROVAL') {
+      return UserStatus.AWAITING_APPROVAL;
+    } else if (status === 'BLOCKED') {
+      return UserStatus.BLOCKED;
+    } else {
+      return null;
+    }
+  }
+
+  async reverse() {
+    const c = await this.userService.getUser(this.f.email.value);
+    this.user = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
+    this.attemptLogin();
+    console.log(this.user);
+  }
+  public attemptLogin() {
+    if (this.user.role === Role.ADMINISTRATOR && this.f.email.value === this.user.email && this.f.password.value === this.user.password) {
+      this.userService.login(this.user).subscribe(
+        data => {
+          if (data !== null) {
+            this.userService.setLoggedUser(this.user);
+            this.router.navigate(['/administrator/home']);
+          } else {
+            alert('Login error');
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 }

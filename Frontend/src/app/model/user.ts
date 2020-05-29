@@ -7,21 +7,21 @@ export class User {
   email: string;
   password: string;
   role: Role;
-  userStatus: UserStatus;
+  status: UserStatus;
 
-  constructor(email: string, password: string, role: Role, userStatus?: UserStatus, id?: number) {
+  constructor(email: string, password: string, role: Role, status?: UserStatus, id?: number) {
     this.email = email;
     this.password = password;
     this.role = role;
-    this.userStatus = userStatus;
+    this.status = status;
     this.id = id;
   }
 
-  public setAll(email: string, password: string, role: Role, userStatus?: UserStatus, id?: number) {
+  public setAll(email: string, password: string, role: Role, status?: UserStatus, id?: number) {
     this.email = email;
     this.password = password;
     this.role = role;
-    this.userStatus = userStatus;
+    this.status = status;
     this.id = id;
   }
 
