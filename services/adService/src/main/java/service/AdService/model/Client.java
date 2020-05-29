@@ -44,7 +44,9 @@ public class Client {
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ad> ads;
 
+    public Client() {
 
+    }
     //endUser
     public Client(String email,String password,String firstName,String lastName,String jmbg,String phoneNumber,String address) {
         this.email=email;
