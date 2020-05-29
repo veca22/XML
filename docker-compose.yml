@@ -28,6 +28,8 @@ services:
     ports:
       - "5432:5432"
     tty: true
+    depends_on:
+      - consul-server
 
   authentication-service:
     image: authenticatione_service

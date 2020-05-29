@@ -1,14 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {RouterModule} from '@angular/router';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { LoginComponent } from './components/login/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {AppRoutingModule} from './app-routing.module';
+import { AdministratorHomePageComponent } from './components/administrator-home-page/administrator-home-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    LoginComponent,
+    AdministratorHomePageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatIconModule,
+    RouterModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

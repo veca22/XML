@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AdServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AdServiceApplication.class, args);
+	@RequestMapping("/health")
+	public String home() {
+		return "Hello from ad service!";
 	}
 
-	@RequestMapping("/health")
-	public String sayHello(){
-		return "Hello from ad service!";
+	public static void main(String[] args) {
+		SpringApplication.run(AdServiceApplication.class, args);
 	}
 
 }
