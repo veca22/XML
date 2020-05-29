@@ -21,7 +21,6 @@ export class UserService {
   userForLogin: User;
 
   constructor(private router: Router, private http: HttpClient) {
-    this.getAllUsers();
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
   }
 
@@ -100,7 +99,8 @@ export class UserService {
   //   params = params.append('email', email);
   //   this.http.get(this.urlUser + '/userByEmail', {params}).subscribe((data: User) => {
   //     console.log(data);
-  //     this.userForLogin = new User(data.email, data.password, this.whichRole(data.role.toString()), this.whichStatus(data.status.toString()), data.id);
+  //     this.userForLogin = new User(data.email, data.password, this.whichRole(data.role.toString()),
+  //     this.whichStatus(data.status.toString()), data.id);
   //   },
   //     error => {
   //       console.log(error);
