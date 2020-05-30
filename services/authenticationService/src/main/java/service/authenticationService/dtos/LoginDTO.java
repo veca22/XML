@@ -1,5 +1,7 @@
 package service.authenticationService.dtos;
 
+import service.authenticationService.model.Role;
+
 public class LoginDTO {
 
     private String email;

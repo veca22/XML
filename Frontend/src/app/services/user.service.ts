@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Role} from '../model/role';
 import {User} from '../model/user';
 import {Router} from '@angular/router';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {UserStatus} from '../model/userStatus';
 
@@ -16,12 +16,12 @@ export const TOKEN = 'LoggedInUser';
 export class UserService {
 
   users: Array<User> = new Array<User>();
-  urlUser = environment.authUrl + environment.user;
   user: User = new User('', '', Role.NONE);
   userForLogin: User;
 
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
+    // this.users = this.getAllUsers();
   }
 
   public isLoggedIn() {
@@ -79,7 +79,7 @@ export class UserService {
 
 
   public getAllUsers(): Array<User> {
-      this.http.get(this.urlUser + '/all').subscribe((data: User[]) => {
+      this.http.get(environment.gateway + environment.auth + environment.user + '/all').subscribe((data: User[]) => {
           for (const c of data) {
             console.log(c);
             this.user = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
@@ -113,7 +113,7 @@ export class UserService {
   public async getUser(email: string): Promise<User> {
     let params = new HttpParams();
     params = params.append('email', email);
-    const response: any = await this.http.get(this.urlUser + '/userByEmail', {params}).toPromise();
+    const response: any = await this.http.get(environment.gateway + environment.auth + environment.user + '/userByEmail', {params}).toPromise();
     return response;
   }
 
@@ -131,7 +131,10 @@ export class UserService {
     this.user = user;
   }
   public login(user) {
+    console.log(user);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     this.setToken(user);
-    return this.http.post(this.urlUser + '/login', user, {responseType: 'text'});
+    return this.http.post(environment.gateway + environment.auth + environment.user + '/login', user,  {responseType: 'text'});
   }
 }
