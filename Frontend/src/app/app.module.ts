@@ -3,7 +3,15 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatListModule, MatPaginatorModule,
+  MatSidenavModule,
+  MatTableModule,
+  MatToolbarModule
+} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -11,6 +19,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { AdministratorHomePageComponent } from './components/administrator-home-page/administrator-home-page.component';
 import { EndUserHomePageComponent } from './components/end-user-home-page/end-user-home-page.component';
+import { AddAdComponent } from './components/add-ad/add-ad.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +27,8 @@ import { EndUserHomePageComponent } from './components/end-user-home-page/end-us
     HomePageComponent,
     LoginComponent,
     AdministratorHomePageComponent,
-    EndUserHomePageComponent
+    EndUserHomePageComponent,
+    AddAdComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +42,9 @@ import { EndUserHomePageComponent } from './components/end-user-home-page/end-us
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

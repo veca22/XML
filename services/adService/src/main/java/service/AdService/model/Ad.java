@@ -14,6 +14,17 @@ public class Ad {
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Car car;
 
+    public String getAdName() {
+        return adName;
+    }
+
+    public void setAdName(String adName) {
+        this.adName = adName;
+    }
+
+    @Column
+    private String adName;
+
     @Column
     private String profilePicture;
 

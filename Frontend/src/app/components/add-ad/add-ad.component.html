@@ -1,0 +1,86 @@
+<div class="main-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <mat-card>
+          <h3>Add Clinic</h3>
+          <hr>
+          <form [formGroup]="addAdForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="name" id="name" formControlName="name" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('name').errors }">
+
+              <div *ngIf="submitted && addAdForm.get('name').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('name').errors['required']">Email is required</div>
+                <div *ngIf="addAdForm.get('name').errors['name']">Email must be a valid email address</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="profilePicture">Profile Picture</label>
+              <input type="text" id="profilePicture" formControlName="profilePicture" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('profilePicture').errors }" />
+              <div *ngIf="submitted && addAdForm.get('profilePicture').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('profilePicture').errors['required']">Address is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" id="description" formControlName="description" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('description').errors }" />
+              <div *ngIf="submitted && addAdForm.get('description').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('description').errors['required']">Country is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+            <label for="startofDate">startofDate</label>
+            <input type="startofDate" id="startofDate" formControlName="startofDate" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && addAdForm.get('startofDate').errors }" />
+            <div *ngIf="submitted && addAdForm.get('grade').errors" class="invalid-feedback">
+              <div *ngIf="addAdForm.get('startofDate').errors['required']">Phone Number is required</div>
+              <div *ngIf="addAdForm.get('startofDate').errors['minlength']">A phone number must have at least 9
+                digits
+              </div>
+            </div>
+          </div>
+
+            <div class="form-group">
+              <label for="endofDate">endofDate</label>
+              <input type="endofDate" id="endofDate" formControlName="endofDate" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('endofDate').errors }" />
+              <div *ngIf="submitted && addAdForm.get('endofDate').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('endofDate').errors['required']">Phone Number is required</div>
+                <div *ngIf="addAdForm.get('endofDate').errors['minlength']">A phone number must have at least 9
+                  digits
+                </div>
+              </div>
+            </div>
+            <button mat-raised-button style="position: center" color="primary" class="pull-right">Save</button>
+          </form>
+
+
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+<table mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
