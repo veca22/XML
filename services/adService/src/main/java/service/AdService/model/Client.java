@@ -29,10 +29,10 @@ public class Client {
     private String phoneNumber;
 
     //agent
-    @Column(nullable = false)
+    @Column(nullable= true)
     private String personalID;
     //firma
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String pib;
 
     @Column(nullable = false)
