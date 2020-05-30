@@ -77,8 +77,9 @@ export class LoginComponent implements OnInit {
   async reverse() {
     const c = await this.userService.getUser(this.f.email.value);
     this.user = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
-    this.attemptLogin();
     console.log(this.user);
+    this.attemptLogin();
+
   }
   public attemptLogin() {
     if (this.user.role === Role.ADMINISTRATOR && this.f.email.value === this.user.email && this.f.password.value === this.user.password) {

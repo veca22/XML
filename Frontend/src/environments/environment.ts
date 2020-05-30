@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  authUrl: 'http://localhost:8087',
+  gateway: 'http://localhost:8084',
+  auth: '/authentication',
   user: '/user',
 };
 

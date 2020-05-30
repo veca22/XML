@@ -11,11 +11,12 @@ import service.authenticationService.dtos.LoginDTO;
 import service.authenticationService.model.User;
 import service.authenticationService.service.UserService;
 
+import javax.persistence.Column;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
+@RestController
 public class UserController {
 
     @Autowired
@@ -32,7 +33,7 @@ public class UserController {
         return new ResponseEntity<>(userService.findUserByEmail(email), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/user/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/user/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> login(@RequestBody LoginDTO logindto)
     {
         System.out.println("Sifra je " + logindto.getPassword());
