@@ -18,6 +18,7 @@ export class UserService {
   users: Array<User> = new Array<User>();
   user: User = new User('', '', Role.NONE);
   userForLogin: User;
+  endUsers: Array<User> = new Array<User>();
 
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
@@ -72,6 +73,8 @@ export class UserService {
       return UserStatus.AWAITING_APPROVAL;
     } else if (status === 'BLOCKED') {
       return UserStatus.BLOCKED;
+    } else if (status === 'REMOVED') {
+      return UserStatus.REMOVED;
     } else {
       return null;
     }
@@ -136,5 +139,20 @@ export class UserService {
     headers.append('Content-Type', 'application/json');
     this.setToken(user);
     return this.http.post(environment.gateway + environment.auth + environment.user + '/login', user,  {responseType: 'text'});
+  }
+
+  public getEndUsers() {
+    this.http.get(environment.gateway + environment.auth + environment.user + '/allEndUsers').subscribe((data: User[]) => {
+        for (const c of data) {
+          this.user = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
+          this.endUsers.push(this.user);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    console.log(this.endUsers);
+    return this.endUsers;
   }
 }

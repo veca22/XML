@@ -27,6 +27,11 @@ public class UserController {
         return new ResponseEntity<>(userService.findall(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/user/allEndUsers")
+    public ResponseEntity<List<User>> allEndUsers() {
+        return new ResponseEntity<>(userService.findAllEndUsers(), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/user/userByEmail")
     public ResponseEntity<User> userByEmail(@RequestParam(value = "email", required = true) String email) {
         System.out.println(userService.findUserByEmail(email).getPassword());
