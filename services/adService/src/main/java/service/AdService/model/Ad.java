@@ -17,6 +17,9 @@ public class Ad {
     @Column
     private String profilePicture;
 
+    @Column
+    private String title;
+
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Picture> pictureSet;
 
@@ -44,6 +47,9 @@ public class Ad {
 
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Comment> comments;
+
+    @Column
+    private String place;
 
     public Ad() {
     }
@@ -134,5 +140,13 @@ public class Ad {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 }
