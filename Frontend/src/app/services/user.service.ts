@@ -2,10 +2,9 @@ import {Injectable} from '@angular/core';
 import {Role} from '../model/role';
 import {User} from '../model/user';
 import {Router} from '@angular/router';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {UserStatus} from '../model/userStatus';
-
 
 
 export const TOKEN = 'LoggedInUser';
@@ -21,7 +20,7 @@ export class UserService {
 
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
-    // this.users = this.getAllUsers();
+    //this.users = this.getAllUsers();
   }
 
   public isLoggedIn() {
@@ -48,6 +47,12 @@ export class UserService {
   public isAdministrator() {
     if (this.isLoggedIn()) {
       return this.user.role === Role.ADMINISTRATOR;
+    }
+  }
+
+  public isEndUser(){
+    if(this.isLoggedIn()){
+      return this.user.role === Role.ENDUSER;
     }
   }
 

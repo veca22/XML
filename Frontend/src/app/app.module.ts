@@ -10,13 +10,15 @@ import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { AdministratorHomePageComponent } from './components/administrator-home-page/administrator-home-page.component';
+import { EndUserHomePageComponent } from './components/end-user-home-page/end-user-home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginComponent,
-    AdministratorHomePageComponent
+    AdministratorHomePageComponent,
+    EndUserHomePageComponent
   ],
   imports: [
     BrowserModule,

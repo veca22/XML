@@ -25,6 +25,10 @@ export class AppComponent {
     return this.userService.isAdministrator();
   }
 
+  public  isEndUser() {
+    return this.userService.isEndUser();
+  }
+
   public onLogout() {
     this.userService.logOut();
   }

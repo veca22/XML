@@ -13,6 +13,10 @@
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
+    <mat-nav-list *ngIf="isEndUser()">
+      <a mat-list-item (click)="onLogout()">Logout</a>
+    </mat-nav-list>
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="warn">
