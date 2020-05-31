@@ -18,6 +18,7 @@ public class Car {
     private CarBrand carBrand;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private CarType carType;
 
     @Column(nullable = false)

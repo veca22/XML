@@ -1,5 +1,7 @@
 package service.AdService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -39,8 +41,10 @@ public class Client {
     private String address;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ad> ads;
 

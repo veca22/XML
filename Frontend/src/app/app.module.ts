@@ -3,20 +3,23 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {MatCardModule, MatIconModule, MatListModule, MatSidenavModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { AdministratorHomePageComponent } from './components/administrator-home-page/administrator-home-page.component';
+import { CarSearchComponent } from './components/car-search/car-search.component';
+import {DemoMaterialModule} from './material-module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginComponent,
-    AdministratorHomePageComponent
+    AdministratorHomePageComponent,
+    CarSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,8 @@ import { AdministratorHomePageComponent } from './components/administrator-home-
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatTableModule,
+    DemoMaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
