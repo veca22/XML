@@ -1,2 +1,2 @@
-insert into users(id, email, password, role, status) values (110,'test@test.com','test','ENDUSER', 'ACCEPTED');
+insert into users(id, email, password, role, status) values (1066,'test@test.com','test','ENDUSER', 'ACCEPTED');
 

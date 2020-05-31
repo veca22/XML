@@ -19,17 +19,17 @@ export class AdServiceService {
     }
 
   public addAd(a: Ad) {
-      if (this.getAd(a.name) === null) {
+      if (this.getAd(a.adName) === null) {
         this.listAd.push(a);
       }
     }
 
-  public getAd(name: string) {
+  public getAd(adName: string) {
       if ( this.listAd.length === 0) {
         return null;
       }
       for (const u of this.listAd) {
-        if ( u.name === name) {
+        if ( u.adName === adName) {
           return u;
         }
       }
@@ -37,14 +37,14 @@ export class AdServiceService {
       return null;
     }
 
-  public getAdByName(name) {
-      return this.http.get(this.urlAd + '/' + name);
+  public getAdByName(adName) {
+      return this.http.get(this.urlAd + '/' + adName);
     }
 
   public getAllAds(): Array<Ad> {
-      this.http.get(this.urlAd + '/all').subscribe((data: Ad[]) => {
+      this.http.get(environment.gateway + environment.ad + '/all').subscribe((data: Ad[]) => {
           for (const c of data) {
-            this.ad = new Ad(c.name, c.profilePicture, c.startofAd, c.endofAd , c.description);
+            this.ad = new Ad(c.adName, c.profilePicture, c.description);
             this.addAd(this.ad);
           }
         },
@@ -56,7 +56,7 @@ export class AdServiceService {
   }
 
   public newAd(ad) {
-      return this.http.post(this.urlAd + '/endUser/addAd', ad);
+      return this.http.post(environment.gateway + environment.ad + '/addAd', ad);
     }
 
 

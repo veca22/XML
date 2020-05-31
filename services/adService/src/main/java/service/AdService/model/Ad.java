@@ -22,6 +22,24 @@ public class Ad {
         this.adName = adName;
     }
 
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id=" + id +
+                ", car=" + car +
+                ", adName='" + adName + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", pictureSet=" + pictureSet +
+                ", client=" + client +
+                ", startOfAd=" + startOfAd +
+                ", endOfAd=" + endOfAd +
+                ", description='" + description + '\'' +
+                ", isActive=" + isActive +
+                ", currentDriver=" + currentDriver +
+                ", comments=" + comments +
+                '}';
+    }
+
     @Column
     private String adName;
 

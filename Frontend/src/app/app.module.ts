@@ -7,7 +7,7 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatIconModule,
-  MatListModule, MatPaginatorModule,
+  MatListModule, MatNativeDateModule, MatPaginatorModule,
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule
@@ -15,11 +15,13 @@ import {
 import {RouterModule} from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { AdministratorHomePageComponent } from './components/administrator-home-page/administrator-home-page.component';
 import { EndUserHomePageComponent } from './components/end-user-home-page/end-user-home-page.component';
 import { AddAdComponent } from './components/add-ad/add-ad.component';
+import {LayoutModule} from '@angular/cdk/layout';
+import {DemoMaterialModule} from './material-module';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,12 @@ import { AddAdComponent } from './components/add-ad/add-ad.component';
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
+    LayoutModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    DemoMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

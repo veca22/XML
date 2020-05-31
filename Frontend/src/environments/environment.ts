@@ -7,6 +7,7 @@ export const environment = {
   gateway: 'http://localhost:8084',
   auth: '/authentication',
   ad: '/ad',
+ // endUser: '/endUser',
   user: '/user',
 };
 

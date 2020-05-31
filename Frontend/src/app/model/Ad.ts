@@ -1,17 +1,16 @@
 export class Ad {
 
-  name: string;
+  adName: string;
   profilePicture: string;
-  startofAd: Date;
-  endofAd: Date;
+ // startofDate: Date;//endofDate: Date;
   description: string;
 
 
-  constructor(name: string, profilePicture: string, startofAd: Date, endofAd: Date, description: string) {
-    this.name = name;
+  constructor(adName: string, profilePicture: string,  description: string) {
+    this.adName = adName;
     this.profilePicture = profilePicture;
-    this.startofAd = startofAd;
-    this.endofAd = endofAd;
+   // this.startofDate = startofDate;
+  //  this.endofDate = endofDate;
     this.description = description;
   }
 }

@@ -7,13 +7,13 @@
           <hr>
           <form [formGroup]="addAdForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <label for="name">Name</label>
-              <input type="name" id="name" formControlName="name" class="form-control"
-                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('name').errors }">
+              <label for="adName">Name</label>
+              <input type="text" id="adName" formControlName="adName" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('adName').errors }">
 
-              <div *ngIf="submitted && addAdForm.get('name').errors" class="invalid-feedback">
-                <div *ngIf="addAdForm.get('name').errors['required']">Email is required</div>
-                <div *ngIf="addAdForm.get('name').errors['name']">Email must be a valid email address</div>
+              <div *ngIf="submitted && addAdForm.get('adName').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('adName').errors['required']">Email is required</div>
+                <div *ngIf="addAdForm.get('adName').errors['adName']">Email must be a valid email address</div>
               </div>
             </div>
 
@@ -34,29 +34,29 @@
               </div>
             </div>
 
-            <div class="form-group">
-            <label for="startofDate">startofDate</label>
-            <input type="startofDate" id="startofDate" formControlName="startofDate" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && addAdForm.get('startofDate').errors }" />
-            <div *ngIf="submitted && addAdForm.get('grade').errors" class="invalid-feedback">
-              <div *ngIf="addAdForm.get('startofDate').errors['required']">Phone Number is required</div>
-              <div *ngIf="addAdForm.get('startofDate').errors['minlength']">A phone number must have at least 9
-                digits
-              </div>
-            </div>
-          </div>
+<!--            <div class="form-group">-->
+<!--            <label for="startofDate">startofDate</label>-->
+<!--            <input type="date" id="startofDate" formControlName="startofDate" class="form-control"-->
+<!--                   [ngClass]="{ 'is-invalid': submitted && addAdForm.get('startofDate').errors }" />-->
+<!--            <div *ngIf="submitted && addAdForm.get('startofDate').errors" class="invalid-feedback">-->
+<!--              <div *ngIf="addAdForm.get('startofDate').errors['required']">Phone Number is required</div>-->
+<!--              <div *ngIf="addAdForm.get('startofDate').errors['minlength']">A phone number must have at least 9-->
+<!--                digits-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
-            <div class="form-group">
-              <label for="endofDate">endofDate</label>
-              <input type="endofDate" id="endofDate" formControlName="endofDate" class="form-control"
-                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('endofDate').errors }" />
-              <div *ngIf="submitted && addAdForm.get('endofDate').errors" class="invalid-feedback">
-                <div *ngIf="addAdForm.get('endofDate').errors['required']">Phone Number is required</div>
-                <div *ngIf="addAdForm.get('endofDate').errors['minlength']">A phone number must have at least 9
-                  digits
-                </div>
-              </div>
-            </div>
+<!--            <div class="form-group">-->
+<!--              <label for="endofDate">endofDate</label>-->
+<!--              <input type="date" id="endofDate" formControlName="endofDate" class="form-control"-->
+<!--                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('endofDate').errors }" />-->
+<!--              <div *ngIf="submitted && addAdForm.get('endofDate').errors" class="invalid-feedback">-->
+<!--                <div *ngIf="addAdForm.get('endofDate').errors['required']">Phone Number is required</div>-->
+<!--                <div *ngIf="addAdForm.get('endofDate').errors['minlength']">A phone number must have at least 9-->
+<!--                  digits-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
             <button mat-raised-button style="position: center" color="primary" class="pull-right">Save</button>
           </form>
 

@@ -13,7 +13,9 @@ export class AddAdComponent implements OnInit {
   adservice: AdServiceService;
   addAdForm: FormGroup;
   submitted = false;
+  displayedColumns: string[] = ['adName', 'profilePicture', 'description' ];
   ad: Ad;
+  expandedElement: Ad;
   dataSource = new MatTableDataSource<Ad>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   ads: Array<Ad> = new Array<Ad>();
@@ -29,10 +31,10 @@ export class AddAdComponent implements OnInit {
   ngOnInit() {
     this.addAdForm = this.formBuilder.group({
 
-      name: new FormControl('', [Validators.required]),
+      adName: new FormControl('', [Validators.required]),
       profilePicture: new FormControl('', [Validators.required]),
-      starofDate: new FormControl('', [Validators.required]),
-      endOfDate: new FormControl('', [Validators.required]),
+     // startofDate: new FormControl('', [Validators.required]),
+     // endofDate: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
     });
     this.all();
@@ -52,24 +54,27 @@ export class AddAdComponent implements OnInit {
     }
 
     this.ad = new Ad(
-      this.f.name.value,
+      this.f.adName.value,
       this.f.profilePicture.value,
-      this.f.startofDate.value,
-      this.f.endOfDate.value,
+   //   this.f.startofDate.value,
+   //   this.f.endOfDate.value,
       this.f.description.value,
 
     );
 
-   // this.ad = new Ad(this.f.name.value, this.f.address.value, this.f.description.value, this.f.grade.value);
+    this.ad = new Ad(this.f.adName.value, this.f.profilePicture.value, this.f.description.value);
 
     this.createAd();
   }
 
   private createAd() {
+    console.log('usao u create');
     this.adService.newAd(this.ad).subscribe(
       data => {
+        console.log('usao');
         this.adService.addAd(this.ad);
-        this.router.navigate(['/clinical-centre-admin/home']);
+        console.log('usao1');
+        this.router.navigate(['/endUser/home']);
       },
       error => {
         alert('Error registration patient');

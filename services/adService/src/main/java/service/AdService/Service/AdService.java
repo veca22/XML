@@ -22,7 +22,7 @@ public class AdService {
         return  adRepo.save(c);
     }
 
-    public boolean AddAd(Ad c){
+    public boolean addAd(Ad c){
 
         List<Ad> tmp = findAll();
         if(tmp.size() == 0)
@@ -45,14 +45,17 @@ public class AdService {
 
     }
 
-    public Ad getAd(String name){
+    public Ad getAd(String adName){
         List<Ad> tmp = findAll();
         if(tmp.size() == 0)
             return null;
 
         for(Ad c : tmp)
         {
-            if(c.getAdName().equals(name))
+            System.out.println(c.toString());
+            if(c.getAdName() == null)
+                return null;
+            if(c.getAdName().equals(adName))
                 return c;
         }
 
