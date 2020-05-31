@@ -1,11 +1,11 @@
 package service.AdService.dto;
 
-public class AdDTO {
+public class AdFilterDTO {
     private String startDate;
     private String endDate;
     private String place;
 
-    public AdDTO(String startDate, String endDate, String place) {
+    public AdFilterDTO(String startDate, String endDate, String place) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.place = place;
