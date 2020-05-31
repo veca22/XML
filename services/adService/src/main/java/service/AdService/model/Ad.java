@@ -1,5 +1,7 @@
 package service.AdService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -11,7 +13,8 @@ public class Ad {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Car car;
 
     @Column
@@ -20,11 +23,12 @@ public class Ad {
     @Column
     private String title;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Picture> pictureSet;
 
     //client
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Client client;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -42,9 +46,10 @@ public class Ad {
     private boolean isActive;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Client currentDriver;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Comment> comments;
 
@@ -148,5 +153,24 @@ public class Ad {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id=" + id +
+                ", car=" + car +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", title='" + title + '\'' +
+                ", pictureSet=" + pictureSet +
+                ", client=" + client +
+                ", startOfAd=" + startOfAd +
+                ", endOfAd=" + endOfAd +
+                ", description='" + description + '\'' +
+                ", isActive=" + isActive +
+                ", currentDriver=" + currentDriver +
+                ", comments=" + comments +
+                ", place='" + place + '\'' +
+                '}';
     }
 }
