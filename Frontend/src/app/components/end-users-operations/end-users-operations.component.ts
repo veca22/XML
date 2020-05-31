@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {User} from '../../model/user';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-end-users-operations',
@@ -10,15 +11,16 @@ import {UserService} from '../../services/user.service';
 })
 export class EndUsersOperationsComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'email', 'role', 'status'];
+  displayedColumns: string[] = ['id', 'email', 'role', 'status', 'аccept', 'block', 'remove'];
   dataSource = new MatTableDataSource<User>();
   users: Array<User> = new Array<User>();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  constructor(private userService: UserService) {
-     this.users = this.userService.getEndUsers();
+  constructor(private userService: UserService, private router: Router) {
+     this.users = this.userService.getEndUsersForOperations();
      this.dataSource = new MatTableDataSource(this.users);
+     this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit() {
@@ -47,5 +49,20 @@ export class EndUsersOperationsComponent implements OnInit {
     } else {
       return 'Removed';
     }
+
+  }
+  function_for_operation(operation, user) {
+    console.log(user.id.toString());
+    this.userService.AccountOperation(operation, user.id.toString()).subscribe(data => {
+      this.router.navigate(['administrator/home']);
+    },
+      error => {
+        console.log(error);
+      });
+  }
+
+  deleteRow(d) {
+    const index = this.dataSource.data.indexOf(d);
+    this.dataSource.data.splice(index, 1);
   }
 }

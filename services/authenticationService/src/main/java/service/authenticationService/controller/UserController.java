@@ -9,6 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import service.authenticationService.dtos.LoginDTO;
 import service.authenticationService.model.User;
+import service.authenticationService.model.UserStatus;
 import service.authenticationService.service.UserService;
 
 import javax.persistence.Column;
@@ -30,6 +31,18 @@ public class UserController {
     @GetMapping(value = "/user/allEndUsers")
     public ResponseEntity<List<User>> allEndUsers() {
         return new ResponseEntity<>(userService.findAllEndUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/user/allEndUsersForOperations")
+    public ResponseEntity<List<User>> allEndUsersForOperations() {
+        List<User> pom = userService.findAllEndUsers();
+        List<User> ret = userService.findAllEndUsers();
+        for(User u : pom) {
+            if(u.getStatus() != UserStatus.REMOVED) {
+                ret.add(u);
+            }
+        }
+        return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
     @GetMapping(value = "/user/userByEmail")
@@ -61,6 +74,31 @@ public class UserController {
         else
         {
             return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping(value = "/user/accountOperation")
+    public ResponseEntity<User> operations(@RequestParam(value = "operation", required = true) String operation,
+                                           @RequestParam(value = "id", required = true) String id) {
+
+        System.out.println(id);
+        Long lid = Long.parseLong(id);
+        User user = userService.findUserById(lid);
+        System.out.println(user.getEmail() + " adresa usera za operacije");
+        if(operation.equals("АCCEPTED")) {
+            user.setStatus(UserStatus.ACCEPTED);
+            userService.save(user);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else if(operation.equals("BLOCKED")) {
+            user.setStatus(UserStatus.BLOCKED);
+            userService.save(user);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else if(operation.equals("REMOVED")) {
+            user.setStatus(UserStatus.REMOVED);
+            userService.save(user);
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
