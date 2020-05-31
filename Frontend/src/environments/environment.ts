@@ -9,6 +9,7 @@ export const environment = {
   ad: '/ad',
  // endUser: '/endUser',
   user: '/user',
+  ad: '/ad'
 };
 
 /*

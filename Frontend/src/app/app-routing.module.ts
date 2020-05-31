@@ -3,8 +3,12 @@ import {NgModule} from '@angular/core';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {LoginComponent} from './components/login/login.component';
 import {AdministratorHomePageComponent} from './components/administrator-home-page/administrator-home-page.component';
+
 import {EndUserHomePageComponent} from './components/end-user-home-page/end-user-home-page.component';
 import {AddAdComponent} from './components/add-ad/add-ad.component';
+
+import {CarSearchComponent} from './components/car-search/car-search.component';
+
 
 const routes: Routes = [
   {
@@ -20,6 +24,7 @@ const routes: Routes = [
     component: AdministratorHomePageComponent,
   },
   {
+
     path: 'endUser/home',
     component: EndUserHomePageComponent,
   },
@@ -27,6 +32,11 @@ const routes: Routes = [
     path: 'endUser/addAd',
     component: AddAdComponent,
   },
+
+    path: 'search',
+    component: CarSearchComponent
+  }
+
 ];
 
 @NgModule({
