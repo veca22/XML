@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../model/user';
 import {UserService} from '../../services/user.service';
@@ -69,6 +69,8 @@ export class LoginComponent implements OnInit {
       return UserStatus.AWAITING_APPROVAL;
     } else if (status === 'BLOCKED') {
       return UserStatus.BLOCKED;
+    } else if (status === 'REMOVED') {
+      return UserStatus.REMOVED;
     } else {
       return null;
     }
