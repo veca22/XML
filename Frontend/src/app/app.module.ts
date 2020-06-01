@@ -12,7 +12,6 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import {MatCardModule, MatIconModule, MatListModule, MatSidenavModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,8 +28,8 @@ import {DemoMaterialModule} from './material-module';
     HomePageComponent,
     LoginComponent,
     AdministratorHomePageComponent,
-    EndUsersOperationsComponent
-    CarSearchComponent
+    EndUsersOperationsComponent,
+    CarSearchComponent,
   ],
   imports: [
     BrowserModule,

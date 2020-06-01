@@ -25,9 +25,9 @@ const routes: Routes = [
     path: 'administrator/end-users-operations',
     component: EndUsersOperationsComponent,
   },
-
+  {
     path: 'search',
-    component: CarSearchComponent
+    component: CarSearchComponent,
   }
 
 ];
