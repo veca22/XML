@@ -25,7 +25,7 @@ export class UserService {
 
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
-    // this.users = this.getAllUsers();
+    this.endUsersForOperations = this.getEndUsersForOperations();
   }
 
   public isLoggedIn() {
@@ -146,9 +146,10 @@ export class UserService {
     return this.http.post(environment.gateway + environment.auth + environment.user + '/login', user,  {responseType: 'text'});
   }
 
-  public getEndUsersForOperations() {
+  public getEndUsersForOperations(): Array<User> {
     this.endUsersForOperations = new Array<User>();
-    this.http.get(environment.gateway + environment.auth + environment.user + '/allEndUsersForOperations').subscribe((data: User[]) => {
+    this.http.get(environment.gateway + environment.admin + environment.user + '/allEndUsersForOperations').subscribe((data: User[]) => {
+        console.log(data);
         for (const c of data) {
           this.endUser = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
           this.endUsersForOperations.push(this.endUser);
@@ -166,6 +167,9 @@ export class UserService {
     let params = new HttpParams();
     params = params.append('operation', operation);
     params = params.append('id', id);
-    return this.http.post(environment.gateway + environment.auth + environment.user + '/accountOperation', params);
+    return this.http.post(environment.gateway + environment.admin + environment.user + '/accountOperation', params);
+  }
+  public getUsersForOperations() {
+    return this.endUsersForOperations;
   }
 }

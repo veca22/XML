@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {User} from '../../model/user';
 import {UserService} from '../../services/user.service';
@@ -12,19 +12,18 @@ import {Router} from '@angular/router';
 export class EndUsersOperationsComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'email', 'role', 'status', 'аccept', 'block', 'remove'];
-  dataSource = new MatTableDataSource<User>();
-  users: Array<User> = new Array<User>();
 
+  users: Array<User>;
+  dataSource = new MatTableDataSource<User>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private userService: UserService, private router: Router) {
-     this.users = this.userService.getEndUsersForOperations();
-     this.dataSource = new MatTableDataSource(this.users);
-     this.dataSource.paginator = this.paginator;
+    this.dataSource = new MatTableDataSource(this.userService.getUsersForOperations());
+    this.dataSource.paginator = this.paginator;
+
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
   }
 
   role_to_string(role) {
@@ -61,8 +60,4 @@ export class EndUsersOperationsComponent implements OnInit {
       });
   }
 
-  deleteRow(d) {
-    const index = this.dataSource.data.indexOf(d);
-    this.dataSource.data.splice(index, 1);
-  }
 }

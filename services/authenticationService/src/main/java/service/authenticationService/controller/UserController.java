@@ -33,18 +33,6 @@ public class UserController {
         return new ResponseEntity<>(userService.findAllEndUsers(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/user/allEndUsersForOperations")
-    public ResponseEntity<List<User>> allEndUsersForOperations() {
-        List<User> pom = userService.findAllEndUsers();
-        List<User> ret = userService.findAllEndUsers();
-        for(User u : pom) {
-            if(u.getStatus() != UserStatus.REMOVED) {
-                ret.add(u);
-            }
-        }
-        return new ResponseEntity<>(ret, HttpStatus.OK);
-    }
-
     @GetMapping(value = "/user/userByEmail")
     public ResponseEntity<User> userByEmail(@RequestParam(value = "email", required = true) String email) {
         System.out.println(userService.findUserByEmail(email).getPassword());
@@ -79,29 +67,5 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping(value = "/user/accountOperation")
-    public ResponseEntity<User> operations(@RequestParam(value = "operation", required = true) String operation,
-                                           @RequestParam(value = "id", required = true) String id) {
-
-        System.out.println(id);
-        Long lid = Long.parseLong(id);
-        User user = userService.findUserById(lid);
-        System.out.println(user.getEmail() + " adresa usera za operacije");
-        if(operation.equals("АCCEPTED")) {
-            user.setStatus(UserStatus.ACCEPTED);
-            userService.save(user);
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else if(operation.equals("BLOCKED")) {
-            user.setStatus(UserStatus.BLOCKED);
-            userService.save(user);
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else if(operation.equals("REMOVED")) {
-            user.setStatus(UserStatus.REMOVED);
-            userService.save(user);
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
-    }
 
 }
