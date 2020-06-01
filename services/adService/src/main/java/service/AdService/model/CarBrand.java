@@ -1,5 +1,7 @@
 package service.AdService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,9 +15,11 @@ public class CarBrand {
     @Column(nullable = false, unique = true)
     private String brand;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "carBrand")
     private Set<Car> cars;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "carBrand")
     private Set<CarModel> carModel;
 

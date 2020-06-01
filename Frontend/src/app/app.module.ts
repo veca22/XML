@@ -12,6 +12,7 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
+import {MatCardModule, MatIconModule, MatListModule, MatSidenavModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
@@ -19,6 +20,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { AdministratorHomePageComponent } from './components/administrator-home-page/administrator-home-page.component';
 import { EndUsersOperationsComponent } from './components/end-users-operations/end-users-operations.component';
+import { CarSearchComponent } from './components/car-search/car-search.component';
+import {DemoMaterialModule} from './material-module';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { EndUsersOperationsComponent } from './components/end-users-operations/e
     LoginComponent,
     AdministratorHomePageComponent,
     EndUsersOperationsComponent
+    CarSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ import { EndUsersOperationsComponent } from './components/end-users-operations/e
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
+    DemoMaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

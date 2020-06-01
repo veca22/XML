@@ -8,6 +8,7 @@ export const environment = {
   auth: '/authentication',
   user: '/user',
   admin: '/admin',
+  ad: '/ad'
 };
 
 /*

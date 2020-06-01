@@ -1,5 +1,6 @@
 package service.AdService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Picture {
     @Column
     private String picture;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Ad ad;
 

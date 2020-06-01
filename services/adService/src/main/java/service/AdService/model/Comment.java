@@ -1,5 +1,7 @@
 package service.AdService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class Comment {
     @Column
     private boolean approved = false;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ad_id")
     private Ad ad;
