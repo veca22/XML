@@ -9,6 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import service.authenticationService.dtos.LoginDTO;
 import service.authenticationService.model.User;
+import service.authenticationService.model.UserStatus;
 import service.authenticationService.service.UserService;
 
 import javax.persistence.Column;
@@ -25,6 +26,11 @@ public class UserController {
     @GetMapping(value = "/user/all")
     public ResponseEntity<List<User>> all() {
         return new ResponseEntity<>(userService.findall(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/user/allEndUsers")
+    public ResponseEntity<List<User>> allEndUsers() {
+        return new ResponseEntity<>(userService.findAllEndUsers(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/user/userByEmail")
@@ -60,5 +66,6 @@ public class UserController {
 
         return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
     }
+
 
 }

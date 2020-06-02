@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../services/user.service';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-administrator-home-page',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./administrator-home-page.component.css']
 })
 export class AdministratorHomePageComponent implements OnInit {
-
-  constructor() { }
+  tmp: Array<User>;
+  constructor(private userService: UserService) {
+    this.tmp = this.userService.getEndUsersForOperations();
+  }
 
   ngOnInit() {
   }

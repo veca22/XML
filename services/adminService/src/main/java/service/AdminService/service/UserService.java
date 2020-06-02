@@ -1,10 +1,10 @@
-package service.authenticationService.service;
+package service.AdminService.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.authenticationService.model.Role;
-import service.authenticationService.model.User;
-import service.authenticationService.repository.UserRepo;
+import service.AdminService.model.Role;
+import service.AdminService.model.User;
+import service.AdminService.repository.UserRepo;
 
 import java.util.List;
 
@@ -27,7 +27,9 @@ public class UserService {
     public User findUserById(Long id) {
         return userRepo.findUserById(id);
     }
-
+    public void deleteUser(User user) {
+        userRepo.delete(user);
+    }
     public List<User> findAllEndUsers() {
         return userRepo.findAllByRole(Role.ENDUSER);
     }
