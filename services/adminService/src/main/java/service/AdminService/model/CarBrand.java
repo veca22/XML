@@ -11,14 +11,14 @@ public class  CarBrand {
     private Long id;
 
     @Column
-    private String car_brand;
+    private String brand;
 
     public CarBrand() {
     }
 
-    public CarBrand(Long id, String car_brand) {
+    public CarBrand(Long id, String brand) {
         this.id = id;
-        this.car_brand = car_brand;
+        this.brand = brand;
     }
 
     public Long getId() {
@@ -29,11 +29,11 @@ public class  CarBrand {
         this.id = id;
     }
 
-    public String getCar_brand() {
-        return car_brand;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setCar_brand(String car_brand) {
-        this.car_brand = car_brand;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

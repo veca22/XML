@@ -41,7 +41,7 @@ public class CarBrandService {
             return null;
         }
         for (CarBrand f : tmp){
-            if(f.getCar_brand().equals(car_brand)){
+            if(f.getBrand().equals(car_brand)){
                 return f;
             }
         }

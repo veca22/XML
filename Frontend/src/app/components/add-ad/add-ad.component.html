@@ -184,7 +184,7 @@
 
                 </div>
               </div><div class="form-group">
-              <label for="carType">carModel</label>
+              <label for="carType">carType</label>
               <input type="text" id="carType" formControlName="carType" class="form-control"
                      [ngClass]="{ 'is-invalid': submitted && addAdForm.get('carType').errors }" />
               <div *ngIf="submitted && addAdForm.get('carType').errors" class="invalid-feedback">
@@ -193,6 +193,19 @@
                   digits
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="carModel">carModel</label>
+                <input type="text" id="carModel" formControlName="carModel" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('carModel').errors }" />
+                <div *ngIf="submitted && addAdForm.get('carModel').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('carModel').errors['required']">Phone Number is required</div>
+                  <div *ngIf="addAdForm.get('carModel').errors['minlength']">A phone number must have at least 9
+                    digits
+                  </div>
+                </div>
+              </div>
+
             </div><div class="form-group">
               <label for="transmissionType">transmissionType</label>
               <input type="text" id="transmissionType" formControlName="transmissionType" class="form-control"

@@ -1,10 +1,10 @@
 export class FuelType {
-  serial_number: String;
-  fuel_type: String;
+  serial_number: string;
+  type: string;
 
 
-  constructor(serial_number: String, fuel_type: String) {
+  constructor(type: string, serial_number?: string ) {
     this.serial_number = serial_number;
-    this.fuel_type = fuel_type;
+    this.type = type;
   }
 }

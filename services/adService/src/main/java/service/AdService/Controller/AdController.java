@@ -30,6 +30,15 @@ public class AdController {
     @Autowired
     CarModelService carModelService;
 
+    @Autowired
+    CarTypeService carTypeService;
+
+    @Autowired
+    FuelTypeService fuelTypeService;
+
+    @Autowired
+    TransmissionTypeService transmissionTypeService;
+
     @GetMapping(value = "/all")
     public ResponseEntity<List<Ad>> all() {
         System.out.println("dosao sam na back");
@@ -39,6 +48,7 @@ public class AdController {
     @PostMapping(value = "/addAd")
     public String AddAdministrator(@RequestBody AdDTO ads) {
         System.out.println("Usao u add" + ads.toString());
+        System.out.println(ads.toString());
         Ad ad = adService.getAd(ads.getTitle());
 
         if (ad == null) {
@@ -46,33 +56,66 @@ public class AdController {
             System.out.println("Usao u if");
             Car car = new Car();
             Client client = new Client();
-            CarBrand cb = carBrandService.findOneCarBrand(ads.getCar().getCarBrand().getBrand());
+            CarBrand cb = carBrandService.findCarByBrand(ads.getCar().getCarBrand().getBrand());
             if(cb == null){
                 cb = new CarBrand();
                 cb.setBrand(ads.getCar().getCarBrand().getBrand());
                 carBrandService.addCarBrand(cb);
             }
 
+            System.out.println(cb.getBrand());
+
             car.setCarBrand(cb);
             car.setAverageRating(ads.getCar().getAverageRating());
             car.setCarStatus(ads.getCar().getCarStatus());
-            car.setCarType(ads.getCar().getCarType());
+            CarType ct = carTypeService.findByType(ads.getCar().getCarType().getType());
+            System.out.println(ads.getCar().getCarType().getType() + " ovo je kar tajp");
+            if(ct == null) {
+                ct = new CarType();
+                ct.setType(ads.getCar().getCarType().getType());
+                carTypeService.addType(ct);
+            }
+            System.out.println(ct.getType());
+
+            car.setCarType(ct);
             car.setChildSeats(ads.getCar().getChildSeats());
             car.setDiscount(ads.getCar().getDiscount());
             car.setDistanceAllowed(ads.getCar().getDistanceAllowed());
-            car.setFuelType(ads.getCar().getFuelType());
+            FuelType ft = fuelTypeService.findFuelByType(ads.getCar().getFuelType().getType());
+            if(ft == null) {
+                ft = new FuelType();
+                ft.setType(ads.getCar().getFuelType().getType());
+                fuelTypeService.save(ft);
+            }
+
+            car.setFuelType(ft);
             car.setMileage(ads.getCar().getMileage());
             car.setPrice(ads.getCar().getPrice());
-            car.setTransmissionType(ads.getCar().getTransmissionType());
-            Client c = clientService.findClientByID(ads.getClient().getId());
+            TransmissionType tt = transmissionTypeService.findTransByType(ads.getCar().getTransmissionType().getType());
+            if(tt == null) {
+                tt = new TransmissionType();
+                tt.setType(ads.getCar().getTransmissionType().getType());
+                transmissionTypeService.save(tt);
+            }
+            car.setTransmissionType(tt);
 
+            CarModel cm = carModelService.findCarByModel(ads.getCar().getCarModel().getModel());
+            if(cm == null) {
+                cm = new CarModel();
+                cm.setModel(ads.getCar().getCarModel().getModel());
+                carModelService.addCarModel(cm);
+            }
+            car.setCarModel(cm);
+        //    Client c = clientService.findClientByID(ads.getClient().getId());
+            carService.addCar(car);
             Ad newAd = new Ad();
             newAd.setTitle(ads.getTitle());
             newAd.setProfilePicture(ads.getProfilePicture());
             newAd.setDescription(ads.getDescription());
             newAd.setPlace(ads.getPlace());
-            newAd.setCar(ads.getCar());
+            newAd.setCar(car);
             newAd.setClient(ads.getClient());
+            System.out.println("New ad" + newAd);
             boolean uspesno = adService.addAd(newAd);
 
             if(uspesno == true){

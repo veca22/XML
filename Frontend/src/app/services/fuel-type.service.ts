@@ -22,7 +22,7 @@ export class FuelTypeService {
     }
   }
 
-  public getFuelType(serial_number: String) {
+  public getFuelType(serial_number: string) {
     if (this.listFuelTypes.length === 0) {
       return null;
     }
@@ -37,7 +37,7 @@ export class FuelTypeService {
   public getAllFuelType(): Array<FuelType> {
     this.http.get(environment.gateway + environment.admin + '/fuelType/all').subscribe((data: FuelType[]) => {
         for (const c of data) {
-          this.fuelType = new FuelType(c.serial_number, c.fuel_type);
+          this.fuelType = new FuelType(c.serial_number, c.type);
           this.listFuelTypes.push(this.fuelType);
         }
       },

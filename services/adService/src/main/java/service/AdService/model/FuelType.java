@@ -1,4 +1,4 @@
-package service.AdminService.model;
+package service.AdService.model;
 
 import javax.persistence.*;
 
@@ -43,7 +43,16 @@ public class FuelType {
         return type;
     }
 
-    public void setType(String fuelType) {
-        this.type = fuelType;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "FuelType{" +
+                "id=" + id +
+                ", serial_number='" + serial_number + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

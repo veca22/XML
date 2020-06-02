@@ -2,6 +2,7 @@ package service.AdService.model;
 
 import javax.persistence.*;
 
+
 @Entity
 public class CarModel {
 
@@ -9,14 +10,15 @@ public class CarModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String model;
 
-    @ManyToOne
-    @JoinColumn(name = "car_brand_id", nullable = false)
-    private CarBrand carBrand;
-
     public CarModel() {
+    }
+
+    public CarModel(Long id, String model) {
+        this.id = id;
+        this.model = model;
     }
 
     public Long getId() {
@@ -35,22 +37,11 @@ public class CarModel {
         this.model = model;
     }
 
-    public CarBrand getCarBrand() {
-        return carBrand;
-    }
-
-    public void setCarBrand(CarBrand carBrand) {
-        this.carBrand = carBrand;
-    }
-
-    public CarModel(String model, CarBrand carBrand) {
-        this.model = model;
-        this.carBrand = carBrand;
-    }
-
-    public CarModel(Long id, String model, CarBrand carBrand) {
-        this.id = id;
-        this.model = model;
-        this.carBrand = carBrand;
+    @Override
+    public String toString() {
+        return "CarModel{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                '}';
     }
 }

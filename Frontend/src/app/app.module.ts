@@ -6,10 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
 
   MatCardModule, MatFormFieldModule,
-  MatIconModule,
-  MatListModule,
-  MatNativeDateModule, MatPaginatorModule,
-  MatCardModule,
+  MatNativeDateModule,
   MatIconModule,
   MatListModule,
   MatPaginatorModule,
@@ -47,7 +44,7 @@ import {DemoMaterialModule} from './material-module';
     AdministratorHomePageComponent,
     EndUserHomePageComponent,
     AddAdComponent,
-    CarSearchComponent
+    CarSearchComponent,
     AddFuelTypeComponent,
     AddTransmissionTypeComponent,
     AddCarTypeComponent,

@@ -18,7 +18,7 @@ public class Car {
     @ManyToOne
     private CarModel carModel;
 
-    @ManyToOne
+    @OneToOne
     private CarType carType;
 
     @ManyToOne
@@ -89,6 +89,14 @@ public class Car {
         this.carBrand = carBrand;
     }
 
+    public CarModel getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(CarModel carModel) {
+        this.carModel = carModel;
+    }
+
     public CarType getCarType() {
         return carType;
     }
@@ -121,6 +129,14 @@ public class Car {
         this.price = price;
     }
 
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
     public float getMileage() {
         return mileage;
     }
@@ -145,6 +161,14 @@ public class Car {
         this.distanceAllowed = distanceAllowed;
     }
 
+    public boolean isCollisionDamageWaiver() {
+        return collisionDamageWaiver;
+    }
+
+    public void setCollisionDamageWaiver(boolean collisionDamageWaiver) {
+        this.collisionDamageWaiver = collisionDamageWaiver;
+    }
+
     public int getChildSeats() {
         return childSeats;
     }
@@ -160,13 +184,4 @@ public class Car {
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
-
-    public int getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(int discount) {
-        this.discount = discount;
-    }
-    
 }

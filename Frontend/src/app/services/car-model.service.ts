@@ -17,17 +17,17 @@ export class CarModelService {
   }
 
   public addCarModel(t: CarModel){
-    if(this.getCarModel(t.car_model) === null){
+    if(this.getCarModel(t.model) === null){
       this.listCarModels.push(t);
     }
   }
 
-  public getCarModel(car_model: String) {
+  public getCarModel(model: string) {
     if (this.listCarModels.length === 0) {
       return null;
     }
     for (const u of this.listCarModels) {
-      if (u.car_model === car_model) {
+      if (u.model === model) {
         return u;
       }
     }
@@ -37,7 +37,7 @@ export class CarModelService {
   public getAllCarModel(): Array<CarModel> {
     this.http.get(environment.gateway + environment.admin + '/carModel/all').subscribe((data: CarModel[]) => {
         for (const c of data) {
-          this.carModel = new CarModel(c.car_model);
+          this.carModel = new CarModel(c.model);
           this.listCarModels.push(this.carModel);
         }
       },

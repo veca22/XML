@@ -17,16 +17,16 @@ export class CarBrandService {
   }
 
   public addCarBrand(t: CarBrand){
-    if(this.getCarBrand(t.car_brand) === null){
+    if(this.getCarBrand(t.brand) === null){
       this.listCarBrands.push(t);
     }
   }
-  public getCarBrand(car_brand: String) {
+  public getCarBrand(brand: string) {
     if (this.listCarBrands.length === 0) {
       return null;
     }
     for (const u of this.listCarBrands) {
-      if (u.car_brand === car_brand) {
+      if (u.brand === brand) {
         return u;
       }
     }
@@ -36,7 +36,7 @@ export class CarBrandService {
   public getAllCarBrand(): Array<CarBrand> {
     this.http.get(environment.gateway + environment.admin + '/carBrand/all').subscribe((data: CarBrand[]) => {
         for (const c of data) {
-          this.carBrand = new CarBrand(c.car_brand);
+          this.carBrand = new CarBrand(c.brand);
           this.listCarBrands.push(this.carBrand);
         }
       },

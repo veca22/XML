@@ -10,6 +10,7 @@ import {CarType} from '../../model/carType';
 import {FuelType} from '../../model/fuelType';
 import {TransmissionType} from '../../model/transmissionType';
 import {Client} from '../../model/client';
+import {CarModel} from '../../model/carModel';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AddAdComponent implements OnInit {
   ad: Ad;
   carBrand: CarBrand;
   carType: CarType;
+  carModel: CarModel;
   transmissionType: TransmissionType;
   car: Car;
   fuelType: FuelType;
@@ -64,6 +66,8 @@ export class AddAdComponent implements OnInit {
       place: new FormControl('', [Validators.required]),
       client: new FormControl('', [Validators.required]),
       isActive: new FormControl('', [Validators.required]),
+      carModel: new FormControl('', [Validators.required]),
+
     });
     this.all();
     this.dataSource.paginator = this.paginator;
@@ -82,16 +86,22 @@ export class AddAdComponent implements OnInit {
       return;
     }
 
-    // this.carBrand = new CarBrand();
-    // this.carBrand.brand = this.f.brand.value;
+    this.carBrand = new CarBrand(this.f.carBrand.value);
+    this.carModel = new CarModel(this.f.carModel.value);
+    this.fuelType = new FuelType(this.f.fuelType.value);
+    this.transmissionType = new TransmissionType(this.f.transmissionType.value);
+    this.carType = new CarType(this.f.carType.value);
+    console.log(this.f.carType.value);
+    console.log(this.carType.type);
 
     this.car = new Car();
+    this.car.carBrand = this.carBrand;
+    this.car.carModel = this.carModel;
     this.car.price = this.f.price.value;
-    this.car.carBrand = this.f.carBrand.value;
-    this.car.carType = this.f.carType.value;
+    this.car.carType = this.carType;
     console.log(this.f.carType.value);
-    this.car.fuelType = this.f.fuelType.value;
-    this.car.transmissionType = this.f.transmissionType.value;
+    this.car.fuelType = this.fuelType;
+    this.car.transmissionType = this.transmissionType
     this.car.discount = this.f.discount.value;
     this.car.mileage = this.f.mileage.value;
     this.car.averageRating = this.f.averageRating.value;
@@ -99,6 +109,8 @@ export class AddAdComponent implements OnInit {
     this.car.distanceAllowed = this.f.distanceAllowed.value;
     this.car.collisionDemageWaiver = this.f.collisionDemageWaiver.value;
     this.car.childSeats = this.f.childSeats.value;
+
+    console.log(this.car);
     this.ad = new Ad(
       this.car,
       this.f.profilePicture.value,
@@ -112,18 +124,18 @@ export class AddAdComponent implements OnInit {
 
     );
 
-    this.ad = new Ad(
-      this.car,
-      this.f.profilePicture.value,
-      this.f.title.value,
-      this.f.startOfAd.value,
-      this.f.endOfAd.value,
-      this.f.description.value,
-      this.f.isActive.value,
-      this.f.place.value,
-      this.client
-      );
-
+    // this.ad = new Ad(
+    //   this.car,
+    //   this.f.profilePicture.value,
+    //   this.f.title.value,
+    //   this.f.startOfAd.value,
+    //   this.f.endOfAd.value,
+    //   this.f.description.value,
+    //   this.f.isActive.value,
+    //   this.f.place.value,
+    //   this.client
+    //   );
+    console.log(this.ad);
     this.createAd();
   }
 

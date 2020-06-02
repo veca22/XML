@@ -42,7 +42,7 @@ public class CarTypeService {
             return null;
         }
         for (CarType f : tmp){
-            if(f.getCar_type().equals(car_type)){
+            if(f.getType().equals(car_type)){
                 return f;
             }
         }

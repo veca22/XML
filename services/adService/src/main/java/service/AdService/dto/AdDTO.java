@@ -70,7 +70,7 @@ public class AdDTO {
                 ", profilePicture='" + profilePicture + '\'' +
                 ", description='" + description + '\'' +
                 ", place='" + place + '\'' +
-                ", car=" + car +
+                ", car=" + car.toString() +
                 ", client=" + client +
                 '}';
     }

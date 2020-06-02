@@ -79,7 +79,8 @@ export class AdService {
   }
 
   public newAd(ad) {
-    return this.http.post(environment.gateway + environment.ad + '/addAd', ad);
+    console.log(environment.gateway + environment.ad + '/addAd');
+    return this.http.post(environment.gateway + environment.ad + '/addAd', ad );
   }
 
 
