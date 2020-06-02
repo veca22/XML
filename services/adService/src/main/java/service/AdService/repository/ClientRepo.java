@@ -2,7 +2,6 @@ package service.AdService.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import service.AdService.model.Client;
-import sun.rmi.runtime.Log;
 
 import java.util.List;
 

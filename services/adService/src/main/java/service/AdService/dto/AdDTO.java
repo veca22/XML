@@ -13,6 +13,8 @@ public class AdDTO {
     private String place;
     private Car car;
     private Client client;
+    private String startOfAd;
+    private String endOfAd;
 
 
     public String getTitle() {
@@ -63,6 +65,22 @@ public class AdDTO {
         this.client = client;
     }
 
+    public String getStartOfAd() {
+        return startOfAd;
+    }
+
+    public void setStartOfAd(String startOfAd) {
+        this.startOfAd = startOfAd;
+    }
+
+    public String getEndOfAd() {
+        return endOfAd;
+    }
+
+    public void setEndOfAd(String endOfAd) {
+        this.endOfAd = endOfAd;
+    }
+
     @Override
     public String toString() {
         return "AdDTO{" +
@@ -70,8 +88,10 @@ public class AdDTO {
                 ", profilePicture='" + profilePicture + '\'' +
                 ", description='" + description + '\'' +
                 ", place='" + place + '\'' +
-                ", car=" + car.toString() +
+                ", car=" + car +
                 ", client=" + client +
+                ", startOfAd='" + startOfAd + '\'' +
+                ", endOfAd='" + endOfAd + '\'' +
                 '}';
     }
 }

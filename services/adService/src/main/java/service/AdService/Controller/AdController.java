@@ -1,5 +1,6 @@
 package service.AdService.Controller;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +11,8 @@ import service.AdService.dto.AdDTO;
 import service.AdService.dto.AdFilterDTO;
 import service.AdService.model.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -115,6 +118,11 @@ public class AdController {
             newAd.setPlace(ads.getPlace());
             newAd.setCar(car);
             newAd.setClient(ads.getClient());
+            DateTime dateTime = DateTime.parse(ads.getStartOfAd());
+            newAd.setStartOfAd(dateTime.toDate());
+            DateTime dateTime1=DateTime.parse(ads.getEndOfAd());
+            newAd.setEndOfAd(dateTime1.toDate());
+            System.out.println(dateTime+"   "+dateTime1);
             System.out.println("New ad" + newAd);
             boolean uspesno = adService.addAd(newAd);
 
@@ -137,7 +145,21 @@ public class AdController {
     public ResponseEntity<List<Ad>> login(@RequestBody AdFilterDTO addto)
     {
         System.out.println("Sifra je " + addto.toString());
-        return new ResponseEntity<>(adService.findAll(),HttpStatus.OK);
+        DateTime startD = DateTime.parse(addto.getStartDate());
+        DateTime endD = DateTime.parse(addto.getStartDate());
+        List<Ad> lista=adService.findAll();
+        List<Ad> pom=new ArrayList<>();
+        for (Ad a:lista
+             ) {
+            if(a.getPlace().equals(addto.getPlace())){
+                if(startD.toDate().after(a.getStartOfAd())){
+                    if(endD.toDate().before(a.getEndOfAd())){
+                        pom.add(a);
+                    }
+                }
+            }
+        }
+        return new ResponseEntity<>(pom,HttpStatus.OK);
     }
 
 

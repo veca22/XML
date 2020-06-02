@@ -38,10 +38,13 @@ export class CarSearchComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.myResponse = this.adService.getAllAds();
+    console.log(this.model);
+    this.model.startDate = this.f.startDate.value;
+    this.model.endDate = this.f.endDate.value;
+    this.model.place = this.f.place.value;
+    this.myResponse = this.adService.getAllFilter(this.model);
     console.log(this.myResponse);
     this.dataSource = new MatTableDataSource<Ad>(this.myResponse);
-
   }
 
   get f() {

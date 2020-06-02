@@ -26,12 +26,13 @@ export class AdService {
   public getAllAds(): Array<Ad> {
     this.http.get(environment.gateway + environment.ad + '/all').subscribe((data: Ad[]) => {
         let flag = 0;
+        console.log(data);
         for (const c of data) {
           console.log(c);
           flag = 0;
           this.ad = c;
           for (const t of this.ads) {
-            if (c.id === c.id) {
+            if (c.id === t.id) {
               flag = 1;
             }
           }
@@ -48,8 +49,8 @@ export class AdService {
     return this.ads;
   }
 
-  public getAllFilter(): Array<Ad> {
-    this.http.get(environment.gateway + environment.ad + '/allFilter').subscribe((data: Ad[]) => {
+  public getAllFilter(model): Array<Ad> {
+    this.http.post(environment.gateway + environment.ad + '/allFilter', model).subscribe((data: Ad[]) => {
         for (const c of data) {
           console.log(c);
           this.ad = c;
