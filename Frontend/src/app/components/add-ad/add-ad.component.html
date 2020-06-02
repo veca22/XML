@@ -7,13 +7,13 @@
           <hr>
           <form [formGroup]="addAdForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <label for="adName">Name</label>
-              <input type="text" id="adName" formControlName="adName" class="form-control"
-                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('adName').errors }">
+              <label for="title">Name</label>
+              <input type="title" id="title" formControlName="title" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('title').errors }">
 
-              <div *ngIf="submitted && addAdForm.get('adName').errors" class="invalid-feedback">
-                <div *ngIf="addAdForm.get('adName').errors['required']">Email is required</div>
-                <div *ngIf="addAdForm.get('adName').errors['adName']">Email must be a valid email address</div>
+              <div *ngIf="submitted && addAdForm.get('title').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('title').errors['required']">Email is required</div>
+                <div *ngIf="addAdForm.get('title').errors['title']">Email must be a valid email address</div>
               </div>
             </div>
 
@@ -34,29 +34,196 @@
               </div>
             </div>
 
-<!--            <div class="form-group">-->
-<!--            <label for="startofDate">startofDate</label>-->
-<!--            <input type="date" id="startofDate" formControlName="startofDate" class="form-control"-->
-<!--                   [ngClass]="{ 'is-invalid': submitted && addAdForm.get('startofDate').errors }" />-->
-<!--            <div *ngIf="submitted && addAdForm.get('startofDate').errors" class="invalid-feedback">-->
-<!--              <div *ngIf="addAdForm.get('startofDate').errors['required']">Phone Number is required</div>-->
-<!--              <div *ngIf="addAdForm.get('startofDate').errors['minlength']">A phone number must have at least 9-->
-<!--                digits-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+            <div class="form-group">
+            <label for="startOfAd">startOfAd</label>
+            <input type="datetime-local" id="startOfAd" formControlName="startOfAd" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && addAdForm.get('startOfAd').errors }" />
+            <div *ngIf="submitted && addAdForm.get('startOfAd').errors" class="invalid-feedback">
+              <div *ngIf="addAdForm.get('startOfAd').errors['required']">Phone Number is required</div>
+              <div *ngIf="addAdForm.get('startOfAd').errors['minlength']">A phone number must have at least 9
+                digits
+              </div>
+            </div>
+          </div>
 
-<!--            <div class="form-group">-->
-<!--              <label for="endofDate">endofDate</label>-->
-<!--              <input type="date" id="endofDate" formControlName="endofDate" class="form-control"-->
-<!--                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('endofDate').errors }" />-->
-<!--              <div *ngIf="submitted && addAdForm.get('endofDate').errors" class="invalid-feedback">-->
-<!--                <div *ngIf="addAdForm.get('endofDate').errors['required']">Phone Number is required</div>-->
-<!--                <div *ngIf="addAdForm.get('endofDate').errors['minlength']">A phone number must have at least 9-->
-<!--                  digits-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
+            <div class="form-group">
+              <label for="endOfAd">endOdAd</label>
+              <input type="datetime-local" id="endOfAd" formControlName="endOfAd" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('endOfAd').errors }" />
+              <div *ngIf="submitted && addAdForm.get('endOfAd').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('endOfAd').errors['required']">Phone Number is required</div>
+                <div *ngIf="addAdForm.get('endOfAd').errors['minlength']">A phone number must have at least 9
+                  digits
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="place">Place</label>
+              <input type="text" id="place" formControlName="place" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('place').errors }" />
+              <div *ngIf="submitted && addAdForm.get('place').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('place').errors['required']">Phone Number is required</div>
+                <div *ngIf="addAdForm.get('place').errors['minlength']">A phone number must have at least 9
+                  digits
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+            <label for="price">price</label>
+            <input type="text" id="price" formControlName="price" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && addAdForm.get('price').errors }" />
+            <div *ngIf="submitted && addAdForm.get('price').errors" class="invalid-feedback">
+              <div *ngIf="addAdForm.get('price').errors['required']">Phone Number is required</div><div *ngIf="addAdForm.get('price').errors['minlength']">A phone number must have at least 9
+                digits
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="client">Client</label>
+              <input type="text" id="client" formControlName="client" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('client').errors }" />
+              <div *ngIf="submitted && addAdForm.get('client').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('client').errors['required']">Phone Number is required</div>
+                <div *ngIf="addAdForm.get('client').errors['minlength']">A phone number must have at least 9
+                  digits
+                </div>
+              </div>
+            </div>
+
+
+              <div class="form-group">
+                <label for="discount">discount</label>
+                <input type="text" id="discount" formControlName="discount" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('discount').errors }" />
+                <div *ngIf="submitted && addAdForm.get('discount').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('discount').errors['required']">Phone Number is required</div>
+                  <div *ngIf="addAdForm.get('discount').errors['minlength']">A phone number must have at least 9
+                    digits
+                  </div>
+                </div>
+              </div><div class="form-group">
+              <label for="mileage">mileage</label>
+              <input type="text" id="mileage" formControlName="mileage" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('mileage').errors }" />
+              <div *ngIf="submitted && addAdForm.get('mileage').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('mileage').errors['required']">Phone Number is required</div>
+                <div *ngIf="addAdForm.get('mileage').errors['minlength']">A phone number must have at least 9
+                  digits
+                </div>
+              </div>
+            </div>
+
+              <div class="form-group">
+                <label for="averageRating">averageRating</label>
+                <input type="text" id="averageRating" formControlName="averageRating" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('averageRating').errors }" />
+                <div *ngIf="submitted && addAdForm.get('averageRating').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('averageRating').errors['required']">Phone Number is required</div>
+                  <div *ngIf="addAdForm.get('averageRating').errors['minlength']">A phone number must have at least 9
+                    digits
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="carStatus">carStatus</label>
+                <input type="text" id="carStatus" formControlName="carStatus" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('carStatus').errors }" />
+                <div *ngIf="submitted && addAdForm.get('carStatus').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('carStatus').errors['required']">Phone Number is required</div>
+                  <div *ngIf="addAdForm.get('carStatus').errors['minlength']">A phone number must have at least 9
+                    digits
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="distanceAllowed">distanceAllowed</label>
+                <input type="text" id="distanceAllowed" formControlName="distanceAllowed" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('distanceAllowed').errors }" />
+                <div *ngIf="submitted && addAdForm.get('distanceAllowed').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('distanceAllowed').errors['required']">Phone Number is required</div>
+                  <div *ngIf="addAdForm.get('distanceAllowed').errors['minlength']">A phone number must have at least 9
+                    digits
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="collisionDemageWaiver">collisionDemageWaiver</label>
+                <input type="text" id="collisionDemageWaiver" formControlName="collisionDemageWaiver" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('collisionDemageWaiver').errors }" />
+                <div *ngIf="submitted && addAdForm.get('collisionDemageWaiver').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('collisionDemageWaiver').errors['required']">Phone Number is required</div>
+                  <div *ngIf="addAdForm.get('collisionDemageWaiver').errors['minlength']">A phone number must have at least 9
+                    digits
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="childSeats">childSeats</label>
+                <input type="text" id="childSeats" formControlName="childSeats" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('childSeats').errors }" />
+                <div *ngIf="submitted && addAdForm.get('childSeats').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('childSeats').errors['required']">Phone Number is required</div>
+                  <div *ngIf="addAdForm.get('childSeats').errors['minlength']">A phone number must have at least 9
+                    digits
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="carBrand">brand</label>
+                <input type="text" id="carBrand" formControlName="carBrand" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('carBrand').errors }" />
+                <div *ngIf="submitted && addAdForm.get('carBrand').errors" class="invalid-feedback">
+                  <div *ngIf="addAdForm.get('carBrand').errors['required']">Phone Number is required</div>
+
+                </div>
+              </div><div class="form-group">
+              <label for="carType">carModel</label>
+              <input type="text" id="carType" formControlName="carType" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('carType').errors }" />
+              <div *ngIf="submitted && addAdForm.get('carType').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('carType').errors['required']">Phone Number is required</div>
+                <div *ngIf="addAdForm.get('carType').errors['minlength']">A phone number must have at least 9
+                  digits
+                </div>
+              </div>
+            </div><div class="form-group">
+              <label for="transmissionType">transmissionType</label>
+              <input type="text" id="transmissionType" formControlName="transmissionType" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('transmissionType').errors }" />
+              <div *ngIf="submitted && addAdForm.get('transmissionType').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('transmissionType').errors['required']">Phone Number is required</div>
+              </div>
+            </div><div class="form-group">
+              <label for="fuelType">fuelType</label>
+              <input type="text" id="fuelType" formControlName="fuelType" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('fuelType').errors }" />
+              <div *ngIf="submitted && addAdForm.get('fuelType').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('fuelType').errors['required']">Phone Number is required</div>
+
+              </div>
+
+
+
+            <div class="form-group">
+              <label for="isActive">isActive</label>
+              <input type="text" id="isActive" formControlName="isActive" class="form-control"
+                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('isActive').errors }" />
+              <div *ngIf="submitted && addAdForm.get('isActive').errors" class="invalid-feedback">
+                <div *ngIf="addAdForm.get('isActive').errors['required']">Phone Number is required</div>
+                <div *ngIf="addAdForm.get('isActive').errors['minlength']">A phone number must have at least 9
+                  digits
+                </div>
+              </div>
+            </div>
+            </div>
+            </div>
             <button mat-raised-button style="position: center" color="primary" class="pull-right">Save</button>
           </form>
 
@@ -71,16 +238,28 @@
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 <table mat-table
-       [dataSource]="dataSource" multiTemplateDataRows
-       class="mat-elevation-z8">
-  <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
-    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+       [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title: </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
   </ng-container>
 
-  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="profilePicture">
+    <th mat-header-cell *matHeaderCellDef> Profile picture: </th>
+    <td mat-cell *matCellDef="let element"> {{element.profilePicture}} </td>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Descrption: </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="place">
+    <th mat-header-cell *matHeaderCellDef> Place: </th>
+    <td mat-cell *matCellDef="let element"> {{element.car.price}} </td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

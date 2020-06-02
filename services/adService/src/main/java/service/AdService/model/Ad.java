@@ -17,35 +17,6 @@ public class Ad {
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Car car;
 
-    public String getAdName() {
-        return adName;
-    }
-
-    public void setAdName(String adName) {
-        this.adName = adName;
-    }
-
-    @Override
-    public String toString() {
-        return "Ad{" +
-                "id=" + id +
-                ", car=" + car +
-                ", adName='" + adName + '\'' +
-                ", profilePicture='" + profilePicture + '\'' +
-                ", pictureSet=" + pictureSet +
-                ", client=" + client +
-                ", startOfAd=" + startOfAd +
-                ", endOfAd=" + endOfAd +
-                ", description='" + description + '\'' +
-                ", isActive=" + isActive +
-                ", currentDriver=" + currentDriver +
-                ", comments=" + comments +
-                '}';
-    }
-
-    @Column
-    private String adName;
-
     @Column
     private String profilePicture;
 
@@ -182,6 +153,14 @@ public class Ad {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override

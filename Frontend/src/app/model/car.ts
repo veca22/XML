@@ -1,12 +1,13 @@
 import {CarBrand} from './carBrand';
 import {FuelType} from './fuelType';
 import {TransmissionType} from './transmissionType';
+import {CarType} from './carType';
 
 export class Car {
   carBrand: CarBrand;
-  carType: string;
-  fuelType: FuelType;
-  transmissionType: TransmissionType;
+  carType: CarType;
+  fuelType: string;
+  transmissionType: string;
   price: number;
   discount: number;
   mileage: number;
@@ -15,4 +16,6 @@ export class Car {
   collisionDemageWaiver: boolean;
   childSeats: number;
   averageRating: number;
+
 }
+

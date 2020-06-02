@@ -1,16 +1,27 @@
+import {Car} from './car';
+import {Client} from './client';
+
 export class Ad {
-
-  adName: string;
+  car: Car;
   profilePicture: string;
- // startofDate: Date;//endofDate: Date;
+  title: string;
+  startOfAd: string;
+  endOfAd: string;
   description: string;
+  isActive: boolean;
+  place: string;
+  client: Client;
 
 
-  constructor(adName: string, profilePicture: string,  description: string) {
-    this.adName = adName;
+  constructor(car: Car, profilePicture: string, title: string, startOfAd: string, endOfAd: string, description: string, isActive: boolean, place: string, client: Client) {
+    this.car = car;
     this.profilePicture = profilePicture;
-   // this.startofDate = startofDate;
-  //  this.endofDate = endofDate;
+    this.title = title;
+    this.startOfAd = startOfAd;
+    this.endOfAd = endOfAd;
     this.description = description;
+    this.isActive = isActive;
+    this.place = place;
+    this.client = client;
   }
 }

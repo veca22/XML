@@ -3,18 +3,15 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import {
-  MatCardModule,
-  MatFormFieldModule,
+  MatCardModule, MatFormFieldModule,
   MatIconModule,
-  MatListModule, MatNativeDateModule, MatPaginatorModule,
+  MatListModule,
+  MatNativeDateModule, MatPaginatorModule,
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-
-import {MatCardModule, MatIconModule, MatListModule, MatSidenavModule, MatTableModule, MatToolbarModule} from '@angular/material';
 
 import {RouterModule} from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -39,8 +36,7 @@ import {DemoMaterialModule} from './material-module';
     AdministratorHomePageComponent,
 
     EndUserHomePageComponent,
-    AddAdComponent
-
+    AddAdComponent,
     CarSearchComponent
 
   ],
@@ -56,7 +52,6 @@ import {DemoMaterialModule} from './material-module';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
@@ -65,12 +60,13 @@ import {DemoMaterialModule} from './material-module';
     FormsModule,
     HttpClientModule,
     MatNativeDateModule,
-    DemoMaterialModule
+    DemoMaterialModule,
 
     MatTableModule,
     DemoMaterialModule,
 
   ],
+  entryComponents: [AddAdComponent, ],
   providers: [],
   bootstrap: [AppComponent]
 })

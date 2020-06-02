@@ -2,8 +2,8 @@ package service.AdService.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.AdService.Repo.AdRepo;
 import service.AdService.model.Ad;
+import service.AdService.repository.AdRepo;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class AdService {
             return true;
         }
         for(Ad c1 : tmp)
-            if(c1.getAdName().equals(c.getAdName()))
+            if(c1.getTitle().equals(c.getTitle()))
             {
                 return  false;
             }
@@ -45,17 +45,16 @@ public class AdService {
 
     }
 
-    public Ad getAd(String adName){
+    public Ad getAd(String title){
         List<Ad> tmp = findAll();
         if(tmp.size() == 0)
             return null;
 
         for(Ad c : tmp)
         {
-            System.out.println(c.toString());
-            if(c.getAdName() == null)
+            if(c.getTitle() == null)
                 return null;
-            if(c.getAdName().equals(adName))
+            if(c.getTitle().equals(title))
                 return c;
         }
 

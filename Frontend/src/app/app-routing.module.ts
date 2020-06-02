@@ -33,9 +33,9 @@ const routes: Routes = [
     component: AddAdComponent,
   },
 
-    path: 'search',
-    component: CarSearchComponent
-  }
+  { path: 'search',
+    component: CarSearchComponent,
+  },
 
 ];
 
