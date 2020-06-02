@@ -10,13 +10,23 @@ import { LoginComponent } from './components/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { AdministratorHomePageComponent } from './components/administrator-home-page/administrator-home-page.component';
+import { AddFuelTypeComponent } from './components/add-fuel-type/add-fuel-type.component';
+import { AddTransmissionTypeComponent } from './components/add-transmission-type/add-transmission-type.component';
+import { AddCarTypeComponent } from './components/add-car-type/add-car-type.component';
+import { AddCarBrandComponent } from './components/add-car-brand/add-car-brand.component';
+import { AddCarModelComponent } from './components/add-car-model/add-car-model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     LoginComponent,
-    AdministratorHomePageComponent
+    AdministratorHomePageComponent,
+    AddFuelTypeComponent,
+    AddTransmissionTypeComponent,
+    AddCarTypeComponent,
+    AddCarBrandComponent,
+    AddCarModelComponent
   ],
   imports: [
     BrowserModule,
