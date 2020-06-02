@@ -10,22 +10,15 @@ public class  CarBrand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String brand;
-
-    @OneToMany(mappedBy = "carBrand")
-    private Set<Car> cars;
-
-    @OneToMany(mappedBy = "carBrand")
-    private Set<CarModel> carModel;
+    @Column
+    private String car_brand;
 
     public CarBrand() {
     }
 
-    public CarBrand(String brand, Set<Car> cars, Set<CarModel> carModel) {
-        this.brand = brand;
-        this.cars = cars;
-        this.carModel = carModel;
+    public CarBrand(Long id, String car_brand) {
+        this.id = id;
+        this.car_brand = car_brand;
     }
 
     public Long getId() {
@@ -36,27 +29,11 @@ public class  CarBrand {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getCar_brand() {
+        return car_brand;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public Set<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(Set<Car> cars) {
-        this.cars = cars;
-    }
-
-    public Set<CarModel> getCarModel() {
-        return carModel;
-    }
-
-    public void setCarModel(Set<CarModel> carModel) {
-        this.carModel = carModel;
+    public void setCar_brand(String car_brand) {
+        this.car_brand = car_brand;
     }
 }
