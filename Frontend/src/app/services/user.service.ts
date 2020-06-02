@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {UserStatus} from '../model/userStatus';
+import {Observable, of} from 'rxjs';
 
 
 export const TOKEN = 'LoggedInUser';
@@ -16,11 +17,17 @@ export class UserService {
 
   users: Array<User> = new Array<User>();
   user: User = new User('', '', Role.NONE);
+  endUser: User;
+  allUser: User;
   userForLogin: User;
+  endUsersForOperations: Array<User> = new Array<User>();
 
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
+
     //this.users = this.getAllUsers();
+
+    this.endUsersForOperations = this.getEndUsersForOperations();
   }
 
   public isLoggedIn() {
@@ -77,6 +84,8 @@ export class UserService {
       return UserStatus.AWAITING_APPROVAL;
     } else if (status === 'BLOCKED') {
       return UserStatus.BLOCKED;
+    } else if (status === 'REMOVED') {
+      return UserStatus.REMOVED;
     } else {
       return null;
     }
@@ -87,8 +96,8 @@ export class UserService {
       this.http.get(environment.gateway + environment.auth + environment.user + '/all').subscribe((data: User[]) => {
           for (const c of data) {
             console.log(c);
-            this.user = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
-            this.users.push(this.user);
+            this.allUser = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
+            this.users.push(this.allUser);
           }
         },
         error => {
@@ -115,6 +124,7 @@ export class UserService {
   //   return this.userForLogin;
   // }
 
+
   public async getUser(email: string): Promise<User> {
     let params = new HttpParams();
     params = params.append('email', email);
@@ -131,6 +141,7 @@ export class UserService {
     return this.user;
   }
 
+
   public setToken(user) {
     localStorage.setItem(TOKEN, JSON.stringify(user));
     this.user = user;
@@ -141,5 +152,32 @@ export class UserService {
     headers.append('Content-Type', 'application/json');
     this.setToken(user);
     return this.http.post(environment.gateway + environment.auth + environment.user + '/login', user,  {responseType: 'text'});
+  }
+
+  public getEndUsersForOperations(): Array<User> {
+    this.endUsersForOperations = new Array<User>();
+    this.http.get(environment.gateway + environment.admin + environment.user + '/allEndUsersForOperations').subscribe((data: User[]) => {
+        console.log(data);
+        for (const c of data) {
+          this.endUser = new User(c.email, c.password, this.whichRole(c.role.toString()), this.whichStatus(c.status.toString()), c.id);
+          this.endUsersForOperations.push(this.endUser);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    console.log(this.endUsersForOperations);
+    return this.endUsersForOperations;
+  }
+
+  public AccountOperation(operation: string, id: string) {
+    let params = new HttpParams();
+    params = params.append('operation', operation);
+    params = params.append('id', id);
+    return this.http.post(environment.gateway + environment.admin + environment.user + '/accountOperation', params);
+  }
+  public getUsersForOperations() {
+    return this.endUsersForOperations;
   }
 }

@@ -9,19 +9,15 @@ public class CarModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String model;
-
-    @ManyToOne
-    @JoinColumn(name = "car_brand_id", nullable = false)
-    private CarBrand carBrand;
+    @Column
+    private String car_model;
 
     public CarModel() {
     }
 
-    public CarModel(String model, CarBrand carBrand) {
-        this.model = model;
-        this.carBrand = carBrand;
+    public CarModel(Long id, String car_model) {
+        this.id = id;
+        this.car_model = car_model;
     }
 
     public Long getId() {
@@ -32,19 +28,11 @@ public class CarModel {
         this.id = id;
     }
 
-    public String getModel() {
-        return model;
+    public String getCar_model() {
+        return car_model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public CarBrand getCarBrand() {
-        return carBrand;
-    }
-
-    public void setCarBrand(CarBrand carBrand) {
-        this.carBrand = carBrand;
+    public void setCar_model(String car_model) {
+        this.car_model = car_model;
     }
 }

@@ -1,6 +1,5 @@
-
-
 insert into users(id, email, password, role, status) values (110,'testic@test.com','test','ENDUSER', 'ACCEPTED');
+insert into users(id, email, password, role, status) values (115,'testic@test.com','test','ENDUSER', 'ACCEPTED');
 insert into car_brand(id,brand) values (100,'Audi');
 insert into car_model(id,model,car_brand_id) values (100,'A6',100);
 insert into car(id,average_rating,car_status,car_type,child_seats,collision_damage_waiver,discount,distance_allowed,fuel_type,mileage,price,transmission_type,car_brand_id) values (100,0,'RENTED','MINIVAN',0,'false',10,100,'DIESEL',60000,40,'MANUAL',100);

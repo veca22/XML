@@ -12,17 +12,20 @@ public class Car {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "car_brand_id", nullable = false)
     private CarBrand carBrand;
 
-    @Column(nullable = false)
+
+    @ManyToOne
+    private CarModel carModel;
+
+    @ManyToOne
     private CarType carType;
 
-    @Column(nullable = false)
-    private String fuelType;
+    @ManyToOne
+    private FuelType fuelType;
 
-    @Column(nullable = false)
-    private String transmissionType;
+    @ManyToOne
+    private TransmissionType transmissionType;
 
     @Column(nullable = false)
     @Range(min = 0, max = 1000000)
@@ -52,7 +55,7 @@ public class Car {
     @Column(nullable = false)
     private double averageRating = 0;
 
-    public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {
+    public Car(Long id, CarBrand carBrand, CarType carType, FuelType fuelType, TransmissionType transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {
         this.id = id;
         this.carBrand = carBrand;
         this.carType = carType;
@@ -94,19 +97,19 @@ public class Car {
         this.carType = carType;
     }
 
-    public String getFuelType() {
+    public FuelType getFuelType() {
         return fuelType;
     }
 
-    public void setFuelType(String fuelType) {
+    public void setFuelType(FuelType fuelType) {
         this.fuelType = fuelType;
     }
 
-    public String getTransmissionType() {
+    public TransmissionType getTransmissionType() {
         return transmissionType;
     }
 
-    public void setTransmissionType(String transmissionType) {
+    public void setTransmissionType(TransmissionType transmissionType) {
         this.transmissionType = transmissionType;
     }
 
