@@ -14,7 +14,13 @@ export class AdService {
   ad: Ad;
   ads: Array<Ad> = new Array<Ad>();
   filterAds: Array<Ad> = new Array<Ad>();
-  constructor(private router: Router, private http: HttpClient) { }
+
+  urlAd = environment.gateway + environment.ad;
+  listAd: Array<Ad> = new Array<Ad>();
+  type: string;
+  constructor(private router: Router, private http: HttpClient) {
+   // this.getAllAds();
+  }
 
 
   public getAllAds(): Array<Ad> {
@@ -34,8 +40,8 @@ export class AdService {
           }
         }
       },
-      error => {
-        console.log(error);
+      error1 => {
+        console.log(error1);
       }
     );
     console.log(this.ads);
@@ -57,6 +63,36 @@ export class AdService {
     );
     return this.filterAds;
   }
+
+  public addAd(a: Ad) {
+    if (this.getAd(a.title) === null) {
+      this.listAd.push(a);
+    }
+  }
+
+  public getAd(title: string) {
+    if ( this.listAd.length === 0) {
+      return null;
+    }
+    for (const u of this.listAd) {
+      if ( u.title === title) {
+        return u;
+      }
+    }
+
+    return null;
+  }
+
+  public getAdByName(title) {
+    return this.http.get(this.urlAd + '/' + title);
+  }
+
+  public newAd(ad) {
+    console.log(environment.gateway + environment.ad + '/addAd');
+    return this.http.post(environment.gateway + environment.ad + '/addAd', ad );
+  }
+
+
 
 
 

@@ -6,9 +6,10 @@ export const environment = {
   production: false,
   gateway: 'http://localhost:8084',
   auth: '/authentication',
+  ad: '/ad',
+ // endUser: '/endUser',
   user: '/user',
   admin: '/admin',
-  ad: '/ad'
 };
 
 /*

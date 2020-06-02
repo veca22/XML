@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 import {UserService} from './services/user.service';
+import {AdminService} from "./services/admin.service";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,10 @@ export class AppComponent {
   }
   public isAdministrator() {
     return this.userService.isAdministrator();
+  }
+
+  public isEndUser() {
+    return this.userService.isEndUser();
   }
 
   public onLogout() {
