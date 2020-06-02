@@ -48,12 +48,12 @@ const routes: Routes = [
   {
     path: 'addCarModel',
     component: AddCarModelComponent,
-  }
+  },
   {
     path: 'administrator/end-users-operations',
     component: EndUsersOperationsComponent,
   },
-  
+
   {
     path: 'search',
     component: CarSearchComponent,
