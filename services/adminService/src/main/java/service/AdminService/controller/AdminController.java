@@ -32,7 +32,7 @@ public class AdminController {
         if(fuelType == null){
             FuelType newFuelType = new FuelType();
             newFuelType.setSerial_number(fuelTypeDto.getSerial_number());
-            newFuelType.setFuelType(fuelTypeDto.getFuel_type());
+            newFuelType.setType(fuelTypeDto.getFuel_type());
 
             boolean uspesno = fuelTypeService.addFuelType(newFuelType);
             if(uspesno == true){
@@ -62,7 +62,7 @@ public class AdminController {
         if (transmissionType == null){
             TransmissionType newTransmissionType = new TransmissionType();
             newTransmissionType.setSerial_number(transmissionTypeDto.getSerial_number());
-            newTransmissionType.setTransmissionType(transmissionTypeDto.getTransmission_type());
+            newTransmissionType.setType(transmissionTypeDto.getTransmission_type());
 
             boolean uspesno = transmissionTypeService.addTransmissionType(newTransmissionType);
             if(uspesno == true){
@@ -91,14 +91,14 @@ public class AdminController {
         CarType carType = carTypeService.getCarType(carTypeDto.getCar_type());
         if (carType == null){
             CarType newCarType = new CarType();
-            newCarType.setCar_type(carTypeDto.getCar_type());
+            newCarType.setType(carTypeDto.getCar_type());
 
             boolean uspesno = carTypeService.addCarType(newCarType);
             if(uspesno == true){
                 System.out.println("New car is added.");
             }
             else {
-                System.out.println("Car type already exists: " + newCarType.getCar_type());
+                System.out.println("Car type already exists: " + newCarType.getType());
             }
             return "";
         }
@@ -120,14 +120,14 @@ public class AdminController {
         CarBrand carBrand = carBrandService.getCarBrand(carBrandDto.getCar_brand());
         if (carBrand == null){
             CarBrand newCarBrand = new CarBrand();
-            newCarBrand.setCar_brand(carBrandDto.getCar_brand());
+            newCarBrand.setBrand(carBrandDto.getCar_brand());
 
             boolean uspesno = carBrandService.addCarBrand(newCarBrand);
             if(uspesno == true){
                 System.out.println("New car brand is added.");
             }
             else {
-                System.out.println("Car brand already exists: " + newCarBrand.getCar_brand());
+                System.out.println("Car brand already exists: " + newCarBrand.getBrand());
             }
             return "";
         }
@@ -149,14 +149,14 @@ public class AdminController {
         CarModel carModel = carModelService.getCarModel(carModelDto.getCar_model());
         if (carModel == null){
             CarModel newCarModel = new CarModel();
-            newCarModel.setCar_model(carModelDto.getCar_model());
+            newCarModel.setModel(carModelDto.getCar_model());
 
             boolean uspesno = carModelService.addCarModel(newCarModel);
             if(uspesno == true){
                 System.out.println("New car model is added.");
             }
             else {
-                System.out.println("Car model already exists: " + newCarModel.getCar_model());
+                System.out.println("Car model already exists: " + newCarModel.getModel());
             }
             return "";
         }

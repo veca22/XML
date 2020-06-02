@@ -10,14 +10,14 @@ public class CarModel {
     private Long id;
 
     @Column
-    private String car_model;
+    private String model;
 
     public CarModel() {
     }
 
-    public CarModel(Long id, String car_model) {
+    public CarModel(Long id, String model) {
         this.id = id;
-        this.car_model = car_model;
+        this.model = model;
     }
 
     public Long getId() {
@@ -28,11 +28,11 @@ public class CarModel {
         this.id = id;
     }
 
-    public String getCar_model() {
-        return car_model;
+    public String getModel() {
+        return model;
     }
 
-    public void setCar_model(String car_model) {
-        this.car_model = car_model;
+    public void setModel(String car_model) {
+        this.model = car_model;
     }
 }

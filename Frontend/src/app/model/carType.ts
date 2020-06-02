@@ -1,8 +1,9 @@
 export class CarType {
-  car_type: String;
+  type: string;
 
 
-  constructor(car_type: String) {
-    this.car_type = car_type;
+  constructor(type: string) {
+    this.type = type;
   }
 }
+

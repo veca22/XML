@@ -1,7 +1,5 @@
 package service.AdService.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,31 +10,15 @@ public class CarBrand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String brand;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "carBrand")
-    private Set<Car> cars;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "carBrand")
-    private Set<CarModel> carModel;
 
     public CarBrand() {
     }
 
-    public CarBrand(Long id, String brand, Set<Car> cars, Set<CarModel> carModel) {
+    public CarBrand(Long id, String brand) {
         this.id = id;
         this.brand = brand;
-        this.cars = cars;
-        this.carModel = carModel;
-    }
-
-    public CarBrand(String brand, Set<Car> cars, Set<CarModel> carModel) {
-        this.brand = brand;
-        this.cars = cars;
-        this.carModel = carModel;
     }
 
     public Long getId() {
@@ -55,19 +37,11 @@ public class CarBrand {
         this.brand = brand;
     }
 
-    public Set<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(Set<Car> cars) {
-        this.cars = cars;
-    }
-
-    public Set<CarModel> getCarModel() {
-        return carModel;
-    }
-
-    public void setCarModel(Set<CarModel> carModel) {
-        this.carModel = carModel;
+    @Override
+    public String toString() {
+        return "CarBrand{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                '}';
     }
 }

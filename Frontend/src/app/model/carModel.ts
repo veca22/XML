@@ -1,7 +1,7 @@
 export class CarModel {
-  car_model: String;
+  model: string;
 
-  constructor(car_model: String) {
-    this.car_model = car_model;
+  constructor(model: string) {
+    this.model = model;
   }
 }

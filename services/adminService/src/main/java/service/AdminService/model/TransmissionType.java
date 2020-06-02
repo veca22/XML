@@ -12,12 +12,12 @@ public class TransmissionType {
     private String serial_number;
 
     @Column
-    private String transmission_type;
+    private String type;
 
-    public TransmissionType(Long id, String serial_number, String transmission_type) {
+    public TransmissionType(Long id, String serial_number, String type) {
         this.id = id;
         this.serial_number = serial_number;
-        this.transmission_type = transmission_type;
+        this.type = type;
     }
 
     public TransmissionType() {
@@ -39,11 +39,11 @@ public class TransmissionType {
         this.serial_number = serial_number;
     }
 
-    public String getTransmissionType() {
-        return transmission_type;
+    public String getType() {
+        return type;
     }
 
-    public void setTransmissionType(String fuelType) {
-        this.transmission_type = fuelType;
+    public void setType(String type) {
+        this.type = type;
     }
 }

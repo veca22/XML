@@ -1,7 +1,7 @@
 export class CarBrand {
-  car_brand: String;
+  brand: string;
 
-  constructor(car_brand: String) {
-    this.car_brand = car_brand;
+  constructor(brand: string) {
+    this.brand = brand;
   }
 }

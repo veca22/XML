@@ -17,17 +17,17 @@ export class CarTypeService {
   }
 
   public addCarType(t: CarType){
-    if(this.getCarType(t.car_type) === null){
+    if(this.getCarType(t.type) === null){
       this.listCarTypes.push(t);
     }
   }
 
-  public getCarType(car_type: String) {
+  public getCarType(type: string) {
     if (this.listCarTypes.length === 0) {
       return null;
     }
     for (const u of this.listCarTypes) {
-      if (u.car_type === car_type) {
+      if (u.type === type) {
         return u;
       }
     }
@@ -37,7 +37,7 @@ export class CarTypeService {
   public getAllCarType(): Array<CarType> {
     this.http.get(environment.gateway + environment.admin + '/carType/all').subscribe((data: CarType[]) => {
         for (const c of data) {
-          this.carType = new CarType(c.car_type);
+          this.carType = new CarType(c.type);
           this.listCarTypes.push(this.carType);
         }
       },
