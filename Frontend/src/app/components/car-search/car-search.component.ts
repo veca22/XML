@@ -15,7 +15,6 @@ export class CarSearchComponent implements OnInit {
   displayedColumns: string[] = ['title', 'price', 'place'];
   dataSource: MatTableDataSource<Ad>;
   myResponse: Ad[];
-
   filter: Ad[];
   private submitted = false;
   model: AdModel = {
@@ -27,7 +26,8 @@ export class CarSearchComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   SearchForm: FormGroup;
   cars: Array<Car> = new Array<Car>();
-  constructor(private formBuilder: FormBuilder, private adService: AdService) {}
+  constructor(private formBuilder: FormBuilder, private adService: AdService) {
+  }
   ngOnInit() {
     this.SearchForm = this.formBuilder.group({
       startDate: [''],
@@ -38,19 +38,8 @@ export class CarSearchComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
     this.myResponse = this.adService.getAllAds();
     console.log(this.myResponse);
-    // this.myResponse.forEach(function(value) {
-    //     if (this.model.place === value.place) {
-    //         this.filter.add(value);
-    //     }
-    //     console.log(this.model.startDate);
-    //   });
-    // console.log(this.f.place.value);
-    // console.log(this.f.startDate.value);
-    // this.filter = this.adService.getAllFilter();
-    // console.log(this.filter);
     this.dataSource = new MatTableDataSource<Ad>(this.myResponse);
 
   }

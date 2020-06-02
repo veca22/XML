@@ -25,10 +25,19 @@ export class AdService {
 
   public getAllAds(): Array<Ad> {
     this.http.get(environment.gateway + environment.ad + '/all').subscribe((data: Ad[]) => {
+        let flag = 0;
         for (const c of data) {
           console.log(c);
+          flag = 0;
           this.ad = c;
-          this.ads.push(this.ad);
+          for (const t of this.ads) {
+            if (c.id === c.id) {
+              flag = 1;
+            }
+          }
+          if (flag === 0) {
+            this.ads.push(this.ad);
+          }
         }
       },
       error1 => {
