@@ -11,4 +11,5 @@ export class Ad {
   isActive: boolean;
   place: string;
   client: Client;
+  id: number;
 }
