@@ -34,6 +34,8 @@ import { AddCarModelComponent } from './components/add-car-model/add-car-model.c
 import { EndUsersOperationsComponent } from './components/end-users-operations/end-users-operations.component';
 import { CarSearchComponent } from './components/car-search/car-search.component';
 import {DemoMaterialModule} from './material-module';
+import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
+import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import {DemoMaterialModule} from './material-module';
     AddCarModelComponent,
     EndUsersOperationsComponent,
     CarSearchComponent,
+    SearchResultDialogComponent,
+    AdViewDialogComponent,
 
 
   ],
@@ -82,7 +86,7 @@ import {DemoMaterialModule} from './material-module';
     DemoMaterialModule,
 
   ],
-  entryComponents: [AddAdComponent, ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })
