@@ -6,6 +6,7 @@ import {Ad} from '../../model/ad';
 import {AdService} from '../../services/ad.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {__await} from 'tslib';
+import {isNull, isUndefined} from 'util';
 
 @Component({
   selector: 'app-car-search',
@@ -43,14 +44,25 @@ export class CarSearchComponent implements OnInit {
     this.model.startDate = this.f.startDate.value;
     this.model.endDate = this.f.endDate.value;
     this.model.place = this.f.place.value;
+    console.log(this.myResponse);
     this.myResponse = this.adService.getAllFilter(this.model);
     console.log(this.myResponse);
     this.dataSource = new MatTableDataSource<Ad>(this.myResponse);
-   // setTimeout(() => {this.onSubmit(); }, 200);
+      console.log(this.dataSource);
+
+      this.myResponse.splice(0, this.myResponse.length);
+
+      // setTimeout(() => {this.onSubmit(); }, 200);
   }
 
   get f() {
     return this.SearchForm.controls;
+  }
+
+  clearArray(array) {
+    while (array.length) {
+      array.pop();
+    }
   }
 
 }
