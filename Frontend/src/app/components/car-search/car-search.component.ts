@@ -5,6 +5,7 @@ import {  MatPaginator } from '@angular/material';
 import {Ad} from '../../model/ad';
 import {AdService} from '../../services/ad.service';
 import {MatTableDataSource} from '@angular/material/table';
+import {__await} from 'tslib';
 
 @Component({
   selector: 'app-car-search',
@@ -36,7 +37,7 @@ export class CarSearchComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+    onSubmit() {
     this.submitted = true;
     console.log(this.model);
     this.model.startDate = this.f.startDate.value;
@@ -45,6 +46,7 @@ export class CarSearchComponent implements OnInit {
     this.myResponse = this.adService.getAllFilter(this.model);
     console.log(this.myResponse);
     this.dataSource = new MatTableDataSource<Ad>(this.myResponse);
+   // setTimeout(() => {this.onSubmit(); }, 200);
   }
 
   get f() {

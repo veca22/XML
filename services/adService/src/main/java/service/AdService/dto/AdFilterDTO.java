@@ -4,11 +4,13 @@ public class AdFilterDTO {
     private String startDate;
     private String endDate;
     private String place;
+    private Number id;
 
-    public AdFilterDTO(String startDate, String endDate, String place) {
+    public AdFilterDTO(String startDate, String endDate, String place, Number id) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.place = place;
+        this.id = id;
     }
 
     public String getStartDate() {
@@ -35,12 +37,21 @@ public class AdFilterDTO {
         this.place = place;
     }
 
+    public Number getId() {
+        return id;
+    }
+
+    public void setId(Number id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "AdFilterDTO{" +
                 "startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", place='" + place + '\'' +
+                ", id=" + id +
                 '}';
     }
 }
