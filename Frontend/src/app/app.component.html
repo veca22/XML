@@ -7,6 +7,7 @@
     <mat-nav-list *ngIf="isNone()">
       <a mat-list-item routerLink="/login">Login</a>
       <a mat-list-item routerLink="/register">Register</a>
+      <a mat-list-item routerLink="/search">Search cars</a>
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isAdministrator()">
@@ -18,13 +19,12 @@
       <a mat-list-item routerLink="/addTransmissionType">Add Transmission type</a>
 
       <a mat-list-item routerLink="/administrator/end-users-operations">End user operations</a>
-      <a mat-list-item routerLink="/search">Search cars</a>
-
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isEndUser()">
       <a mat-list-item routerLink="endUser/addAd">Add new ad</a>
+      <a mat-list-item routerLink="/search">Search cars</a>
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 

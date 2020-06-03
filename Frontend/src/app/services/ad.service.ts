@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from '../model/user';
 import {environment} from '../../environments/environment';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Ad} from '../model/ad';
 import {error} from 'util';
 
@@ -12,9 +12,9 @@ import {error} from 'util';
 export class AdService {
 
   ad: Ad;
+  adService: AdService;
   ads: Array<Ad> = new Array<Ad>();
   filterAds: Array<Ad> = new Array<Ad>();
-
   urlAd = environment.gateway + environment.ad;
   listAd: Array<Ad> = new Array<Ad>();
   type: string;
@@ -33,7 +33,7 @@ export class AdService {
           this.ad = c;
           for (const t of this.ads) {
             if (c.id === t.id) {
-              flag = 1;
+             flag = 1;
             }
           }
           if (flag === 0) {
@@ -51,10 +51,21 @@ export class AdService {
 
   public getAllFilter(model): Array<Ad> {
     this.http.post(environment.gateway + environment.ad + '/allFilter', model).subscribe((data: Ad[]) => {
+        let flag = 0;
+
         for (const c of data) {
           console.log(c);
+          flag = 0;
           this.ad = c;
-          this.filterAds.push(this.ad);
+          for (const t of this.filterAds) {
+            if (c.id === t.id) {
+             flag = 1;
+            }
+          }
+
+          if (flag === 0) {
+            this.filterAds.push(this.ad);
+          }
         }
       },
       // tslint:disable-next-line:no-shadowed-variable
@@ -92,6 +103,8 @@ export class AdService {
     console.log(environment.gateway + environment.ad + '/addAd');
     return this.http.post(environment.gateway + environment.ad + '/addAd', ad );
   }
+
+
 
 
 

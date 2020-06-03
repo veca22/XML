@@ -149,8 +149,8 @@ public class AdController {
         DateTime endD = DateTime.parse(addto.getStartDate());
         List<Ad> lista=adService.findAll();
         List<Ad> pom=new ArrayList<>();
-        for (Ad a:lista
-             ) {
+        for (Ad a:lista) {
+           // if(a.getId() != addto.getId())
             if(a.getPlace().equals(addto.getPlace())){
                 if(startD.toDate().after(a.getStartOfAd())){
                     if(endD.toDate().before(a.getEndOfAd())){
