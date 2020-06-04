@@ -22,7 +22,7 @@ import {FuelTypeService} from "../../services/fuel-type.service";
 })
 export class CodeBookComponent implements OnInit {
 
-  displayedColumns: string[] = ['brand'];
+  displayedColumns: string[] = ['brand', 'remove']; //dodao si remove
   dataSource = new MatTableDataSource<CarBrand>();
 
   displayedColumns2: string[] = ['model'];
@@ -79,6 +79,17 @@ export class CodeBookComponent implements OnInit {
 
   all(){
     this.dataSource5 = new MatTableDataSource<FuelType>(this.fuelTypeService.getAllFuelType());
+  }
+
+  //dodao si nakon cele tabele
+  function_for_operation(operation, brand) {
+    console.log(brand.brand);
+    this.carBrandService.AccountOperation(operation, brand.brand).subscribe(data => {
+        this.router.navigate(['/administrator/home']);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
 }

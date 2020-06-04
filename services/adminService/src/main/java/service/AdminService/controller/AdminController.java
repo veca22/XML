@@ -164,4 +164,20 @@ public class AdminController {
             return "Serial already exists";
         }
     }
+
+    @PostMapping(value = "/accountOperation")
+    public ResponseEntity<CarBrand> operations(@RequestParam(value = "operation", required = true) String operation,
+                                           @RequestParam(value = "brand", required = true) String brand) {
+
+        //Long lid = Long.parseLong(id);
+        String br = new String(brand);
+        CarBrand brando = carBrandService.findCarBrandByBrand(brand);
+        if(operation.equals("REMOVED")){
+            carBrandService.deleteCarBrand(brando);
+            return new ResponseEntity<> (brando, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(brando, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

@@ -17,7 +17,11 @@ public class CarBrandService {
 
     public CarBrand findCarBrandById(Long id) {return carBrandRepo.findCarBrandById(id);}
 
+    public CarBrand findCarBrandByBrand(String brand) { return carBrandRepo.findCarBrandByBrand(brand);}
+
     public CarBrand save(CarBrand f) { return carBrandRepo.save(f);}
+
+    public void deleteCarBrand(CarBrand brand) {carBrandRepo.delete(brand);}
 
     public boolean addCarBrand(CarBrand f){
         List<CarBrand> tmp = findall();

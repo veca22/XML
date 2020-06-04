@@ -39,7 +39,7 @@ export class TransmissionTypeService {
         let flag = 0;
         for (const c of data) {
           flag = 0;
-          this.transmissionType = new TransmissionType(c.serial_number, c.type);
+          this.transmissionType = new TransmissionType(c.type, c.serial_number);
           for(const t of this.listTransmissionTypes){
             if (c.type === t.type){
               flag = 1;

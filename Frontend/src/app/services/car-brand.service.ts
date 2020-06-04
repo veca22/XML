@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {CarType} from "../model/carType";
 import {CarBrand} from "../model/carBrand";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
 @Injectable({
@@ -58,6 +58,15 @@ export class CarBrandService {
 
   public newCarBrand(carBrand){
     return this.http.post(environment.gateway + environment.admin + '/addCarBrand', carBrand);
+  }
+
+  //ovo si dodao nakon cele tabele
+  public AccountOperation(operation: string, brand: string) {
+    let params = new HttpParams();
+    params = params.append('operation', operation);
+    params = params.append('brand', brand);
+
+    return this.http.post(environment.gateway + environment.admin + '/accountOperation', params);
   }
 
 }

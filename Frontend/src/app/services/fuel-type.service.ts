@@ -36,9 +36,18 @@ export class FuelTypeService {
 
   public getAllFuelType(): Array<FuelType> {
     this.http.get(environment.gateway + environment.admin + '/fuelType/all').subscribe((data: FuelType[]) => {
+        let flag = 0;
         for (const c of data) {
-          this.fuelType = new FuelType(c.serial_number, c.type);
-          this.listFuelTypes.push(this.fuelType);
+          flag = 0;
+          this.fuelType = new FuelType(c.type, c.serial_number);
+          for(const t of this.listFuelTypes){
+            if (c.type === t.type){
+              flag = 1;
+            }
+          }
+          if(flag === 0) {
+            this.listFuelTypes.push(this.fuelType);
+          }
         }
       },
       error => {
