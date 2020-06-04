@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ad} from '../../model/Ad';
-import {MatDialog, MatOptionSelectionChange, MatPaginator, MatSelect, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {AdService} from '../../services/ad.service';
 import {Car} from '../../model/car';
@@ -11,6 +11,8 @@ import {FuelType} from '../../model/fuelType';
 import {TransmissionType} from '../../model/transmissionType';
 import {Client} from '../../model/client';
 import {CarModel} from '../../model/carModel';
+import {FuelTypeService} from '../../services/fuel-type.service';
+import {CarStatus} from '../../model/carStatus';
 
 
 interface Cars {
@@ -40,6 +42,7 @@ export class AddAdComponent implements OnInit {
   client: Client;
   list: Array<CarBrand> = new Array<CarBrand>();
   expandedElement: Ad;
+  fuelTypes: Array<FuelType>;
 
   dataSource = new MatTableDataSource<Ad>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -48,9 +51,12 @@ export class AddAdComponent implements OnInit {
   constructor(public dialog: MatDialog,
               private formBuilder: FormBuilder,
               private router: Router,
-              private adService: AdService ) {
+              private adService: AdService,
+              private fuelTypeService: FuelTypeService) {
 
    // this.ad = this.adService.getAllAds();//this.all();
+    this.fuelTypes = fuelTypeService.getAllFuelType();
+    console.log(this.fuelTypes);
   }
 
   ngOnInit() {
@@ -62,20 +68,15 @@ export class AddAdComponent implements OnInit {
       endOfAd: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       carBrand: new FormControl('' ),
-      carType: new FormControl('', [Validators.required]),
       fuelType: new FormControl('', [Validators.required]),
+      carType: new FormControl('', [Validators.required]),
       transmissionType: new FormControl('', [Validators.required]),
-     discount: new FormControl('', [Validators.required]),
-     mileage: new FormControl('', [Validators.required]),
-     averageRating: new FormControl('', [Validators.required]),
-      carStatus: new FormControl('', [Validators.required]),
-     distanceAllowed: new FormControl('', [Validators.required]),
-     collisionDemageWaiver: new FormControl('', [Validators.required]),
-     childSeats: new FormControl('', [Validators.required]),
+      mileage: new FormControl('', [Validators.required]),
+      distanceAllowed: new FormControl('', [Validators.required]),
+      collisionDemageWaiver: new FormControl('', [Validators.required]),
+      childSeats: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       place: new FormControl('', [Validators.required]),
-      client: new FormControl('', [Validators.required]),
-      isActive: new FormControl('', [Validators.required]),
       carModel: new FormControl('', [Validators.required]),
     });
     this.all();
@@ -84,9 +85,6 @@ export class AddAdComponent implements OnInit {
   get f() {
     return this.addAdForm.controls;
   }
-
-  carBrandList2: string[] = ['Audi', 'Mercedes', 'Saab', 'Volvo'];
-
 
 
   onSubmit() {
@@ -99,7 +97,9 @@ export class AddAdComponent implements OnInit {
 
     this.carBrand = new CarBrand(this.f.carBrand.value);
     this.carModel = new CarModel(this.f.carModel.value);
+    console.log(this.f.fuelType.value);
     this.fuelType = new FuelType(this.f.fuelType.value);
+    console.log(this.fuelType)
     this.transmissionType = new TransmissionType(this.f.transmissionType.value);
     this.carType = new CarType(this.f.carType.value);
     console.log(this.f.carType.value);
@@ -113,10 +113,10 @@ export class AddAdComponent implements OnInit {
     console.log(this.f.carType.value);
     this.car.fuelType = this.fuelType;
     this.car.transmissionType = this.transmissionType;
-    this.car.discount = this.f.discount.value;
+    this.car.discount = 0;
     this.car.mileage = this.f.mileage.value;
-    this.car.averageRating = this.f.averageRating.value;
-    this.car.carStatus = this.f.carStatus.value;
+    this.car.averageRating = 0;
+    this.car.carStatus = CarStatus.NOT_RENTED;
     this.car.distanceAllowed = this.f.distanceAllowed.value;
     this.car.collisionDemageWaiver = this.f.collisionDemageWaiver.value;
     this.car.childSeats = this.f.childSeats.value;
@@ -129,23 +129,11 @@ export class AddAdComponent implements OnInit {
       this.f.startOfAd.value,
       this.f.endOfAd.value,
       this.f.description.value,
-      this.f.isActive.value,
+      true,
       this.f.place.value,
       this.client
-
     );
 
-    // this.ad = new Ad(
-    //   this.car,
-    //   this.f.profilePicture.value,
-    //   this.f.title.value,
-    //   this.f.startOfAd.value,
-    //   this.f.endOfAd.value,
-    //   this.f.description.value,
-    //   this.f.isActive.value,
-    //   this.f.place.value,
-    //   this.client
-    //   );
     console.log(this.ad);
     this.createAd();
   }

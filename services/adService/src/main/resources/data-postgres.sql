@@ -1,6 +1,8 @@
 insert into users(id, email, password, role, status) values (110,'testic@test.com','test','ENDUSER', 'ACCEPTED');
 insert into users(id, email, password, role, status) values (115,'testic@test.com','test','ENDUSER', 'ACCEPTED');
 insert into fuel_type(id, serial_number, type) values(277, '123b86', 'jeriDizel');
+insert into fuel_type(id, serial_number, type) values(300, '253ac', 'benzin');
+insert into fuel_type(id, serial_number, type) values(305, '152ca', 'plin');
 
 insert into transmission_type(id, serial_number, type) values(222, 'km32', 'automatik');
 

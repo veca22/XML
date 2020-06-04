@@ -45,6 +45,9 @@ public class Client {
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ad> ads;
 
+    @Column(nullable = false)
+    private int adCounter;
+
 
     //endUser
     public Client(String email,String password,String firstName,String lastName,String jmbg,String phoneNumber,String address) {
@@ -56,6 +59,7 @@ public class Client {
         this.phoneNumber=phoneNumber;
         this.address=address;
         this.role=Role.ENDUSER;
+        this.adCounter = 0;
     }
 
     //agent
@@ -69,6 +73,7 @@ public class Client {
         this.address=address;
         this.personalID=personalID;
         this.role=Role.AGENT;
+        this.adCounter = 0;
     }
 
     //firm
@@ -80,6 +85,7 @@ public class Client {
         this.address=address;
         this.pib=pib;
         this.role=Role.FIRM;
+        this.adCounter = 0;
     }
 
 
@@ -163,5 +169,13 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getAdCounter() {
+        return adCounter;
+    }
+
+    public void setAdCounter(int adCounter) {
+        this.adCounter = adCounter;
     }
 }
