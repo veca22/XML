@@ -35,9 +35,18 @@ export class CarBrandService {
 
   public getAllCarBrand(): Array<CarBrand> {
     this.http.get(environment.gateway + environment.admin + '/carBrand/all').subscribe((data: CarBrand[]) => {
+        let flag = 0;
         for (const c of data) {
+          flag = 0;
           this.carBrand = new CarBrand(c.brand);
-          this.listCarBrands.push(this.carBrand);
+          for(const t of this.listCarBrands){
+            if (c.brand === t.brand){
+              flag = 1;
+            }
+          }
+          if(flag === 0) {
+            this.listCarBrands.push(this.carBrand);
+          }
         }
       },
       error => {

@@ -3,6 +3,7 @@ import {CarType} from "../model/carType";
 import {HttpClient} from "@angular/common/http";
 import {FuelType} from "../model/fuelType";
 import {environment} from "../../environments/environment";
+import {CarModel} from "../model/carModel";
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +37,18 @@ export class CarTypeService {
 
   public getAllCarType(): Array<CarType> {
     this.http.get(environment.gateway + environment.admin + '/carType/all').subscribe((data: CarType[]) => {
+        let flag = 0;
         for (const c of data) {
+          flag = 0;
           this.carType = new CarType(c.type);
-          this.listCarTypes.push(this.carType);
+          for(const t of this.listCarTypes){
+            if (c.type === t.type){
+              flag = 1;
+            }
+          }
+          if(flag === 0) {
+            this.listCarTypes.push(this.carType);
+          }
         }
       },
       error => {

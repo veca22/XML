@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {TransmissionType} from "../model/transmissionType";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {CarType} from "../model/carType";
 
 @Injectable({
   providedIn: 'root'
@@ -35,9 +36,18 @@ export class TransmissionTypeService {
 
   public getAllTransmissionType(): Array<TransmissionType>{
     this.http.get(environment.gateway + environment.admin + '/transmissionType/all').subscribe((data: TransmissionType[]) =>{
-        for (const c of data){
+        let flag = 0;
+        for (const c of data) {
+          flag = 0;
           this.transmissionType = new TransmissionType(c.serial_number, c.type);
-          this.listTransmissionTypes.push(this.transmissionType);
+          for(const t of this.listTransmissionTypes){
+            if (c.type === t.type){
+              flag = 1;
+            }
+          }
+          if(flag === 0) {
+            this.listTransmissionTypes.push(this.transmissionType);
+          }
         }
       },
       error => {

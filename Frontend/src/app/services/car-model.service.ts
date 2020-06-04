@@ -36,9 +36,18 @@ export class CarModelService {
 
   public getAllCarModel(): Array<CarModel> {
     this.http.get(environment.gateway + environment.admin + '/carModel/all').subscribe((data: CarModel[]) => {
+        let flag = 0;
         for (const c of data) {
+          flag = 0;
           this.carModel = new CarModel(c.model);
-          this.listCarModels.push(this.carModel);
+          for(const t of this.listCarModels){
+            if (c.model === t.model){
+              flag = 1;
+            }
+          }
+          if(flag === 0) {
+            this.listCarModels.push(this.carModel);
+          }
         }
       },
       error => {
