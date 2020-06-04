@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ad} from '../../model/Ad';
-import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatOptionSelectionChange, MatPaginator, MatSelect, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {AdService} from '../../services/ad.service';
 import {Car} from '../../model/car';
@@ -13,6 +13,11 @@ import {Client} from '../../model/client';
 import {CarModel} from '../../model/carModel';
 
 
+interface Cars {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-add-ad',
   templateUrl: './add-ad.component.html',
@@ -21,20 +26,25 @@ import {CarModel} from '../../model/carModel';
 export class AddAdComponent implements OnInit {
   adservice: AdService;
   addAdForm: FormGroup;
+  MakeGroup: FormGroup;
   submitted = false;
+  selectedCar: string;
   displayedColumns: string[] = ['title', 'profilePicture', 'description', 'place'];
   ad: Ad;
+  car: Car;
   carBrand: CarBrand;
   carType: CarType;
   carModel: CarModel;
   transmissionType: TransmissionType;
-  car: Car;
   fuelType: FuelType;
   client: Client;
+  list: Array<CarBrand> = new Array<CarBrand>();
   expandedElement: Ad;
+
   dataSource = new MatTableDataSource<Ad>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   ads: Array<Ad> = new Array<Ad>();
+  listCarBrand: Array<CarBrand> =  new Array<CarBrand>();
   constructor(public dialog: MatDialog,
               private formBuilder: FormBuilder,
               private router: Router,
@@ -51,7 +61,7 @@ export class AddAdComponent implements OnInit {
       startOfAd: new FormControl('', [Validators.required]),
       endOfAd: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      carBrand: new FormControl('', [Validators.required]),
+      carBrand: new FormControl('' ),
       carType: new FormControl('', [Validators.required]),
       fuelType: new FormControl('', [Validators.required]),
       transmissionType: new FormControl('', [Validators.required]),
@@ -67,16 +77,17 @@ export class AddAdComponent implements OnInit {
       client: new FormControl('', [Validators.required]),
       isActive: new FormControl('', [Validators.required]),
       carModel: new FormControl('', [Validators.required]),
-
     });
     this.all();
     this.dataSource.paginator = this.paginator;
   }
-
-
   get f() {
     return this.addAdForm.controls;
   }
+
+  carBrandList2: string[] = ['Audi', 'Mercedes', 'Saab', 'Volvo'];
+
+
 
   onSubmit() {
     this.submitted = true;
@@ -101,7 +112,7 @@ export class AddAdComponent implements OnInit {
     this.car.carType = this.carType;
     console.log(this.f.carType.value);
     this.car.fuelType = this.fuelType;
-    this.car.transmissionType = this.transmissionType
+    this.car.transmissionType = this.transmissionType;
     this.car.discount = this.f.discount.value;
     this.car.mileage = this.f.mileage.value;
     this.car.averageRating = this.f.averageRating.value;
@@ -162,4 +173,5 @@ export class AddAdComponent implements OnInit {
   all() {
     this.dataSource = new MatTableDataSource<Ad>(this.adService.getAllAds());
   }
+
 }

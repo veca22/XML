@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Ad} from '../model/ad';
 import {error} from 'util';
+import {CarBrand} from '../model/carBrand';
+import {Car} from '../model/car';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +14,13 @@ import {error} from 'util';
 export class AdService {
 
   ad: Ad;
+  carBrand: CarBrand;
   adService: AdService;
   ads: Array<Ad> = new Array<Ad>();
   filterAds: Array<Ad> = new Array<Ad>();
   urlAd = environment.gateway + environment.ad;
   listAd: Array<Ad> = new Array<Ad>();
+  listCarBrand: Array<CarBrand> = new Array<CarBrand>();
   type: string;
   constructor(private router: Router, private http: HttpClient) {
    // this.getAllAds();
@@ -102,6 +106,22 @@ export class AdService {
   public newAd(ad) {
     console.log(environment.gateway + environment.ad + '/addAd');
     return this.http.post(environment.gateway + environment.ad + '/addAd', ad );
+  }
+
+  public getAllCarBrands(): Array<CarBrand>{
+    this.http.get(environment.gateway + environment.ad + '/allCarBrands').subscribe((data: CarBrand[]) => {
+      console.log(data);
+      for (const c of data) {
+        console.log(c);
+        this.carBrand = c;
+        this.listCarBrand.push(this.carBrand);
+      }
+    },
+        error => {
+          console.log(error);
+        }
+    );
+    return this.listCarBrand;
   }
 
 

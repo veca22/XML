@@ -11,7 +11,6 @@ import service.AdService.dto.AdDTO;
 import service.AdService.dto.AdFilterDTO;
 import service.AdService.model.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,6 +159,12 @@ public class AdController {
             }
         }
         return new ResponseEntity<>(pom,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/allCarBrands")
+    public ResponseEntity allCarBrand() {
+        System.out.println("car brand");
+        return new ResponseEntity<>(carBrandService.findall(), HttpStatus.OK);
     }
 
 
