@@ -36,7 +36,9 @@ import { CarSearchComponent } from './components/car-search/car-search.component
 import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
+import { AddPicturesDialogComponent } from './components/add-pictures-dialog/add-pictures-dialog.component';
 import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
+
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
     CarSearchComponent,
     SearchResultDialogComponent,
     AdViewDialogComponent,
+    AddPicturesDialogComponent,
     EndUserAdsComponent,
+
 
 
   ],
@@ -82,13 +86,12 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
     HttpClientModule,
     MatNativeDateModule,
     DemoMaterialModule,
-
     MatTableModule,
     MatPaginatorModule,
     DemoMaterialModule,
 
   ],
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })
