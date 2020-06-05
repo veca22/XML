@@ -37,11 +37,11 @@ import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
 import { RentConditionsComponent } from './components/rent-conditions/rent-conditions.component';
+import { CodeBookComponent } from './components/code-book/code-book.component';
 import { AddPicturesDialogComponent } from './components/add-pictures-dialog/add-pictures-dialog.component';
 import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-
 
 
 @NgModule({
@@ -63,6 +63,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     SearchResultDialogComponent,
     AdViewDialogComponent,
     RentConditionsComponent,
+    CodeBookComponent,
     AddPicturesDialogComponent,
     EndUserAdsComponent,
     ContactComponent,

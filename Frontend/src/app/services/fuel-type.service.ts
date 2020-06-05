@@ -16,18 +16,18 @@ export class FuelTypeService {
     this.getAllFuelType();
   }
 
-  public addFuelType(t: FuelType) {
-    if (this.getFuelType(t.serial_number) === null) {
+  public addFuelType(t: FuelType){
+    if(this.getFuelType(t.serialNumber) === null){
       this.listFuelTypes.push(t);
     }
   }
 
-  public getFuelType(serial_number: string) {
+  public getFuelType(serialNumber: string) {
     if (this.listFuelTypes.length === 0) {
       return null;
     }
     for (const u of this.listFuelTypes) {
-      if (u.serial_number === serial_number) {
+      if (u.serialNumber === serialNumber) {
         return u;
       }
     }
@@ -36,8 +36,18 @@ export class FuelTypeService {
 
   public getAllFuelType(): Array<FuelType> {
     this.http.get(environment.gateway + environment.admin + '/fuelType/all').subscribe((data: FuelType[]) => {
+        let flag = 0;
         for (const c of data) {
-          this.fuelType = new FuelType(c.type, c.serial_number);
+          flag = 0;
+          this.fuelType = new FuelType(c.type, c.serialNumber);
+          for(const t of this.listFuelTypes){
+            if (c.type === t.type){
+              flag = 1;
+            }
+          }
+          if(flag === 0) {
+            this.listFuelTypes.push(this.fuelType);
+          }
           this.addFuelType(this.fuelType);
         }
       },

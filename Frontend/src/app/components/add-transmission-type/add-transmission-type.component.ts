@@ -26,38 +26,44 @@ export class AddTransmissionTypeComponent implements OnInit {
     this.transmissionTypes = this.transmissionTypeService.getAllTransmissionType();
   }
 
-  serial_number: String;
-  transmission_type: String;
+  serialNumber: string;
+  type: string;
 
   ngOnInit() {
     this.addTransmissionTypeForm = this.formBuilder.group({
-      serial_number: new FormControl('', [Validators.required]),
-      transmission_type: new FormControl('', [Validators.required]),
+      serialNumber: new FormControl('', [Validators.required]),
+      type: new FormControl('', [Validators.required]),
     });
   }
 
-  get f(){
+  get f() {
     return this.addTransmissionTypeForm.controls;
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
 
-    if(this.addTransmissionTypeForm.invalid){
+    if (this.addTransmissionTypeForm.invalid){
       return;
     }
 
     this.transmissionType = new TransmissionType(
-      this.f.serial_number.value,
-      this.f.transmission_type.value,
+      this.f.type.value,
+      this.f.serialNumber.value,
+
+
+
     );
-    this.transmissionType = new TransmissionType(this.f.serial_number.value, this.f.transmission_type.value);
+    this.transmissionType = new TransmissionType(this.f.type.value, this.f.serialNumber.value);
     this.createTransmissionType();
   }
 
   private createTransmissionType(){
+    console.log('front')
+
     this.transmissionTypeService.newTransmissionType(this.transmissionType).subscribe(
       data => {
+        console.log('front1')
         this.transmissionTypeService.addTransmissionType(this.transmissionType);
         this.router.navigate(['/administrator/home']);   //za ovo pitati
       },

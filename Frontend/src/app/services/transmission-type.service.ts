@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {TransmissionType} from "../model/transmissionType";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {CarType} from "../model/carType";
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +17,17 @@ export class TransmissionTypeService {
 
 
   public addTransmissionType(t: TransmissionType) {
-    if(this.getTransmissionType(t.serial_number) === null){
+    if(this.getTransmissionType(t.serialNumber) === null){
       this.listTransmissionTypes.push(t);
     }
   }
 
-  public getTransmissionType(serial_number: String){
+  public getTransmissionType(serialNumber: string){
     if(this.listTransmissionTypes.length === 0){
       return null;
     }
     for (const u of this.listTransmissionTypes){
-      if (u.serial_number === serial_number){
+      if (u.serialNumber === serialNumber){
         return u;
       }
     }
@@ -35,9 +36,19 @@ export class TransmissionTypeService {
 
   public getAllTransmissionType(): Array<TransmissionType>{
     this.http.get(environment.gateway + environment.admin + '/transmissionType/all').subscribe((data: TransmissionType[]) =>{
+        let flag = 0;
         for (const c of data) {
-          this.transmissionType = new TransmissionType(c.type, c.serial_number);
-          this.addTransmissionType(this.transmissionType);
+          flag = 0;
+          this.transmissionType = new TransmissionType(c.type, c.serialNumber);
+          for(const t of this.listTransmissionTypes){
+            if (c.type === t.type){
+              flag = 1;
+            }
+          }
+          if(flag === 0) {
+            this.listTransmissionTypes.push(this.transmissionType);
+          }
+
         }
       },
       error => {

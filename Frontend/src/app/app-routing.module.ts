@@ -13,6 +13,7 @@ import {AddCarBrandComponent} from './components/add-car-brand/add-car-brand.com
 import {AddCarModelComponent} from './components/add-car-model/add-car-model.component';
 import {EndUsersOperationsComponent} from './components/end-users-operations/end-users-operations.component';
 import {RentConditionsComponent} from './components/rent-conditions/rent-conditions.component';
+import {CodeBookComponent} from "./components/code-book/code-book.component";
 import {EndUserAdsComponent} from './components/end-user-ads/end-user-ads.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {AboutUsComponent} from './components/about-us/about-us.component';
@@ -76,8 +77,12 @@ const routes: Routes = [
     component: CarSearchComponent,
   },
   {
+
     path: 'rentConditions',
     component: RentConditionsComponent,
+
+    path: 'codeBook',
+    component: CodeBookComponent,
   },
   {
     path: 'endUser/myAds',
