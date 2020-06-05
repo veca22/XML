@@ -36,10 +36,13 @@ import { CarSearchComponent } from './components/car-search/car-search.component
 import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
+import { RentConditionsComponent } from './components/rent-conditions/rent-conditions.component';
 import { CodeBookComponent } from './components/code-book/code-book.component';
 import { AddPicturesDialogComponent } from './components/add-pictures-dialog/add-pictures-dialog.component';
 import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
 import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 @NgModule({
@@ -60,10 +63,14 @@ import { CartDialogComponent } from './components/cart-dialog/cart-dialog.compon
     CarSearchComponent,
     SearchResultDialogComponent,
     AdViewDialogComponent,
+    RentConditionsComponent,
     CodeBookComponent,
     AddPicturesDialogComponent,
     EndUserAdsComponent,
     CartDialogComponent,
+    ContactComponent,
+    AboutUsComponent,
+
 
 
 

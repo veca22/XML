@@ -1,20 +1,18 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Ad} from "../../model/ad";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {NavigationEnd, Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {CarBrandService} from "../../services/car-brand.service";
-import {CarBrand} from "../../model/carBrand";
-import {CarModel} from "../../model/carModel";
-import {CarModelService} from "../../services/car-model.service";
-import {CarType} from "../../model/carType";
-import {CarTypeService} from "../../services/car-type.service";
-import {TransmissionTypeService} from "../../services/transmission-type.service";
-import {TransmissionType} from "../../model/transmissionType";
-import {FuelType} from "../../model/fuelType";
-import {FuelTypeService} from "../../services/fuel-type.service";
-import {environment} from "../../../environments/environment";
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {NavigationEnd, Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {CarBrandService} from '../../services/car-brand.service';
+import {CarBrand} from '../../model/carBrand';
+import {CarModel} from '../../model/carModel';
+import {CarModelService} from '../../services/car-model.service';
+import {CarType} from '../../model/carType';
+import {CarTypeService} from '../../services/car-type.service';
+import {TransmissionTypeService} from '../../services/transmission-type.service';
+import {TransmissionType} from '../../model/transmissionType';
+import {FuelType} from '../../model/fuelType';
+import {FuelTypeService} from '../../services/fuel-type.service';
 
 @Component({
   selector: 'app-code-book',
@@ -23,7 +21,7 @@ import {environment} from "../../../environments/environment";
 })
 export class CodeBookComponent implements OnInit {
 
-  displayedColumns: string[] = ['brand', 'remove']; //dodao si remove
+  displayedColumns: string[] = ['brand', 'remove'];
   dataSource = new MatTableDataSource<CarBrand>();
 
   displayedColumns2: string[] = ['model'];
@@ -62,33 +60,33 @@ export class CodeBookComponent implements OnInit {
     this.dataSource5.paginator = this.paginator;
   }
 
-  all4(){
-    this.dataSource = new MatTableDataSource<CarBrand>(this.carBrandService.getAllCarBrand());
+  all4() {
+    this.dataSource = new MatTableDataSource<CarBrand>(this.carBrandService.getCarBrandsForOperations());
 
   }
 
-  all5(){
-    this.dataSource2 = new MatTableDataSource<CarModel>(this.carModelService.getAllCarModel())
+  all5() {
+    this.dataSource2 = new MatTableDataSource<CarModel>(this.carModelService.getAllCarModel());
   }
 
-  all3(){
+  all3() {
     this.dataSource3 = new MatTableDataSource<CarType>(this.carTypeService.getAllCarType());
   }
 
-  all2(){
+  all2() {
     this.dataSource4 = new MatTableDataSource<TransmissionType>(this.transmissionTypeService.getAllTransmissionType());
   }
 
-  all(){
+  all() {
     this.dataSource5 = new MatTableDataSource<FuelType>(this.fuelTypeService.getAllFuelType());
   }
 
-  //dodao si nakon cele tabele
-  function_for_operation(operation, brand) {
-    console.log(brand.brand);
-    this.carBrandService.AccountOperation(operation, brand.brand).subscribe(data => {
+  function_for_operation(operation, el) {
+    console.log(el.brand);
+    this.carBrandService.AccountOperation(operation, el.brand).subscribe(data => {
         this.router.navigate(['/administrator/home']);
-        //window.location.reload();
+
+
       },
       error => {
         console.log(error);
