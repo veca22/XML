@@ -20,11 +20,11 @@ public class FuelTypeDto {
         this.serialNumber = serialNumber;
     }
 
-    public String getFuelType() {
+    public String getType() {
         return type;
     }
 
-    public void setFuelType(String type) {
+    public void setType(String type) {
         this.type = type;
     }
 }

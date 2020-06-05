@@ -9,11 +9,11 @@ public class CarBrandDto {
         this.brand = brand;
     }
 
-    public String getCarBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    public void setCarBrand(String brand) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 }

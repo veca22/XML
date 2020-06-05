@@ -33,7 +33,7 @@ public class AdminController {
         if(fuelType == null){
             FuelType newFuelType = new FuelType();
             newFuelType.setSerial_number(fuelTypeDto.getSerialNumber());
-            newFuelType.setType(fuelTypeDto.getFuelType());
+            newFuelType.setType(fuelTypeDto.getType());
 
             boolean uspesno = fuelTypeService.addFuelType(newFuelType);
             if(uspesno == true){
@@ -58,19 +58,23 @@ public class AdminController {
 
     @PostMapping(value = "/addTransmissionType")
     public String addTransmissionType(@RequestBody TransmissionTypeDto transmissionTypeDto){
+        System.out.println("back");
 
-        TransmissionType transmissionType = transmissionTypeService.getTransmissionType(transmissionTypeDto.getSerial_number());
+        TransmissionType transmissionType = transmissionTypeService.getTransmissionType(transmissionTypeDto.getSerialNumber());
         if (transmissionType == null){
+
+            System.out.println("back1");
+
             TransmissionType newTransmissionType = new TransmissionType();
-            newTransmissionType.setSerial_number(transmissionTypeDto.getSerial_number());
-            newTransmissionType.setType(transmissionTypeDto.getTransmission_type());
+            newTransmissionType.setSerialNumber(transmissionTypeDto.getSerialNumber());
+            newTransmissionType.setType(transmissionTypeDto.getType());
 
             boolean uspesno = transmissionTypeService.addTransmissionType(newTransmissionType);
             if(uspesno == true){
-                System.out.println("New transmission type with serial: " + newTransmissionType.getSerial_number() + "is added.");
+                System.out.println("New transmission type with serial: " + newTransmissionType.getSerialNumber() + "is added.");
             }
             else {
-                System.out.println("Serial already exists: " + newTransmissionType.getSerial_number());
+                System.out.println("Serial already exists: " + newTransmissionType.getSerialNumber());
             }
             return "";
         }
@@ -89,10 +93,10 @@ public class AdminController {
     @PostMapping(value = "/addCarType")
     public String addCarType(@RequestBody CarTypeDto carTypeDto){
 
-        CarType carType = carTypeService.getCarType(carTypeDto.getCar_type());
+        CarType carType = carTypeService.getCarType(carTypeDto.getType());
         if (carType == null){
             CarType newCarType = new CarType();
-            newCarType.setType(carTypeDto.getCar_type());
+            newCarType.setType(carTypeDto.getType());
 
             boolean uspesno = carTypeService.addCarType(newCarType);
             if(uspesno == true){
@@ -118,10 +122,10 @@ public class AdminController {
     @PostMapping(value = "/addCarBrand")
     public String addCarBrand(@RequestBody CarBrandDto carBrandDto){
 
-        CarBrand carBrand = carBrandService.getCarBrand(carBrandDto.getCarBrand());
+        CarBrand carBrand = carBrandService.getCarBrand(carBrandDto.getBrand());
         if (carBrand == null){
             CarBrand newCarBrand = new CarBrand();
-            newCarBrand.setBrand(carBrandDto.getCarBrand());
+            newCarBrand.setBrand(carBrandDto.getBrand());
 
             boolean uspesno = carBrandService.addCarBrand(newCarBrand);
             if(uspesno == true){
@@ -147,10 +151,10 @@ public class AdminController {
     @PostMapping(value = "/addCarModel")
     public String addCarModel(@RequestBody CarModelDto carModelDto){
 
-        CarModel carModel = carModelService.getCarModel(carModelDto.getCar_model());
+        CarModel carModel = carModelService.getCarModel(carModelDto.getModel());
         if (carModel == null){
             CarModel newCarModel = new CarModel();
-            newCarModel.setModel(carModelDto.getCar_model());
+            newCarModel.setModel(carModelDto.getModel());
 
             boolean uspesno = carModelService.addCarModel(newCarModel);
             if(uspesno == true){

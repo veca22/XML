@@ -27,8 +27,8 @@ export class AddFuelTypeComponent implements OnInit {
     this.fuelTypes = this.fuelTypeService.getAllFuelType();
   }
 
-  serialNumber: String;
-  type: String;
+  serialNumber: string;
+  type: string;
 
   ngOnInit() {
     this.addFuelTypeForm = this.formBuilder.group({
@@ -49,10 +49,10 @@ export class AddFuelTypeComponent implements OnInit {
     }
 
     this.fuelType = new FuelType(
-      this.f.serialNumber.value,
       this.f.type.value,
+      this.f.serialNumber.value,
     );
-    this.fuelType = new FuelType(this.f.serialNumber.value, this.f.type.value);
+    this.fuelType = new FuelType( this.f.type.value, this.f.serialNumber.value);
     this.createFuelType();
   }
 
