@@ -11,11 +11,11 @@ import {AddTransmissionTypeComponent} from './components/add-transmission-type/a
 import {AddCarTypeComponent} from './components/add-car-type/add-car-type.component';
 import {AddCarBrandComponent} from './components/add-car-brand/add-car-brand.component';
 import {AddCarModelComponent} from './components/add-car-model/add-car-model.component';
-
 import {EndUsersOperationsComponent} from './components/end-users-operations/end-users-operations.component';
 import {RentConditionsComponent} from './components/rent-conditions/rent-conditions.component';
-
 import {EndUserAdsComponent} from './components/end-user-ads/end-user-ads.component';
+import {ContactComponent} from './components/contact/contact.component';
+import {AboutUsComponent} from './components/about-us/about-us.component';
 
 
 
@@ -82,7 +82,28 @@ const routes: Routes = [
   {
     path: 'endUser/myAds',
     component: EndUserAdsComponent,
-  }
+  },
+  {
+    path: 'Contact',
+    component: ContactComponent,
+  },
+  {
+    path: 'About',
+    component: AboutUsComponent,
+  },
+  {
+    path: 'endUser/About',
+    component: AboutUsComponent,
+  },
+  {
+    path: 'endUser/Contact',
+    component: AboutUsComponent,
+  },
+  {
+    path: 'endUser/rentConditions',
+    component: AboutUsComponent,
+  },
+
 
 ];
 

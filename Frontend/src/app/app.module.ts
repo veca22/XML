@@ -38,6 +38,8 @@ import { SearchResultDialogComponent } from './components/search-result-dialog/s
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
 import { RentConditionsComponent } from './components/rent-conditions/rent-conditions.component';
 import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
     AdViewDialogComponent,
     RentConditionsComponent,
     EndUserAdsComponent,
+    ContactComponent,
+    AboutUsComponent,
 
 
   ],
