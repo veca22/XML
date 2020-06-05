@@ -170,7 +170,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping(value = "/accountOperation")
+    @PostMapping(value = "/brandOperation")
     public ResponseEntity<CarBrand> operations(@RequestParam(value = "operation", required = true) String operation,
                                            @RequestParam(value = "brand", required = true) String brand) {
 

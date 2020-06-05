@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Ad} from "../../model/ad";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {CarBrandService} from "../../services/car-brand.service";
 import {CarBrand} from "../../model/carBrand";
@@ -14,6 +14,7 @@ import {TransmissionTypeService} from "../../services/transmission-type.service"
 import {TransmissionType} from "../../model/transmissionType";
 import {FuelType} from "../../model/fuelType";
 import {FuelTypeService} from "../../services/fuel-type.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-code-book',
@@ -31,10 +32,10 @@ export class CodeBookComponent implements OnInit {
   displayedColumns3: string[] = ['type'];
   dataSource3 = new MatTableDataSource<CarType>();
 
-  displayedColumns4: string[] = ['type', 'serial_number'];
+  displayedColumns4: string[] = ['type', 'serialNumber'];
   dataSource4 = new MatTableDataSource<TransmissionType>();
 
-  displayedColumns5: string[] = ['type', 'serial_number'];
+  displayedColumns5: string[] = ['type', 'serialNumber'];
   dataSource5 = new MatTableDataSource<FuelType>();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -46,10 +47,7 @@ export class CodeBookComponent implements OnInit {
     private carModelService: CarModelService,
     private carTypeService: CarTypeService,
     private transmissionTypeService: TransmissionTypeService,
-    private fuelTypeService: FuelTypeService) {
-
-    this.dataSource = new MatTableDataSource(this.carBrandService.getCarBrandsForOperations());
-  }
+    private fuelTypeService: FuelTypeService) {}
 
   ngOnInit() {
     this.all4();
@@ -65,7 +63,7 @@ export class CodeBookComponent implements OnInit {
   }
 
   all4(){
-    this.dataSource = new MatTableDataSource(this.carBrandService.getCarBrandsForOperations());
+    this.dataSource = new MatTableDataSource<CarBrand>(this.carBrandService.getAllCarBrand());
 
   }
 
@@ -90,6 +88,7 @@ export class CodeBookComponent implements OnInit {
     console.log(brand.brand);
     this.carBrandService.AccountOperation(operation, brand.brand).subscribe(data => {
         this.router.navigate(['/administrator/home']);
+        //window.location.reload();
       },
       error => {
         console.log(error);
