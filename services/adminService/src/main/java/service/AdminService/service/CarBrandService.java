@@ -23,6 +23,8 @@ public class CarBrandService {
 
     public void deleteCarBrand(CarBrand brand) {carBrandRepo.delete(brand);}
 
+    //public List<CarBrand> findAllEndCarBrands(String brand) { return carBrandRepo.findAllByBrand(brand);}
+
     public boolean addCarBrand(CarBrand f){
         List<CarBrand> tmp = findall();
         if(tmp.size() == 0){
@@ -39,13 +41,13 @@ public class CarBrandService {
         }
         return false;
     }
-    public CarBrand getCarBrand(String car_brand){
+    public CarBrand getCarBrand(String brand){
         List<CarBrand> tmp = findall();
         if(tmp.size() == 0){
             return null;
         }
         for (CarBrand f : tmp){
-            if(f.getBrand().equals(car_brand)){
+            if(f.getBrand().equals(brand)){
                 return f;
             }
         }

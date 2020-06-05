@@ -46,7 +46,10 @@ export class CodeBookComponent implements OnInit {
     private carModelService: CarModelService,
     private carTypeService: CarTypeService,
     private transmissionTypeService: TransmissionTypeService,
-    private fuelTypeService: FuelTypeService) { }
+    private fuelTypeService: FuelTypeService) {
+
+    this.dataSource = new MatTableDataSource(this.carBrandService.getCarBrandsForOperations());
+  }
 
   ngOnInit() {
     this.all4();
@@ -62,7 +65,8 @@ export class CodeBookComponent implements OnInit {
   }
 
   all4(){
-    this.dataSource = new MatTableDataSource<CarBrand>(this.carBrandService.getAllCarBrand());
+    this.dataSource = new MatTableDataSource(this.carBrandService.getCarBrandsForOperations());
+
   }
 
   all5(){

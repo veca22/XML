@@ -9,4 +9,7 @@ public interface CarBrandRepo extends JpaRepository<CarBrand, Long> {
     List<CarBrand> findAll();
     CarBrand findCarBrandById(Long id);
     CarBrand findCarBrandByBrand(String brand);
+
+    //List<CarBrand> findAllByBrand(String brand);
+    //List<CarBrand> findAllEndCarBrands(CarBrand brand);
 }

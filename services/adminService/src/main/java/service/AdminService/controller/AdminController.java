@@ -12,6 +12,7 @@ import service.AdminService.model.*;
 import service.AdminService.service.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -28,11 +29,11 @@ public class AdminController {
     @PostMapping(value = "/addFuelType")
     public String addFuelType(@RequestBody FuelTypeDto fuelTypeDto){
 
-        FuelType fuelType = fuelTypeService.getFuelType(fuelTypeDto.getSerial_number());
+        FuelType fuelType = fuelTypeService.getFuelType(fuelTypeDto.getSerialNumber());
         if(fuelType == null){
             FuelType newFuelType = new FuelType();
-            newFuelType.setSerial_number(fuelTypeDto.getSerial_number());
-            newFuelType.setType(fuelTypeDto.getFuel_type());
+            newFuelType.setSerial_number(fuelTypeDto.getSerialNumber());
+            newFuelType.setType(fuelTypeDto.getFuelType());
 
             boolean uspesno = fuelTypeService.addFuelType(newFuelType);
             if(uspesno == true){
@@ -117,10 +118,10 @@ public class AdminController {
     @PostMapping(value = "/addCarBrand")
     public String addCarBrand(@RequestBody CarBrandDto carBrandDto){
 
-        CarBrand carBrand = carBrandService.getCarBrand(carBrandDto.getCar_brand());
+        CarBrand carBrand = carBrandService.getCarBrand(carBrandDto.getCarBrand());
         if (carBrand == null){
             CarBrand newCarBrand = new CarBrand();
-            newCarBrand.setBrand(carBrandDto.getCar_brand());
+            newCarBrand.setBrand(carBrandDto.getCarBrand());
 
             boolean uspesno = carBrandService.addCarBrand(newCarBrand);
             if(uspesno == true){

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {User} from '../../model/user';
+import {CarBrand} from "../../model/carBrand";
+import {CarBrandService} from "../../services/car-brand.service";
 
 @Component({
   selector: 'app-administrator-home-page',
@@ -9,8 +11,10 @@ import {User} from '../../model/user';
 })
 export class AdministratorHomePageComponent implements OnInit {
   tmp: Array<User>;
-  constructor(private userService: UserService) {
+  c: Array<CarBrand>;
+  constructor(private userService: UserService, private carBrandService: CarBrandService) {
     this.tmp = this.userService.getEndUsersForOperations();
+    this.c = this.carBrandService.getAllCarBrand();
   }
 
   ngOnInit() {

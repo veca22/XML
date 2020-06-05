@@ -21,10 +21,10 @@ insert into car_type(id, type) values (312, 'SUV');
 insert into car_type(id, type) values (313, 'Sport car');
 insert into car_type(id, type) values (314, 'Wagon');
 
-insert into fuel_type(id, serial_number, type) values(411,'12b89k', 'BMB 95');
-insert into fuel_type(id, serial_number, type) values(412, '53-3k', 'GDrive');
-insert into fuel_type(id, serial_number, type) values(413, 'Xk-92k', 'TNG');
+insert into fuel_type(id, type, serialNumber) values(411, 'BMB 95', '12b89k');
+insert into fuel_type(id, type, serialNumber) values(412, 'GDrive', '53-3k');
+insert into fuel_type(id, type, serialNumber) values(413, 'TNG', 'Xk-92k');
 
-insert into transmission_type(id, serial_number, type) values (511, 'tr45', 'Automatik');
-insert into transmission_type(id, serial_number, type) values (512, 'tr12-2k', 'Manuelni 6');
-insert into transmission_type(id, serial_number, type) values (513, 'tr12-1k', 'Manuelni 5');
+insert into transmission_type(id, serialNumber, type) values (511, 'tr45', 'Automatik');
+insert into transmission_type(id, serialNumber, type) values (512, 'tr12-2k', 'Manuelni 6');
+insert into transmission_type(id, serialNumber, type) values (513, 'tr12-1k', 'Manuelni 5');

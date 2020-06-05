@@ -3,6 +3,7 @@ import {CarType} from "../model/carType";
 import {CarBrand} from "../model/carBrand";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Car} from "../model/car";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ export class CarBrandService {
 
   listCarBrands: Array<CarBrand> = new Array<CarBrand>();
   carBrand: CarBrand;
+  endCarBrandsForOperations: Array<CarBrand>;
+  endCarBrand: CarBrand;
 
   constructor(private http: HttpClient, private carBrandService: CarBrandService) {
     this.getAllCarBrand();
@@ -68,5 +71,28 @@ export class CarBrandService {
 
     return this.http.post(environment.gateway + environment.admin + '/accountOperation', params);
   }
+
+  public getCarBrandsForOperations() {
+    return this.listCarBrands;
+  }
+
+  // public getCarBrandsForOperations(brand: string): Array<CarBrand>{
+  //   let params = new HttpParams();
+  //   params = params.append('brand', brand);
+  //   this.endCarBrandsForOperations = new Array<CarBrand>();
+  //   this.http.get(environment.gateway + environment.admin + '/allCarBrandsForOperations', {params}).subscribe((data: CarBrand[]) => {
+  //     console.log(data);
+  //     for (const c of data){
+  //       this.endCarBrand = new CarBrand(c.brand);
+  //       this.endCarBrandsForOperations.push(this.endCarBrand);
+  //     }
+  //   },
+  //     error => {
+  //         console.log(error);
+  //     }
+  //     );
+  //   console.log(this.endCarBrandsForOperations);
+  //   return this.endCarBrandsForOperations;
+  // }
 
 }
