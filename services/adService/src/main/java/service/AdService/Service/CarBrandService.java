@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import service.AdService.model.CarBrand;
 import service.AdService.repository.CarBrandRepo;
 
+import java.util.List;
+
 
 @Service
 public class CarBrandService {
@@ -26,5 +28,7 @@ public class CarBrandService {
     public CarBrand findCarByBrand(String brand){
         return carBrandRepo.findCarBrandByBrand(brand);
     }
-
+    public List<CarBrand> findall() {
+        return  carBrandRepo.findAll();
+    }
 }

@@ -3,6 +3,7 @@ import {FuelType} from './fuelType';
 import {TransmissionType} from './transmissionType';
 import {CarType} from './carType';
 import {CarModel} from './carModel';
+import {CarStatus} from './carStatus';
 
 export class Car {
   carBrand: CarBrand;
@@ -13,12 +14,11 @@ export class Car {
   price: number;
   discount: number;
   mileage: number;
-  carStatus: string;
+  carStatus: CarStatus;
   distanceAllowed: number;
   collisionDemageWaiver: boolean;
   childSeats: number;
   averageRating: number;
-
 
   constructor() {
   }

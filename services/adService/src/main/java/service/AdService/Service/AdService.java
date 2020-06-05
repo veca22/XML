@@ -13,8 +13,14 @@ public class AdService {
     @Autowired
     AdRepo adRepo;
 
+    public Ad findAdById(Long id) {
+        return adRepo.findAdById(id);
+    }
     public List<Ad> findAll() {
         return  adRepo.findAll();
+    }
+    public List<Ad> findAllByCliendId(Long id) {
+        return  adRepo.findAllByClientId(id);
     }
 
     public Ad save(Ad c)

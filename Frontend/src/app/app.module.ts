@@ -37,6 +37,8 @@ import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
 import { AddPicturesDialogComponent } from './components/add-pictures-dialog/add-pictures-dialog.component';
+import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
+
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { AddPicturesDialogComponent } from './components/add-pictures-dialog/add
     SearchResultDialogComponent,
     AdViewDialogComponent,
     AddPicturesDialogComponent,
+    EndUserAdsComponent,
+
 
 
   ],

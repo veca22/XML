@@ -38,7 +38,7 @@ export class CarTypeService {
     this.http.get(environment.gateway + environment.admin + '/carType/all').subscribe((data: CarType[]) => {
         for (const c of data) {
           this.carType = new CarType(c.type);
-          this.listCarTypes.push(this.carType);
+          this.addCarType(this.carType);
         }
       },
       error => {
