@@ -5,6 +5,7 @@ insert into users(id, email, password, role, status) values (121,'kjk@test.com',
 insert into users(id, email, password, role, status) values (122,'szpj@test.com','Test3','ENDUSER', 'BLOCKED');
 insert into users(id, email, password, role, status) values (123,'aaa@test.com','Test4','ENDUSER', 'AWAITING_APPROVAL');
 
+
 insert into car_brand(id, brand) values (111, 'Audi');
 insert into car_brand(id, brand) values (112, 'BMW');
 insert into car_brand(id, brand) values (113, 'Opel');
@@ -28,3 +29,6 @@ insert into fuel_type(id, type, serial_number) values(413, 'TNG', 'Xk-92k');
 insert into transmission_type(id, serial_number, type) values (511, 'tr45', 'Automatik');
 insert into transmission_type(id, serial_number, type) values (512, 'tr12-2k', 'Manuelni 6');
 insert into transmission_type(id, serial_number, type) values (513, 'tr12-1k', 'Manuelni 5');
+
+insert into client(id, ad_counter,address,email,first_name,jmbg,last_name,password,personalid,phone_number,pib,role) values (500,0,'Asd 123','user@user.com','User','1234567893695','Useric','User123','','061111111111','','ENDUSER')
+

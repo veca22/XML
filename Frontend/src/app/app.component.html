@@ -25,6 +25,7 @@
     <mat-nav-list *ngIf="isEndUser()">
       <a mat-list-item routerLink="endUser/addAd">Add new ad</a>
       <a mat-list-item routerLink="/search">Search cars</a>
+      <a mat-list-item routerLink="endUser/myAds">My ads</a>
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
@@ -34,7 +35,7 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Rent a Car</span>
+      <span>Rent a Car Mirkovic</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

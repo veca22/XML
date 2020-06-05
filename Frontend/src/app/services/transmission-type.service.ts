@@ -48,6 +48,7 @@ export class TransmissionTypeService {
           if(flag === 0) {
             this.listTransmissionTypes.push(this.transmissionType);
           }
+
         }
       },
       error => {

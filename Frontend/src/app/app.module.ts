@@ -37,6 +37,8 @@ import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
 import { CodeBookComponent } from './components/code-book/code-book.component';
+import { AddPicturesDialogComponent } from './components/add-pictures-dialog/add-pictures-dialog.component';
+import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
 
 
 @NgModule({
@@ -58,6 +60,9 @@ import { CodeBookComponent } from './components/code-book/code-book.component';
     SearchResultDialogComponent,
     AdViewDialogComponent,
     CodeBookComponent,
+    AddPicturesDialogComponent,
+    EndUserAdsComponent,
+
 
 
   ],
@@ -82,13 +87,12 @@ import { CodeBookComponent } from './components/code-book/code-book.component';
     HttpClientModule,
     MatNativeDateModule,
     DemoMaterialModule,
-
     MatTableModule,
     MatPaginatorModule,
     DemoMaterialModule,
 
   ],
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

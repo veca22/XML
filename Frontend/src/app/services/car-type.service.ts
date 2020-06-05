@@ -49,6 +49,7 @@ export class CarTypeService {
           if(flag === 0) {
             this.listCarTypes.push(this.carType);
           }
+          this.addCarType(this.carType);
         }
       },
       error => {

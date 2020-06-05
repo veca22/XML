@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {FuelType} from "../model/fuelType";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {TransmissionType} from "../model/transmissionType";
+import {FuelType} from '../model/fuelType';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {TransmissionType} from '../model/transmissionType';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,7 @@ export class FuelTypeService {
           if(flag === 0) {
             this.listFuelTypes.push(this.fuelType);
           }
+          this.addFuelType(this.fuelType);
         }
       },
       error => {
@@ -57,7 +58,7 @@ export class FuelTypeService {
     return this.listFuelTypes;
   }
 
-  public newFuelType(fuelType){
+  public newFuelType(fuelType) {
     return this.http.post(environment.gateway + environment.admin + '/addFuelType', fuelType);
   }
 }

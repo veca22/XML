@@ -20,7 +20,6 @@ export class EndUsersOperationsComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {
     this.dataSource = new MatTableDataSource(this.userService.getUsersForOperations());
     this.dataSource.paginator = this.paginator;
-
   }
 
   ngOnInit() {
