@@ -5,9 +5,14 @@
     <mat-toolbar color="warn">Menu</mat-toolbar>
 
     <mat-nav-list *ngIf="isNone()">
+      <a mat-list-item routerLink="">Home</a>
       <a mat-list-item routerLink="/login">Login</a>
       <a mat-list-item routerLink="/register">Register</a>
       <a mat-list-item routerLink="/search">Search cars</a>
+      <a mat-list-item routerLink="/rentConditions">Rent conditions</a>
+      <a mat-list-item routerLink="/Contact">Contact</a>
+      <a mat-list-item routerLink="/About">About</a>
+
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isAdministrator()">
@@ -17,8 +22,11 @@
       <a mat-list-item routerLink="/addCarType">Add Car Type</a>
       <a mat-list-item routerLink="/addFuelType">Add Fuel type</a>
       <a mat-list-item routerLink="/addTransmissionType">Add Transmission type</a>
-
       <a mat-list-item routerLink="/administrator/end-users-operations">End user operations</a>
+
+      <a mat-list-item routerLink="/administrator/home">Home</a>
+
+
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
@@ -26,6 +34,9 @@
       <a mat-list-item routerLink="endUser/addAd">Add new ad</a>
       <a mat-list-item routerLink="/search">Search cars</a>
       <a mat-list-item routerLink="endUser/myAds">My ads</a>
+      <a mat-list-item routerLink="endUser/rentConditions">Rent conditions</a>
+      <a mat-list-item routerLink="endUser/Contact">Contact</a>
+      <a mat-list-item routerLink="endUser/About">About</a>
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
@@ -35,7 +46,7 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Rent a Car Mirkovic</span>
+      <span></span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

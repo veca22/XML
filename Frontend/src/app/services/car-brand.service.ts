@@ -4,6 +4,7 @@ import {CarBrand} from "../model/carBrand";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Car} from "../model/car";
+import {User} from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,12 @@ export class CarBrandService {
 
   listCarBrands: Array<CarBrand> = new Array<CarBrand>();
   carBrand: CarBrand;
-  endCarBrandsForOperations: Array<CarBrand>;
+  endCarBrandsForOperations: Array<CarBrand> = new Array<CarBrand>();
   endCarBrand: CarBrand;
 
   constructor(private http: HttpClient, private carBrandService: CarBrandService) {
-    this.getAllCarBrand();
+   // this.getAllCarBrand();
+    this.listCarBrands = this.getCarBrandsForOperations();
   }
 
   public addCarBrand(t: CarBrand){
@@ -37,6 +39,7 @@ export class CarBrandService {
   }
 
   public getAllCarBrand(): Array<CarBrand> {
+    this.listCarBrands = new Array<CarBrand>();
     this.http.get(environment.gateway + environment.admin + '/carBrand/all').subscribe((data: CarBrand[]) => {
         let flag = 0;
         for (const c of data) {
