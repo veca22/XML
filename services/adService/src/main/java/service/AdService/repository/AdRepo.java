@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface AdRepo extends JpaRepository<Ad, Long> {
     List<Ad> findAll();
+    List<Ad> findAllByClientId(Long id);
+    Ad findAdById(Long id);
 }

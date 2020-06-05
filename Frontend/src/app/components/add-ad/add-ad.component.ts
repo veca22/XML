@@ -13,6 +13,9 @@ import {Client} from '../../model/client';
 import {CarModel} from '../../model/carModel';
 import {FuelTypeService} from '../../services/fuel-type.service';
 import {CarStatus} from '../../model/carStatus';
+import {CarTypeService} from '../../services/car-type.service';
+import {TransmissionTypeService} from '../../services/transmission-type.service';
+import {UserService} from '../../services/user.service';
 
 
 interface Cars {
@@ -26,7 +29,6 @@ interface Cars {
   styleUrls: ['./add-ad.component.css']
 })
 export class AddAdComponent implements OnInit {
-  adservice: AdService;
   addAdForm: FormGroup;
   MakeGroup: FormGroup;
   submitted = false;
@@ -40,9 +42,10 @@ export class AddAdComponent implements OnInit {
   transmissionType: TransmissionType;
   fuelType: FuelType;
   client: Client;
-  list: Array<CarBrand> = new Array<CarBrand>();
-  expandedElement: Ad;
+  email: string;
   fuelTypes: Array<FuelType>;
+  carTypes: Array<CarType>;
+  transTypes: Array<TransmissionType>;
 
   dataSource = new MatTableDataSource<Ad>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -52,11 +55,19 @@ export class AddAdComponent implements OnInit {
               private formBuilder: FormBuilder,
               private router: Router,
               private adService: AdService,
-              private fuelTypeService: FuelTypeService) {
+              private fuelTypeService: FuelTypeService,
+              private carTypeService: CarTypeService,
+              private transmissionTypeService: TransmissionTypeService,
+              private userService: UserService) {
 
    // this.ad = this.adService.getAllAds();//this.all();
     this.fuelTypes = fuelTypeService.getAllFuelType();
-    console.log(this.fuelTypes);
+    this.carTypes = carTypeService.getAllCarType();
+    this.transTypes = transmissionTypeService.getAllTransmissionType();
+    this.email = this.userService.getLoggedUser().email;
+    console.log('Email ispod');
+    console.log(this.email);
+
   }
 
   ngOnInit() {
@@ -73,7 +84,7 @@ export class AddAdComponent implements OnInit {
       transmissionType: new FormControl('', [Validators.required]),
       mileage: new FormControl('', [Validators.required]),
       distanceAllowed: new FormControl('', [Validators.required]),
-      collisionDemageWaiver: new FormControl('', [Validators.required]),
+      cdw: new FormControl('', [Validators.required]),
       childSeats: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       place: new FormControl('', [Validators.required]),
@@ -97,9 +108,7 @@ export class AddAdComponent implements OnInit {
 
     this.carBrand = new CarBrand(this.f.carBrand.value);
     this.carModel = new CarModel(this.f.carModel.value);
-    console.log(this.f.fuelType.value);
     this.fuelType = new FuelType(this.f.fuelType.value);
-    console.log(this.fuelType)
     this.transmissionType = new TransmissionType(this.f.transmissionType.value);
     this.carType = new CarType(this.f.carType.value);
     console.log(this.f.carType.value);
@@ -110,7 +119,6 @@ export class AddAdComponent implements OnInit {
     this.car.carModel = this.carModel;
     this.car.price = this.f.price.value;
     this.car.carType = this.carType;
-    console.log(this.f.carType.value);
     this.car.fuelType = this.fuelType;
     this.car.transmissionType = this.transmissionType;
     this.car.discount = 0;
@@ -118,10 +126,13 @@ export class AddAdComponent implements OnInit {
     this.car.averageRating = 0;
     this.car.carStatus = CarStatus.NOT_RENTED;
     this.car.distanceAllowed = this.f.distanceAllowed.value;
-    this.car.collisionDemageWaiver = this.f.collisionDemageWaiver.value;
-    this.car.childSeats = this.f.childSeats.value;
+    if (this.f.cdw.value === 'Yes') {
+      this.car.collisionDemageWaiver = true;
+    } else {
+      this.car.collisionDemageWaiver = false;
+    }
 
-    console.log(this.car);
+    this.car.childSeats = this.f.childSeats.value;
     this.ad = new Ad(
       this.car,
       this.f.profilePicture.value,
@@ -140,15 +151,13 @@ export class AddAdComponent implements OnInit {
 
   private createAd() {
     console.log('usao u create');
-    this.adService.newAd(this.ad).subscribe(
+    this.adService.newAd(this.ad, this.email).subscribe(
       data => {
-        console.log('usao');
         this.adService.addAd(this.ad);
-        console.log('usao1');
         this.router.navigate(['/endUser/home']);
       },
       error => {
-        alert('Error registration patient');
+        alert('Client already has 3 ads');
         console.log(error);
       }
     );

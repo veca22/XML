@@ -103,17 +103,15 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="collisionDemageWaiver">Collision damage waiver</label>
-                <input type="text" id="collisionDemageWaiver" formControlName="collisionDemageWaiver" class="form-control"
-                       [ngClass]="{ 'is-invalid': submitted && addAdForm.get('collisionDemageWaiver').errors }" />
-                <div *ngIf="submitted && addAdForm.get('collisionDemageWaiver').errors" class="invalid-feedback">
-                  <div *ngIf="addAdForm.get('collisionDemageWaiver').errors['required']">Phone Number is required</div>
-                  <div *ngIf="addAdForm.get('collisionDemageWaiver').errors['minlength']">A phone number must have at least 9
-                    digits
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-select id="cdw" formControlName="cdw" class="form-control" placeholder="Collision damage waiver">
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
 
               <div class="form-group">
                 <label for="childSeats">Child seats</label>
@@ -139,15 +137,12 @@
                 </div>
               </div>
 
-             <div class="form-group">
-              <label for="carType">Car type</label>
-              <input type="text" id="carType" formControlName="carType" class="form-control"
-                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('carType').errors }" />
-              <div *ngIf="submitted && addAdForm.get('carType').errors" class="invalid-feedback">
-                <div *ngIf="addAdForm.get('carType').errors['required']">Phone Number is required</div>
-                <div *ngIf="addAdForm.get('carType').errors['minlength']">A phone number must have at least 9
-                  digits
-                </div>
+             <div>
+               <mat-form-field>
+                 <mat-select id="carType" formControlName="carType" class="form-control" placeholder="Select a car type">
+                   <mat-option *ngFor="let option of carTypes" value="{{option.type}}">{{option.type}}</mat-option>
+                 </mat-select>
+               </mat-form-field>
               </div>
 
               <div class="form-group">
@@ -162,53 +157,22 @@
                 </div>
               </div>
 
-            </div><div class="form-group">
-              <label for="transmissionType">Transmission type</label>
-              <input type="text" id="transmissionType" formControlName="transmissionType" class="form-control"
-                     [ngClass]="{ 'is-invalid': submitted && addAdForm.get('transmissionType').errors }" />
-              <div *ngIf="submitted && addAdForm.get('transmissionType').errors" class="invalid-feedback">
-                <div *ngIf="addAdForm.get('transmissionType').errors['required']">Phone Number is required</div>
-              </div>
+            <div>
+              <mat-form-field>
+                <mat-select id="transmissionType" formControlName="transmissionType" class="form-control" placeholder="Select a transmission type">
+                  <mat-option *ngFor="let option of transTypes" value="{{option.type}}">{{option.type}}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
                 <mat-form-field>
                   <mat-select id="fuelType" formControlName="fuelType" class="form-control" placeholder="Select a fuel type">
                     <mat-option *ngFor="let option of fuelTypes" value="{{option.type}}">{{option.type}}</mat-option>
                   </mat-select>
                 </mat-form-field>
-            </div>
             <button mat-raised-button style="position: center" color="primary" class="pull-right">Save</button>
           </form>
-
-
         </mat-card>
-      </div>
     </div>
   </div>
 </div>
-
-<table mat-table
-       [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef> Title: </th>
-    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="profilePicture">
-    <th mat-header-cell *matHeaderCellDef> Profile picture: </th>
-    <td mat-cell *matCellDef="let element"> {{element.profilePicture}} </td>
-  </ng-container>
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> Descrption: </th>
-    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="place">
-    <th mat-header-cell *matHeaderCellDef> Place: </th>
-    <td mat-cell *matCellDef="let element"> {{element.car.price}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

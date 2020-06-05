@@ -7,6 +7,8 @@ import {Ad} from '../model/ad';
 import {error} from 'util';
 import {CarBrand} from '../model/carBrand';
 import {Car} from '../model/car';
+import {UserStatus} from '../model/userStatus';
+import {CarStatus} from '../model/carStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +23,40 @@ export class AdService {
   urlAd = environment.gateway + environment.ad;
   listAd: Array<Ad> = new Array<Ad>();
   listCarBrand: Array<CarBrand> = new Array<CarBrand>();
+  clientAds: Array<Ad> = new Array<Ad>();
   type: string;
   constructor(private router: Router, private http: HttpClient) {
    // this.getAllAds();
   }
 
+  public whichStatus(status: string) {
+    if (status === 'NOT_RENTED') {
+      return CarStatus.NOT_RENTED;
+    } else if (status === 'RENTED') {
+      return CarStatus.RENTED;
+    } else {
+      return null;
+    }
+  }
+
+  public getAllClientAds(email: string): Array<Ad> {
+    let params = new HttpParams();
+    params = params.append('email', email);
+    this.clientAds = new Array<Ad>();
+    this.http.get(environment.gateway + environment.ad + '/allClientAds', {params}).subscribe((data: Ad[]) => {
+        for (const c of data) {
+          this.ad = c;
+          this.ad.car.carStatus = this.whichStatus(c.car.carStatus.toString());
+          this.clientAds.push(this.ad);
+          }
+      },
+      error1 => {
+        console.log(error1);
+      }
+    );
+    console.log(this.clientAds);
+    return this.clientAds;
+  }
 
   public getAllAds(): Array<Ad> {
     this.http.get(environment.gateway + environment.ad + '/all').subscribe((data: Ad[]) => {
@@ -41,6 +72,7 @@ export class AdService {
             }
           }
           if (flag === 0) {
+            this.ad.car.carStatus = this.whichStatus(c.car.carStatus.toString());
             this.ads.push(this.ad);
           }
         }
@@ -68,6 +100,7 @@ export class AdService {
           }
 
           if (flag === 0) {
+            this.ad.car.carStatus = this.whichStatus(c.car.carStatus.toString());
             this.filterAds.push(this.ad);
           }
         }
@@ -103,9 +136,10 @@ export class AdService {
     return this.http.get(this.urlAd + '/' + title);
   }
 
-  public newAd(ad) {
-    console.log(environment.gateway + environment.ad + '/addAd');
-    return this.http.post(environment.gateway + environment.ad + '/addAd', ad );
+  public newAd(ad, email) {
+    let params = new HttpParams();
+    params = params.append('email', email);
+    return this.http.post(environment.gateway + environment.ad + '/addAd', ad , {params});
   }
 
   public getAllCarBrands(): Array<CarBrand>{
@@ -117,16 +151,23 @@ export class AdService {
         this.listCarBrand.push(this.carBrand);
       }
     },
-        error => {
-          console.log(error);
+      error1 => {
+          console.log(error1);
         }
     );
     return this.listCarBrand;
   }
 
 
+public getClientAds() {
+    return this.clientAds;
+}
 
-
+public changeRentStatus(ad) {
+  let params = new HttpParams();
+  params = params.append('id', ad.id.toString());
+  return this.http.post(environment.gateway + environment.ad + '/changeStatus', params);
+}
 
 
 
