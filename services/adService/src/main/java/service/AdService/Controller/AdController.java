@@ -173,23 +173,12 @@ public class AdController {
     }
 
     @PostMapping(value = "/addPic", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String addPictures(@RequestBody AdPicDTO adpic) {
+    public String addPictures(@RequestBody AdPicDTO adpic,@RequestParam(value = "id", required = true) String id) {
         System.out.println(adpic.getFile());
         System.out.println(adpic.getFileSource());
-//        for (String a:adpic.getFileSource()
-//             ) {
-//            Picture pic=new Picture();
-//            Ad news = new Ad();
-//            pic.setAd(news);
-//            pic.setPicture(a);
-//            Image img=new Image();
-//            img.setIdOglasa("1");
-//            img.setFileSource(a);
-//
-//            pictureService.addPicture(pic);
-//        }
+        Long u = Long.parseLong(id);
         Image img=new Image();
-        img.setIdOglasa("1");
+        img.setIdOglasa(u);
         img.setFileSource(adpic.getFileSource());
         try {
             FileOutputStream f = new FileOutputStream(new File("myObjects.txt"));
@@ -206,8 +195,8 @@ public class AdController {
         return "";
     }
 
-    @GetMapping(value = "/getPic")
-    public ResponseEntity<List<String>> getPic() throws FileNotFoundException {
+    @PostMapping(value = "/addPic", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<String>> getPic(@RequestBody Long id) throws FileNotFoundException {
         Image pr1 = new Image();
         FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
         boolean cont = true;
@@ -225,7 +214,7 @@ public class AdController {
             }
             for (Image i : imgs
             ) {
-                if (i.getIdOglasa().equals("1")) {
+                if (i.getIdOglasa().equals(id)) {
                     return new ResponseEntity<>(i.getFileSource(), HttpStatus.OK);
                 }
             }

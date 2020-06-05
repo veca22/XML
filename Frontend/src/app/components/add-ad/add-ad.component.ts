@@ -11,6 +11,7 @@ import {FuelType} from '../../model/fuelType';
 import {TransmissionType} from '../../model/transmissionType';
 import {Client} from '../../model/client';
 import {CarModel} from '../../model/carModel';
+import {AdViewDialogComponent} from '../ad-view-dialog/ad-view-dialog.component';
 
 
 @Component({
@@ -137,6 +138,10 @@ export class AddAdComponent implements OnInit {
     //   );
     console.log(this.ad);
     this.createAd();
+    setTimeout(() => {
+      this.dialog.open(AdViewDialogComponent, {
+        width: '60%', disableClose: true, data: this.ad
+      }); }, 200);
   }
 
   private createAd() {

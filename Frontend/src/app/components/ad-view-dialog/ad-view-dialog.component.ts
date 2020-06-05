@@ -2,12 +2,10 @@ import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatTableDataSource} from '@angular/material';
 import {AdService} from '../../services/ad.service';
 import {Ad} from '../../model/ad';
-import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Route, Router} from '@angular/router';
-import {DataSource} from '@angular/cdk/table';
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-ad-view-dialog',
   templateUrl: './ad-view-dialog.component.html',
@@ -22,15 +20,12 @@ export class AdViewDialogComponent implements OnInit {
   adViewForm: FormGroup;
 
 
+  // tslint:disable-next-line:max-line-length
   constructor(private formBuilder: FormBuilder, private router: Router, private adService: AdService, public dialogRef: MatDialogRef<AdViewDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialog: MatDialog) {
+              public dialog: MatDialog, private http: HttpClient) {
 
-    this.images.push('assets/images/1.jpg');
-    this.images.push('assets/images/2.jpg');
-    this.images.push('assets/images/3.jpg');
-    this.images.push('assets/images/4.jpg');
-    this.images.push('assets/images/5.jpg');
+    this.click();
 
     this.image = this.images[0];
 
@@ -84,7 +79,13 @@ export class AdViewDialogComponent implements OnInit {
     this.image = this.images[this.i];
   }
 
+  click() {
+    this.http.post(environment.gateway + environment.ad + '/getPic', this.data.id).subscribe((data: string[]) => {
+      console.log(data);
+      this.images = data;
+    });
 
+ }
 
 }
 
