@@ -26,7 +26,7 @@ export class UserService {
   adWithTimes: AdWithTimes[];
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
-
+    this.adWithTimes = new Array<AdWithTimes>();
     this.endUsersForOperations = this.getEndUsersForOperations();
   }
 
@@ -183,10 +183,19 @@ export class UserService {
   }
 
   public addToList(ad: AdWithTimes) {
-    this.adWithTimes.push(ad);
+   let flag = 0;
+   for (const c of this.adWithTimes) {
+     if (c.ad.title === ad.ad.title) {
+       flag = 1;
+     }
+   }
+   if (flag === 0) {
+        this.adWithTimes.push(ad);
+      }
+
   }
 
-  public getListCart(){
+  public getListCart() {
     return this.adWithTimes;
   }
 }

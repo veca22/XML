@@ -185,4 +185,24 @@ public class Car {
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", carBrand=" + carBrand +
+                ", carModel=" + carModel +
+                ", carType=" + carType +
+                ", fuelType=" + fuelType +
+                ", transmissionType=" + transmissionType +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", mileage=" + mileage +
+                ", carStatus=" + carStatus +
+                ", distanceAllowed=" + distanceAllowed +
+                ", collisionDamageWaiver=" + collisionDamageWaiver +
+                ", childSeats=" + childSeats +
+                ", averageRating=" + averageRating +
+                '}';
+    }
 }

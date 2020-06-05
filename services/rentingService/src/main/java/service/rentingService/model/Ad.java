@@ -135,4 +135,21 @@ public class Ad {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id=" + id +
+                ", car=" + car.toString() +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", pictureSet=" + pictureSet +
+                ", client=" + client.toString() +
+                ", startOfAd=" + startOfAd +
+                ", endOfAd=" + endOfAd +
+                ", description='" + description + '\'' +
+                ", isActive=" + isActive +
+                ", currentDriver=" + currentDriver +
+                ", comments=" + comments +
+                '}';
+    }
 }

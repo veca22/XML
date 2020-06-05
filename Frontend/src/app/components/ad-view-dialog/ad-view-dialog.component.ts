@@ -17,19 +17,20 @@ export class AdViewDialogComponent implements OnInit {
   images: Array<string> = new Array<string>();
   image: string;
   i = 0;
-  ad: Ad;
+  data: Ad;
   submitted = false;
   adViewForm: FormGroup;
   adWithTimes: AdWithTimes;
 
   // tslint:disable-next-line:max-line-length
   constructor(private formBuilder: FormBuilder, private router: Router, private adService: AdService, public dialogRef: MatDialogRef<AdViewDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
+              @Inject(MAT_DIALOG_DATA) public datas: any,
               public dialog: MatDialog, private http: HttpClient,
               private userService: UserService) {
 
-    this.adWithTimes = this.data;
+    this.adWithTimes = this.datas;
     this.click();
+    this.data = this.adWithTimes.ad;
 
     this.image = this.images[0];
 

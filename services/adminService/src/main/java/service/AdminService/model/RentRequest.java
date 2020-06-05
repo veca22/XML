@@ -3,6 +3,7 @@ package service.AdminService.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,8 +23,8 @@ public class RentRequest {
     @Enumerated(EnumType.STRING)
     private RentRequestStatus rentRequestStatus;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Car> carsForRent;
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private Set<Car> carsForRent = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)

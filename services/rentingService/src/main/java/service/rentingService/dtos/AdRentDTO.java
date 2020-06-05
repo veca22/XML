@@ -7,6 +7,9 @@ public class AdRentDTO {
     String startTime;
     String endTime;
 
+    public AdRentDTO() {
+    }
+
     public AdRentDTO(Ad ad, String startTime, String endTime) {
         this.ad = ad;
         this.startTime = startTime;
@@ -35,5 +38,14 @@ public class AdRentDTO {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "AdRentDTO{" +
+                "ad=" + ad.toString() +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                '}';
     }
 }

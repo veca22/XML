@@ -36,7 +36,7 @@ export class CartDialogComponent implements OnInit {
     this.adWithTimes.splice(index, 1);
   }
 
-  download(a: AdWithTimes) {
+  reserve(a: AdWithTimes) {
     this.adService.reserveAd(a).subscribe(
       res => {
         this.deleteRow(a);

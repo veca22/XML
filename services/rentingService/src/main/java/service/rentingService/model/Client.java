@@ -49,6 +49,9 @@ public class Client {
     private int adCounter;
 
 
+    public Client() {
+    }
+
     //endUser
     public Client(String email,String password,String firstName,String lastName,String jmbg,String phoneNumber,String address) {
         this.email=email;
@@ -175,7 +178,24 @@ public class Client {
         return adCounter;
     }
 
-    public void setAdCounter(int adCounter) {
-        this.adCounter = adCounter;
+    public void setAdCounter(int adCounter){}
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", jmbg='" + jmbg + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", personalID='" + personalID + '\'' +
+                ", pib='" + pib + '\'' +
+                ", address='" + address + '\'' +
+                ", role=" + role +
+                ", ads=" + ads +
+                ", adCounter=" + adCounter +
+                '}';
     }
 }

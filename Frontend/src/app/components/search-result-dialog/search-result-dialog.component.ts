@@ -24,7 +24,10 @@ export class SearchResultDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SearchResultDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public adService: AdService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {
+    this.adWithTimes = new AdWithTimes();
+    this.adsWithTimes = new AdsWithTimes();
+  }
 
   ngOnInit() {
     this.adsWithTimes = this.data;

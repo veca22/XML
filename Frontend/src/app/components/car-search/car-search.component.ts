@@ -29,6 +29,7 @@ export class CarSearchComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   SearchForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private adService: AdService,  public dialog: MatDialog) {
+    this.adsWithTimes = new AdsWithTimes();
   }
   ngOnInit() {
     this.SearchForm = this.formBuilder.group({

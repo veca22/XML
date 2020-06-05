@@ -28,8 +28,9 @@ export class AdService {
   clientAds: Array<Ad> = new Array<Ad>();
   type: string;
   send: Send;
-  constructor(private router: Router, private http: HttpClient,private userService: UserService) {
+  constructor(private router: Router, private http: HttpClient, private userService: UserService) {
    // this.getAllAds();
+    this.send = new Send();
   }
 
   public whichStatus(status: string) {
