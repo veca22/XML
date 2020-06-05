@@ -75,7 +75,7 @@ public class AdController {
         Client client = clientService.findClientByEmail(email);
 
         if (ad == null) {
-            if(client.getAdCounter() < 3) {
+            if(client.getAdCounter() < 10) {
                 Car car = new Car();
                 CarBrand cb = carBrandService.findCarByBrand(ads.getCar().getCarBrand().getBrand());
                 if (cb == null) {

@@ -40,6 +40,7 @@ import { RentConditionsComponent } from './components/rent-conditions/rent-condi
 import { CodeBookComponent } from './components/code-book/code-book.component';
 import { AddPicturesDialogComponent } from './components/add-pictures-dialog/add-pictures-dialog.component';
 import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
+import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 
@@ -66,8 +67,10 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     CodeBookComponent,
     AddPicturesDialogComponent,
     EndUserAdsComponent,
+    CartDialogComponent,
     ContactComponent,
     AboutUsComponent,
+
 
 
 
@@ -98,7 +101,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     DemoMaterialModule,
 
   ],
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent ],
+
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent, CartDialogComponent  ],
   providers: [],
   bootstrap: [AppComponent]
 })

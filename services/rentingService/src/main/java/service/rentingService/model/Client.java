@@ -29,21 +29,28 @@ public class Client {
     private String phoneNumber;
 
     //agent
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String personalID;
     //firma
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String pib;
 
     @Column(nullable = false)
     private String address;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ad> ads;
 
+    @Column(nullable = false)
+    private int adCounter;
+
+
+    public Client() {
+    }
 
     //endUser
     public Client(String email,String password,String firstName,String lastName,String jmbg,String phoneNumber,String address) {
@@ -55,6 +62,7 @@ public class Client {
         this.phoneNumber=phoneNumber;
         this.address=address;
         this.role=Role.ENDUSER;
+        this.adCounter = 0;
     }
 
     //agent
@@ -68,6 +76,7 @@ public class Client {
         this.address=address;
         this.personalID=personalID;
         this.role=Role.AGENT;
+        this.adCounter = 0;
     }
 
     //firm
@@ -79,6 +88,7 @@ public class Client {
         this.address=address;
         this.pib=pib;
         this.role=Role.FIRM;
+        this.adCounter = 0;
     }
 
 
@@ -162,5 +172,30 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public int getAdCounter() {
+        return adCounter;
+    }
+
+    public void setAdCounter(int adCounter){}
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", jmbg='" + jmbg + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", personalID='" + personalID + '\'' +
+                ", pib='" + pib + '\'' +
+                ", address='" + address + '\'' +
+                ", role=" + role +
+                ", ads=" + ads +
+                ", adCounter=" + adCounter +
+                '}';
     }
 }

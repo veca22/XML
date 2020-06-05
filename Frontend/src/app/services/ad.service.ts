@@ -9,6 +9,8 @@ import {CarBrand} from '../model/carBrand';
 import {Car} from '../model/car';
 import {UserStatus} from '../model/userStatus';
 import {CarStatus} from '../model/carStatus';
+import {AdWithTimes} from '../model/adWithTimes';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +27,10 @@ export class AdService {
   listCarBrand: Array<CarBrand> = new Array<CarBrand>();
   clientAds: Array<Ad> = new Array<Ad>();
   type: string;
-  constructor(private router: Router, private http: HttpClient) {
+  send: Send;
+  constructor(private router: Router, private http: HttpClient, private userService: UserService) {
    // this.getAllAds();
+    this.send = new Send();
   }
 
   public whichStatus(status: string) {
@@ -150,7 +154,7 @@ export class AdService {
   }
 
 
-  public getAllCarBrands(): Array<CarBrand>{
+  public getAllCarBrands(): Array<CarBrand> {
     this.http.get(environment.gateway + environment.ad + '/allCarBrands').subscribe((data: CarBrand[]) => {
       console.log(data);
       for (const c of data) {
@@ -195,6 +199,15 @@ public changeRentStatus(ad) {
   return this.http.post(environment.gateway + environment.ad + '/changeStatus', params);
 }
 
+  public reserveAd(a: AdWithTimes) {
+    this.send.adWithTimes = a;
+    this.send.email = this.userService.getLoggedUser().email;
+    return this.http.post(environment.gateway + environment.renting + '/reserve', this.send);
+  }
 
+}
 
+export class Send {
+  adWithTimes: AdWithTimes;
+  email: string;
 }

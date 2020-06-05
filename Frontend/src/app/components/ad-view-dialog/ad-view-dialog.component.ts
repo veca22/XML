@@ -6,6 +6,8 @@ import {environment} from '../../../environments/environment';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Route, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {AdWithTimes} from '../../model/adWithTimes';
+import {UserService} from '../../services/user.service';
 @Component({
   selector: 'app-ad-view-dialog',
   templateUrl: './ad-view-dialog.component.html',
@@ -15,25 +17,27 @@ export class AdViewDialogComponent implements OnInit {
   images: Array<string> = new Array<string>();
   image: string;
   i = 0;
-  ad: Ad;
+  data: Ad;
   submitted = false;
   adViewForm: FormGroup;
-
+  adWithTimes: AdWithTimes;
 
   // tslint:disable-next-line:max-line-length
   constructor(private formBuilder: FormBuilder, private router: Router, private adService: AdService, public dialogRef: MatDialogRef<AdViewDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public dialog: MatDialog, private http: HttpClient) {
+              @Inject(MAT_DIALOG_DATA) public datas: any,
+              public dialog: MatDialog, private http: HttpClient,
+              private userService: UserService) {
 
+    this.adWithTimes = this.datas;
     this.click();
+    this.data = this.adWithTimes.ad;
 
     this.image = this.images[0];
 
   }
 
   ngOnInit() {
-    this.ad = this.data;
-    console.log(this.ad);
+
 
     this.adViewForm = this.formBuilder.group({
       title: new FormControl(this.data.title),
@@ -80,11 +84,15 @@ export class AdViewDialogComponent implements OnInit {
   }
 
   click() {
-    this.http.post(environment.gateway + environment.ad + '/getPic', this.data.id).subscribe((data: string[]) => {
+    this.http.post(environment.gateway + environment.ad + '/getPic', this.adWithTimes.ad.id).subscribe((data: string[]) => {
       console.log(data);
       this.images = data;
     });
 
+ }
+
+ onSubmit() {
+    this.userService.addToList(this.adWithTimes);
  }
 
 }
