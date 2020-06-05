@@ -1,10 +1,12 @@
-.main-content{
-  width: 500px;
-  height: 500px;
-  padding-left: 25%;
+.prozor{
+  width: 1000px;
+  height: 600px;
 }
-.example-card{
-  width: 200px;
-  height: 200px;
 
+.example-card{
+  width: 500px;
+}
+
+.form-group{
+  width: 800px ;
 }
