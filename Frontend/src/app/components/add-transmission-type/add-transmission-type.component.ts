@@ -48,12 +48,13 @@ export class AddTransmissionTypeComponent implements OnInit {
     }
 
     this.transmissionType = new TransmissionType(
-      this.f.serialNumber.value,
       this.f.type.value,
+      this.f.serialNumber.value,
+
 
 
     );
-    this.transmissionType = new TransmissionType(this.f.serialNumber.value, this.f.type.value);
+    this.transmissionType = new TransmissionType(this.f.type.value, this.f.serialNumber.value);
     this.createTransmissionType();
   }
 

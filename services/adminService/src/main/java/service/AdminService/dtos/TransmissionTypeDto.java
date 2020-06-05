@@ -1,8 +1,9 @@
 package service.AdminService.dtos;
 
 public class TransmissionTypeDto {
-    private String type;
     private String serialNumber;
+    private String type;
+
 
 
     public TransmissionTypeDto() {

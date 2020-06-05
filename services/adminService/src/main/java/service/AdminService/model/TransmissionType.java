@@ -16,8 +16,9 @@ public class TransmissionType {
 
     public TransmissionType(Long id, String serialNumber, String type) {
         this.id = id;
-        this.serialNumber = serialNumber;
         this.type = type;
+        this.serialNumber = serialNumber;
+
 
 
     }
