@@ -3,7 +3,9 @@ import {Observable} from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 import {UserService} from './services/user.service';
-import {AdminService} from "./services/admin.service";
+import {MatDialog} from '@angular/material';
+import {CartDialogComponent} from './components/cart-dialog/cart-dialog.component';
+
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,7 @@ export class AppComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private userService: UserService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private userService: UserService, public dialog: MatDialog) { }
 
   public isNone() {
     return this.userService.isNone();
@@ -34,4 +36,9 @@ export class AppComponent {
     this.userService.logOut();
   }
 
+  openDialog() {
+    this.dialog.open(CartDialogComponent, {
+      width: '50%', disableClose: true
+    });
+  }
 }

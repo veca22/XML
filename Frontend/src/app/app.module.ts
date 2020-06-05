@@ -37,6 +37,7 @@ import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
 import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
+import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
     SearchResultDialogComponent,
     AdViewDialogComponent,
     EndUserAdsComponent,
+    CartDialogComponent,
 
 
   ],
@@ -88,7 +90,7 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
     DemoMaterialModule,
 
   ],
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, CartDialogComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

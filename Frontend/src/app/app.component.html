@@ -36,6 +36,12 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Rent a Car Mirkovic</span>
+      <span class="example-spacer"></span>
+      <span flex></span>
+      <button *ngIf="isEndUser()" mat-flat-button color="primary" role="button" (click)="openDialog()">
+        <mat-icon>shopping_cart</mat-icon>
+        Checkout
+      </button>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

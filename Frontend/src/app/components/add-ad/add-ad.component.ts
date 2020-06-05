@@ -74,7 +74,6 @@ export class AddAdComponent implements OnInit {
     this.addAdForm = this.formBuilder.group({
 
       title: new FormControl('', [Validators.required]),
-      profilePicture: new FormControl('', [Validators.required]),
       startOfAd: new FormControl('', [Validators.required]),
       endOfAd: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -135,7 +134,7 @@ export class AddAdComponent implements OnInit {
     this.car.childSeats = this.f.childSeats.value;
     this.ad = new Ad(
       this.car,
-      this.f.profilePicture.value,
+      '0',
       this.f.title.value,
       this.f.startOfAd.value,
       this.f.endOfAd.value,

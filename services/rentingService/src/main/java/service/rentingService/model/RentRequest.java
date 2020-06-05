@@ -1,4 +1,4 @@
-package service.AdminService.model;
+package service.rentingService.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
