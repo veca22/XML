@@ -13,9 +13,6 @@ export class Ad {
   client: Client;
   id: number;
 
-
-
-
   constructor(car: Car, profilePicture: string, title: string, startOfAd: string, endOfAd: string, description: string, isActive: boolean, place: string, client: Client, id?: number) {
     this.car = car;
     this.profilePicture = profilePicture;

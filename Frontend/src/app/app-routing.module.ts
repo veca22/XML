@@ -97,11 +97,11 @@ const routes: Routes = [
   },
   {
     path: 'endUser/Contact',
-    component: AboutUsComponent,
+    component: ContactComponent,
   },
   {
     path: 'endUser/rentConditions',
-    component: AboutUsComponent,
+    component: RentConditionsComponent,
   },
 
 
