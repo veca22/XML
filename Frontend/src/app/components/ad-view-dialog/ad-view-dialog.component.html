@@ -17,7 +17,7 @@
       <mat-card>
         <h3>Rent a Car Mirkovic</h3>
         <hr>
-        <form [formGroup]="adViewForm">
+        <form [formGroup]="adViewForm" (ngSubmit)="onSubmit()">
           <div class="form-group"  >
             <mat-label for="title">Naziv oglasa</mat-label>
               <input type="text" readonly id="title" formControlName="title" class="form-control"
@@ -126,7 +126,7 @@
 
 
 
-          <button mat-raised-button color="primary" class="pull-right">Save</button>
+          <button mat-raised-button color="primary" class="pull-right">Rent</button>
           <button class="mat-raised-button"(click)="close()">Close</button>
         </form>
       </mat-card>

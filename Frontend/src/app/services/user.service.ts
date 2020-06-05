@@ -6,6 +6,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {UserStatus} from '../model/userStatus';
 import {Observable, of} from 'rxjs';
+import {AdWithTimes} from '../model/adWithTimes';
+import {Ad} from '../model/ad';
 
 
 export const TOKEN = 'LoggedInUser';
@@ -21,11 +23,9 @@ export class UserService {
   allUser: User;
   userForLogin: User;
   endUsersForOperations: Array<User> = new Array<User>();
-
+  adWithTimes: AdWithTimes[];
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
-
-    //this.users = this.getAllUsers();
 
     this.endUsersForOperations = this.getEndUsersForOperations();
   }
@@ -57,8 +57,8 @@ export class UserService {
     }
   }
 
-  public isEndUser(){
-    if(this.isLoggedIn()){
+  public isEndUser() {
+    if (this.isLoggedIn()) {
       return this.user.role === Role.ENDUSER;
     }
   }
@@ -128,6 +128,7 @@ export class UserService {
   public async getUser(email: string): Promise<User> {
     let params = new HttpParams();
     params = params.append('email', email);
+    // tslint:disable-next-line:max-line-length
     const response: any = await this.http.get(environment.gateway + environment.auth + environment.user + '/userByEmail', {params}).toPromise();
     return response;
   }
@@ -179,5 +180,13 @@ export class UserService {
   }
   public getUsersForOperations() {
     return this.endUsersForOperations;
+  }
+
+  public addToList(ad: AdWithTimes) {
+    this.adWithTimes.push(ad);
+  }
+
+  public getListCart(){
+    return this.adWithTimes;
   }
 }

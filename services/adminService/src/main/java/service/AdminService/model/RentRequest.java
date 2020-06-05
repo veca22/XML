@@ -2,6 +2,7 @@ package service.AdminService.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -12,10 +13,10 @@ public class RentRequest {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDateTime reservedFrom;
+    private Date reservedFrom;
 
     @Column(nullable = false)
-    private LocalDateTime reservedTo;
+    private Date reservedTo;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -36,19 +37,19 @@ public class RentRequest {
         this.id = id;
     }
 
-    public LocalDateTime getReservedFrom() {
+    public Date getReservedFrom() {
         return reservedFrom;
     }
 
-    public void setReservedFrom(LocalDateTime reservedFrom) {
+    public void setReservedFrom(Date reservedFrom) {
         this.reservedFrom = reservedFrom;
     }
 
-    public LocalDateTime getReservedTo() {
+    public Date getReservedTo() {
         return reservedTo;
     }
 
-    public void setReservedTo(LocalDateTime reservedTo) {
+    public void setReservedTo(Date reservedTo) {
         this.reservedTo = reservedTo;
     }
 
