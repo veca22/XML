@@ -2,6 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {AdService} from '../../services/ad.service';
 import {Ad} from '../../model/ad';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-ad-view-dialog',
@@ -10,19 +13,10 @@ import {Ad} from '../../model/ad';
 })
 export class AdViewDialogComponent implements OnInit {
 
-  ad: Ad;
-  constructor(public dialogRef: MatDialogRef<AdViewDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public adService: AdService,
-              public dialog: MatDialog) { }
-
-  ngOnInit() {
-    this.ad = this.data;
-    console.log(this.ad);
+  constructor() {
   }
 
-  close() {
-    this.dialogRef.close();
+  ngOnInit() {
   }
 
 }

@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import service.AdService.Service.*;
 import service.AdService.dto.AdDTO;
 import service.AdService.dto.AdFilterDTO;
+import service.AdService.dto.AdPicDTO;
 import service.AdService.model.*;
+import service.AdService.model.Image;
 
+import java.awt.*;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -41,6 +48,9 @@ public class AdController {
 
     @Autowired
     TransmissionTypeService transmissionTypeService;
+
+    @Autowired
+    PictureService pictureService;
 
     @GetMapping(value = "/all")
     public ResponseEntity<List<Ad>> all() {
@@ -162,5 +172,64 @@ public class AdController {
         return new ResponseEntity<>(pom,HttpStatus.OK);
     }
 
+    @PostMapping(value = "/addPic", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String addPictures(@RequestBody AdPicDTO adpic) {
+        System.out.println(adpic.getFile());
+        System.out.println(adpic.getFileSource());
+//        for (String a:adpic.getFileSource()
+//             ) {
+//            Picture pic=new Picture();
+//            Ad news = new Ad();
+//            pic.setAd(news);
+//            pic.setPicture(a);
+//            Image img=new Image();
+//            img.setIdOglasa("1");
+//            img.setFileSource(a);
+//
+//            pictureService.addPicture(pic);
+//        }
+        Image img=new Image();
+        img.setIdOglasa("1");
+        img.setFileSource(adpic.getFileSource());
+        try {
+            FileOutputStream f = new FileOutputStream(new File("myObjects.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+            o.writeObject(img);
+            o.close();
+            f.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        }
 
+        return "";
+    }
+
+    @GetMapping(value = "/getPic")
+    public ResponseEntity<List<String>> getPic() throws FileNotFoundException {
+        Image pr1 = new Image();
+        FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
+        boolean cont = true;
+        ArrayList<Image> imgs = new ArrayList<>();
+        while (cont) {
+            try (ObjectInputStream oi = new ObjectInputStream(fi)) {
+                Image pr2 = (Image) oi.readObject();
+                if (pr2 != null) {
+                    imgs.add(pr2);
+                } else {
+                    cont = false;
+                }
+            } catch (Exception e) {
+                // System.out.println(e.printStackTrace());
+            }
+            for (Image i : imgs
+            ) {
+                if (i.getIdOglasa().equals("1")) {
+                    return new ResponseEntity<>(i.getFileSource(), HttpStatus.OK);
+                }
+            }
+        }
+        return null;
+    }
 }

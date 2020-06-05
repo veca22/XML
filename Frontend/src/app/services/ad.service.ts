@@ -49,6 +49,13 @@ export class AdService {
     return this.ads;
   }
 
+  public getPictures() {
+    this.http.get(environment.gateway + environment.ad + '/getPic').subscribe((data: string[]) => {
+       console.log(data);
+       return data;
+    });
+  }
+
   public getAllFilter(model): Array<Ad> {
     this.http.post(environment.gateway + environment.ad + '/allFilter', model).subscribe((data: Ad[]) => {
         let flag = 0;
