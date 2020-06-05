@@ -5,9 +5,12 @@
     <mat-toolbar color="warn">Menu</mat-toolbar>
 
     <mat-nav-list *ngIf="isNone()">
+      <a mat-list-item routerLink="">Home</a>
       <a mat-list-item routerLink="/login">Login</a>
       <a mat-list-item routerLink="/register">Register</a>
       <a mat-list-item routerLink="/search">Search cars</a>
+      <a mat-list-item routerLink="/rentConditions">Rent conditions</a>
+
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isAdministrator()">
@@ -34,7 +37,7 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Rent a Car Mirkovic</span>
+      <span></span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

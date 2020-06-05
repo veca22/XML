@@ -13,6 +13,7 @@ import {AddCarBrandComponent} from "./components/add-car-brand/add-car-brand.com
 import {AddCarModelComponent} from "./components/add-car-model/add-car-model.component";
 
 import {EndUsersOperationsComponent} from './components/end-users-operations/end-users-operations.component';
+import {RentConditionsComponent} from './components/rent-conditions/rent-conditions.component';
 
 
 
@@ -71,7 +72,12 @@ const routes: Routes = [
   {
     path: 'search',
     component: CarSearchComponent,
-  }
+  },
+  {
+    path: 'rentConditions',
+    component: RentConditionsComponent,
+  },
+
 
 ];
 

@@ -36,6 +36,7 @@ import { CarSearchComponent } from './components/car-search/car-search.component
 import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
+import { RentConditionsComponent } from './components/rent-conditions/rent-conditions.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialo
     CarSearchComponent,
     SearchResultDialogComponent,
     AdViewDialogComponent,
+    RentConditionsComponent,
 
 
   ],
