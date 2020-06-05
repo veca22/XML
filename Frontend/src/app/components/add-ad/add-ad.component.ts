@@ -11,7 +11,17 @@ import {FuelType} from '../../model/fuelType';
 import {TransmissionType} from '../../model/transmissionType';
 import {Client} from '../../model/client';
 import {CarModel} from '../../model/carModel';
+import {FuelTypeService} from '../../services/fuel-type.service';
+import {CarStatus} from '../../model/carStatus';
+import {CarTypeService} from '../../services/car-type.service';
+import {TransmissionTypeService} from '../../services/transmission-type.service';
+import {UserService} from '../../services/user.service';
 
+
+interface Cars {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-add-ad',
@@ -19,28 +29,45 @@ import {CarModel} from '../../model/carModel';
   styleUrls: ['./add-ad.component.css']
 })
 export class AddAdComponent implements OnInit {
-  adservice: AdService;
   addAdForm: FormGroup;
+  MakeGroup: FormGroup;
   submitted = false;
+  selectedCar: string;
   displayedColumns: string[] = ['title', 'profilePicture', 'description', 'place'];
   ad: Ad;
+  car: Car;
   carBrand: CarBrand;
   carType: CarType;
   carModel: CarModel;
   transmissionType: TransmissionType;
-  car: Car;
   fuelType: FuelType;
   client: Client;
-  expandedElement: Ad;
+  email: string;
+  fuelTypes: Array<FuelType>;
+  carTypes: Array<CarType>;
+  transTypes: Array<TransmissionType>;
+
   dataSource = new MatTableDataSource<Ad>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   ads: Array<Ad> = new Array<Ad>();
+  listCarBrand: Array<CarBrand> =  new Array<CarBrand>();
   constructor(public dialog: MatDialog,
               private formBuilder: FormBuilder,
               private router: Router,
-              private adService: AdService ) {
+              private adService: AdService,
+              private fuelTypeService: FuelTypeService,
+              private carTypeService: CarTypeService,
+              private transmissionTypeService: TransmissionTypeService,
+              private userService: UserService) {
 
    // this.ad = this.adService.getAllAds();//this.all();
+    this.fuelTypes = fuelTypeService.getAllFuelType();
+    this.carTypes = carTypeService.getAllCarType();
+    this.transTypes = transmissionTypeService.getAllTransmissionType();
+    this.email = this.userService.getLoggedUser().email;
+    console.log('Email ispod');
+    console.log(this.email);
+
   }
 
   ngOnInit() {
@@ -51,32 +78,25 @@ export class AddAdComponent implements OnInit {
       startOfAd: new FormControl('', [Validators.required]),
       endOfAd: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      carBrand: new FormControl('', [Validators.required]),
-      carType: new FormControl('', [Validators.required]),
+      carBrand: new FormControl('' ),
       fuelType: new FormControl('', [Validators.required]),
+      carType: new FormControl('', [Validators.required]),
       transmissionType: new FormControl('', [Validators.required]),
-     discount: new FormControl('', [Validators.required]),
-     mileage: new FormControl('', [Validators.required]),
-     averageRating: new FormControl('', [Validators.required]),
-      carStatus: new FormControl('', [Validators.required]),
-     distanceAllowed: new FormControl('', [Validators.required]),
-     collisionDemageWaiver: new FormControl('', [Validators.required]),
-     childSeats: new FormControl('', [Validators.required]),
+      mileage: new FormControl('', [Validators.required]),
+      distanceAllowed: new FormControl('', [Validators.required]),
+      cdw: new FormControl('', [Validators.required]),
+      childSeats: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       place: new FormControl('', [Validators.required]),
-      client: new FormControl('', [Validators.required]),
-      isActive: new FormControl('', [Validators.required]),
       carModel: new FormControl('', [Validators.required]),
-
     });
     this.all();
     this.dataSource.paginator = this.paginator;
   }
-
-
   get f() {
     return this.addAdForm.controls;
   }
+
 
   onSubmit() {
     this.submitted = true;
@@ -99,18 +119,20 @@ export class AddAdComponent implements OnInit {
     this.car.carModel = this.carModel;
     this.car.price = this.f.price.value;
     this.car.carType = this.carType;
-    console.log(this.f.carType.value);
     this.car.fuelType = this.fuelType;
-    this.car.transmissionType = this.transmissionType
-    this.car.discount = this.f.discount.value;
+    this.car.transmissionType = this.transmissionType;
+    this.car.discount = 0;
     this.car.mileage = this.f.mileage.value;
-    this.car.averageRating = this.f.averageRating.value;
-    this.car.carStatus = this.f.carStatus.value;
+    this.car.averageRating = 0;
+    this.car.carStatus = CarStatus.NOT_RENTED;
     this.car.distanceAllowed = this.f.distanceAllowed.value;
-    this.car.collisionDemageWaiver = this.f.collisionDemageWaiver.value;
-    this.car.childSeats = this.f.childSeats.value;
+    if (this.f.cdw.value === 'Yes') {
+      this.car.collisionDemageWaiver = true;
+    } else {
+      this.car.collisionDemageWaiver = false;
+    }
 
-    console.log(this.car);
+    this.car.childSeats = this.f.childSeats.value;
     this.ad = new Ad(
       this.car,
       this.f.profilePicture.value,
@@ -118,38 +140,24 @@ export class AddAdComponent implements OnInit {
       this.f.startOfAd.value,
       this.f.endOfAd.value,
       this.f.description.value,
-      this.f.isActive.value,
+      true,
       this.f.place.value,
       this.client
-
     );
 
-    // this.ad = new Ad(
-    //   this.car,
-    //   this.f.profilePicture.value,
-    //   this.f.title.value,
-    //   this.f.startOfAd.value,
-    //   this.f.endOfAd.value,
-    //   this.f.description.value,
-    //   this.f.isActive.value,
-    //   this.f.place.value,
-    //   this.client
-    //   );
     console.log(this.ad);
     this.createAd();
   }
 
   private createAd() {
     console.log('usao u create');
-    this.adService.newAd(this.ad).subscribe(
+    this.adService.newAd(this.ad, this.email).subscribe(
       data => {
-        console.log('usao');
         this.adService.addAd(this.ad);
-        console.log('usao1');
         this.router.navigate(['/endUser/home']);
       },
       error => {
-        alert('Error registration patient');
+        alert('Client already has 3 ads');
         console.log(error);
       }
     );
@@ -162,4 +170,5 @@ export class AddAdComponent implements OnInit {
   all() {
     this.dataSource = new MatTableDataSource<Ad>(this.adService.getAllAds());
   }
+
 }

@@ -18,4 +18,11 @@ public class ClientService {
     public Client findClientByID(Long id){
         return clientRepo.findClientById(id);
     }
+
+    public Client findClientByEmail(String email) {
+        return clientRepo.findClientByEmail(email);
+    }
+    public void save(Client c) {
+        clientRepo.save(c);
+    }
 }
