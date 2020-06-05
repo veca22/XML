@@ -11,11 +11,14 @@ import {FuelType} from '../../model/fuelType';
 import {TransmissionType} from '../../model/transmissionType';
 import {Client} from '../../model/client';
 import {CarModel} from '../../model/carModel';
+import {AdViewDialogComponent} from '../ad-view-dialog/ad-view-dialog.component';
 import {FuelTypeService} from '../../services/fuel-type.service';
 import {CarStatus} from '../../model/carStatus';
 import {CarTypeService} from '../../services/car-type.service';
 import {TransmissionTypeService} from '../../services/transmission-type.service';
 import {UserService} from '../../services/user.service';
+import {AddPicturesDialogComponent} from '../add-pictures-dialog/add-pictures-dialog.component';
+
 
 
 interface Cars {
@@ -154,7 +157,10 @@ export class AddAdComponent implements OnInit {
     this.adService.newAd(this.ad, this.email).subscribe(
       data => {
         this.adService.addAd(this.ad);
-        this.router.navigate(['/endUser/home']);
+        setTimeout(() => {
+          this.dialog.open(AddPicturesDialogComponent, {
+            width: '60%', disableClose: true, data: this.ad
+          }); }, 200);
       },
       error => {
         alert('Client already has 3 ads');

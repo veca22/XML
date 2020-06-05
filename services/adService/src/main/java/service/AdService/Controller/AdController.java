@@ -9,9 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import service.AdService.Service.*;
 import service.AdService.dto.AdDTO;
 import service.AdService.dto.AdFilterDTO;
+import service.AdService.dto.AdPicDTO;
 import service.AdService.model.*;
-
+import service.AdService.model.Image;
+import java.awt.*;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -41,6 +48,9 @@ public class AdController {
 
     @Autowired
     TransmissionTypeService transmissionTypeService;
+
+    @Autowired
+    PictureService pictureService;
 
     @GetMapping(value = "/all")
     public ResponseEntity<List<Ad>> all() {
@@ -175,11 +185,37 @@ public class AdController {
         return new ResponseEntity<>(pom,HttpStatus.OK);
     }
 
+    @PostMapping(value = "/addPic", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String addPictures(@RequestBody AdPicDTO adpic,@RequestParam(value = "title", required = true) String title) {
+        System.out.println(adpic.getFile());
+        System.out.println(adpic.getFileSource());
+        System.out.println(title);
+        Ad ad = adService.getAd(title);
+
+        Image img=new Image();
+        img.setIdOglasa(ad.getId());
+        img.setFileSource(adpic.getFileSource());
+        try {
+            FileOutputStream f = new FileOutputStream(new File("myObjects.txt"));
+            ObjectOutputStream o = new ObjectOutputStream(f);
+            o.writeObject(img);
+            o.close();
+            f.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        }
+
+        return "";
+    }
+
     @GetMapping(value = "/allCarBrands")
     public ResponseEntity allCarBrand() {
         System.out.println("car brand");
         return new ResponseEntity<>(carBrandService.findall(), HttpStatus.OK);
     }
+
 
     @PostMapping(value = "/changeStatus")
     public ResponseEntity<Ad> changeStatus(@RequestParam(value = "id", required = true) String id) {
@@ -198,4 +234,31 @@ public class AdController {
     }
 
 
+    @PostMapping(value = "/getPic", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<String>> getPic(@RequestBody Long id) throws FileNotFoundException {
+        Image pr1 = new Image();
+        FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
+        boolean cont = true;
+        ArrayList<Image> imgs = new ArrayList<>();
+        ArrayList<String> str = new ArrayList<>();
+        while (cont) {
+            try (ObjectInputStream oi = new ObjectInputStream(fi)) {
+                Image pr2 = (Image) oi.readObject();
+                if (pr2 != null) {
+                    imgs.add(pr2);
+                } else {
+                    cont = false;
+                }
+            } catch (Exception e) {
+                // System.out.println(e.printStackTrace());
+            }
+            for (Image i : imgs
+            ) {
+                if (i.getIdOglasa().equals(id)) {
+                    return new ResponseEntity<>(i.getFileSource(), HttpStatus.OK);
+                }
+            }
+        }
+        return new ResponseEntity<>(str, HttpStatus.BAD_REQUEST);
+    }
 }
