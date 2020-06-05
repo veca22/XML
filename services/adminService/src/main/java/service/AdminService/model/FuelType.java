@@ -9,18 +9,18 @@ public class FuelType {
     private Long id;
 
     @Column
-    private String serial_number;
+    private String type;
 
     @Column
-    private String type;
+    private String serialNumber;
 
     public FuelType() {
     }
 
-    public FuelType(Long id, String serial_number, String type) {
+    public FuelType(Long id, String type, String serialNumber) {
         this.id = id;
-        this.serial_number = serial_number;
         this.type = type;
+        this.serialNumber = serialNumber;
     }
 
     public Long getId() {
@@ -31,12 +31,12 @@ public class FuelType {
         this.id = id;
     }
 
-    public String getSerial_number() {
-        return serial_number;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setSerial_number(String serial_number) {
-        this.serial_number = serial_number;
+    public void setSerial_number(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getType() {

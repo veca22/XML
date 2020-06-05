@@ -36,13 +36,13 @@ public class TransmissionTypeService {
         return false;
     }
 
-    public TransmissionType getTransmissionType(String serial_number){
+    public TransmissionType getTransmissionType(String serialNumber){
         List<TransmissionType> tmp = findall();
         if(tmp.size() == 0){
             return null;
         }
         for (TransmissionType f : tmp){
-            if(f.getSerial_number().equals(serial_number)){
+            if(f.getSerialNumber().equals(serialNumber)){
                 return f;
             }
         }

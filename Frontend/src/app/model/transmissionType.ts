@@ -1,10 +1,11 @@
 export class TransmissionType {
-  serial_number: string;
+  serialNumber: string;
   type: string;
 
 
-  constructor(type: string, serial_number?: string) {
-    this.serial_number = serial_number;
+  constructor(type: string, serialNumber?: string) {
     this.type = type;
+    this.serialNumber = serialNumber;
+
   }
 }

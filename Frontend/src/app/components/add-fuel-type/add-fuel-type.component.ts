@@ -27,13 +27,13 @@ export class AddFuelTypeComponent implements OnInit {
     this.fuelTypes = this.fuelTypeService.getAllFuelType();
   }
 
-  serial_number: String;
-  fuel_type: String;
+  serialNumber: string;
+  type: string;
 
   ngOnInit() {
     this.addFuelTypeForm = this.formBuilder.group({
-      serial_number: new FormControl('', [Validators.required]),
-      fuel_type: new FormControl('', [Validators.required]),
+      serialNumber: new FormControl('', [Validators.required]),
+      type: new FormControl('', [Validators.required]),
     });
   }
 
@@ -49,10 +49,10 @@ export class AddFuelTypeComponent implements OnInit {
     }
 
     this.fuelType = new FuelType(
-      this.f.serial_number.value,
-      this.f.fuel_type.value,
+      this.f.type.value,
+      this.f.serialNumber.value,
     );
-    this.fuelType = new FuelType(this.f.serial_number.value, this.f.fuel_type.value);
+    this.fuelType = new FuelType( this.f.type.value, this.f.serialNumber.value);
     this.createFuelType();
   }
 

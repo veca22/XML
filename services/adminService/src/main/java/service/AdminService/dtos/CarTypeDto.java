@@ -2,19 +2,19 @@ package service.AdminService.dtos;
 
 public class CarTypeDto {
 
-    private String car_type;
+    private String type;
 
     public CarTypeDto() {}
 
-    public CarTypeDto(String car_type) {
-        this.car_type = car_type;
+    public CarTypeDto(String type) {
+        this.type = type;
     }
 
-    public String getCar_type() {
-        return car_type;
+    public String getType() {
+        return type;
     }
 
-    public void setCar_type(String car_type) {
-        this.car_type = car_type;
+    public void setType(String type) {
+        this.type = type;
     }
 }

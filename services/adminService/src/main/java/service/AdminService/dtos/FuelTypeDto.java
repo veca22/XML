@@ -1,30 +1,30 @@
 package service.AdminService.dtos;
 
 public class FuelTypeDto {
-    private String serial_number;
-    private String fuel_type;
+    private String serialNumber;
+    private String type;
 
-    public FuelTypeDto(String serial_number, String fuel_type) {
-        this.serial_number = serial_number;
-        this.fuel_type = fuel_type;
+    public FuelTypeDto(String type, String serialNumber) {
+        this.type = type;
+        this.serialNumber = serialNumber;
     }
 
     public FuelTypeDto() {
     }
 
-    public String getSerial_number() {
-        return serial_number;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setSerial_number(String serial_number) {
-        this.serial_number = serial_number;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
-    public String getFuel_type() {
-        return fuel_type;
+    public String getType() {
+        return type;
     }
 
-    public void setFuel_type(String fuel_type) {
-        this.fuel_type = fuel_type;
+    public void setType(String type) {
+        this.type = type;
     }
 }

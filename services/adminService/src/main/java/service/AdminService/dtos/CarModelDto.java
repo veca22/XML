@@ -1,19 +1,19 @@
 package service.AdminService.dtos;
 
 public class CarModelDto {
-    private String car_model;
+    private String model;
 
     public CarModelDto() {}
 
-    public CarModelDto(String car_model) {
-        this.car_model = car_model;
+    public CarModelDto(String model) {
+        this.model = model;
     }
 
-    public String getCar_model() {
-        return car_model;
+    public String getModel() {
+        return model;
     }
 
-    public void setCar_model(String car_model) {
-        this.car_model = car_model;
+    public void setModel(String model) {
+        this.model = model;
     }
 }

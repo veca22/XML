@@ -9,15 +9,18 @@ public class TransmissionType {
     private Long id;
 
     @Column
-    private String serial_number;
+    private String serialNumber;
 
     @Column
     private String type;
 
-    public TransmissionType(Long id, String serial_number, String type) {
+    public TransmissionType(Long id, String serialNumber, String type) {
         this.id = id;
-        this.serial_number = serial_number;
         this.type = type;
+        this.serialNumber = serialNumber;
+
+
+
     }
 
     public TransmissionType() {
@@ -31,12 +34,12 @@ public class TransmissionType {
         this.id = id;
     }
 
-    public String getSerial_number() {
-        return serial_number;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setSerial_number(String serial_number) {
-        this.serial_number = serial_number;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getType() {

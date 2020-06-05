@@ -36,13 +36,13 @@ public class FuelTypeService {
         return false;
     }
 
-    public FuelType getFuelType(String serial_number){
+    public FuelType getFuelType(String serialNumber){
         List<FuelType> tmp = findall();
         if(tmp.size() == 0){
             return null;
         }
         for (FuelType f : tmp){
-            if(f.getSerial_number().equals(serial_number)){
+            if(f.getSerialNumber().equals(serialNumber)){
                 return f;
             }
         }
