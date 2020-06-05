@@ -37,6 +37,7 @@ import {DemoMaterialModule} from './material-module';
 import { SearchResultDialogComponent } from './components/search-result-dialog/search-result-dialog.component';
 import { AdViewDialogComponent } from './components/ad-view-dialog/ad-view-dialog.component';
 import { RentConditionsComponent } from './components/rent-conditions/rent-conditions.component';
+import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { RentConditionsComponent } from './components/rent-conditions/rent-condi
     SearchResultDialogComponent,
     AdViewDialogComponent,
     RentConditionsComponent,
+    EndUserAdsComponent,
 
 
   ],

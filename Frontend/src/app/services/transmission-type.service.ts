@@ -35,9 +35,9 @@ export class TransmissionTypeService {
 
   public getAllTransmissionType(): Array<TransmissionType>{
     this.http.get(environment.gateway + environment.admin + '/transmissionType/all').subscribe((data: TransmissionType[]) =>{
-        for (const c of data){
-          this.transmissionType = new TransmissionType(c.serial_number, c.type);
-          this.listTransmissionTypes.push(this.transmissionType);
+        for (const c of data) {
+          this.transmissionType = new TransmissionType(c.type, c.serial_number);
+          this.addTransmissionType(this.transmissionType);
         }
       },
       error => {

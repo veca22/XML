@@ -15,12 +15,12 @@ public class CarBrand {
 
     public CarBrand() {
     }
-
+/*
     public CarBrand(Long id, String brand) {
         this.id = id;
         this.brand = brand;
     }
-
+*/
     public Long getId() {
         return id;
     }

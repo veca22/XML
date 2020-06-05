@@ -6,14 +6,16 @@ import {AdministratorHomePageComponent} from './components/administrator-home-pa
 import {EndUserHomePageComponent} from './components/end-user-home-page/end-user-home-page.component';
 import {AddAdComponent} from './components/add-ad/add-ad.component';
 import {CarSearchComponent} from './components/car-search/car-search.component';
-import {AddFuelTypeComponent} from "./components/add-fuel-type/add-fuel-type.component";
-import {AddTransmissionTypeComponent} from "./components/add-transmission-type/add-transmission-type.component";
-import {AddCarTypeComponent} from "./components/add-car-type/add-car-type.component";
-import {AddCarBrandComponent} from "./components/add-car-brand/add-car-brand.component";
-import {AddCarModelComponent} from "./components/add-car-model/add-car-model.component";
+import {AddFuelTypeComponent} from './components/add-fuel-type/add-fuel-type.component';
+import {AddTransmissionTypeComponent} from './components/add-transmission-type/add-transmission-type.component';
+import {AddCarTypeComponent} from './components/add-car-type/add-car-type.component';
+import {AddCarBrandComponent} from './components/add-car-brand/add-car-brand.component';
+import {AddCarModelComponent} from './components/add-car-model/add-car-model.component';
 
 import {EndUsersOperationsComponent} from './components/end-users-operations/end-users-operations.component';
 import {RentConditionsComponent} from './components/rent-conditions/rent-conditions.component';
+
+import {EndUserAdsComponent} from './components/end-user-ads/end-user-ads.component';
 
 
 
@@ -77,7 +79,10 @@ const routes: Routes = [
     path: 'rentConditions',
     component: RentConditionsComponent,
   },
-
+  {
+    path: 'endUser/myAds',
+    component: EndUserAdsComponent,
+  }
 
 ];
 

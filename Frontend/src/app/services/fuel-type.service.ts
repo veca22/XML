@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {FuelType} from "../model/fuelType";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {TransmissionType} from "../model/transmissionType";
+import {FuelType} from '../model/fuelType';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {TransmissionType} from '../model/transmissionType';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ export class FuelTypeService {
     this.getAllFuelType();
   }
 
-  public addFuelType(t: FuelType){
-    if(this.getFuelType(t.serial_number) === null){
+  public addFuelType(t: FuelType) {
+    if (this.getFuelType(t.serial_number) === null) {
       this.listFuelTypes.push(t);
     }
   }
@@ -37,8 +37,8 @@ export class FuelTypeService {
   public getAllFuelType(): Array<FuelType> {
     this.http.get(environment.gateway + environment.admin + '/fuelType/all').subscribe((data: FuelType[]) => {
         for (const c of data) {
-          this.fuelType = new FuelType(c.serial_number, c.type);
-          this.listFuelTypes.push(this.fuelType);
+          this.fuelType = new FuelType(c.type, c.serial_number);
+          this.addFuelType(this.fuelType);
         }
       },
       error => {
@@ -48,7 +48,7 @@ export class FuelTypeService {
     return this.listFuelTypes;
   }
 
-  public newFuelType(fuelType){
+  public newFuelType(fuelType) {
     return this.http.post(environment.gateway + environment.admin + '/addFuelType', fuelType);
   }
 }
