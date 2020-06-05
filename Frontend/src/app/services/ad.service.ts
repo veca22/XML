@@ -114,17 +114,17 @@ export class AdService {
   }
 
   public addAd(a: Ad) {
-    if (this.getAd(a.title) === null) {
+    if (this.getAd(a.id) === null) {
       this.listAd.push(a);
     }
   }
 
-  public getAd(title: string) {
+  public getAd(id: number) {
     if ( this.listAd.length === 0) {
       return null;
     }
     for (const u of this.listAd) {
-      if ( u.title === title) {
+      if ( u.id === id) {
         return u;
       }
     }
@@ -142,6 +142,7 @@ export class AdService {
     return this.http.post(environment.gateway + environment.ad + '/addAd', ad , {params});
   }
 
+
   public getAllCarBrands(): Array<CarBrand>{
     this.http.get(environment.gateway + environment.ad + '/allCarBrands').subscribe((data: CarBrand[]) => {
       console.log(data);
@@ -157,6 +158,24 @@ export class AdService {
     );
     return this.listCarBrand;
   }
+
+  public setAd(a: Ad) {
+    for (const c of this.listAd) {
+      if (c.id === a.id) {
+        c.title = a.title;
+        c.description = a.description;
+        c.place = a.place;
+        c.startOfAd = a.startOfAd;
+        c.endOfAd = a.endOfAd;
+        c.profilePicture = a.profilePicture;
+        c.car.carBrand = a.car.carBrand;
+        c.car.carModel = a.car.carModel;
+        c.car.carType = a.car.carType;
+        c.car.fuelType = a.car.fuelType;
+      }
+    }
+  }
+
 
 
 public getClientAds() {
