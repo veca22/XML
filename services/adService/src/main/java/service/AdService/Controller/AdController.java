@@ -186,12 +186,14 @@ public class AdController {
     }
 
     @PostMapping(value = "/addPic", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String addPictures(@RequestBody AdPicDTO adpic,@RequestParam(value = "id", required = true) String id) {
+    public String addPictures(@RequestBody AdPicDTO adpic,@RequestParam(value = "title", required = true) String title) {
         System.out.println(adpic.getFile());
         System.out.println(adpic.getFileSource());
-        Long u = Long.parseLong(id);
+        System.out.println(title);
+        Ad ad = adService.getAd(title);
+
         Image img=new Image();
-        img.setIdOglasa(u);
+        img.setIdOglasa(ad.getId());
         img.setFileSource(adpic.getFileSource());
         try {
             FileOutputStream f = new FileOutputStream(new File("myObjects.txt"));
@@ -214,6 +216,7 @@ public class AdController {
         return new ResponseEntity<>(carBrandService.findall(), HttpStatus.OK);
     }
 
+
     @PostMapping(value = "/changeStatus")
     public ResponseEntity<Ad> changeStatus(@RequestParam(value = "id", required = true) String id) {
         Long u = Long.parseLong(id);
@@ -231,12 +234,13 @@ public class AdController {
     }
 
 
-    @PostMapping(value = "/addPic", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/getPic", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<String>> getPic(@RequestBody Long id) throws FileNotFoundException {
         Image pr1 = new Image();
         FileInputStream fi = new FileInputStream(new File("myObjects.txt"));
         boolean cont = true;
         ArrayList<Image> imgs = new ArrayList<>();
+        ArrayList<String> str = new ArrayList<>();
         while (cont) {
             try (ObjectInputStream oi = new ObjectInputStream(fi)) {
                 Image pr2 = (Image) oi.readObject();
@@ -255,6 +259,6 @@ public class AdController {
                 }
             }
         }
-        return null;
+        return new ResponseEntity<>(str, HttpStatus.BAD_REQUEST);
     }
 }

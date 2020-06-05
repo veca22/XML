@@ -86,13 +86,12 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
     HttpClientModule,
     MatNativeDateModule,
     DemoMaterialModule,
-
     MatTableModule,
     MatPaginatorModule,
     DemoMaterialModule,
 
   ],
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

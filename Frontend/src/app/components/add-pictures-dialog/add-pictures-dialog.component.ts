@@ -5,6 +5,7 @@ import {AdService} from '../../services/ad.service';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Ad} from '../../model/ad';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-pictures-dialog',
@@ -23,6 +24,7 @@ export class AddPicturesDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any,
               public adService: AdService,
               public dialog: MatDialog,
+              private router: Router,
               private http: HttpClient) {
   }
 
@@ -63,12 +65,13 @@ export class AddPicturesDialogComponent implements OnInit {
   submit() {
     console.log(this.myForm.value);
     let params = new HttpParams();
-    params = params.append('id', this.data.id.toString());
+    params = params.append('title', this.data.title);
     this.http.post(environment.gateway + environment.ad + '/addPic', this.myForm.value, {params})
       .subscribe(res => {
         console.log(res);
         alert('Uploaded Successfully.');
         this.dialogRef.close();
+        this.router.navigate(['/endUser/home']);
       });
   }
 
