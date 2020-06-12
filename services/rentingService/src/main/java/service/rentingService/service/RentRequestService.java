@@ -20,4 +20,11 @@ public class RentRequestService {
     public List<RentRequest> findAll() {
         return rentRequestRepo.findAll();
     }
+
+    public List<RentRequest> findAllByClientId(Long id) {
+        return rentRequestRepo.findAllByClientId(id);
+    }
+    public RentRequest findById(Long id) {
+        return rentRequestRepo.findRentRequestById(id);
+    }
 }

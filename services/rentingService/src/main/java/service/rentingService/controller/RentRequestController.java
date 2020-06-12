@@ -5,16 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.rentingService.dtos.AdFilterDTO;
 import service.rentingService.dtos.SendDTO;
-import service.rentingService.model.Ad;
-import service.rentingService.model.Car;
-import service.rentingService.model.RentRequest;
-import service.rentingService.model.RentRequestStatus;
+import service.rentingService.model.*;
 import service.rentingService.service.AdService;
 import service.rentingService.service.ClientService;
 import service.rentingService.service.RentRequestService;
@@ -35,6 +29,13 @@ public class RentRequestController {
 
     @Autowired
     AdService adService;
+
+    @GetMapping("/rentRequestsForUser")
+    public ResponseEntity<List<RentRequest>> requestsForUsers(@RequestParam(value = "email", required = true) String email) {
+        Client c = clientService.findClientByEmail(email);
+        List<RentRequest> ret = rentRequestService.findAllByClientId(c.getId());
+        return new ResponseEntity<>(ret, HttpStatus.OK);
+    }
 
     @PostMapping("/reserve")
     public void reserve(@RequestBody SendDTO sendDTO){
@@ -100,5 +101,24 @@ public class RentRequestController {
             }
         }
         return new ResponseEntity<>(pom, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/rentOperation")
+    public ResponseEntity<RentRequest> operations(@RequestParam(value = "operation", required = true) String operation,
+                                           @RequestParam(value = "id", required = true) String id) {
+
+        Long lid = Long.parseLong(id);
+        RentRequest rentRequest = rentRequestService.findById(lid);
+        if(operation.equals("АCCEPTED")) {
+            rentRequest.setRentRequestStatus(RentRequestStatus.RESERVED);
+            rentRequestService.addRent(rentRequest);
+            return new ResponseEntity<>(rentRequest, HttpStatus.OK);
+        } else if(operation.equals("DECLINED")) {
+            rentRequest.setRentRequestStatus(RentRequestStatus.CANCELED);
+            rentRequestService.addRent(rentRequest);
+            return new ResponseEntity<>(rentRequest, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(rentRequest, HttpStatus.BAD_REQUEST);
     }
 }

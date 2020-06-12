@@ -17,6 +17,7 @@ import {CodeBookComponent} from './components/code-book/code-book.component';
 import {EndUserAdsComponent} from './components/end-user-ads/end-user-ads.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {AboutUsComponent} from './components/about-us/about-us.component';
+import {RentingRequestsComponent} from './components/renting-requests/renting-requests.component';
 
 
 
@@ -88,6 +89,10 @@ const routes: Routes = [
   {
     path: 'endUser/myAds',
     component: EndUserAdsComponent,
+  },
+  {
+    path: 'endUser/rentingRequests',
+    component: RentingRequestsComponent,
   },
   {
     path: 'Contact',

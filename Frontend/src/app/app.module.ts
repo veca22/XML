@@ -43,6 +43,7 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
 import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { RentingRequestsComponent } from './components/renting-requests/renting-requests.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     CartDialogComponent,
     ContactComponent,
     AboutUsComponent,
+    RentingRequestsComponent,
 
 
 
