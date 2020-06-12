@@ -68,7 +68,6 @@ public class RentRequestController {
                     if(endD.toDate().before(a.getEndOfAd())){
                         pom.add(a);
                         ret.add(a);
-                        System.out.println("Dodao");
                     }
                 }
             }
@@ -89,13 +88,10 @@ public class RentRequestController {
                             System.out.println(r.getReservedFrom());
                             System.out.println(r.getReservedTo());
                             if(r.getReservedFrom().after(startD.toDate()) && r.getReservedTo().before(endD.toDate())) {
-                                System.out.println("Usao u prvi if");
                                 pom.remove(a);
                             } else if (r.getReservedFrom().after(startD.toDate()) && r.getReservedTo().after(endD.toDate()) && r.getReservedFrom().before(endD.toDate())) {
-                                System.out.println("Usao u drugi if");
                                 pom.remove(a);
                             } else if (r.getReservedFrom().before(startD.toDate()) && r.getReservedTo().before(endD.toDate()) && r.getReservedTo().after(startD.toDate())) {
-                                System.out.println("Usao u treci if");
                                 pom.remove(a);
                             }
                         }
