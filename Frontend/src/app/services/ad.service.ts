@@ -97,7 +97,7 @@ export class AdService {
   }
 
   public getAllFilter(model): Array<Ad> {
-    this.http.post(environment.gateway + environment.ad + '/allFilter', model).subscribe((data: Ad[]) => {
+    this.http.post(environment.gateway + environment.renting + '/allFilter', model).subscribe((data: Ad[]) => {
         let flag = 0;
 
         for (const c of data) {

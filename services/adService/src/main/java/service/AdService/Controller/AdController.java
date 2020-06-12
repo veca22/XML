@@ -167,7 +167,6 @@ public class AdController {
     @PostMapping(value = "/allFilter", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Ad>> login(@RequestBody AdFilterDTO addto)
     {
-        System.out.println("Sifra je " + addto.toString());
         DateTime startD = DateTime.parse(addto.getStartDate());
         DateTime endD = DateTime.parse(addto.getStartDate());
         List<Ad> lista=adService.findAll();
@@ -182,6 +181,7 @@ public class AdController {
                 }
             }
         }
+
         return new ResponseEntity<>(pom,HttpStatus.OK);
     }
 

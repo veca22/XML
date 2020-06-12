@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import service.rentingService.model.RentRequest;
 import service.rentingService.repository.RentRequestRepo;
 
+import java.util.List;
+
 @Service
 public class RentRequestService {
 
@@ -13,5 +15,9 @@ public class RentRequestService {
 
     public void addRent(RentRequest rent){
         rentRequestRepo.save(rent);
+    }
+
+    public List<RentRequest> findAll() {
+        return rentRequestRepo.findAll();
     }
 }
