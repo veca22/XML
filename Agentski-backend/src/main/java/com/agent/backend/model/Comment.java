@@ -1,26 +1,43 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "Comment", propOrder = {
+                "id",
+                "commenter",
+                "approved",
+                "ad"
+}, namespace = "nekiUri/comment")
 public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "commenter_id", nullable = false)
+    @XmlElement
     private User commenter;
 
     @Column
+    @XmlElement
     private String comment;
 
     @Column
+    @XmlElement
     private boolean approved = false;
 
     @ManyToOne
     @JoinColumn(name = "ad_id")
+    @XmlElement
     private Ad ad;
 
     public Comment() {

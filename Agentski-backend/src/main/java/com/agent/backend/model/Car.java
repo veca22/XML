@@ -3,54 +3,86 @@ package com.agent.backend.model;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "Car", propOrder = {
+                "id",
+                "carBrand",
+                "carType",
+                "fuelType",
+                "transmissionType",
+                "price",
+                "discount",
+                "mileage",
+                "carStatus",
+                "distanceAllowed",
+                "collisionDamageWaiver",
+                "childSeats",
+                "averageRating"
+
+}, namespace = "nekiUri/car")
 @Table
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "car_brand_id", nullable = false)
+    @XmlElement
     private CarBrand carBrand;
 
     @Column(nullable = false)
+    @XmlElement
     private CarType carType;
 
     @Column(nullable = false)
+    @XmlElement
     private String fuelType;
 
     @Column(nullable = false)
+    @XmlElement
     private String transmissionType;
 
     @Column(nullable = false)
     @Range(min = 0, max = 1000000)
+    @XmlElement
     private int price;
 
     @Column(nullable = false)
+    @XmlElement
     private int discount;
 
     @Column(nullable = false)
     @Range(min = 0, max = 1000000)
+    @XmlElement
     private float mileage;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @XmlElement
     private CarStatus carStatus;
 
     @Column(nullable = false)
+    @XmlElement
     private float distanceAllowed;
 
     @Column(nullable = false)
+    @XmlElement
     private boolean collisionDamageWaiver = false;
 
     @Column(nullable = false)
     @Range(min = 0, max = 5)
+    @XmlElement
     private int childSeats;
 
     @Column(nullable = false)
+    @XmlElement
     private double averageRating = 0;
 
     public Car(Long id, CarBrand carBrand, CarType carType, String fuelType, String transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {

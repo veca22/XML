@@ -1,48 +1,78 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "Ad", propOrder = {
+                "id",
+                "car",
+                "profilePicture",
+                "pictureSet",
+                "client",
+                "startOfAd",
+                "endOfAd",
+                "description",
+                "isActive",
+                "currentDriver",
+                "comments"
+}, namespace = "nekiUri/ad")
 public class Ad {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @XmlElement
     private Car car;
 
     @Column
+    @XmlElement
     private String profilePicture;
 
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @XmlElement
     private Set<Picture> pictureSet;
 
     //client
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @XmlElement
     private Client client;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
+    @XmlElement
     private Date startOfAd;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
+    @XmlElement
     private Date endOfAd;
 
     @Column
+    @XmlElement
     private String description;
 
     @Column
+    @XmlElement
     private boolean isActive;
 
 
     @OneToOne(fetch = FetchType.LAZY)
+    @XmlElement
     private Client currentDriver;
 
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @XmlElement
     private Set<Comment> comments;
 
     public Ad() {

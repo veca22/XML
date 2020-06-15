@@ -1,9 +1,21 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @Table(name="users")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "User", propOrder = {
+                "id",
+                "email",
+                "password",
+                "role",
+                "status"
+}, namespace = "nekiUri/user")
 public class User {
 
     @Id
