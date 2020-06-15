@@ -34,14 +34,19 @@ export class RentDialogComponent implements OnInit {
     return this.SearchForm.controls;
   }
 
+  close() {
+    this.dialogRef.close();
+  }
+
   onSubmit() {
     this.submitted = true;
     this.a.startTime = this.f.startDate.value;
     this.a.endTime = this.f.endDate.value;
     this.a.ad = this.dataAd;
-    this.adService.reserveAd(this.a).subscribe(
+    this.adService.reserveMyAd(this.a).subscribe(
       res => {
         alert('Reserved');
+        this.dialogRef.close();
       },
       error => {
         alert('Error');

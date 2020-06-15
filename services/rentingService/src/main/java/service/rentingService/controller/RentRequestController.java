@@ -40,23 +40,53 @@ public class RentRequestController {
     }
 
     @PostMapping("/reserve")
-    public void reserve(@RequestBody SendDTO sendDTO){
+    public ResponseEntity reserve(@RequestBody SendDTO sendDTO){
         RentRequest rr = new RentRequest();
         Set<Car> carsForRent= new HashSet<>();
-        carsForRent.add(sendDTO.getAdWithTimes().getAd().getCar());
-        rr.setCarsForRent(carsForRent);
-        System.out.println(sendDTO.toString());
-       // rr.getCarsForRent().add(sendDTO.getAdWithTimes().getAd().getCar());
-        rr.setClient(clientService.findClientByEmail(sendDTO.getEmail()));
+        Ad ad=sendDTO.getAdWithTimes().getAd();
         DateTime startD = DateTime.parse(sendDTO.getAdWithTimes().getStartTime());
         DateTime endD = DateTime.parse(sendDTO.getAdWithTimes().getEndTime());
-        rr.setReservedFrom(startD.toDate());
-        rr.setReservedTo(endD.toDate());
-        rr.setRentRequestStatus(RentRequestStatus.PENDING);
-        rr.setTimeCreated(LocalDateTime.now());
+        if(ad.getStartOfAd().before(startD.toDate()) && ad.getEndOfAd().after(endD.toDate())) {
+            carsForRent.add(sendDTO.getAdWithTimes().getAd().getCar());
+            rr.setCarsForRent(carsForRent);
+            System.out.println(sendDTO.toString());
+            // rr.getCarsForRent().add(sendDTO.getAdWithTimes().getAd().getCar());
+            rr.setClient(clientService.findClientByEmail(sendDTO.getEmail()));
+            rr.setReservedFrom(startD.toDate());
+            rr.setReservedTo(endD.toDate());
+            rr.setRentRequestStatus(RentRequestStatus.PENDING);
+            rr.setTimeCreated(LocalDateTime.now());
 
-        System.out.println(rr.getTimeCreated().toString());
-        rentRequestService.addRent(rr);
+            System.out.println(rr.getTimeCreated().toString());
+            rentRequestService.addRent(rr);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/reserveMy")
+    public ResponseEntity reserveMy(@RequestBody SendDTO sendDTO){
+        RentRequest rm = new RentRequest();
+        Set<Car> carsForRentM= new HashSet<>();
+        Ad ad=sendDTO.getAdWithTimes().getAd();
+        DateTime startD = DateTime.parse(sendDTO.getAdWithTimes().getStartTime());
+        DateTime endD = DateTime.parse(sendDTO.getAdWithTimes().getEndTime());
+        if(ad.getStartOfAd().before(startD.toDate()) && ad.getEndOfAd().after(endD.toDate())) {
+            carsForRentM.add(sendDTO.getAdWithTimes().getAd().getCar());
+            rm.setCarsForRent(carsForRentM);
+            System.out.println(sendDTO.toString());
+            // rr.getCarsForRent().add(sendDTO.getAdWithTimes().getAd().getCar());
+            rm.setClient(clientService.findClientByEmail(sendDTO.getEmail()));
+            rm.setReservedFrom(startD.toDate());
+            rm.setReservedTo(endD.toDate());
+            rm.setRentRequestStatus(RentRequestStatus.RESERVED);
+            rm.setTimeCreated(LocalDateTime.now());
+
+            System.out.println(rm.getTimeCreated().toString());
+            rentRequestService.addRent(rm);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping(value = "/allFilter", consumes = MediaType.APPLICATION_JSON_VALUE)
