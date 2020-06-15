@@ -1,6 +1,7 @@
 package service.rentingService.controller;
 
 import org.joda.time.DateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import service.rentingService.service.AdService;
 import service.rentingService.service.ClientService;
 import service.rentingService.service.RentRequestService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -51,6 +53,9 @@ public class RentRequestController {
         rr.setReservedFrom(startD.toDate());
         rr.setReservedTo(endD.toDate());
         rr.setRentRequestStatus(RentRequestStatus.PENDING);
+        rr.setTimeCreated(LocalDateTime.now());
+
+        System.out.println(rr.getTimeCreated().toString());
         rentRequestService.addRent(rr);
     }
 

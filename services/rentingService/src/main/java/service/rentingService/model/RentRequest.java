@@ -1,6 +1,9 @@
 package service.rentingService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +21,10 @@ public class RentRequest {
     @Column(nullable = false)
     private Date reservedTo;
 
+    @JsonIgnore
+    @Column(nullable = false)
+    private LocalDateTime timeCreated;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RentRequestStatus rentRequestStatus;
@@ -28,6 +35,9 @@ public class RentRequest {
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
+
+    public RentRequest() {
+    }
 
     public Long getId() {
         return id;
@@ -75,5 +85,13 @@ public class RentRequest {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public LocalDateTime getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(LocalDateTime timeCreated) {
+        this.timeCreated = timeCreated;
     }
 }
