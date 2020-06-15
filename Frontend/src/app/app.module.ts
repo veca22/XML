@@ -44,6 +44,7 @@ import { CartDialogComponent } from './components/cart-dialog/cart-dialog.compon
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RentDialogComponent } from './components/rent-dialog/rent-dialog.component';
+import { RentingRequestsComponent } from './components/renting-requests/renting-requests.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { RentDialogComponent } from './components/rent-dialog/rent-dialog.compon
     ContactComponent,
     AboutUsComponent,
     RentDialogComponent,
+    RentingRequestsComponent,
 
 
 
