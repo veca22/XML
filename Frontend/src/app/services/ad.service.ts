@@ -205,6 +205,12 @@ public changeRentStatus(ad) {
     return this.http.post(environment.gateway + environment.renting + '/reserve', this.send);
   }
 
+  public reserveMyAd(a: AdWithTimes) {
+    this.send.adWithTimes = a;
+    this.send.email = this.userService.getLoggedUser().email;
+    return this.http.post(environment.gateway + environment.renting + '/reserveMy', this.send);
+  }
+
 }
 
 export class Send {

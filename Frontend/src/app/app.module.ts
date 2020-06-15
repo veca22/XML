@@ -43,6 +43,7 @@ import { EndUserAdsComponent } from './components/end-user-ads/end-user-ads.comp
 import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { RentDialogComponent } from './components/rent-dialog/rent-dialog.component';
 import { RentingRequestsComponent } from './components/renting-requests/renting-requests.component';
 
 
@@ -71,6 +72,7 @@ import { RentingRequestsComponent } from './components/renting-requests/renting-
     CartDialogComponent,
     ContactComponent,
     AboutUsComponent,
+    RentDialogComponent,
     RentingRequestsComponent,
 
 
@@ -104,7 +106,7 @@ import { RentingRequestsComponent } from './components/renting-requests/renting-
 
   ],
 
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent, CartDialogComponent  ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent, CartDialogComponent, RentDialogComponent  ],
   providers: [],
   bootstrap: [AppComponent]
 })
