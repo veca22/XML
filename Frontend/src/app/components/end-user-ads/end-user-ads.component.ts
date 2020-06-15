@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {MatDialog, MatTableDataSource} from '@angular/material';
 import {Ad} from '../../model/ad';
 import {AdService} from '../../services/ad.service';
 import {Router} from '@angular/router';
+import {SearchResultDialogComponent} from '../search-result-dialog/search-result-dialog.component';
+import {RentDialogComponent} from '../rent-dialog/rent-dialog.component';
 
 @Component({
   selector: 'app-end-user-ads',
@@ -14,7 +16,7 @@ export class EndUserAdsComponent implements OnInit {
   displayedColumns: string[] = ['title', 'carModel', 'carBrand', 'place', 'status', 'change'];
   dataSource = new MatTableDataSource<Ad>();
   constructor(private adService: AdService,
-              private router: Router) {
+              private router: Router, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(adService.getClientAds());
   }
 
@@ -22,20 +24,10 @@ export class EndUserAdsComponent implements OnInit {
   }
 
   change_status(ad) {
-    this.adService.changeRentStatus(ad).subscribe(data => {
-        this.router.navigate(['endUser/home']);
-      },
-      error => {
-        console.log(error);
-      });
+    setTimeout(() => {
+      this.dialog.open(RentDialogComponent, {
+        width: '50%', disableClose: true, data: ad,
+      }); }, 200);
   }
 
-  status_to_string(status) {
-
-    if (status === 0) {
-      return 'RENTED';
-    } else {
-      return 'NOT_RENTED';
-    }
-  }
 }
