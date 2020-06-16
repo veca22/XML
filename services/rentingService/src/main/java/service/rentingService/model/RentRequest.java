@@ -94,4 +94,5 @@ public class RentRequest {
     public void setTimeCreated(LocalDateTime timeCreated) {
         this.timeCreated = timeCreated;
     }
+
 }

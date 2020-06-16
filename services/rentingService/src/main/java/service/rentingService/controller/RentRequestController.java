@@ -35,7 +35,7 @@ public class RentRequestController {
     @GetMapping("/rentRequestsForUser")
     public ResponseEntity<List<RentRequest>> requestsForUsers(@RequestParam(value = "email", required = true) String email) {
         Client c = clientService.findClientByEmail(email);
-        List<RentRequest> ret = rentRequestService.findAllByClientId(c.getId());
+        List<RentRequest> ret = rentRequestService.findAll();
         return new ResponseEntity<>(ret, HttpStatus.OK);
     }
 
@@ -156,4 +156,34 @@ public class RentRequestController {
 
         return new ResponseEntity<>(rentRequest, HttpStatus.BAD_REQUEST);
     }
+
+    @GetMapping("/userRentedAds")
+    public ResponseEntity<List<RentRequest>> userRentedAds(@RequestParam(value = "email", required = true) String email) {
+        Client c = clientService.findClientByEmail(email);
+        List<RentRequest> ret = rentRequestService.findAllByClientId(c.getId());
+        List<RentRequest> tmp = new ArrayList<>();
+        for(RentRequest r : ret) {
+            //Ovde treba da status bude PAID
+            if(r.getRentRequestStatus() == RentRequestStatus.RESERVED) {
+                tmp.add(r);
+            }
+        }
+        return new ResponseEntity<>(tmp, HttpStatus.OK);
+    }
+
+    @GetMapping("/rateCarFlag")
+    public ResponseEntity<Boolean> rateCarFlag(@RequestParam(value = "reservedTo", required = true) String reservedTo) {
+        boolean flag = false;
+        String tmp = reservedTo.substring(0, reservedTo.length() - 6);
+        System.out.println(tmp);
+        DateTime rto = DateTime.parse(tmp);
+        DateTime now = DateTime.now();
+        System.out.println(rto.toString());
+        System.out.println(now.toString());
+        if(now.isAfter(rto)) {
+            flag = true;
+        }
+        return new ResponseEntity<>(flag, HttpStatus.OK);
+    }
+
 }

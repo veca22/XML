@@ -18,6 +18,7 @@ import {EndUserAdsComponent} from './components/end-user-ads/end-user-ads.compon
 import {ContactComponent} from './components/contact/contact.component';
 import {AboutUsComponent} from './components/about-us/about-us.component';
 import {RentingRequestsComponent} from './components/renting-requests/renting-requests.component';
+import {EndUserRentedCarsComponent} from './components/end-user-rented-cars/end-user-rented-cars.component';
 
 
 
@@ -78,7 +79,6 @@ const routes: Routes = [
     component: CarSearchComponent,
   },
   {
-
     path: 'rentConditions',
     component: RentConditionsComponent,
   },
@@ -93,6 +93,10 @@ const routes: Routes = [
   {
     path: 'endUser/rentingRequests',
     component: RentingRequestsComponent,
+  },
+  {
+    path: 'endUser/rentedCars',
+    component: EndUserRentedCarsComponent,
   },
   {
     path: 'Contact',

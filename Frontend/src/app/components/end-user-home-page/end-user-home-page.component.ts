@@ -14,11 +14,14 @@ export class EndUserHomePageComponent implements OnInit {
 
   tmp: Array<Ad>;
   tmp1: Array<RentRequest>;
+  tmp2: Array<RentRequest>;
   constructor(private userService: UserService,
               private adService: AdService,
               private rentingService: RentingService) {
       this.tmp = adService.getAllClientAds(userService.getLoggedUser().email);
       this.tmp1 = rentingService.getRentRequestsForUser(userService.getLoggedUser().email);
+      this.tmp2 = rentingService.getUserRentedAds(userService.getLoggedUser().email);
+
   }
 
   ngOnInit() {
