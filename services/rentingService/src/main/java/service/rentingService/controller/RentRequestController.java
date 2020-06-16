@@ -8,10 +8,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.rentingService.dtos.AdFilterDTO;
+import service.rentingService.dtos.AddCommentDTO;
 import service.rentingService.dtos.SendDTO;
 import service.rentingService.model.*;
 import service.rentingService.service.AdService;
 import service.rentingService.service.ClientService;
+import service.rentingService.service.CommentService;
 import service.rentingService.service.RentRequestService;
 
 import java.time.LocalDateTime;
@@ -32,11 +34,25 @@ public class RentRequestController {
     @Autowired
     AdService adService;
 
+    @Autowired
+    CommentService commentService;
+
     @GetMapping("/rentRequestsForUser")
     public ResponseEntity<List<RentRequest>> requestsForUsers(@RequestParam(value = "email", required = true) String email) {
         Client c = clientService.findClientByEmail(email);
+        List<RentRequest> tmp = new ArrayList<>();
         List<RentRequest> ret = rentRequestService.findAll();
-        return new ResponseEntity<>(ret, HttpStatus.OK);
+        for(RentRequest r : ret) {
+            for(Car car : r.getCarsForRent()) {
+                List<Ad> ads = adService.findAllByCarId(car.getId());
+                for(Ad a : ads) {
+                    if(a.getClient().getId() == c.getId()) {
+                        tmp.add(r);
+                    }
+                }
+            }
+        }
+        return new ResponseEntity<>(tmp, HttpStatus.OK);
     }
 
     @PostMapping("/reserve")
@@ -162,13 +178,19 @@ public class RentRequestController {
         Client c = clientService.findClientByEmail(email);
         List<RentRequest> ret = rentRequestService.findAllByClientId(c.getId());
         List<RentRequest> tmp = new ArrayList<>();
-        for(RentRequest r : ret) {
-            //Ovde treba da status bude PAID
-            if(r.getRentRequestStatus() == RentRequestStatus.RESERVED) {
-                tmp.add(r);
+        if(ret.isEmpty()) {
+            return new ResponseEntity<>(tmp, HttpStatus.BAD_REQUEST);
+        }
+        else {
+            for (RentRequest r : ret) {
+                //Ovde treba da status bude PAID
+                if (r.getRentRequestStatus() == RentRequestStatus.RESERVED) {
+                    tmp.add(r);
+                }
             }
         }
         return new ResponseEntity<>(tmp, HttpStatus.OK);
+
     }
 
     @GetMapping("/rateCarFlag")
@@ -184,6 +206,20 @@ public class RentRequestController {
             flag = true;
         }
         return new ResponseEntity<>(flag, HttpStatus.OK);
+    }
+
+    @PostMapping("/addComment")
+    public ResponseEntity<Comment> addComment(@RequestBody AddCommentDTO addCommentDTO) {
+        //OSTALO JE JOS OCENA ZA AUTO
+        Comment c = new Comment();
+        c.setApproved(addCommentDTO.getComment().isApproved());
+        c.setComment(addCommentDTO.getComment().getComment());
+        c.setCommenter(addCommentDTO.getComment().getCommenter());
+        Ad ad = adService.findAdByCar(addCommentDTO.getCar());
+        c.setAd(ad);
+        commentService.addComment(c);
+
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
 }

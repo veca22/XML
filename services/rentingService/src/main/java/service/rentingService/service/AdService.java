@@ -3,6 +3,7 @@ package service.rentingService.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.rentingService.model.Ad;
+import service.rentingService.model.Car;
 import service.rentingService.repository.AdRepo;
 
 
@@ -23,8 +24,12 @@ public class AdService {
     public List<Ad> findAllByCliendId(Long id) {
         return  adRepo.findAllByClientId(id);
     }
+    public List<Ad> findAllByCarId(Long id) {return adRepo.findAllByCarId(id); }
     public Ad findAdByCarId(Long id) {
         return adRepo.findAdByCarId(id);
+    }
+    public Ad findAdByCar(Car car) {
+        return adRepo.findAdByCar(car);
     }
 
     public Ad save(Ad c)
