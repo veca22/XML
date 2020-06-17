@@ -14,7 +14,6 @@ public class Car {
     @ManyToOne
     private CarBrand carBrand;
 
-
     @ManyToOne
     private CarModel carModel;
 

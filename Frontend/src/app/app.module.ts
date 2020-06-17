@@ -45,6 +45,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RentDialogComponent } from './components/rent-dialog/rent-dialog.component';
 import { RentingRequestsComponent } from './components/renting-requests/renting-requests.component';
+import { EndUserRentedCarsComponent } from './components/end-user-rented-cars/end-user-rented-cars.component';
+import { RateDialogComponent } from './components/rate-dialog/rate-dialog.component';
 
 
 @NgModule({
@@ -74,6 +76,8 @@ import { RentingRequestsComponent } from './components/renting-requests/renting-
     AboutUsComponent,
     RentDialogComponent,
     RentingRequestsComponent,
+    EndUserRentedCarsComponent,
+    RateDialogComponent,
 
 
 
@@ -106,7 +110,7 @@ import { RentingRequestsComponent } from './components/renting-requests/renting-
 
   ],
 
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent, CartDialogComponent, RentDialogComponent  ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent, CartDialogComponent, RentDialogComponent, RateDialogComponent  ],
   providers: [],
   bootstrap: [AppComponent]
 })
