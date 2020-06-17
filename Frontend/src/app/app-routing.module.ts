@@ -19,6 +19,7 @@ import {ContactComponent} from './components/contact/contact.component';
 import {AboutUsComponent} from './components/about-us/about-us.component';
 import {RentingRequestsComponent} from './components/renting-requests/renting-requests.component';
 import {EndUserRentedCarsComponent} from './components/end-user-rented-cars/end-user-rented-cars.component';
+import {CommentOperationComponent} from './components/comment-operation/comment-operation.component';
 
 
 
@@ -117,6 +118,10 @@ const routes: Routes = [
   {
     path: 'endUser/rentConditions',
     component: RentConditionsComponent,
+  },
+  {
+    path: 'administrator/commentForOperation',
+    component: CommentOperationComponent,
   },
 
 
