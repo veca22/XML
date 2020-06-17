@@ -123,6 +123,26 @@ services:
     depends_on:
       - consul-server
       - postgres
+   
+  message-service:
+    image: message_service
+    build:
+      context: ./services/rentingService
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - "8091:8091"
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ftn
+      DATABASE_DOMAIN: postgres
+      REGISTRY_HOST: consul-server
+      POSTGRES_DB: Services
+    networks:
+      - static-network
+    depends_on:
+      - consul-server
+      - postgres
 
   gateway:
     image: gateway
