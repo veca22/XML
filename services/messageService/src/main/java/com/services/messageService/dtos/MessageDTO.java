@@ -1,10 +1,14 @@
 package com.services.messageService.dtos;
 
+import com.services.messageService.model.Car;
+
+import java.util.List;
+
 public class MessageDTO {
     private String text;
     private String subject;
     private String email;
-    private String emailAd;
+    private List<Car> cars;
 
     public MessageDTO() {
     }
@@ -33,11 +37,11 @@ public class MessageDTO {
         this.email = email;
     }
 
-    public String getEmailAd() {
-        return emailAd;
+    public List<Car> getCars() {
+        return cars;
     }
 
-    public void setEmailAd(String emailAd) {
-        this.emailAd = emailAd;
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 }

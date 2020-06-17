@@ -6,6 +6,8 @@ import {RentingService} from '../../services/renting.service';
 import {UserService} from '../../services/user.service';
 import {SearchResultDialogComponent} from '../search-result-dialog/search-result-dialog.component';
 import {RateDialogComponent} from '../rate-dialog/rate-dialog.component';
+import {AdViewDialogComponent} from '../ad-view-dialog/ad-view-dialog.component';
+import {SendMessageDialogComponent} from '../send-message-dialog/send-message-dialog.component';
 
 @Component({
   selector: 'app-end-user-rented-cars',
@@ -14,7 +16,7 @@ import {RateDialogComponent} from '../rate-dialog/rate-dialog.component';
 })
 export class EndUserRentedCarsComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'rate'];
+  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'rate', 'message'];
   flag: boolean;
 
   users: Array<User>;
@@ -48,5 +50,12 @@ export class EndUserRentedCarsComponent implements OnInit {
     }
     ret = ret.substring(0, ret.length - 1);
     return ret;
+  }
+
+   message(request) {
+    setTimeout(() => {
+       this.dialog.open(SendMessageDialogComponent, {
+         width: '60%', disableClose: true, data: request.carsForRent
+       }); }, 200);
   }
 }

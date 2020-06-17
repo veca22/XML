@@ -19,9 +19,10 @@ export class SendMessageDialogComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public dialogRef: MatDialogRef<SendMessageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public dataEmail: any,
-    private messageService: MessageService) {
-    this.messageModel = new MessageModel('', '', '', '');
+    @Inject(MAT_DIALOG_DATA) public dataCars: any,
+    private messageService: MessageService,
+    private userService: UserService) {
+    this.messageModel = new MessageModel('', '', '');
   }
 
   ngOnInit() {
@@ -44,12 +45,12 @@ export class SendMessageDialogComponent implements OnInit {
 
     this.messageModel.subject = this.f.subject.value;
     this.messageModel.text = this.f.text.value;
-    this.messageModel.email = this.dataEmail;
-    // this.messageModel.emailAd;
+    this.messageModel.email = this.userService.getLoggedUser().email;
+    this.messageModel.cars = this.dataCars;
 
     this.messageService.sendMessage(this.messageModel).subscribe(
       res => {
-        alert('Reserved');
+        alert('Sent');
         this.dialogRef.close();
       },
       error => {
