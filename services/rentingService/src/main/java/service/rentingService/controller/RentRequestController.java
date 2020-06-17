@@ -11,10 +11,7 @@ import service.rentingService.dtos.AdFilterDTO;
 import service.rentingService.dtos.AddCommentDTO;
 import service.rentingService.dtos.SendDTO;
 import service.rentingService.model.*;
-import service.rentingService.service.AdService;
-import service.rentingService.service.ClientService;
-import service.rentingService.service.CommentService;
-import service.rentingService.service.RentRequestService;
+import service.rentingService.service.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,6 +33,9 @@ public class RentRequestController {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    CarService carService;
 
     @GetMapping("/rentRequestsForUser")
     public ResponseEntity<List<RentRequest>> requestsForUsers(@RequestParam(value = "email", required = true) String email) {
@@ -215,9 +215,23 @@ public class RentRequestController {
         c.setApproved(addCommentDTO.getComment().isApproved());
         c.setComment(addCommentDTO.getComment().getComment());
         c.setCommenter(addCommentDTO.getComment().getCommenter());
+        c.setCarRating(addCommentDTO.getRate());
         Ad ad = adService.findAdByCar(addCommentDTO.getCar());
         c.setAd(ad);
         commentService.addComment(c);
+
+        List<Comment> tmp = commentService.findAllByCar(addCommentDTO.getCar());
+        int i = 0;
+        double average = 0;
+        Car car = ad.getCar();
+        for(Comment comment : tmp) {
+            average = average + comment.getCarRating();
+            i++;
+        }
+
+        car.setAverageRating(average / i);
+        carService.addCar(car);
+
 
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
