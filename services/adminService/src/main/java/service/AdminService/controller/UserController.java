@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import service.AdminService.model.Comment;
 import service.AdminService.model.User;
 import service.AdminService.model.UserStatus;
+import service.AdminService.service.CommentService;
 import service.AdminService.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -74,5 +76,8 @@ public class UserController {
 
         return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
     }
+
+
+
 
 }

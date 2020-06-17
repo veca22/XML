@@ -47,6 +47,7 @@ import { RentDialogComponent } from './components/rent-dialog/rent-dialog.compon
 import { RentingRequestsComponent } from './components/renting-requests/renting-requests.component';
 import { EndUserRentedCarsComponent } from './components/end-user-rented-cars/end-user-rented-cars.component';
 import { RateDialogComponent } from './components/rate-dialog/rate-dialog.component';
+import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { RateDialogComponent } from './components/rate-dialog/rate-dialog.compon
     RentingRequestsComponent,
     EndUserRentedCarsComponent,
     RateDialogComponent,
+    CommentOperationComponent,
 
 
 

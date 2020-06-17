@@ -69,6 +69,8 @@ public class Comment {
         this.approved = approved;
     }
 
+    
+
     public Ad getAd() {
         return ad;
     }

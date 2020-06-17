@@ -31,4 +31,11 @@ public class CommentService {
         return commentRepo.findAllByAd_Car(car);
     }
 
+    public void save(Comment user) {
+        commentRepo.save(user);
+    }
+    public Comment findCommentById(Long id) {
+        return commentRepo.findCommentById(id);
+    }
 }
+
