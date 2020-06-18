@@ -1,7 +1,6 @@
-package service.AdminService.model;
+package com.services.messageService.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -78,5 +77,17 @@ public class Message {
 
     public void setMessageTime(Date messageTime) {
         this.messageTime = messageTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", sender=" + sender.toString() +
+                ", receiver=" + receiver.toString() +
+                ", text='" + text + '\'' +
+                ", subject='" + subject + '\'' +
+                ", messageTime=" + messageTime +
+                '}';
     }
 }

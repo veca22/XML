@@ -10,7 +10,8 @@ export const environment = {
  // endUser: '/endUser',
   user: '/user',
   admin: '/admin',
-  renting: '/renting'
+  renting: '/renting',
+  message: '/message'
 };
 
 /*

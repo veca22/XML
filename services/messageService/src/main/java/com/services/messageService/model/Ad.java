@@ -1,4 +1,4 @@
-package service.AdminService.model;
+package com.services.messageService.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

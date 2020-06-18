@@ -45,8 +45,12 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RentDialogComponent } from './components/rent-dialog/rent-dialog.component';
 import { RentingRequestsComponent } from './components/renting-requests/renting-requests.component';
+import { SendMessageDialogComponent } from './components/send-message-dialog/send-message-dialog.component';
 import { EndUserRentedCarsComponent } from './components/end-user-rented-cars/end-user-rented-cars.component';
 import { RateDialogComponent } from './components/rate-dialog/rate-dialog.component';
+import { InboxComponent } from './components/inbox/inbox.component';
+import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
+import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
 
 
@@ -77,8 +81,12 @@ import { CommentOperationComponent } from './components/comment-operation/commen
     AboutUsComponent,
     RentDialogComponent,
     RentingRequestsComponent,
+    SendMessageDialogComponent,
     EndUserRentedCarsComponent,
     RateDialogComponent,
+    InboxComponent,
+    ConversationDialogComponent,
+    ReplyMessageDialogComponent,
     CommentOperationComponent,
 
 
@@ -112,7 +120,9 @@ import { CommentOperationComponent } from './components/comment-operation/commen
 
   ],
 
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent, CartDialogComponent, RentDialogComponent, RateDialogComponent  ],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent,
+    CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent, ConversationDialogComponent,
+  ReplyMessageDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
