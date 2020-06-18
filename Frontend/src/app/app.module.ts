@@ -48,6 +48,9 @@ import { RentingRequestsComponent } from './components/renting-requests/renting-
 import { SendMessageDialogComponent } from './components/send-message-dialog/send-message-dialog.component';
 import { EndUserRentedCarsComponent } from './components/end-user-rented-cars/end-user-rented-cars.component';
 import { RateDialogComponent } from './components/rate-dialog/rate-dialog.component';
+import { InboxComponent } from './components/inbox/inbox.component';
+import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
+import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 
 
 @NgModule({
@@ -80,6 +83,9 @@ import { RateDialogComponent } from './components/rate-dialog/rate-dialog.compon
     SendMessageDialogComponent,
     EndUserRentedCarsComponent,
     RateDialogComponent,
+    InboxComponent,
+    ConversationDialogComponent,
+    ReplyMessageDialogComponent,
 
 
 
@@ -112,7 +118,9 @@ import { RateDialogComponent } from './components/rate-dialog/rate-dialog.compon
 
   ],
 
-  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent, CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent],
+  entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent,
+    CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent, ConversationDialogComponent,
+  ReplyMessageDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

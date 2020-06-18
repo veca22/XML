@@ -35,6 +35,11 @@ export class SendMessageDialogComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  close() {
+    this.dialogRef.close();
+
+  }
+
   private onSubmit() {
     this.submitted = true;
 
