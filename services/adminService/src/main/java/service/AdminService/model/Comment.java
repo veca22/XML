@@ -65,11 +65,23 @@ public class Comment {
         this.approved = approved;
     }
 
+
     public Ad getAd() {
         return ad;
     }
 
     public void setAd(Ad ad) {
         this.ad = ad;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", commenter=" + commenter +
+                ", comment='" + comment + '\'' +
+                ", approved=" + approved +
+                ", ad=" + ad +
+                '}';
     }
 }

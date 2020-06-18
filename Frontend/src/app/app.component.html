@@ -16,6 +16,7 @@
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isAdministrator()">
+      <a mat-list-item routerLink="/administrator/home">Home</a>
       <a mat-list-item routerLink="/codeBook">Codebook</a>
       <a mat-list-item routerLink="/addCarBrand">Add Car Brand</a>
       <a mat-list-item routerLink="/addCarModel">Add Car Model</a>
@@ -23,14 +24,12 @@
       <a mat-list-item routerLink="/addFuelType">Add Fuel type</a>
       <a mat-list-item routerLink="/addTransmissionType">Add Transmission type</a>
       <a mat-list-item routerLink="/administrator/end-users-operations">End user operations</a>
-
-      <a mat-list-item routerLink="/administrator/home">Home</a>
-
-
+      <a mat-list-item routerLink="/administrator/commentForOperation">Comments operations</a>
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isEndUser()">
+      <a mat-list-item routerLink="endUser/home">Home</a>
       <a mat-list-item routerLink="endUser/addAd">Add new ad</a>
       <a mat-list-item routerLink="/search">Search cars</a>
       <a mat-list-item routerLink="/inbox">Inbox</a>

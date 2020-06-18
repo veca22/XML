@@ -51,6 +51,7 @@ import { RateDialogComponent } from './components/rate-dialog/rate-dialog.compon
 import { InboxComponent } from './components/inbox/inbox.component';
 import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
+import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { ReplyMessageDialogComponent } from './components/reply-message-dialog/r
     InboxComponent,
     ConversationDialogComponent,
     ReplyMessageDialogComponent,
+    CommentOperationComponent,
 
 
 

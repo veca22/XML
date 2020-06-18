@@ -19,6 +19,9 @@ public class Comment {
     @Column
     private boolean approved = false;
 
+    @Column
+    private int carRating;
+
     @ManyToOne
     @JoinColumn(name = "ad_id")
     private Ad ad;
@@ -26,10 +29,11 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(User commenter, String comment, boolean approved, Ad ad) {
+    public Comment(User commenter, String comment, boolean approved, int carRating, Ad ad) {
         this.commenter = commenter;
         this.comment = comment;
         this.approved = approved;
+        this.carRating = carRating;
         this.ad = ad;
     }
 
@@ -65,11 +69,21 @@ public class Comment {
         this.approved = approved;
     }
 
+    
+
     public Ad getAd() {
         return ad;
     }
 
     public void setAd(Ad ad) {
         this.ad = ad;
+    }
+
+    public int getCarRating() {
+        return carRating;
+    }
+
+    public void setCarRating(int carRating) {
+        this.carRating = carRating;
     }
 }
