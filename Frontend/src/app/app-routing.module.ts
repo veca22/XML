@@ -123,7 +123,8 @@ const routes: Routes = [
   {
     path: 'inbox',
     component: InboxComponent
-  }
+  },
+  {
     path: 'administrator/commentForOperation',
     component: CommentOperationComponent,
   },
