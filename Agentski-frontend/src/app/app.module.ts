@@ -28,6 +28,7 @@ import {MatCardModule} from '@angular/material/card';
     ReactiveFormsModule,
     MatCardModule,
     RouterModule,
+    App
   ],
   providers: [],
   bootstrap: [AppComponent]
