@@ -9,8 +9,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {LoginComponent} from './components/login/login.component';
 import {HomePageComponent} from './components/home-page/home-page.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import {MatFormFieldModule, MatNativeDateModule, MatPaginatorModule, MatTableModule} from '@angular/material';
+import {LayoutModule} from '@angular/cdk/layout';
+import {DemoMaterialModule} from './material-module';
 
 @NgModule({
   declarations: [
@@ -21,14 +26,23 @@ import {MatCardModule} from '@angular/material/card';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatListModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatListModule,
     MatIconModule,
-    ReactiveFormsModule,
-    MatCardModule,
     RouterModule,
-    App
+    MatCardModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    LayoutModule,
+    FormsModule,
+    MatNativeDateModule,
+    DemoMaterialModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
