@@ -50,7 +50,6 @@ export class AddAdComponent implements OnInit {
   carTypes: Array<CarType>;
   transTypes: Array<TransmissionType>;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   ads: Array<Ad> = new Array<Ad>();
   listCarBrand: Array<CarBrand> =  new Array<CarBrand>();
   constructor(public dialog: MatDialog,
@@ -67,8 +66,10 @@ export class AddAdComponent implements OnInit {
     this.carTypes = carTypeService.getAllCarType();
     this.transTypes = transmissionTypeService.getAllTransmissionType();
     this.email = this.userService.getLoggedUser().email;
-    console.log('Email ispod');
-    console.log(this.email);
+    console.log(this.fuelTypes);
+    console.log(this.carTypes);
+    console.log(this.transTypes);
+
 
   }
 

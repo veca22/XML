@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import {TransmissionType} from '../model/transmissionType';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {CarType} from '../model/carType';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransmissionTypeService {
+
   listTransmissionTypes: Array<TransmissionType> = new Array<TransmissionType>();
   transmissionType: TransmissionType;
 
-  constructor(private http: HttpClient, private transmissionTypeService: TransmissionTypeService) {
+  constructor(private http: HttpClient) {
     this.getAllTransmissionType();
   }   // za ovo pitati
 
@@ -35,7 +35,7 @@ export class TransmissionTypeService {
   }
 
   public getAllTransmissionType(): Array<TransmissionType> {
-    this.http.get(environment.gateway + environment.admin + '/transmissionType/all').subscribe((data: TransmissionType[]) => {
+    this.http.get(environment.url + environment.transmissionType + '/all').subscribe((data: TransmissionType[]) => {
         let flag = 0;
         for (const c of data) {
           flag = 0;
@@ -59,6 +59,6 @@ export class TransmissionTypeService {
   }
 
   public newTransmissionType(transmissionType) {
-    return this.http.post(environment.gateway + environment.admin + '/addTransmissionType', transmissionType);
+    return this.http.post(environment.url + environment.transmissionType + '/addTransmissionType', transmissionType);
   }
 }

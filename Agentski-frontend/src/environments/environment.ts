@@ -5,7 +5,13 @@
 export const environment = {
   production: false,
   url: 'http://localhost:8082',
-  user: '/user'
+  user: '/user',
+  ad: '/ad',
+  admin: '/admin',
+  renting: '/renting',
+  fuelType: 'fuelType',
+  carType: 'carType',
+  transmissionType: '/transmissionType',
 };
 
 /*

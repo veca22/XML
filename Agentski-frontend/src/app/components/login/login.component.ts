@@ -112,6 +112,20 @@ export class LoginComponent implements OnInit {
           console.log(error1);
         }
       );
+    } else if (this.user.role === Role.AGENT && this.f.email.value === this.user.email && this.f.password.value === this.user.password) {
+      this.userService.login(this.user).subscribe(
+        data => {
+          if (data !== null) {
+            this.userService.setLoggedUser(this.user);
+            this.router.navigate(['agent/home']);
+          } else {
+            alert('Login error');
+          }
+        },
+        error1 => {
+          console.log(error1);
+        }
+      );
     }
   }
 }

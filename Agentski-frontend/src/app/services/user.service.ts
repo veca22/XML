@@ -24,7 +24,7 @@ export class UserService {
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
     this.adWithTimes = new Array<AdWithTimes>();
-    this.endUsersForOperations = this.getEndUsersForOperations();
+    // this.endUsersForOperations = this.getEndUsersForOperations();
   }
 
   public isLoggedIn() {
@@ -51,6 +51,12 @@ export class UserService {
   public isAdministrator() {
     if (this.isLoggedIn()) {
       return this.user.role === Role.ADMINISTRATOR;
+    }
+  }
+
+  public isAgent() {
+    if (this.isLoggedIn()) {
+      return this.user.role === Role.AGENT;
     }
   }
 

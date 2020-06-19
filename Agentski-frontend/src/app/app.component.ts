@@ -31,6 +31,10 @@ export class AppComponent {
     return this.userService.isEndUser();
   }
 
+  public isAgent() {
+    return this.userService.isAgent();
+  }
+
   public onLogout() {
     this.userService.logOut();
   }

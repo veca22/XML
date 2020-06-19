@@ -16,12 +16,20 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule, MatNativeDateModule, MatPaginatorModule, MatTableModule} from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 import {DemoMaterialModule} from './material-module';
+import { AgentHomeComponent } from './components/agent-home/agent-home.component';
+import {AddAdComponent} from './components/add-ad/add-ad.component';
+import {AdViewDialogComponent} from './components/ad-view-dialog/ad-view-dialog.component';
+import {AddPicturesDialogComponent} from './components/add-pictures-dialog/add-pictures-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomePageComponent,
+    AgentHomeComponent,
+    AddAdComponent,
+    AdViewDialogComponent,
+    AddPicturesDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +51,11 @@ import {DemoMaterialModule} from './material-module';
     MatNativeDateModule,
     DemoMaterialModule,
 
+  ],
+  entryComponents: [
+    AddAdComponent,
+    AdViewDialogComponent,
+    AddPicturesDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
