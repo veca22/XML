@@ -17,8 +17,9 @@
 
     <mat-nav-list *ngIf="isAgent()">
       <a mat-list-item routerLink="/agent/home">Home</a>
-      <a mat-list-item (click)="onLogout()">Logout</a>
       <a mat-list-item routerLink="agent/addAd">Add new ad</a>
+      <a mat-list-item routerLink="agent/myAds">My ads</a>
+      <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
     <mat-nav-list *ngIf="isAdministrator()">
