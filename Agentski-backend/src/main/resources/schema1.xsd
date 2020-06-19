@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                          xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+                          targetNamespace="http://spring.io/guides/gs-producing-web-service">
+
+  <xs:complexType name="CarBrand">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="brand" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CarModel">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="model" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CarType">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FuelType">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+      <xs:element name="serialNumber" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TransmissionType">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="serialNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Car">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="carBrand" type="CarBrand" minOccurs="0"/>
+      <xs:element name="carModel" type="CarModel" minOccurs="0"/>
+      <xs:element name="carType" type="CarType" minOccurs="0"/>
+      <xs:element name="fuelType" type="FuelType" minOccurs="0"/>
+      <xs:element name="transmissionType" type="TransmissionType" minOccurs="0"/>
+      <xs:element name="price" type="xs:int"/>
+      <xs:element name="discount" type="xs:int"/>
+      <xs:element name="mileage" type="xs:float"/>
+      <xs:element name="carStatus" type="CarStatus" minOccurs="0"/>
+      <xs:element name="distanceAllowed" type="xs:float"/>
+      <xs:element name="collisionDamageWaiver" type="xs:boolean"/>
+      <xs:element name="childSeats" type="xs:int"/>
+      <xs:element name="averageRating" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="CarStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RENTED"/>
+      <xs:enumeration value="NOT_RENTED"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+
