@@ -3,56 +3,93 @@ package com.agent.backend.model;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @Table
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "Car", propOrder = {
+        "id",
+        "carBrand",
+        "carModel",
+        "carType",
+        "fuelType",
+        "transmissionType",
+        "price",
+        "discount",
+        "mileage",
+        "carStatus",
+        "distanceAllowed",
+        "collisionDamageWaiver",
+        "childSeats",
+        "averageRating"
+})  //mozda dodati posle }, namespace = "nekiUri/car"
+
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @ManyToOne
+    @XmlElement
     private CarBrand carBrand;
 
     @ManyToOne
+    @XmlElement
     private CarModel carModel;
 
     @OneToOne
+    @XmlElement
     private CarType carType;
 
     @ManyToOne
+    @XmlElement
     private FuelType fuelType;
 
     @ManyToOne
+    @XmlElement
     private TransmissionType transmissionType;
 
     @Column(nullable = false)
     @Range(min = 0, max = 1000000)
+    @XmlElement
     private int price;
 
     @Column(nullable = false)
+    @XmlElement
     private int discount;
 
     @Column(nullable = false)
     @Range(min = 0, max = 1000000)
+    @XmlElement
     private float mileage;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @XmlElement
     private CarStatus carStatus;
 
     @Column(nullable = false)
+    @XmlElement
     private float distanceAllowed;
 
     @Column(nullable = false)
+    @XmlElement
     private boolean collisionDamageWaiver = false;
 
     @Column(nullable = false)
     @Range(min = 0, max = 5)
+    @XmlElement
     private int childSeats;
 
     @Column(nullable = false)
+    @XmlElement
     private double averageRating = 0;
 
     public Car(Long id, CarBrand carBrand, CarType carType, FuelType fuelType, TransmissionType transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {

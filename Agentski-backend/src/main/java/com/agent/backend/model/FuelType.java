@@ -1,17 +1,32 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "FuelType", propOrder = {
+        "id",
+        "type",
+        "serialNumber"
+})  //mozda dodati posle }, namespace = "nekiUri/fuel_type"
+
 public class FuelType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @Column
+    @XmlElement
     private String type;
 
     @Column
+    @XmlElement
     private String serialNumber;
 
     public FuelType() {

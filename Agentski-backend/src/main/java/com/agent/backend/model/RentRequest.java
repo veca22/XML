@@ -3,37 +3,60 @@ package com.agent.backend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "RentRequest", propOrder = {
+        "id",
+        "reservedFrom",
+        "reservedTo",
+        "timeCreated",
+        "rentRequestStatus",
+        "carsForRent",
+        "client"
+})  //mozda dodati posle }, namespace = "nekiUri/rent_request"
+
 public class RentRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @Column(nullable = false)
+    @XmlElement
     private Date reservedFrom;
 
     @Column(nullable = false)
+    @XmlElement
     private Date reservedTo;
 
     @JsonIgnore
     @Column(nullable = false)
+    @XmlElement
     private LocalDateTime timeCreated;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @XmlElement
     private RentRequestStatus rentRequestStatus;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @XmlElement
     private Set<Car> carsForRent = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
+    @XmlElement
     private Client client;
 
     public RentRequest() {
