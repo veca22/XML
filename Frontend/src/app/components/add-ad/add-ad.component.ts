@@ -50,7 +50,6 @@ export class AddAdComponent implements OnInit {
   carTypes: Array<CarType>;
   transTypes: Array<TransmissionType>;
 
-  dataSource = new MatTableDataSource<Ad>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   ads: Array<Ad> = new Array<Ad>();
   listCarBrand: Array<CarBrand> =  new Array<CarBrand>();
@@ -92,8 +91,6 @@ export class AddAdComponent implements OnInit {
       place: new FormControl('', [Validators.required]),
       carModel: new FormControl('', [Validators.required]),
     });
-    this.all();
-    this.dataSource.paginator = this.paginator;
   }
   get f() {
     return this.addAdForm.controls;
@@ -166,14 +163,6 @@ export class AddAdComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  all() {
-    this.dataSource = new MatTableDataSource<Ad>(this.adService.getAllAds());
   }
 
 }
