@@ -1,30 +1,51 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "Message", propOrder = {
+        "id",
+        "sender",
+        "receiver",
+        "text",
+        "subject",
+        "messageTime"
+})  //mozda dodati posle }, namespace = "nekiUri/message"
+
 public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "sender_id", nullable = false)
+    @XmlElement
     private User sender;
 
     @ManyToOne
     @JoinColumn(name = "receiver_id", nullable = false)
+    @XmlElement
     private User receiver;
 
     @Column
+    @XmlElement
     private String text;
 
     @Column
+    @XmlElement
     private String subject;
 
     @Column
+    @XmlElement
     private Date messageTime;
 
 

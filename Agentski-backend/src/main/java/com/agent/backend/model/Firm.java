@@ -1,24 +1,43 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "Firm", propOrder = {
+        "id",
+        "firmName",
+        "pib",
+        "address",
+        "phoneNumber"
+})  //mozda dodati posle }, namespace = "nekiUri/firm"
+
 public class Firm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @Column(nullable = false)
+    @XmlElement
     private String firmName;
 
     @Column(nullable = false)
+    @XmlElement
     private String pib;
 
     @Column(nullable = false)
+    @XmlElement
     private String address;
 
     @Column(nullable = false)
+    @XmlElement
     private String phoneNumber;
 
     public Firm() {
