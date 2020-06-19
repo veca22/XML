@@ -1,28 +1,46 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @Table(name="users")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "User", propOrder = {
+        "id",
+        "email",
+        "password",
+        "role",
+        "status"
+})  //mozda dodati posle }, namespace = "nekiUri/user"
+
 public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @Column(nullable = false)
+    @XmlElement
     private String email;
 
     @Column(nullable = false)
+    @XmlElement
     private String password;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @XmlElement
     private Role role;
-
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @XmlElement
     private UserStatus status;
 
     public User(String email, String password, Role role, UserStatus status) {

@@ -1,25 +1,44 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "PriceList", propOrder = {
+        "id",
+        "realPrice",
+        "priceForMileage",
+        "priceForCollisionDamageWavier",
+        "ad"
+})  //mozda dodati posle }, namespace = "nekiUri/price_list"
+
 public class PriceList {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @Column
+    @XmlElement
     private double realPrice;   //stvarna cena auta
 
     @Column
+    @XmlElement
     private double priceForMileage; //cena za kilometrazu
 
     @Column
+    @XmlElement
     private double priceForCollisionDamageWavier;   //cena za collision
 
     @ManyToOne
     @JoinColumn(name = "ad_id")
+    @XmlElement
     private Ad ad;  //oglas
 
     public PriceList() {

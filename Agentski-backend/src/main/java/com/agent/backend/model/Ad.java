@@ -3,57 +3,92 @@ package com.agent.backend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "Ad", propOrder = {
+        "id",
+        "car",
+        "profilePicture",
+        "title",
+        "pictureSet",
+        "client",
+        "startOfAd",
+        "endOfAd",
+        "description",
+        "isActive",
+        "currentDriver",
+        "comments",
+        "place"
+})  //mozda dodati posle }, namespace = "nekiUri/ad"
+
 public class Ad {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @XmlElement
     private Car car;
 
     @Column
+    @XmlElement
     private String profilePicture;
 
     @Column
+    @XmlElement
     private String title;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @XmlElement
     private Set<Picture> pictureSet;
 
     //client
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @XmlElement
     private Client client;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
+    @XmlElement
     private Date startOfAd;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
+    @XmlElement
     private Date endOfAd;
 
     @Column
+    @XmlElement
     private String description;
 
     @Column
+    @XmlElement
     private boolean isActive;
 
 
     @OneToOne(fetch = FetchType.EAGER)
+    @XmlElement
     private Client currentDriver;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @XmlElement
     private Set<Comment> comments;
 
     @Column
+    @XmlElement
     private String place;
 
     public Ad() {
