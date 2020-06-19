@@ -1,7 +1,11 @@
 package com.agent.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,21 +16,28 @@ public class RentRequest {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDateTime reservedFrom;
+    private Date reservedFrom;
 
     @Column(nullable = false)
-    private LocalDateTime reservedTo;
+    private Date reservedTo;
+
+    @JsonIgnore
+    @Column(nullable = false)
+    private LocalDateTime timeCreated;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private RentRequestStatus rentRequest;
+    private RentRequestStatus rentRequestStatus;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Car> carsForRent;
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private Set<Car> carsForRent = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
+
+    public RentRequest() {
+    }
 
     public Long getId() {
         return id;
@@ -36,28 +47,28 @@ public class RentRequest {
         this.id = id;
     }
 
-    public LocalDateTime getReservedFrom() {
+    public Date getReservedFrom() {
         return reservedFrom;
     }
 
-    public void setReservedFrom(LocalDateTime reservedFrom) {
+    public void setReservedFrom(Date reservedFrom) {
         this.reservedFrom = reservedFrom;
     }
 
-    public LocalDateTime getReservedTo() {
+    public Date getReservedTo() {
         return reservedTo;
     }
 
-    public void setReservedTo(LocalDateTime reservedTo) {
+    public void setReservedTo(Date reservedTo) {
         this.reservedTo = reservedTo;
     }
 
-    public RentRequestStatus getRentRequest() {
-        return rentRequest;
+    public RentRequestStatus getRentRequestStatus() {
+        return rentRequestStatus;
     }
 
-    public void setRentRequest(RentRequestStatus rentRequest) {
-        this.rentRequest = rentRequest;
+    public void setRentRequestStatus(RentRequestStatus rentRequestStatus) {
+        this.rentRequestStatus = rentRequestStatus;
     }
 
     public Set<Car> getCarsForRent() {
@@ -74,5 +85,13 @@ public class RentRequest {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public LocalDateTime getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(LocalDateTime timeCreated) {
+        this.timeCreated = timeCreated;
     }
 }

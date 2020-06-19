@@ -1,7 +1,7 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Message {
@@ -19,8 +19,63 @@ public class Message {
     private User receiver;
 
     @Column
-    private String message;
+    private String text;
 
     @Column
-    private LocalDateTime messageTime;
+    private String subject;
+
+    @Column
+    private Date messageTime;
+
+
+    public Message() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public Date getMessageTime() {
+        return messageTime;
+    }
+
+    public void setMessageTime(Date messageTime) {
+        this.messageTime = messageTime;
+    }
 }
