@@ -48,6 +48,10 @@ public class Client {
     @Column(nullable = false)
     private int adCounter;
 
+    public Client() {
+
+    }
+
 
     //endUser
     public Client(String email,String password,String firstName,String lastName,String jmbg,String phoneNumber,String address) {

@@ -160,7 +160,6 @@ export class AddAdComponent implements OnInit {
           }); }, 200);
       },
       error => {
-        alert('Client already has 3 ads');
         console.log(error);
       }
     );

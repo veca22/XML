@@ -48,4 +48,8 @@ public class FuelTypeService {
         }
         return null;
     }
+
+    public FuelType findFuelByType(String type){
+        return fuelTypeRepo.findFuelTypeByType(type);
+    }
 }

@@ -9,8 +9,8 @@ export const environment = {
   ad: '/ad',
   admin: '/admin',
   renting: '/renting',
-  fuelType: 'fuelType',
-  carType: 'carType',
+  fuelType: '/fuelType',
+  carType: '/carType',
   transmissionType: '/transmissionType',
 };
 

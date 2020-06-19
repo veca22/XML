@@ -49,4 +49,8 @@ public class CarTypeService {
         }
         return null;
     }
+
+    public CarType findByType(String type){
+        return carTypeRepo.findCarTypeByType(type);
+    }
 }

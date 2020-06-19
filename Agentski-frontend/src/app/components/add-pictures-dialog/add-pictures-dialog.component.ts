@@ -71,7 +71,7 @@ export class AddPicturesDialogComponent implements OnInit {
         console.log(res);
         alert('Uploaded Successfully.');
         this.dialogRef.close();
-        this.router.navigate(['/endUser/home']);
+        this.router.navigate(['/agent/home']);
       });
   }
 

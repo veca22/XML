@@ -49,4 +49,6 @@ public class TransmissionTypeService {
         }
         return null;
     }
+
+    public TransmissionType findTransByType(String type) { return transmissionTypeRepo.findTransmissionTypeByType(type);}
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface CarTypeRepo extends JpaRepository<CarType, Long> {
     List<CarType> findAll();
     CarType findCarTypeById(Long id);
+    CarType findCarTypeByType(String type);
 }

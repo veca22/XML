@@ -7,4 +7,5 @@ import java.util.List;
 public interface TransmissionTypeRepo extends JpaRepository<TransmissionType, Long> {
     List<TransmissionType> findAll();
     TransmissionType findTransmissionTypeById(Long id);
+    TransmissionType findTransmissionTypeByType(String type);
 }
