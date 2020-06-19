@@ -1,6 +1,7 @@
 package com.agent.backend.services;
 
 import com.agent.backend.model.Ad;
+import com.agent.backend.model.Car;
 import com.agent.backend.repository.AdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,13 @@ public class AdService {
         return  adRepo.findAllByClientId(id);
     }
 
+    public Ad findAdByCarId(Long id) {
+        return adRepo.findAdByCarId(id);
+    }
+    public Ad findAdByCar(Car car) {
+        return adRepo.findAdByCar(car);
+    }
+    public List<Ad> findAllByCarId(Long id) {return adRepo.findAllByCarId(id); }
     public Ad save(Ad c)
     {
         return  adRepo.save(c);

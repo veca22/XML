@@ -20,6 +20,8 @@ import { AgentHomeComponent } from './components/agent-home/agent-home.component
 import {AddAdComponent} from './components/add-ad/add-ad.component';
 import {AdViewDialogComponent} from './components/ad-view-dialog/ad-view-dialog.component';
 import {AddPicturesDialogComponent} from './components/add-pictures-dialog/add-pictures-dialog.component';
+import { AgentAdsComponent } from './components/agent-ads/agent-ads.component';
+import {RentDialogComponent} from './components/rent-dialog/rent-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import {AddPicturesDialogComponent} from './components/add-pictures-dialog/add-p
     AddAdComponent,
     AdViewDialogComponent,
     AddPicturesDialogComponent,
+    AgentAdsComponent,
+    RentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,7 @@ import {AddPicturesDialogComponent} from './components/add-pictures-dialog/add-p
     AddAdComponent,
     AdViewDialogComponent,
     AddPicturesDialogComponent,
+    RentDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
