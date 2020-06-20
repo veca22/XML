@@ -17,40 +17,41 @@
 
     <mat-nav-list *ngIf="isAgent()">
       <a mat-list-item routerLink="/agent/home">Home</a>
+      <a mat-list-item routerLink="/inbox">Inbox</a>
       <a mat-list-item routerLink="agent/addAd">Add new ad</a>
       <a mat-list-item routerLink="agent/myAds">My ads</a>
+      <a mat-list-item routerLink="agent/myActiveRents">My active rents</a>
       <a mat-list-item routerLink="agent/RateAndComment">Rate and comment</a>
       <a mat-list-item routerLink="agent/rentedCars">Rented cars</a>
-
       <a mat-list-item (click)="onLogout()">Logout</a>
     </mat-nav-list>
 
-    <mat-nav-list *ngIf="isAdministrator()">
-      <a mat-list-item routerLink="/administrator/home">Home</a>
-      <a mat-list-item routerLink="/codeBook">Codebook</a>
-      <a mat-list-item routerLink="/addCarBrand">Add Car Brand</a>
-      <a mat-list-item routerLink="/addCarModel">Add Car Model</a>
-      <a mat-list-item routerLink="/addCarType">Add Car Type</a>
-      <a mat-list-item routerLink="/addFuelType">Add Fuel type</a>
-      <a mat-list-item routerLink="/addTransmissionType">Add Transmission type</a>
-      <a mat-list-item routerLink="/administrator/end-users-operations">End user operations</a>
-      <a mat-list-item routerLink="/administrator/commentForOperation">Comments operations</a>
-      <a mat-list-item (click)="onLogout()">Logout</a>
-    </mat-nav-list>
+<!--    <mat-nav-list *ngIf="isAdministrator()">-->
+<!--      <a mat-list-item routerLink="/administrator/home">Home</a>-->
+<!--      <a mat-list-item routerLink="/codeBook">Codebook</a>-->
+<!--      <a mat-list-item routerLink="/addCarBrand">Add Car Brand</a>-->
+<!--      <a mat-list-item routerLink="/addCarModel">Add Car Model</a>-->
+<!--      <a mat-list-item routerLink="/addCarType">Add Car Type</a>-->
+<!--      <a mat-list-item routerLink="/addFuelType">Add Fuel type</a>-->
+<!--      <a mat-list-item routerLink="/addTransmissionType">Add Transmission type</a>-->
+<!--      <a mat-list-item routerLink="/administrator/end-users-operations">End user operations</a>-->
+<!--      <a mat-list-item routerLink="/administrator/commentForOperation">Comments operations</a>-->
+<!--      <a mat-list-item (click)="onLogout()">Logout</a>-->
+<!--    </mat-nav-list>-->
 
-    <mat-nav-list *ngIf="isEndUser()">
-      <a mat-list-item routerLink="endUser/home">Home</a>
-      <a mat-list-item routerLink="endUser/addAd">Add new ad</a>
-      <a mat-list-item routerLink="/search">Search cars</a>
-      <a mat-list-item routerLink="/inbox">Inbox</a>
-      <a mat-list-item routerLink="endUser/myAds">My ads</a>
-      <a mat-list-item routerLink="endUser/rentingRequests">Renting requests</a>
-      <a mat-list-item routerLink="endUser/rentedCars">Rented cars</a>
-      <a mat-list-item routerLink="endUser/rentConditions">Rent conditions</a>
-      <a mat-list-item routerLink="endUser/Contact">Contact</a>
-      <a mat-list-item routerLink="endUser/About">About</a>
-      <a mat-list-item (click)="onLogout()">Logout</a>
-    </mat-nav-list>
+<!--    <mat-nav-list *ngIf="isEndUser()">-->
+<!--      <a mat-list-item routerLink="endUser/home">Home</a>-->
+<!--      <a mat-list-item routerLink="endUser/addAd">Add new ad</a>-->
+<!--      <a mat-list-item routerLink="/search">Search cars</a>-->
+<!--      <a mat-list-item routerLink="/inbox">Inbox</a>-->
+<!--      <a mat-list-item routerLink="endUser/myAds">My ads</a>-->
+<!--      <a mat-list-item routerLink="endUser/rentingRequests">Renting requests</a>-->
+<!--      <a mat-list-item routerLink="endUser/rentedCars">Rented cars</a>-->
+<!--      <a mat-list-item routerLink="endUser/rentConditions">Rent conditions</a>-->
+<!--      <a mat-list-item routerLink="endUser/Contact">Contact</a>-->
+<!--      <a mat-list-item routerLink="endUser/About">About</a>-->
+<!--      <a mat-list-item (click)="onLogout()">Logout</a>-->
+<!--    </mat-nav-list>-->
 
   </mat-sidenav>
   <mat-sidenav-content>

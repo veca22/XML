@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {MessageService} from '../../services/message.service';
 import {UserService} from '../../services/user.service';
+import {Message} from '../../model/message';
 
 @Component({
   selector: 'app-send-message-dialog',
@@ -15,14 +16,15 @@ export class SendMessageDialogComponent implements OnInit {
   private loginForm: FormGroup;
   private submitted = false;
   messageModel: MessageModel;
+  message: Message;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     public dialogRef: MatDialogRef<SendMessageDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public dataCars: any,
+    @Inject(MAT_DIALOG_DATA) public dataId: any,
     private messageService: MessageService,
     private userService: UserService) {
-    this.messageModel = new MessageModel('', '', '');
+    this.messageModel = new MessageModel('', '', '', dataId);
   }
 
   ngOnInit() {
@@ -51,8 +53,7 @@ export class SendMessageDialogComponent implements OnInit {
     this.messageModel.subject = this.f.subject.value;
     this.messageModel.text = this.f.text.value;
     this.messageModel.email = this.userService.getLoggedUser().email;
-    this.messageModel.cars = this.dataCars;
-
+    console.log(this.messageModel);
     this.messageService.sendMessage(this.messageModel).subscribe(
       res => {
         alert('Sent');

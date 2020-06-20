@@ -45,4 +45,26 @@ export class MessageService {
   public reply(mes: Message) {
     return this.http.post(environment.url + environment.message + '/reply', mes);
   }
+
+  public getReceivers(us: User): Array<User> {
+    console.log('usao sam' + us.email);
+    let params = new HttpParams();
+    params = params.append('email', us.email);
+    this.receivers = new Array<User>();
+    this.http.get(environment.url + environment.message + '/getReceivers', {params}).subscribe((data: User[]) => {
+        for (const c of data) {
+          this.rec = c;
+          this.receivers.push(this.rec);
+        }
+      },
+      error1 => {
+        console.log(error1);
+      }
+    );
+    return this.receivers;
+  }
+
+  public getReceiversList() {
+    return this.receivers;
+  }
 }

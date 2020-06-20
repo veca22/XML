@@ -28,8 +28,8 @@ import { ConversationDialogComponent } from './components/conversation-dialog/co
 import { SendMessageDialogComponent } from './components/send-message-dialog/send-message-dialog.component';
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { ViewRateAndCommentsComponent } from './components/view-rate-and-comments/view-rate-and-comments.component';
-import { AgentRentedCarsComponent } from './components/agent-rented-cars/agent-rented-cars.component';
 import { RateDialogComponentComponent } from './components/rate-dialog-component/rate-dialog-component.component';
+import { AgentReservedCarsComponent } from './components/agent-reserved-cars/agent-reserved-cars.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { RateDialogComponentComponent } from './components/rate-dialog-component
     ViewRateAndCommentsComponent,
     AgentRentedCarsComponent,
     RateDialogComponentComponent,
+    AgentReservedCarsComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,8 +78,9 @@ import { RateDialogComponentComponent } from './components/rate-dialog-component
     AdViewDialogComponent,
     AddPicturesDialogComponent,
     RentDialogComponent,
-    ConversationDialogComponent
+    ConversationDialogComponent,
     RateDialogComponentComponent,
+    SendMessageDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

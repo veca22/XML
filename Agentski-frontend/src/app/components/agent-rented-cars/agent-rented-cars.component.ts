@@ -4,11 +4,6 @@ import {MatDialog, MatTableDataSource} from '@angular/material';
 import {RentRequest} from '../../model/rentRequest';
 import {UserService} from '../../services/user.service';
 import {SendMessageDialogComponent} from '../send-message-dialog/send-message-dialog.component';
-import {RentingService} from '../../services/renting.service';
-import {RentRequest} from '../../model/rentRequest';
-import {MatDialog, MatTableDataSource} from '@angular/material';
-import {User} from '../../model/user';
-import {UserService} from '../../services/user.service';
 import {RentServiceService} from '../../services/rent-service.service';
 import {RateDialogComponentComponent} from '../rate-dialog-component/rate-dialog-component.component';
 
@@ -21,7 +16,7 @@ import {RateDialogComponentComponent} from '../rate-dialog-component/rate-dialog
 export class AgentRentedCarsComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'message', 'cars', 'rate'];
+  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'rate', 'message'];
 
   flag: boolean;
 
@@ -60,12 +55,12 @@ export class AgentRentedCarsComponent implements OnInit {
   }
 
 
-  message(request) {
-    setTimeout(() => {
-      this.dialog.open(SendMessageDialogComponent, {
-        width: '60%', disableClose: true, data: request.carsForRent
-      }); }, 200);
-  }
+  // message(request) {
+  //   setTimeout(() => {
+  //     this.dialog.open(SendMessageDialogComponent, {
+  //       width: '60%', disableClose: true, data: request.carsForRent
+  //     }); }, 200);
+  // }
 
 
   carsToString1(request: RentRequest) {

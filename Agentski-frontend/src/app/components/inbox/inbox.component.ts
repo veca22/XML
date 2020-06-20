@@ -25,7 +25,7 @@ export class InboxComponent implements OnInit {
   ) {
     this.conversation = new Conversation();
     console.log(this.receivers);
-    // this.receivers = this.messageService.getReceiversList();
+    this.receivers = this.messageService.getReceiversList();
     this.DataSource = new MatTableDataSource(this.receivers);
     console.log(this.receivers);
   }
