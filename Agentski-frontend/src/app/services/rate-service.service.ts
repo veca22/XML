@@ -11,7 +11,7 @@ export class RateServiceService {
   commentForOperations: Array<Comment> = new Array<Comment>();
   comment: Comment;
   constructor(private router: Router, private http: HttpClient) {
-    this.commentForOperations = this.getCommentForOperation();
+   // this.commentForOperations = this.getCommentForOperation();
   }
 
   public getCommentForOperation(): Array<Comment> {

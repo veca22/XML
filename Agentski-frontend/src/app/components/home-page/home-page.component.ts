@@ -7,10 +7,8 @@ import {RateServiceService} from '../../services/rate-service.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  adm: Array<Comment>;
 
   constructor(private rateService: RateServiceService) {
-    this.adm = this.rateService.getCommentForOperation();
 
   }
 
