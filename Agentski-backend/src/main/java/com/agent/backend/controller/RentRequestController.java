@@ -153,4 +153,26 @@ public class RentRequestController {
         }
         return new ResponseEntity<>(pom, HttpStatus.OK);
     }
+
+    @GetMapping("renting/userRentedAds")
+    public ResponseEntity<List<RentRequest>> userRentedAds(@RequestParam(value = "email", required = true) String email) {
+        Client c = clientService.findClientByEmail(email);
+        List<RentRequest> tmp = new ArrayList<>();
+        List<RentRequest> ret = rentRequestService.findAll();
+        for(RentRequest r : ret) {
+            if(r.getRentRequestStatus()==RentRequestStatus.RESERVED) {
+                for (Car car : r.getCarsForRent()) {
+                    List<Ad> ads = adService.findAllByCarId(car.getId());
+                    for (Ad a : ads) {
+                        if (a.getClient().getId() == c.getId()) {
+                            tmp.add(r);
+                        }
+                    }
+                }
+            }
+        }
+        return new ResponseEntity<>(tmp, HttpStatus.OK);
+    }
+
+
 }

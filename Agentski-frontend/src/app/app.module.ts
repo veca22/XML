@@ -22,6 +22,11 @@ import {AdViewDialogComponent} from './components/ad-view-dialog/ad-view-dialog.
 import {AddPicturesDialogComponent} from './components/add-pictures-dialog/add-pictures-dialog.component';
 import { AgentAdsComponent } from './components/agent-ads/agent-ads.component';
 import {RentDialogComponent} from './components/rent-dialog/rent-dialog.component';
+import { InboxComponent } from './components/inbox/inbox.component';
+import { AgentRentedCarsComponent } from './components/agent-rented-cars/agent-rented-cars.component';
+import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
+import { SendMessageDialogComponent } from './components/send-message-dialog/send-message-dialog.component';
+import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,11 @@ import {RentDialogComponent} from './components/rent-dialog/rent-dialog.componen
     AddPicturesDialogComponent,
     AgentAdsComponent,
     RentDialogComponent,
+    InboxComponent,
+    AgentRentedCarsComponent,
+    ConversationDialogComponent,
+    SendMessageDialogComponent,
+    ReplyMessageDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +71,7 @@ import {RentDialogComponent} from './components/rent-dialog/rent-dialog.componen
     AdViewDialogComponent,
     AddPicturesDialogComponent,
     RentDialogComponent,
+    ConversationDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
