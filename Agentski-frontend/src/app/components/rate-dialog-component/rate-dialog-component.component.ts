@@ -10,7 +10,7 @@ import {CommentService} from '../../services/comment.service';
 export class Temp {
   comment: Comment;
   car: Car;
-  rate: number;
+  mileage: number;
 }
 
 @Component({
@@ -35,9 +35,8 @@ export class RateDialogComponentComponent implements OnInit {
 
   ngOnInit() {
     this.RateFormGroup = this.formBuilder.group({
-      carRating: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1),
-        Validators.pattern('[0-5]*')]),
-      commentId: new FormControl('')
+      commentId: new FormControl(''),
+      mileage: new FormControl('')
     });
   }
 
@@ -55,12 +54,12 @@ export class RateDialogComponentComponent implements OnInit {
     }
 
     this.comment = new Comment();
-    this.comment.approved = false;
+    this.comment.approved = true;
     this.comment.commenter = this.userService.getLoggedUser();
     this.comment.comment = this.f.commentId.value;
     this.comment.id = 0;
     this.ret.comment = this.comment;
-    this.ret.rate = this.f.carRating.value;
+    this.ret.mileage = this.f.mileage.value;
     this.ret.car = this.data.carsForRent[0];
 
     this.commentService.newComment(this.ret).subscribe(

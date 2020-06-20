@@ -25,7 +25,7 @@ public class RateController {
         List<Comment> pom = rateService.findAll();
         List<Comment> ret = new ArrayList<>();
         for(Comment c : pom) {
-            if(!c.isApproved()) {
+            if(c.isApproved()) {
                 ret.add(c);
                 System.out.println(c.toString());
             }

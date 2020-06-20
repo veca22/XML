@@ -7,7 +7,7 @@ import com.agent.backend.model.Comment;
 public class AddCommentDTO {
     private Comment comment;
     private Car car;
-    private int rate;
+    private int mileage;
 
     public Comment getComment() {
         return comment;
@@ -25,11 +25,11 @@ public class AddCommentDTO {
         this.car = car;
     }
 
-    public int getRate() {
-        return rate;
+    public int getMileage() {
+        return mileage;
     }
 
-    public void setRate(int rate) {
-        this.rate = rate;
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
     }
 }

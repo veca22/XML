@@ -12,7 +12,7 @@ import {RateDialogComponentComponent} from '../rate-dialog-component/rate-dialog
   styleUrls: ['./agent-rented-cars.component.css']
 })
 export class AgentRentedCarsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'rate', 'message'];
+  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'message', 'cars', 'rate'];
   flag: boolean;
 
   users: Array<User>;
@@ -43,6 +43,14 @@ export class AgentRentedCarsComponent implements OnInit {
     let ret = '';
     for (const r of request.carsForRent) {
       ret = r.carModel.model + ',';
+    }
+    ret = ret.substring(0, ret.length - 1);
+    return ret;
+  }
+  carsToString1(request: RentRequest) {
+    let ret = '';
+    for (const r of request.carsForRent) {
+      ret = r.carBrand.brand + ',';
     }
     ret = ret.substring(0, ret.length - 1);
     return ret;
