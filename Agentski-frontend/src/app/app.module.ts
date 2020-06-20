@@ -27,6 +27,9 @@ import { AgentRentedCarsComponent } from './components/agent-rented-cars/agent-r
 import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
 import { SendMessageDialogComponent } from './components/send-message-dialog/send-message-dialog.component';
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
+import { ViewRateAndCommentsComponent } from './components/view-rate-and-comments/view-rate-and-comments.component';
+import { AgentRentedCarsComponent } from './components/agent-rented-cars/agent-rented-cars.component';
+import { RateDialogComponentComponent } from './components/rate-dialog-component/rate-dialog-component.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { ReplyMessageDialogComponent } from './components/reply-message-dialog/r
     ConversationDialogComponent,
     SendMessageDialogComponent,
     ReplyMessageDialogComponent,
+    ViewRateAndCommentsComponent,
+    AgentRentedCarsComponent,
+    RateDialogComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +78,7 @@ import { ReplyMessageDialogComponent } from './components/reply-message-dialog/r
     AddPicturesDialogComponent,
     RentDialogComponent,
     ConversationDialogComponent
+    RateDialogComponentComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

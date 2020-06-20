@@ -198,6 +198,7 @@ public class Ad {
         this.title = title;
     }
 
+
     @Override
     public String toString() {
         return "Ad{" +
@@ -205,14 +206,11 @@ public class Ad {
                 ", car=" + car +
                 ", profilePicture='" + profilePicture + '\'' +
                 ", title='" + title + '\'' +
-                ", pictureSet=" + pictureSet +
                 ", client=" + client +
                 ", startOfAd=" + startOfAd +
                 ", endOfAd=" + endOfAd +
                 ", description='" + description + '\'' +
                 ", isActive=" + isActive +
-                ", currentDriver=" + currentDriver +
-                ", comments=" + comments +
                 ", place='" + place + '\'' +
                 '}';
     }
