@@ -37,6 +37,10 @@ public class Comment {
     @XmlElement
     private boolean approved = false;
 
+    @Column
+    private int carRating;
+
+
     @ManyToOne
     @JoinColumn(name = "ad_id")
     @XmlElement
@@ -45,10 +49,11 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(User commenter, String comment, boolean approved, Ad ad) {
+    public Comment(User commenter, String comment, boolean approved, int carRating, Ad ad) {
         this.commenter = commenter;
         this.comment = comment;
         this.approved = approved;
+        this.carRating = carRating;
         this.ad = ad;
     }
 
@@ -84,6 +89,13 @@ public class Comment {
         this.approved = approved;
     }
 
+    public int getCarRating() {
+        return carRating;
+    }
+
+    public void setCarRating(int carRating) {
+        this.carRating = carRating;
+    }
 
     public Ad getAd() {
         return ad;
@@ -100,6 +112,7 @@ public class Comment {
                 ", commenter=" + commenter +
                 ", comment='" + comment + '\'' +
                 ", approved=" + approved +
+                ", carRating=" + carRating +
                 ", ad=" + ad +
                 '}';
     }

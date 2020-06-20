@@ -11,7 +11,7 @@ import {Comment} from '../../model/comment';
 })
 export class CommentOperationComponent implements OnInit {
 
-  displayedColumns: string[] = ['id','adTitle', 'carBrand', 'carModel', 'comment', 'carRating', 'аccept', 'block'];
+  displayedColumns: string[] = ['id', 'adTitle', 'carBrand', 'carModel', 'comment', 'carRating', 'аccept', 'block'];
 
   dataSource = new MatTableDataSource<Comment>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

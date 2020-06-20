@@ -51,3 +51,6 @@ insert into car_model(id, model) values (556, 'Insignia 2020');
 insert into car_model(id, model) values (557, 'S500 2014');
 insert into car(id,average_rating,car_status,car_type_id,child_seats,collision_damage_waiver,discount,distance_allowed,fuel_type_id,mileage,price,transmission_type_id,car_model_id,car_brand_id) values (100,0,'RENTED',333,0,'false',10,100,277,60000,40,222,555,446);
 
+/*insert into ad(id,description,end_of_ad,is_active,place,profile_picture,start_of_ad,title,car_id,client_id,current_driver_id)values(600,dobar,'2020-06-19 13:42:00',true,Sabac,0,'2020-06-14 16:42:00','Audi', 100,500,null);
+insert into comment(id,approved,comment,ad_id,commenter_id)values(800,true,'odlican',600,101);
+*/

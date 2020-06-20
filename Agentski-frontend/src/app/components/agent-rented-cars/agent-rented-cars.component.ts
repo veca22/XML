@@ -1,28 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import {RentRequest} from '../../model/rentRequest';
 import {MatDialog, MatTableDataSource} from '@angular/material';
 import {User} from '../../model/user';
-import {RentRequest} from '../../model/rentRequest';
-import {RentingService} from '../../services/renting.service';
 import {UserService} from '../../services/user.service';
-import {SearchResultDialogComponent} from '../search-result-dialog/search-result-dialog.component';
-import {RateDialogComponent} from '../rate-dialog/rate-dialog.component';
-import {AdViewDialogComponent} from '../ad-view-dialog/ad-view-dialog.component';
-import {SendMessageDialogComponent} from '../send-message-dialog/send-message-dialog.component';
+import {RentServiceService} from '../../services/rent-service.service';
+import {RateDialogComponentComponent} from '../rate-dialog-component/rate-dialog-component.component';
 
 @Component({
-  selector: 'app-end-user-rented-cars',
-  templateUrl: './end-user-rented-cars.component.html',
-  styleUrls: ['./end-user-rented-cars.component.css']
+  selector: 'app-agent-rented-cars',
+  templateUrl: './agent-rented-cars.component.html',
+  styleUrls: ['./agent-rented-cars.component.css']
 })
-export class EndUserRentedCarsComponent implements OnInit {
-
-  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'rate', 'message'];
+export class AgentRentedCarsComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'message', 'cars', 'rate'];
   flag: boolean;
 
   users: Array<User>;
   dataSource = new MatTableDataSource<RentRequest>();
 
-  constructor(private rentService: RentingService,
+  constructor(private rentService: RentServiceService,
               private userService: UserService,
               public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(rentService.getRentedAds());
@@ -36,11 +32,11 @@ export class EndUserRentedCarsComponent implements OnInit {
     this.flag = await this.rentService.getFlagForRent(request.reservedTo);
     setTimeout(() => {
       if (this.flag === true) {
-        this.dialog.open(RateDialogComponent, {
+        this.dialog.open(RateDialogComponentComponent, {
           width: '50%', disableClose: true, data: request,
         });
       }
-      }, 200);
+    }, 200);
   }
 
   carsToString(request: RentRequest) {
@@ -51,5 +47,14 @@ export class EndUserRentedCarsComponent implements OnInit {
     ret = ret.substring(0, ret.length - 1);
     return ret;
   }
+  carsToString1(request: RentRequest) {
+    let ret = '';
+    for (const r of request.carsForRent) {
+      ret = r.carBrand.brand + ',';
+    }
+    ret = ret.substring(0, ret.length - 1);
+    return ret;
+  }
+
 
 }
