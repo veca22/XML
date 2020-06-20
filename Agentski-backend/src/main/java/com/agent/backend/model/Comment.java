@@ -37,6 +37,7 @@ public class Comment {
     @XmlElement
     private boolean approved = false;
 
+
     @ManyToOne
     @JoinColumn(name = "ad_id")
     @XmlElement
