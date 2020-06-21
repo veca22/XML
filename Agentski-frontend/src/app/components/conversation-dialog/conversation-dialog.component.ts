@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Message} from '../../model/message';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {MessageService} from '../../services/message.service';
 import {Conversation} from '../../model/conversation';
 import {ReplyMessageDialogComponent} from '../reply-message-dialog/reply-message-dialog.component';
