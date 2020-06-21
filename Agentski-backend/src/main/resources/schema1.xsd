@@ -18,6 +18,7 @@
       <xs:element name="collisionDamageWaiver" type="xs:boolean"/>
       <xs:element name="childSeats" type="xs:int"/>
       <xs:element name="averageRating" type="xs:double"/>
+      <xs:element name="commentCount" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 
