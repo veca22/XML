@@ -19,6 +19,7 @@ export class Car {
   collisionDemageWaiver: boolean;
   childSeats: number;
   averageRating: number;
+  commentCount: number;
 
   constructor() {
   }
