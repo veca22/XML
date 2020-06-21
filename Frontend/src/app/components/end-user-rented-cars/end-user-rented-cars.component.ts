@@ -52,4 +52,11 @@ export class EndUserRentedCarsComponent implements OnInit {
     return ret;
   }
 
+  message(request) {
+    setTimeout(() => {
+      this.dialog.open(SendMessageDialogComponent, {
+        width: '60%', disableClose: true, data: request.carsForRent
+      }); }, 200);
+  }
+
 }

@@ -12,6 +12,7 @@ export class RentServiceService {
   request: RentRequest;
   requestsForUser: Array<RentRequest> = new Array<RentRequest>();
   userRentedAds: Array<RentRequest> = new Array<RentRequest>();
+  userRentedReservedAds: Array<RentRequest> = new Array<RentRequest>();
   flag: boolean;
 
   constructor(private router: Router, private http: HttpClient) {
@@ -43,5 +44,25 @@ export class RentServiceService {
     params = params.append('reservedTo', reservedTo);
     const response: any = await this.http.get(environment.url + environment.renting + '/rateCarFlag', {params}).toPromise();
     return response;
+  }
+
+  public getUserRentedReservedAds(email: string) {
+    this.userRentedReservedAds = new Array<RentRequest>();
+    let params = new HttpParams();
+    params = params.append('email', email);
+    this.http.get(environment.url + environment.renting  + '/userReservedAds', {params}).subscribe((data: RentRequest[]) => {
+        console.log(data);
+        this.userRentedReservedAds = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    console.log(this.userRentedReservedAds);
+    return this.userRentedReservedAds;
+  }
+
+  getRentedReservedAds() {
+    return this.userRentedReservedAds;
   }
 }

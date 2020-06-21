@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {RentRequest} from '../../model/rentRequest';
-import {MatDialog, MatTableDataSource} from '@angular/material';
 import {User} from '../../model/user';
+import {MatDialog, MatTableDataSource} from '@angular/material';
+import {RentRequest} from '../../model/rentRequest';
 import {UserService} from '../../services/user.service';
+import {SendMessageDialogComponent} from '../send-message-dialog/send-message-dialog.component';
 import {RentServiceService} from '../../services/rent-service.service';
 import {RateDialogComponentComponent} from '../rate-dialog-component/rate-dialog-component.component';
+
 
 @Component({
   selector: 'app-agent-rented-cars',
@@ -12,7 +14,10 @@ import {RateDialogComponentComponent} from '../rate-dialog-component/rate-dialog
   styleUrls: ['./agent-rented-cars.component.css']
 })
 export class AgentRentedCarsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'message', 'cars', 'rate'];
+
+
+  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'rate', 'message'];
+
   flag: boolean;
 
   users: Array<User>;
@@ -26,6 +31,7 @@ export class AgentRentedCarsComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
   async rate(request) {
     console.log(request.reservedTo);
@@ -47,6 +53,16 @@ export class AgentRentedCarsComponent implements OnInit {
     ret = ret.substring(0, ret.length - 1);
     return ret;
   }
+
+
+  // message(request) {
+  //   setTimeout(() => {
+  //     this.dialog.open(SendMessageDialogComponent, {
+  //       width: '60%', disableClose: true, data: request.carsForRent
+  //     }); }, 200);
+  // }
+
+
   carsToString1(request: RentRequest) {
     let ret = '';
     for (const r of request.carsForRent) {
