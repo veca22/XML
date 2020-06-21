@@ -1,4 +1,3 @@
-
 export class MessageModel {
   text: string;
   subject: string;

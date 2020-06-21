@@ -26,7 +26,8 @@ import javax.xml.bind.annotation.XmlType;
         "distanceAllowed",
         "collisionDamageWaiver",
         "childSeats",
-        "averageRating"
+        "averageRating",
+        "commentCount"
 })  //mozda dodati posle }, namespace = "nekiUri/car"
 
 public class Car {
@@ -92,7 +93,11 @@ public class Car {
     @XmlElement
     private double averageRating = 0;
 
-    public Car(Long id, CarBrand carBrand, CarType carType, FuelType fuelType, TransmissionType transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {
+    @Column(nullable = false)
+    @XmlElement
+    private int commentCount = 0;
+
+    public Car(Long id, CarBrand carBrand, CarType carType, FuelType fuelType, TransmissionType transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating, int commentCount) {
         this.id = id;
         this.carBrand = carBrand;
         this.carType = carType;
@@ -106,6 +111,7 @@ public class Car {
         this.collisionDamageWaiver = collisionDamageWaiver;
         this.childSeats = childSeats;
         this.averageRating = averageRating;
+        this.commentCount = commentCount;
     }
 
     public Car() {}
@@ -220,5 +226,13 @@ public class Car {
 
     public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 }
