@@ -1,11 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {AdService} from '../../services/ad.service';
 import {Message} from '../../model/message';
-import {MessageService} from "../../services/message.service";
-import {Conversation} from "../../model/conversation";
-import {SendMessageDialogComponent} from "../send-message-dialog/send-message-dialog.component";
-import {ReplyMessageDialogComponent} from "../reply-message-dialog/reply-message-dialog.component";
+import {MessageService} from '../../services/message.service';
+import {Conversation} from '../../model/conversation';
+import {ReplyMessageDialogComponent} from '../reply-message-dialog/reply-message-dialog.component';
 
 @Component({
   selector: 'app-conversation-dialog',
