@@ -25,6 +25,7 @@ import {RentDialogComponent} from './components/rent-dialog/rent-dialog.componen
 import { ViewRateAndCommentsComponent } from './components/view-rate-and-comments/view-rate-and-comments.component';
 import { AgentRentedCarsComponent } from './components/agent-rented-cars/agent-rented-cars.component';
 import { RateDialogComponentComponent } from './components/rate-dialog-component/rate-dialog-component.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [

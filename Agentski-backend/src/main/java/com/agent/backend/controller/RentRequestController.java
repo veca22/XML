@@ -181,12 +181,12 @@ public class RentRequestController {
         c.setAd(ad);
         commentService.addComment(c);
 
+
         List<Comment> tmp = commentService.findAllByCar(addCommentDTO.getCar());
         int i = 0;
         Car car = ad.getCar();
         car.setMileage(addCommentDTO.getMileage() + car.getMileage());
-
-
+        car.setCommentCount(car.getCommentCount() + 1);
         carService.addCar(car);
 
 
