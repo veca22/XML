@@ -29,7 +29,6 @@ import { SendMessageDialogComponent } from './components/send-message-dialog/sen
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { ViewRateAndCommentsComponent } from './components/view-rate-and-comments/view-rate-and-comments.component';
 import { RateDialogComponentComponent } from './components/rate-dialog-component/rate-dialog-component.component';
-import {MatSortModule} from "@angular/material/sort";
 import { AgentReservedCarsComponent } from './components/agent-reserved-cars/agent-reserved-cars.component';
 
 @NgModule({

@@ -33,5 +33,5 @@ export class AgentAdsComponent implements OnInit {
         width: '50%', disableClose: true, data: ad,
       }); }, 200);
   }
-  
+
 }
