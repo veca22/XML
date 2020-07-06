@@ -53,6 +53,8 @@ import { ConversationDialogComponent } from './components/conversation-dialog/co
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { AddAgentComponent } from './components/add-agent/add-agent.component';
+import { AddFirmComponent } from './components/add-firm/add-firm.component';
 
 
 @NgModule({
@@ -90,6 +92,8 @@ import { RegistrationComponent } from './components/registration/registration.co
     ReplyMessageDialogComponent,
     CommentOperationComponent,
     RegistrationComponent,
+    AddAgentComponent,
+    AddFirmComponent,
 
   ],
   imports: [
