@@ -21,6 +21,9 @@ import {RentingRequestsComponent} from './components/renting-requests/renting-re
 import {EndUserRentedCarsComponent} from './components/end-user-rented-cars/end-user-rented-cars.component';
 import {InboxComponent} from './components/inbox/inbox.component';
 import {CommentOperationComponent} from './components/comment-operation/comment-operation.component';
+import {RegistrationComponent} from './components/registration/registration.component';
+import {AddAgentComponent} from './components/add-agent/add-agent.component';
+import {AddFirmComponent} from './components/add-firm/add-firm.component';
 
 
 
@@ -33,6 +36,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent,
   },
   {
     path: 'administrator/home',
@@ -128,7 +135,14 @@ const routes: Routes = [
     path: 'administrator/commentForOperation',
     component: CommentOperationComponent,
   },
-
+  {
+    path: 'administrator/addAgent',
+    component: AddAgentComponent,
+  },
+  {
+    path: 'administrator/addFirm',
+    component: AddFirmComponent,
+  },
 
 ];
 

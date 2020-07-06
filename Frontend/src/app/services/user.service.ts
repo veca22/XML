@@ -198,4 +198,8 @@ export class UserService {
   public getListCart() {
     return this.adWithTimes;
   }
+
+  public newUser(client) {
+    return this.http.post(environment.gateway + environment.admin + environment.user + '/register', client);
+  }
 }

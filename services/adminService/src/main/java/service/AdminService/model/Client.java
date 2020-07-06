@@ -19,10 +19,10 @@ public class Client {
     @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column()
     private String lastName;
 
-    @Column(name = "jmbg", unique = true, nullable = false)
+    @Column(name = "jmbg", unique = true)
     private String jmbg;
 
     @Column(name = "phone_number",nullable = false)
@@ -48,7 +48,9 @@ public class Client {
     @Column(nullable = false)
     private int adCounter;
 
+    public Client() {
 
+    }
     //endUser
     public Client(String email,String password,String firstName,String lastName,String jmbg,String phoneNumber,String address) {
         this.email=email;

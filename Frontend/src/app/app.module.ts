@@ -53,7 +53,9 @@ import { ConversationDialogComponent } from './components/conversation-dialog/co
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
 import { AdvancedSearchDialogComponent } from './components/advanced-search-dialog/advanced-search-dialog.component';
-
+import { RegistrationComponent } from './components/registration/registration.component';
+import { AddAgentComponent } from './components/add-agent/add-agent.component';
+import { AddFirmComponent } from './components/add-firm/add-firm.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,9 @@ import { AdvancedSearchDialogComponent } from './components/advanced-search-dial
     ReplyMessageDialogComponent,
     CommentOperationComponent,
     AdvancedSearchDialogComponent,
+    RegistrationComponent,
+    AddAgentComponent,
+    AddFirmComponent,
 
   ],
   imports: [
