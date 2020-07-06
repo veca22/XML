@@ -51,4 +51,8 @@ export class SearchResultDialogComponent implements OnInit {
   }); }, 200);
   }
 
+  filter(){
+
+  }
+
 }

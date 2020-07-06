@@ -52,6 +52,7 @@ import { InboxComponent } from './components/inbox/inbox.component';
 import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
+import { AdvancedSearchDialogComponent } from './components/advanced-search-dialog/advanced-search-dialog.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { CommentOperationComponent } from './components/comment-operation/commen
     ConversationDialogComponent,
     ReplyMessageDialogComponent,
     CommentOperationComponent,
+    AdvancedSearchDialogComponent,
 
   ],
   imports: [
