@@ -20,11 +20,14 @@ export class AgentAdsComponent implements OnInit {
   constructor(private adService: AdService,
               private router: Router, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(adService.getClientAds());
-    this.dataSource.sort = this.sort;
+
   }
 
-  ngOnInit() {
 
+  ngOnInit() {
+    this.sort.ngOnChanges();
+    this.dataSource.sort = this.sort;
+    console.log(this.dataSource.sort);
   }
 
   change_status(ad) {

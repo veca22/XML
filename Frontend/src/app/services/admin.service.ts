@@ -46,7 +46,7 @@ export class AdminService {
     return this.http.post(environment.gateway + environment.renting + '/accountOperationForComment', params);
   }
 
-  public getCommentsForOperation(){
+  public getCommentsForOperation() {
     return this.commentForOperations;
   }
 
