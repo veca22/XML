@@ -50,6 +50,13 @@ export class AdminService {
     return this.commentForOperations;
   }
 
+  public newAgent(client) {
+    return this.http.post(environment.gateway + environment.admin  + '/addAgent', client);
+  }
+
+  public newFirm(client) {
+    return this.http.post(environment.gateway + environment.admin  + '/addFirm', client);
+  }
 
 }
 
