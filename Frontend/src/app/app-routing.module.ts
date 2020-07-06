@@ -21,6 +21,7 @@ import {RentingRequestsComponent} from './components/renting-requests/renting-re
 import {EndUserRentedCarsComponent} from './components/end-user-rented-cars/end-user-rented-cars.component';
 import {InboxComponent} from './components/inbox/inbox.component';
 import {CommentOperationComponent} from './components/comment-operation/comment-operation.component';
+import {RegistrationComponent} from './components/registration/registration.component';
 
 
 
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent,
   },
   {
     path: 'administrator/home',

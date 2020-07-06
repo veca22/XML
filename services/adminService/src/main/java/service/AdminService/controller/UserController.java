@@ -7,9 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import service.AdminService.model.Comment;
-import service.AdminService.model.User;
-import service.AdminService.model.UserStatus;
+import service.AdminService.dtos.RegisterDto;
+import service.AdminService.model.*;
+import service.AdminService.service.ClientService;
 import service.AdminService.service.CommentService;
 import service.AdminService.service.UserService;
 
@@ -23,6 +23,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ClientService clientService;
 
     @GetMapping(value = "/user/all")
     public ResponseEntity<List<User>> all() {
@@ -71,11 +74,33 @@ public class UserController {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else if(operation.equals("REMOVED")) {
             userService.deleteUser(user);
+            Client c = clientService.findClientByEmail(user.getEmail());
+            clientService.deleteClient(c);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
     }
+
+    @PostMapping(value = "/user/register")
+    public ResponseEntity<User> register(@RequestBody RegisterDto registerDto) {
+        Client client = clientService.findClientByEmail(registerDto.getEmail());
+        if(client == null) {
+            client = new Client(registerDto.getEmail(), registerDto.getPassword(), registerDto.getFirstName(), registerDto.getLastName(), registerDto.getJmbg(), registerDto.getPhoneNumber(), registerDto.getAddress());
+            clientService.addClient(client);
+            User user = new User();
+            user.setEmail(registerDto.getEmail());
+            user.setPassword(registerDto.getPassword());
+            user.setRole(Role.ENDUSER);
+            user.setStatus(UserStatus.AWAITING_APPROVAL);
+            userService.save(user);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
+        }
+
+    }
+
 
 
 
