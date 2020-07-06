@@ -6,6 +6,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {AdWithTimes} from '../model/adWithTimes';
 import {TOKEN} from './user.service';
 import {Comment} from '../model/comment';
+import {Client} from '../model/client';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AdminService {
   commentForOperations: Array<Comment> = new Array<Comment>();
   comment: Comment;
   com: Array<Comment> = new Array<Comment>();
+  permissionsUsers: Array<Client> = new Array<Client>();
   constructor(private router: Router, private http: HttpClient) {
     this.commentForOperations = this.getCommentForOperation();
   }
@@ -56,6 +58,24 @@ export class AdminService {
 
   public newFirm(client) {
     return this.http.post(environment.gateway + environment.admin  + '/addFirm', client);
+  }
+
+  public getClientsForPermissions(): Array<Client> {
+    this.permissionsUsers = new Array<Client>();
+    this.http.get(environment.gateway + environment.admin +  '/permissionsClients').subscribe((data: Client[]) => {
+        console.log(data);
+        this.permissionsUsers = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    console.log(this.permissionsUsers);
+    return this.permissionsUsers;
+  }
+
+  public getPermissionUsers() {
+    return this.permissionsUsers;
   }
 
 }
