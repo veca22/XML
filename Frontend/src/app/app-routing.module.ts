@@ -24,6 +24,7 @@ import {CommentOperationComponent} from './components/comment-operation/comment-
 import {RegistrationComponent} from './components/registration/registration.component';
 import {AddAgentComponent} from './components/add-agent/add-agent.component';
 import {AddFirmComponent} from './components/add-firm/add-firm.component';
+import {AdministratorPerimissionsComponent} from './components/administrator-perimissions/administrator-perimissions.component';
 
 
 
@@ -143,6 +144,11 @@ const routes: Routes = [
     path: 'administrator/addFirm',
     component: AddFirmComponent,
   },
+  {
+    path: 'administrator/permissions',
+    component: AdministratorPerimissionsComponent,
+  },
+
 
 ];
 

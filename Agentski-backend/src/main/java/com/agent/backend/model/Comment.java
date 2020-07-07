@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlType;
         "commenter",
         "comment",
         "approved",
+        "carRating",
         "ad"
 })  //mozda dodati posle }, namespace = "nekiUri/comment"
 
@@ -38,6 +39,7 @@ public class Comment {
     private boolean approved = false;
 
     @Column
+    @XmlElement
     private int carRating;
 
 

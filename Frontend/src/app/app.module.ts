@@ -56,6 +56,7 @@ import { AdvancedSearchDialogComponent } from './components/advanced-search-dial
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AddAgentComponent } from './components/add-agent/add-agent.component';
 import { AddFirmComponent } from './components/add-firm/add-firm.component';
+import { AdministratorPerimissionsComponent } from './components/administrator-perimissions/administrator-perimissions.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { AddFirmComponent } from './components/add-firm/add-firm.component';
     RegistrationComponent,
     AddAgentComponent,
     AddFirmComponent,
+    AdministratorPerimissionsComponent,
 
   ],
   imports: [

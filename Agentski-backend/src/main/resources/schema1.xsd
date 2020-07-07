@@ -110,6 +110,7 @@
       <xs:element name="commenter" type="User" minOccurs="0"/>
       <xs:element name="comment" type="xs:string" minOccurs="0"/>
       <xs:element name="approved" type="xs:boolean"/>
+      <xs:element name="carRating" type="xs:int"/>
       <xs:element name="ad" type="Ad" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
