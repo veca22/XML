@@ -78,5 +78,12 @@ export class AdminService {
     return this.permissionsUsers;
   }
 
+  public permissionOperation(operation: string, id: string) {
+    let params = new HttpParams();
+    params = params.append('operation', operation);
+    params = params.append('id', id);
+    return this.http.post(environment.gateway + environment.admin  + '/permissionOperation', params);
+  }
+
 }
 

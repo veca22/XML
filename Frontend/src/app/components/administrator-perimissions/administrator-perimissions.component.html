@@ -16,6 +16,16 @@
       <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="allowReservation">
+      <th mat-header-cell *matHeaderCellDef> Reservation </th>
+      <td mat-cell *matCellDef="let user"> {{user.allowReservation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reservationCanceledCounter">
+      <th mat-header-cell *matHeaderCellDef> Reservation canceled counter </th>
+      <td mat-cell *matCellDef="let user"> {{user.reservationCanceledCounter}} </td>
+    </ng-container>
+
 
     <ng-container matColumnDef="allow">
       <th mat-header-cell *matHeaderCellDef> Allow reservation </th>

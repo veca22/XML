@@ -48,6 +48,12 @@ public class Client {
     @Column(nullable = false)
     private int adCounter;
 
+    @Column()
+    private boolean allowReservation = true;
+
+    @Column()
+    private int reservationCanceledCounter;
+
 
     public Client() {
     }
@@ -63,6 +69,8 @@ public class Client {
         this.address=address;
         this.role=Role.ENDUSER;
         this.adCounter = 0;
+        this.allowReservation = true;
+        this.reservationCanceledCounter = 0;
     }
 
     //agent
@@ -179,6 +187,22 @@ public class Client {
     }
 
     public void setAdCounter(int adCounter){}
+
+    public boolean isAllowReservation() {
+        return allowReservation;
+    }
+
+    public void setAllowReservation(boolean allowReservation) {
+        this.allowReservation = allowReservation;
+    }
+
+    public int getReservationCanceledCounter() {
+        return reservationCanceledCounter;
+    }
+
+    public void setReservationCanceledCounter(int reservationCanceledCounter) {
+        this.reservationCanceledCounter = reservationCanceledCounter;
+    }
 
     @Override
     public String toString() {

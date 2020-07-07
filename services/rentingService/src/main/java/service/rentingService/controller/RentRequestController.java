@@ -74,8 +74,14 @@ public class RentRequestController {
             rr.setTimeCreated(LocalDateTime.now());
 
             System.out.println(rr.getTimeCreated().toString());
-            rentRequestService.addRent(rr);
-            return new ResponseEntity<>(HttpStatus.OK);
+            Client client =clientService.findClientByEmail(sendDTO.getEmail());
+            if(client.isAllowReservation() == true) {
+                rentRequestService.addRent(rr);
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

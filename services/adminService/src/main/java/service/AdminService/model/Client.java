@@ -48,6 +48,12 @@ public class Client {
     @Column(nullable = false)
     private int adCounter;
 
+    @Column()
+    private boolean allowReservation = true;
+
+    @Column()
+    private int reservationCanceledCounter;
+
     public Client() {
 
     }
@@ -62,6 +68,8 @@ public class Client {
         this.address=address;
         this.role=Role.ENDUSER;
         this.adCounter = 0;
+        this.allowReservation = true;
+        this.reservationCanceledCounter = 0;
     }
 
     //agent
@@ -76,6 +84,7 @@ public class Client {
         this.personalID=personalID;
         this.role=Role.AGENT;
         this.adCounter = 0;
+        this.reservationCanceledCounter = 0;
     }
 
     //firm
@@ -88,6 +97,7 @@ public class Client {
         this.pib=pib;
         this.role=Role.FIRM;
         this.adCounter = 0;
+        this.reservationCanceledCounter = 0;
     }
 
 
@@ -179,5 +189,21 @@ public class Client {
 
     public void setAdCounter(int adCounter) {
         this.adCounter = adCounter;
+    }
+
+    public boolean isAllowReservation() {
+        return allowReservation;
+    }
+
+    public void setAllowReservation(boolean allowReservation) {
+        this.allowReservation = allowReservation;
+    }
+
+    public int getReservationCanceledCounter() {
+        return reservationCanceledCounter;
+    }
+
+    public void setReservationCanceledCounter(int reservationCanceledCounter) {
+        this.reservationCanceledCounter = reservationCanceledCounter;
     }
 }

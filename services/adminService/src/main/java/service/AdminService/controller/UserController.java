@@ -101,7 +101,26 @@ public class UserController {
 
     }
 
+    @PostMapping(value = "/permissionOperation")
+    public ResponseEntity<Client> permissionOperation(@RequestParam(value = "operation", required = true) String operation,
+                                           @RequestParam(value = "id", required = true) String id) {
 
+        System.out.println(id);
+        Long lid = Long.parseLong(id);
+        Client client = clientService.findClientByID(lid);
+        System.out.println(client.getEmail() + " adresa clienta za operacije");
+        if(operation.equals("ALLOW")) {
+            client.setAllowReservation(true);
+            clientService.save(client);
+            return new ResponseEntity<>(client, HttpStatus.OK);
+        } else if(operation.equals("DISALLOW")) {
+            client.setAllowReservation(false);
+            clientService.save(client);
+            return new ResponseEntity<>(client, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(client, HttpStatus.BAD_REQUEST);
+    }
 
 
 
