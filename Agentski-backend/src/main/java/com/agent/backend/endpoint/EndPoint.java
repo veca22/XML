@@ -29,6 +29,7 @@ public class EndPoint {
 //        return jaxbElement;
 //    }
 
+    @Autowired
     private AdRepo adRepo;
 
     @Autowired
