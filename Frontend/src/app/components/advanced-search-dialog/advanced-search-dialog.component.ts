@@ -117,12 +117,14 @@ export class AdvancedSearchDialogComponent implements OnInit {
   private filter() {
     this.myResponse = this.adService.getAllAdvanced(this.adSearch);
     this.adsWithTimes.ads = this.myResponse;
-    this.adsWithTimes.startTime = this.data.startDate;
-    this.adsWithTimes.endTime = this.data.endDate;
+    this.adsWithTimes.startTime = this.data.startTime;
+    this.adsWithTimes.endTime = this.data.endTime;
+    console.log(this.data.startTime);
     setTimeout(() => {
       this.dialog.open(SearchResultDialogComponent, {
         width: '60%', disableClose: true, data: this.adsWithTimes,
       }); }, 200);
+    this.dialogRef.close();
   }
 
   close() {

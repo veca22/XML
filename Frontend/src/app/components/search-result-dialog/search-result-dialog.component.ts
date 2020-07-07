@@ -36,12 +36,12 @@ export class SearchResultDialogComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Ad>(this.myResponse);
     this.adWithTimes.startTime = this.adsWithTimes.startTime;
     this.adWithTimes.endTime = this.adsWithTimes.endTime;
+    console.log(this.adsWithTimes.startTime);
   }
 
   close() {
     this.myResponse.splice(0, this.myResponse.length);
     this.dialogRef.close();
-
   }
 
   detail(ad: Ad) {
@@ -57,6 +57,7 @@ export class SearchResultDialogComponent implements OnInit {
       this.dialog.open(AdvancedSearchDialogComponent, {
         width: '40%', disableClose: true, data: this.adsWithTimes
       }); }, 200);
+    this.dialogRef.close();
   }
 
 }

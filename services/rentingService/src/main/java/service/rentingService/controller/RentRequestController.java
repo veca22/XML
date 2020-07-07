@@ -253,6 +253,7 @@ public class RentRequestController {
         List<Ad> lista=addto.getAds();
         List<Ad> pom=new ArrayList<>();
         List<Ad> ret= new ArrayList<>();
+        System.out.println(ret);
         ret=addto.getAds();
 
                 if(ret!=null)
