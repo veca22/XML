@@ -23,6 +23,12 @@ public class AdminController {
     @Autowired
     FuelTypeService fuelTypeService;
 
+    @Autowired
+    ClientService clientService;
+
+    @Autowired
+    UserService userService;
+
     @GetMapping(value = "/fuelType/all")
     public ResponseEntity<List<FuelType>> all() { return new ResponseEntity<>(fuelTypeService.findall(), HttpStatus.OK);}
 
@@ -184,6 +190,44 @@ public class AdminController {
         else{
             return new ResponseEntity<>(brando, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PostMapping(value = "/addAgent")
+    public ResponseEntity<Client> addAgent(@RequestBody AddAgentDto addAgentDto) {
+        Client client = clientService.findClientByEmail(addAgentDto.getEmail());
+        if(client == null) {
+            client = new Client(addAgentDto.getEmail(), addAgentDto.getPassword(), addAgentDto.getFirstName(), addAgentDto.getLastName(), addAgentDto.getJmbg(), addAgentDto.getPhoneNumber(), addAgentDto.getAddress(), addAgentDto.getPersonalID());
+            clientService.addClient(client);
+            User user = new User();
+            user.setEmail(addAgentDto.getEmail());
+            user.setPassword(addAgentDto.getPassword());
+            user.setRole(Role.AGENT);
+            user.setStatus(UserStatus.ACCEPTED);
+            userService.save(user);
+            return new ResponseEntity<>(client, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
+        }
+
+    }
+
+    @PostMapping(value = "/addFirm")
+    public ResponseEntity<Client> addFirm(@RequestBody AddFirmDto addFirmDto) {
+        Client client = clientService.findClientByEmail(addFirmDto.getEmail());
+        if(client == null) {
+            client = new Client(addFirmDto.getEmail(), addFirmDto.getPassword(), addFirmDto.getFirstName(), addFirmDto.getPhoneNumber(), addFirmDto.getAddress(), addFirmDto.getPib());
+            clientService.addClient(client);
+            User user = new User();
+            user.setEmail(addFirmDto.getEmail());
+            user.setPassword(addFirmDto.getPassword());
+            user.setRole(Role.FIRM);
+            user.setStatus(UserStatus.ACCEPTED);
+            userService.save(user);
+            return new ResponseEntity<>(client, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_IMPLEMENTED);
+        }
+
     }
 
 

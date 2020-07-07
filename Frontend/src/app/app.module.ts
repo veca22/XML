@@ -52,6 +52,9 @@ import { InboxComponent } from './components/inbox/inbox.component';
 import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { AddAgentComponent } from './components/add-agent/add-agent.component';
+import { AddFirmComponent } from './components/add-firm/add-firm.component';
 
 
 @NgModule({
@@ -88,6 +91,9 @@ import { CommentOperationComponent } from './components/comment-operation/commen
     ConversationDialogComponent,
     ReplyMessageDialogComponent,
     CommentOperationComponent,
+    RegistrationComponent,
+    AddAgentComponent,
+    AddFirmComponent,
 
   ],
   imports: [

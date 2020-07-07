@@ -46,10 +46,17 @@ export class AdminService {
     return this.http.post(environment.gateway + environment.renting + '/accountOperationForComment', params);
   }
 
-  public getCommentsForOperation(){
+  public getCommentsForOperation() {
     return this.commentForOperations;
   }
 
+  public newAgent(client) {
+    return this.http.post(environment.gateway + environment.admin  + '/addAgent', client);
+  }
+
+  public newFirm(client) {
+    return this.http.post(environment.gateway + environment.admin  + '/addFirm', client);
+  }
 
 }
 
