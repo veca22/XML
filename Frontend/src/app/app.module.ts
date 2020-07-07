@@ -52,11 +52,11 @@ import { InboxComponent } from './components/inbox/inbox.component';
 import { ConversationDialogComponent } from './components/conversation-dialog/conversation-dialog.component';
 import { ReplyMessageDialogComponent } from './components/reply-message-dialog/reply-message-dialog.component';
 import { CommentOperationComponent } from './components/comment-operation/comment-operation.component';
+import { AdvancedSearchDialogComponent } from './components/advanced-search-dialog/advanced-search-dialog.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AddAgentComponent } from './components/add-agent/add-agent.component';
 import { AddFirmComponent } from './components/add-firm/add-firm.component';
 import { AdministratorPerimissionsComponent } from './components/administrator-perimissions/administrator-perimissions.component';
-
 
 @NgModule({
   declarations: [
@@ -92,6 +92,7 @@ import { AdministratorPerimissionsComponent } from './components/administrator-p
     ConversationDialogComponent,
     ReplyMessageDialogComponent,
     CommentOperationComponent,
+    AdvancedSearchDialogComponent,
     RegistrationComponent,
     AddAgentComponent,
     AddFirmComponent,
@@ -127,7 +128,7 @@ import { AdministratorPerimissionsComponent } from './components/administrator-p
 
   entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent,
     CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent, ConversationDialogComponent,
-  ReplyMessageDialogComponent],
+  ReplyMessageDialogComponent, AdvancedSearchDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
