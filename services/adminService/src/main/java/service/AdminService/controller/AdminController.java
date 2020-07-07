@@ -230,5 +230,18 @@ public class AdminController {
 
     }
 
+    @GetMapping(value = "/permissionsClients")
+    public ResponseEntity<List<Client>> clientsPermissions() {
+        List<Client> ret = new ArrayList<>();
+        List<User> list = userService.findAllEndUsers();
+        for(User u : list) {
+            Client c = clientService.findClientByEmail(u.getEmail());
+            if(c != null) {
+                ret.add(c);
+            }
+        }
+        return new ResponseEntity<>(ret , HttpStatus.OK);
+    }
+
 
 }

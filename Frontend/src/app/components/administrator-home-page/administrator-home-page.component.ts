@@ -13,6 +13,7 @@ import {FuelTypeService} from '../../services/fuel-type.service';
 import {TransmissionTypeService} from '../../services/transmission-type.service';
 import {AdminService} from '../../services/admin.service';
 import {Comment} from '../../model/comment';
+import {Client} from '../../model/client';
 
 @Component({
   selector: 'app-administrator-home-page',
@@ -27,6 +28,7 @@ export class AdministratorHomePageComponent implements OnInit {
   t: Array<CarType>;
   f: Array<FuelType>;
   trans: Array<TransmissionType>;
+  tmp2: Array<Client>;
 
   constructor(private userService: UserService, private carBrandService: CarBrandService, private carTypeSerivice: CarTypeService, private fuelTypeService: FuelTypeService,
               private transmissionTypeService: TransmissionTypeService,
@@ -39,6 +41,7 @@ export class AdministratorHomePageComponent implements OnInit {
     this.t = this.carTypeSerivice.getAllCarType();
     this.f = this.fuelTypeService.getAllFuelType();
     this.trans = this.transmissionTypeService.getAllTransmissionType();
+    this.tmp2 = this.adminService.getClientsForPermissions();
   }
 
   ngOnInit() {

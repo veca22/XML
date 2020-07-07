@@ -24,6 +24,7 @@ export class UserService {
   userForLogin: User;
   endUsersForOperations: Array<User> = new Array<User>();
   adWithTimes: AdWithTimes[];
+
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
     this.adWithTimes = new Array<AdWithTimes>();
@@ -202,4 +203,6 @@ export class UserService {
   public newUser(client) {
     return this.http.post(environment.gateway + environment.admin + environment.user + '/register', client);
   }
+
+
 }

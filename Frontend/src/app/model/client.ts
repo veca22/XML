@@ -14,7 +14,9 @@ export class Client {
   address: string;
   ads: Array<Ad> = new Array<Ad>();
   adCounter: number;
-  role: Role
+  role: Role;
+  allowReservation: boolean;
+  reservationCanceledCounter: number;
 
   constructor() {}
 }
