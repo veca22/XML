@@ -126,7 +126,7 @@ import { AddFirmComponent } from './components/add-firm/add-firm.component';
 
   entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent,
     CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent, ConversationDialogComponent,
-  ReplyMessageDialogComponent],
+  ReplyMessageDialogComponent, AdvancedSearchDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

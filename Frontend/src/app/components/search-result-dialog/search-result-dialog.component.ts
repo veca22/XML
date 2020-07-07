@@ -7,6 +7,7 @@ import {AdService} from '../../services/ad.service';
 import { AdViewDialogComponent } from '../ad-view-dialog/ad-view-dialog.component';
 import {AdWithTimes} from '../../model/adWithTimes';
 import {AdsWithTimes} from '../../model/adsWithTimes';
+import {AdvancedSearchDialogComponent} from '../advanced-search-dialog/advanced-search-dialog.component';
 
 @Component({
   selector: 'app-search-result-dialog',
@@ -51,8 +52,11 @@ export class SearchResultDialogComponent implements OnInit {
   }); }, 200);
   }
 
-  filter(){
-
+  filter() {
+    setTimeout(() => {
+      this.dialog.open(AdvancedSearchDialogComponent, {
+        width: '40%', disableClose: true, data: this.adsWithTimes
+      }); }, 200);
   }
 
 }
