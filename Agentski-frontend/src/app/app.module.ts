@@ -30,6 +30,7 @@ import { ReplyMessageDialogComponent } from './components/reply-message-dialog/r
 import { ViewRateAndCommentsComponent } from './components/view-rate-and-comments/view-rate-and-comments.component';
 import { RateDialogComponentComponent } from './components/rate-dialog-component/rate-dialog-component.component';
 import { AgentReservedCarsComponent } from './components/agent-reserved-cars/agent-reserved-cars.component';
+import { AddPriceListComponent } from './components/add-price-list/add-price-list.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AgentReservedCarsComponent } from './components/agent-reserved-cars/age
     AgentRentedCarsComponent,
     RateDialogComponentComponent,
     AgentReservedCarsComponent,
+    AddPriceListComponent,
   ],
   imports: [
     BrowserModule,

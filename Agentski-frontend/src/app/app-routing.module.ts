@@ -9,6 +9,7 @@ import {ViewRateAndCommentsComponent} from './components/view-rate-and-comments/
 import {AgentRentedCarsComponent} from './components/agent-rented-cars/agent-rented-cars.component';
 import {AgentReservedCarsComponent} from './components/agent-reserved-cars/agent-reserved-cars.component';
 import {InboxComponent} from './components/inbox/inbox.component';
+import {AddPriceListComponent} from './components/add-price-list/add-price-list.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,12 @@ const routes: Routes = [
   {
     path: 'inbox',
     component: InboxComponent
-  }
+  },
+
+  {
+    path: 'agent/addPriceList',
+    component: AddPriceListComponent,
+  },
 ];
 
 @NgModule({
