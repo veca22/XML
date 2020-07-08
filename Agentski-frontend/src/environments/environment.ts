@@ -12,7 +12,8 @@ export const environment = {
   fuelType: '/fuelType',
   carType: '/carType',
   transmissionType: '/transmissionType',
-  message: '/message'
+  message: '/message',
+  priceList: '/priceList',
 };
 
 /*

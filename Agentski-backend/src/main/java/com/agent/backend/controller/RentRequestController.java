@@ -209,7 +209,9 @@ public class RentRequestController {
                 }
             }
         }
+
         return new ResponseEntity<>(tmp, HttpStatus.OK);
+
     }
 
     @GetMapping("renting/userReservedAds")

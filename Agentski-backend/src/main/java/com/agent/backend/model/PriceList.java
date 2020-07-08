@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -14,7 +16,10 @@ import javax.xml.bind.annotation.XmlType;
         "realPrice",
         "priceForMileage",
         "priceForCollisionDamageWavier",
-        "ad"
+        "discountAfterDays",
+        "ads",
+        "client"
+
 })  //mozda dodati posle }, namespace = "nekiUri/price_list"
 
 public class PriceList {
@@ -36,20 +41,29 @@ public class PriceList {
     @XmlElement
     private double priceForCollisionDamageWavier;   //cena za collision
 
-    @ManyToOne
-    @JoinColumn(name = "ad_id")
+    @Column
     @XmlElement
-    private Ad ad;  //oglas
+    private int discountAfterDays;
+
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @XmlElement
+    private Set<Ad> ads = new HashSet<>();
+
+    @XmlElement
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Client client;
 
     public PriceList() {
+        this.discountAfterDays = 0;
     }
 
-    public PriceList(Long id, double realPrice, double priceForMileage, double priceForCollisionDamageWavier, Ad ad) {
-        this.id = id;
+    public PriceList(double realPrice, double priceForMileage, double priceForCollisionDamageWavier, int discountAfterDays, Set<Ad> ads, Client client) {
         this.realPrice = realPrice;
         this.priceForMileage = priceForMileage;
         this.priceForCollisionDamageWavier = priceForCollisionDamageWavier;
-        this.ad = ad;
+        this.discountAfterDays = discountAfterDays;
+        this.ads = ads;
+        this.client = client;
     }
 
     public Long getId() {
@@ -84,11 +98,27 @@ public class PriceList {
         this.priceForCollisionDamageWavier = priceForCollisionDamageWavier;
     }
 
-    public Ad getAd() {
-        return ad;
+    public Set<Ad> getAds() {
+        return ads;
     }
 
-    public void setAd(Ad ad) {
-        this.ad = ad;
+    public void setAds(Set<Ad> ads) {
+        this.ads = ads;
+    }
+
+    public void setDiscountAfterDays(int discountAfterDays) {
+        this.discountAfterDays = discountAfterDays;
+    }
+
+    public int getDiscountAfterDays() {
+        return discountAfterDays;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
