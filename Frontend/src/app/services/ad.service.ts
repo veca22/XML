@@ -11,6 +11,7 @@ import {UserStatus} from '../model/userStatus';
 import {CarStatus} from '../model/carStatus';
 import {AdWithTimes} from '../model/adWithTimes';
 import {UserService} from './user.service';
+import {AdvancedSearch} from '../model/advancedSearch';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,12 @@ import {UserService} from './user.service';
 export class AdService {
 
   ad: Ad;
+  adA: Ad;
   carBrand: CarBrand;
   adService: AdService;
   ads: Array<Ad> = new Array<Ad>();
   filterAds: Array<Ad> = new Array<Ad>();
+  advancedAds: Array<Ad> = new Array<Ad>();
   urlAd = environment.gateway + environment.ad;
   listAd: Array<Ad> = new Array<Ad>();
   listCarBrand: Array<CarBrand> = new Array<CarBrand>();
@@ -210,6 +213,34 @@ public changeRentStatus(ad) {
     this.send.adWithTimes = a;
     this.send.email = this.userService.getLoggedUser().email;
     return this.http.post(environment.gateway + environment.renting + '/reserveMy', this.send);
+  }
+
+  public getAllAdvanced(model: AdvancedSearch): Array<Ad> {
+    this.http.post(environment.gateway + environment.renting + '/allAdvanced', model).subscribe((data: Ad[]) => {
+        let flag = 0;
+
+        for (const c of data) {
+          console.log(c);
+          flag = 0;
+          this.adA = c;
+          for (const t of this.advancedAds) {
+            if (c.id === t.id) {
+              flag = 1;
+            }
+          }
+
+          if (flag === 0) {
+            this.adA.car.carStatus = this.whichStatus(c.car.carStatus.toString());
+            this.advancedAds.push(this.adA);
+          }
+        }
+      },
+      // tslint:disable-next-line:no-shadowed-variable
+      error => {
+        console.log(error);
+      }
+    );
+    return this.advancedAds;
   }
 
 }

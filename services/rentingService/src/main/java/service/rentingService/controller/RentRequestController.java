@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import service.rentingService.dtos.AdAdvancedDTO;
 import service.rentingService.dtos.AdFilterDTO;
 import service.rentingService.dtos.AddCommentDTO;
 import service.rentingService.dtos.SendDTO;
@@ -241,5 +242,109 @@ public class RentRequestController {
 
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
+
+    @PostMapping(value = "/allAdvanced", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Ad>> adAdvanced(@RequestBody AdAdvancedDTO addto)
+    {
+        System.out.println(addto.toString());
+        if(addto.getAds()==null){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        List<Ad> lista=addto.getAds();
+        List<Ad> pom=new ArrayList<>();
+        List<Ad> ret= new ArrayList<>();
+        System.out.println(ret);
+        ret=addto.getAds();
+
+                if(ret!=null)
+                    if(addto.getCarModel()!=""){
+                       for(Ad a:lista){
+                           if(!addto.getCarModel().equals(a.getCar().getCarModel().getModel())){
+                             ret.remove(a);
+                           }
+                       }
+                }
+                if(ret!=null)
+                if(addto.getCarBrand()!=""){
+                    for(Ad r:ret){
+                        if(!addto.getCarBrand().equals(r.getCar().getCarBrand().getBrand())){
+                            ret.remove(r);
+                        }
+                    }
+                }
+                if(ret!=null)
+                    if(addto.getCarType()!="") {
+                        for (Ad r : ret) {
+                            if (!addto.getCarType().equals(r.getCar().getCarType().getType())) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getFuelType()!=""){
+                        for(Ad r:ret) {
+                          if (!addto.getFuelType().equals(r.getCar().getFuelType().getType())) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getTransmissionType()!=""){
+                        for(Ad r:ret) {
+                            if (!addto.getTransmissionType().equals(r.getCar().getTransmissionType().getType())) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getPrice()!=null){
+                        for(Ad r:ret) {
+                            if (addto.getPrice().intValue()>r.getCar().getPrice()) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getPrice2()!=null){
+                        for(Ad r:ret) {
+                            if (addto.getPrice2().intValue()<r.getCar().getPrice()) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getCdw()!=null){
+                        for(Ad r:ret) {
+                            if (!addto.getCdw().equals(r.getCar().isCollisionDamageWaiver())) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getChildSeat()!=null){
+                        for(Ad r:ret) {
+                            if (addto.getChildSeat().intValue()==r.getCar().getChildSeats()) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getMileage()!=null){
+                        for(Ad r:ret) {
+                            if (addto.getMileage().intValue()==r.getCar().getMileage()) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+                if(ret!=null)
+                    if(addto.getDistanceAllowed()!=null){
+                        for(Ad r:ret) {
+                            if (addto.getDistanceAllowed().intValue()==r.getCar().getDistanceAllowed()) {
+                                ret.remove(r);
+                            }
+                        }
+                    }
+              return new ResponseEntity<>(ret, HttpStatus.OK);
+   }
 
 }

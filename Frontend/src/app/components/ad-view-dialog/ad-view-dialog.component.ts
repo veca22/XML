@@ -27,7 +27,8 @@ export class AdViewDialogComponent implements OnInit {
   priceList: PriceList;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private formBuilder: FormBuilder, private router: Router, private adService: AdService, public dialogRef: MatDialogRef<AdViewDialogComponent>,
+  constructor(private formBuilder: FormBuilder, private router: Router, private adService: AdService,
+              public dialogRef: MatDialogRef<AdViewDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public datas: any,
               public dialog: MatDialog, private http: HttpClient,
               private userService: UserService,
