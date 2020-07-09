@@ -2,7 +2,10 @@ package com.agent.backend.endpoint;
 
 import com.agent.backend.GetAdRequest;
 import com.agent.backend.GetAdResponse;
+import com.agent.backend.GetCarBrandRequest;
+import com.agent.backend.GetCarBrandResponse;
 import com.agent.backend.repository.AdRepo;
+import com.agent.backend.repository.CarBrandRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -33,13 +36,25 @@ public class EndPoint {
     private AdRepo adRepo;
 
     @Autowired
-    public EndPoint(AdRepo adRepo) { this.adRepo = adRepo;}
+    public EndPoint(AdRepo adRepo, CarBrandRepo carBrandRepo) { this.adRepo = adRepo; this.carBrandRepo = carBrandRepo;}
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAdRequest")
     @ResponsePayload
     public GetAdResponse getAd(@RequestPayload GetAdRequest request){
         GetAdResponse response = new GetAdResponse();
         response.setAd(adRepo.findAdById(request.getId()));
+
+        return response;
+    }
+
+    @Autowired
+    private CarBrandRepo carBrandRepo;
+
+    @PayloadRoot(namespace = "http://ftn.uns.ac.rs.tim13", localPart = "getCarBrandRequest")
+    @ResponsePayload
+    public GetCarBrandResponse getCarBrand(@RequestPayload GetCarBrandRequest request){
+        GetCarBrandResponse response = new GetCarBrandResponse();
+        response.setBrand(carBrandRepo.findCarBrandById(request.getId()));
 
         return response;
     }

@@ -1,15 +1,12 @@
 package com.agent.backend.model;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "CarBrand", propOrder = {
+        name = "CarBrand", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "brand"
 })  //mozda dodati posle }, namespace = "nekiUri/car_brand"
@@ -18,11 +15,11 @@ public class  CarBrand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String brand;
 
     public CarBrand() {

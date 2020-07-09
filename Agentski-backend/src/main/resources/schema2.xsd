@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ftn.uns.ac.rs.tim13"
+           targetNamespace="http://ftn.uns.ac.rs.tim13" elementFormDefault="qualified">
+
+  <xs:element name="getCarBrandRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getCarBrandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CarBrand" type="tns:CarBrand" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="CarBrand">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="brand" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+
+
+</xs:schema>
+
