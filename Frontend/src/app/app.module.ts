@@ -131,7 +131,7 @@ import {PricelistViewDialogComponent} from './components/pricelist-view-dialog/p
 
   entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent,
     CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent, ConversationDialogComponent,
-	ReplyMessageDialogComponent, AdvancedSearchDialogComponent,PricelistViewDialogComponent],
+	  ReplyMessageDialogComponent, AdvancedSearchDialogComponent, PricelistViewDialogComponent],
 
   providers: [],
   bootstrap: [AppComponent]
