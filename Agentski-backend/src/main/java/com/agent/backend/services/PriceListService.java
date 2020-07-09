@@ -20,6 +20,10 @@ public class PriceListService {
         return priceListRepo.findPriceListById(id);
     }
 
+    public List<PriceList> findAllByClientId(Long id) {
+        return priceListRepo.findAllByClientId(id);
+    }
+
     public void save(PriceList p) {
         priceListRepo.save(p);
     }

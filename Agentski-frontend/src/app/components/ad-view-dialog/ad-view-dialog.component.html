@@ -116,15 +116,17 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="price">Price</label>
-            <input type="text" readonly id="price" formControlName="price" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && adViewForm.get('price').errors }" />
-            <div *ngIf="submitted && adViewForm.get('price').errors" class="invalid-feedback">
-            </div>
+          <div>
+            <mat-form-field>
+              <mat-select id="price" formControlName="price" class="form-control" placeholder="Select a PriceList">
+                <mat-option *ngFor="let option of priceLists" value="{{option.id}}">{{option.id}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <form>
+              <button mat-raised-button color="warn" (click)="view()">View pricelist</button>
+            </form>
           </div>
-
-
+          <div></div>
 
           <button mat-raised-button color="primary" class="pull-right">Rent</button>
           <button class="mat-raised-button"(click)="close()">Close</button>
