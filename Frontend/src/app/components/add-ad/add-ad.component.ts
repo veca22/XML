@@ -18,6 +18,9 @@ import {CarTypeService} from '../../services/car-type.service';
 import {TransmissionTypeService} from '../../services/transmission-type.service';
 import {UserService} from '../../services/user.service';
 import {AddPicturesDialogComponent} from '../add-pictures-dialog/add-pictures-dialog.component';
+import {PriceList} from '../../model/priceList';
+import {PriceListService} from '../../services/price-list.service';
+import {PricelistViewDialogComponent} from '../pricelist-view-dialog/pricelist-view-dialog.component';
 
 
 
@@ -49,26 +52,29 @@ export class AddAdComponent implements OnInit {
   fuelTypes: Array<FuelType>;
   carTypes: Array<CarType>;
   transTypes: Array<TransmissionType>;
+  priceLists: Array<PriceList>;
+  price: PriceList = new PriceList();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   ads: Array<Ad> = new Array<Ad>();
   listCarBrand: Array<CarBrand> =  new Array<CarBrand>();
   constructor(public dialog: MatDialog,
+              public dialog1: MatDialog,
               private formBuilder: FormBuilder,
               private router: Router,
               private adService: AdService,
               private fuelTypeService: FuelTypeService,
               private carTypeService: CarTypeService,
               private transmissionTypeService: TransmissionTypeService,
-              private userService: UserService) {
+              private userService: UserService,
+              private priceListService: PriceListService) {
 
    // this.ad = this.adService.getAllAds();//this.all();
     this.fuelTypes = fuelTypeService.getAllFuelType();
     this.carTypes = carTypeService.getAllCarType();
     this.transTypes = transmissionTypeService.getAllTransmissionType();
     this.email = this.userService.getLoggedUser().email;
-    console.log('Email ispod');
-    console.log(this.email);
+    this.priceLists = this.priceListService.getPricelistForAgent();
 
   }
 
@@ -116,7 +122,7 @@ export class AddAdComponent implements OnInit {
     this.car = new Car();
     this.car.carBrand = this.carBrand;
     this.car.carModel = this.carModel;
-    this.car.price = this.f.price.value;
+    this.price = this.priceListService.findPricelistById(this.f.price.value);
     this.car.carType = this.carType;
     this.car.fuelType = this.fuelType;
     this.car.transmissionType = this.transmissionType;
@@ -150,7 +156,7 @@ export class AddAdComponent implements OnInit {
 
   private createAd() {
     console.log('usao u create');
-    this.adService.newAd(this.ad, this.email).subscribe(
+    this.adService.newAd(this.ad, this.email, this.f.price.value.toString()).subscribe(
       data => {
         this.adService.addAd(this.ad);
         setTimeout(() => {
@@ -163,6 +169,16 @@ export class AddAdComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  view() {
+    this.price = this.priceListService.findPricelistById(this.f.price.value);
+    console.log(this.price);
+    if (this.price !== null) {
+      this.dialog1.open(PricelistViewDialogComponent, {
+        width: '40%', disableClose: true, data: this.price
+      });
+    }
   }
 
 }

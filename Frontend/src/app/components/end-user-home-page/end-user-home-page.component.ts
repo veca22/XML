@@ -6,6 +6,8 @@ import {RentRequest} from '../../model/rentRequest';
 import {RentingService} from '../../services/renting.service';
 import {MessageService} from '../../services/message.service';
 import {User} from '../../model/user';
+import {PriceList} from '../../model/priceList';
+import {PriceListService} from '../../services/price-list.service';
 
 @Component({
   selector: 'app-end-user-home-page',
@@ -18,14 +20,17 @@ export class EndUserHomePageComponent implements OnInit {
   tmp1: Array<RentRequest>;
   tmp2: Array<RentRequest>;
   tmp3: Array<User>;
+  tmp4: Array<PriceList>;
   constructor(private userService: UserService,
               private adService: AdService,
               private rentingService: RentingService,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private priceListService: PriceListService) {
       this.tmp = adService.getAllClientAds(userService.getLoggedUser().email);
       this.tmp1 = rentingService.getRentRequestsForUser(userService.getLoggedUser().email);
       this.tmp2 = rentingService.getUserRentedAds(userService.getLoggedUser().email);
       this.tmp3 = messageService.getReceivers(userService.getLoggedUser());
+      this.tmp4 = priceListService.getAgentPricelists(userService.getLoggedUser().email);
 
   }
 

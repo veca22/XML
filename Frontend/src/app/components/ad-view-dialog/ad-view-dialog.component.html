@@ -122,6 +122,9 @@
                    [ngClass]="{ 'is-invalid': submitted && adViewForm.get('price').errors }" />
             <div *ngIf="submitted && adViewForm.get('price').errors" class="invalid-feedback">
             </div>
+            <form>
+              <button mat-raised-button color="warn" (click)="view()">View pricelist</button>
+            </form>
           </div>
 
 

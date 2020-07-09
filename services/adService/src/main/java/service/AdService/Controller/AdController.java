@@ -10,6 +10,7 @@ import service.AdService.Service.*;
 import service.AdService.dto.AdDTO;
 import service.AdService.dto.AdFilterDTO;
 import service.AdService.dto.AdPicDTO;
+import service.AdService.dto.PriceListDTO;
 import service.AdService.model.*;
 import service.AdService.model.Image;
 import java.awt.*;
@@ -52,6 +53,9 @@ public class AdController {
     @Autowired
     PictureService pictureService;
 
+    @Autowired
+    PriceListService priceListService;
+
     @GetMapping(value = "/all")
     public ResponseEntity<List<Ad>> all() {
         return new ResponseEntity<>(adService.findAll(), HttpStatus.OK);
@@ -67,9 +71,12 @@ public class AdController {
     }
 
     @PostMapping(value = "/addAd")
-    public ResponseEntity<Ad> addAd(@RequestBody AdDTO ads, @RequestParam(value = "email", required = true) String email) {
+    public ResponseEntity<Ad> addAd(@RequestBody AdDTO ads, @RequestParam(value = "email", required = true) String email,
+                                    @RequestParam(value = "id", required = true) String id) {
         System.out.println("Usao u add" + ads.toString());
         System.out.println(email);
+        Long lid = Long.parseLong(id);
+        PriceList priceList = priceListService.findOneById(lid);
         Ad ad = adService.getAd(ads.getTitle());
 
         Client client = clientService.findClientByEmail(email);
@@ -111,7 +118,6 @@ public class AdController {
 
                 car.setFuelType(ft);
                 car.setMileage(ads.getCar().getMileage());
-                car.setPrice(ads.getCar().getPrice());
                 TransmissionType tt = transmissionTypeService.findTransByType(ads.getCar().getTransmissionType().getType());
                 if (tt == null) {
                     tt = new TransmissionType();
@@ -150,6 +156,8 @@ public class AdController {
                     int counter = client.getAdCounter();
                     client.setAdCounter(counter + 1);
                     clientService.save(client);
+                    priceList.getAds().add(newAd);
+                    priceListService.save(priceList);
                     return new ResponseEntity<>(newAd, HttpStatus.CREATED);
                 } else {
                     return new ResponseEntity<>(newAd, HttpStatus.NOT_IMPLEMENTED);
@@ -260,5 +268,46 @@ public class AdController {
             }
         }
         return new ResponseEntity<>(str, HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping(value = "/addPriceList")
+    public ResponseEntity<PriceList> addPriceList(@RequestBody PriceListDTO priceListDTO,
+                                                  @RequestParam(value = "email", required = true) String email) {
+        Client client = clientService.findClientByEmail(email);
+        PriceList priceList = new PriceList();
+        if(client == null) {
+            return new ResponseEntity<>(priceList, HttpStatus.FORBIDDEN);
+        }
+        priceList.setDiscountAfterDays(priceListDTO.getDiscountAfterDays());
+        priceList.setPriceForCollisionDamageWavier(priceListDTO.getPriceForCollisionDamageWavier());
+        priceList.setPriceForMileage(priceListDTO.getPriceForMileage());
+        priceList.setRealPrice(priceListDTO.getRealPrice());
+        priceList.setClient(client);
+        priceListService.save(priceList);
+        return new ResponseEntity<>(priceList, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/userPriceLists")
+    public ResponseEntity<List<PriceList>> allForAgent(@RequestParam(value = "email", required = true) String email) {
+        Client client = clientService.findClientByEmail(email);
+        if(client != null) {
+            return new ResponseEntity<>(priceListService.findAllByClientId(client.getId()), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(value = "/priceListByAdId")
+    public ResponseEntity<PriceList> priceListForDialog(@RequestParam(value = "id", required = true) String id) {
+        List<PriceList> all = priceListService.findAll();
+        Long lid = Long.parseLong(id);
+        for(PriceList priceList : all) {
+            for(Ad ad : priceList.getAds()) {
+                if(ad.getId() == lid) {
+                    return new ResponseEntity<>(priceList, HttpStatus.OK);
+                }
+            }
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
     }
 }
