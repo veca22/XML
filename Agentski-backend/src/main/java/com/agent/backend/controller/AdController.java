@@ -1,5 +1,6 @@
 package com.agent.backend.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.agent.backend.dtos.AdPicDTO;
 import com.agent.backend.model.Image;
 import org.joda.time.DateTime;
@@ -49,6 +50,9 @@ public class AdController {
     @Autowired
     PictureService pictureService;
 
+    @Autowired
+    PriceListService priceListService;
+
     @GetMapping(value = "ad/all")
     public ResponseEntity<List<Ad>> all() {
         return new ResponseEntity<>(adService.findAll(), HttpStatus.OK);
@@ -64,11 +68,14 @@ public class AdController {
     }
 
     @PostMapping(value = "ad/addAd")
-    public ResponseEntity<Ad> addAd(@RequestBody AdDTO ads, @RequestParam(value = "email", required = true) String email) {
+    public ResponseEntity<Ad> addAd(@RequestBody AdDTO ads, @RequestParam(value = "email", required = true) String email,
+                                    @RequestParam(value = "id", required = true) String id) {
         System.out.println("Usao u add" + ads.toString());
         System.out.println(email);
+        System.out.println(id);
+        Long lid = Long.parseLong(id);
         Ad ad = adService.getAd(ads.getTitle());
-
+        PriceList priceList = priceListService.findOneById(lid);
         Client client = clientService.findClientByEmail(email);
 
         if (ad == null) {
@@ -107,7 +114,7 @@ public class AdController {
 
                 car.setFuelType(ft);
                 car.setMileage(ads.getCar().getMileage());
-                car.setPrice(ads.getCar().getPrice());
+                // car.setPrice(ads.getCar().getPrice());
                 TransmissionType tt = transmissionTypeService.findTransByType(ads.getCar().getTransmissionType().getType());
                 if (tt == null) {
                     tt = new TransmissionType();
@@ -146,6 +153,8 @@ public class AdController {
                     int counter = client.getAdCounter();
                     client.setAdCounter(counter + 1);
                     clientService.save(client);
+                    priceList.getAds().add(newAd);
+                    priceListService.save(priceList);
                     return new ResponseEntity<>(newAd, HttpStatus.CREATED);
                 } else {
                     return new ResponseEntity<>(newAd, HttpStatus.NOT_IMPLEMENTED);

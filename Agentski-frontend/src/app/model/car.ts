@@ -11,7 +11,6 @@ export class Car {
   fuelType: FuelType;
   transmissionType: TransmissionType;
   carModel: CarModel;
-  price: number;
   discount: number;
   mileage: number;
   carStatus: CarStatus;

@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
         "carType",
         "fuelType",
         "transmissionType",
-        "price",
         "discount",
         "mileage",
         "carStatus",
@@ -58,11 +57,6 @@ public class Car {
     private TransmissionType transmissionType;
 
     @Column(nullable = false)
-    @Range(min = 0, max = 1000000)
-    @XmlElement
-    private int price;
-
-    @Column(nullable = false)
     @XmlElement
     private int discount;
 
@@ -97,13 +91,12 @@ public class Car {
     @XmlElement
     private int commentCount = 0;
 
-    public Car(Long id, CarBrand carBrand, CarType carType, FuelType fuelType, TransmissionType transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating, int commentCount) {
-        this.id = id;
+    public Car(CarBrand carBrand, CarModel carModel, CarType carType, FuelType fuelType, TransmissionType transmissionType, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating, int commentCount) {
         this.carBrand = carBrand;
+        this.carModel = carModel;
         this.carType = carType;
         this.fuelType = fuelType;
         this.transmissionType = transmissionType;
-        this.price = price;
         this.discount = discount;
         this.mileage = mileage;
         this.carStatus = carStatus;
@@ -162,14 +155,6 @@ public class Car {
 
     public void setTransmissionType(TransmissionType transmissionType) {
         this.transmissionType = transmissionType;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public int getDiscount() {

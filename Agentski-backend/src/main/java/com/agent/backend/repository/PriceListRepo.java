@@ -8,4 +8,5 @@ import java.util.List;
 public interface PriceListRepo extends JpaRepository<PriceList, Long> {
     List<PriceList> findAll();
     PriceList findPriceListById(Long id);
+    List<PriceList> findAllByClientId(Long id);
 }

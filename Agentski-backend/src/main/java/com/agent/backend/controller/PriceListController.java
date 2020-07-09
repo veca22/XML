@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 public class PriceListController {
@@ -35,5 +37,14 @@ public class PriceListController {
             priceList.setClient(client);
             priceListService.save(priceList);
             return new ResponseEntity<>(priceList, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/priceList/agentPricelists")
+    public ResponseEntity<List<PriceList>> allForAgent(@RequestParam(value = "email", required = true) String email) {
+        Client client = clientService.findClientByEmail(email);
+        if(client != null) {
+            return new ResponseEntity<>(priceListService.findAllByClientId(client.getId()), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 }
