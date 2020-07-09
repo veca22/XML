@@ -8,6 +8,9 @@ import {Route, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {AdWithTimes} from '../../model/adWithTimes';
 import {UserService} from '../../services/user.service';
+import {PriceList} from '../../model/priceList';
+import {PriceListService} from '../../services/price-list.service';
+import {PricelistViewDialogComponent} from '../pricelist-view-dialog/pricelist-view-dialog.component';
 @Component({
   selector: 'app-ad-view-dialog',
   templateUrl: './ad-view-dialog.component.html',
@@ -21,17 +24,20 @@ export class AdViewDialogComponent implements OnInit {
   submitted = false;
   adViewForm: FormGroup;
   adWithTimes: AdWithTimes;
+  priceList: PriceList;
 
   // tslint:disable-next-line:max-line-length
   constructor(private formBuilder: FormBuilder, private router: Router, private adService: AdService, public dialogRef: MatDialogRef<AdViewDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public datas: any,
               public dialog: MatDialog, private http: HttpClient,
-              private userService: UserService) {
+              private userService: UserService,
+              private priceListService: PriceListService,
+              public dialog1: MatDialog) {
 
     this.adWithTimes = this.datas;
     this.click();
     this.data = this.adWithTimes.ad;
-
+    this.priceList = priceListService.findPricelistById(this.data.id.toString());
     this.image = this.images[0];
 
   }
@@ -50,7 +56,7 @@ export class AdViewDialogComponent implements OnInit {
       distanceAllowed: new FormControl(this.data.car.distanceAllowed),
       mileage: new FormControl(this.data.car.mileage),
       place: new FormControl(this.data.place),
-      price: new FormControl(this.data.car.price),
+      price: new FormControl(this.priceList.id),
       carStatus: new FormControl(this.data.car.carStatus),
       childSeats: new FormControl(this.data.car.childSeats)
 
@@ -95,6 +101,11 @@ export class AdViewDialogComponent implements OnInit {
     this.userService.addToList(this.adWithTimes);
  }
 
+  view() {
+      this.dialog1.open(PricelistViewDialogComponent, {
+        width: '40%', disableClose: true, data: this.priceList
+      });
+    }
 }
 
 

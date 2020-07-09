@@ -147,9 +147,10 @@ export class AdService {
     return this.http.get(this.urlAd + '/' + title);
   }
 
-  public newAd(ad, email) {
+  public newAd(ad, email, id) {
     let params = new HttpParams();
     params = params.append('email', email);
+    params = params.append('id', id);
     return this.http.post(environment.gateway + environment.ad + '/addAd', ad , {params});
   }
 

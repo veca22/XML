@@ -25,6 +25,7 @@ import {RegistrationComponent} from './components/registration/registration.comp
 import {AddAgentComponent} from './components/add-agent/add-agent.component';
 import {AddFirmComponent} from './components/add-firm/add-firm.component';
 import {AdministratorPerimissionsComponent} from './components/administrator-perimissions/administrator-perimissions.component';
+import {AddPriceListComponent} from './components/add-price-list/add-price-list.component';
 
 
 
@@ -127,6 +128,10 @@ const routes: Routes = [
   {
     path: 'endUser/rentConditions',
     component: RentConditionsComponent,
+  },
+  {
+    path: 'endUser/addPriceList',
+    component: AddPriceListComponent,
   },
   {
     path: 'inbox',

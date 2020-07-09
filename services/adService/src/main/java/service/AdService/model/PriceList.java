@@ -1,36 +1,69 @@
-package service.AdminService.model;
+package service.AdService.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "PriceList", propOrder = {
+        "id",
+        "realPrice",
+        "priceForMileage",
+        "priceForCollisionDamageWavier",
+        "discountAfterDays",
+        "ads",
+        "client"
+
+})  //mozda dodati posle }, namespace = "nekiUri/price_list"
+
 public class PriceList {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @XmlElement
     private Long id;
 
     @Column
+    @XmlElement
     private double realPrice;   //stvarna cena auta
 
     @Column
+    @XmlElement
     private double priceForMileage; //cena za kilometrazu
 
     @Column
+    @XmlElement
     private double priceForCollisionDamageWavier;   //cena za collision
 
+    @Column
+    @XmlElement
+    private int discountAfterDays;
+
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @XmlElement
     private Set<Ad> ads = new HashSet<>();
 
+    @XmlElement
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Client client;
+
     public PriceList() {
+        this.discountAfterDays = 0;
     }
 
-    public PriceList(double realPrice, double priceForMileage, double priceForCollisionDamageWavier, Set<Ad> ads) {
+    public PriceList(double realPrice, double priceForMileage, double priceForCollisionDamageWavier, int discountAfterDays, Set<Ad> ads, Client client) {
         this.realPrice = realPrice;
         this.priceForMileage = priceForMileage;
         this.priceForCollisionDamageWavier = priceForCollisionDamageWavier;
+        this.discountAfterDays = discountAfterDays;
         this.ads = ads;
+        this.client = client;
     }
 
     public Long getId() {
@@ -71,5 +104,21 @@ public class PriceList {
 
     public void setAds(Set<Ad> ads) {
         this.ads = ads;
+    }
+
+    public void setDiscountAfterDays(int discountAfterDays) {
+        this.discountAfterDays = discountAfterDays;
+    }
+
+    public int getDiscountAfterDays() {
+        return discountAfterDays;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
