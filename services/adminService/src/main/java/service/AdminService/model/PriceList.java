@@ -1,6 +1,8 @@
 package service.AdminService.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class PriceList {
@@ -18,19 +20,17 @@ public class PriceList {
     @Column
     private double priceForCollisionDamageWavier;   //cena za collision
 
-    @ManyToOne
-    @JoinColumn(name = "ad_id")
-    private Ad ad;  //oglas
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private Set<Ad> ads = new HashSet<>();
 
     public PriceList() {
     }
 
-    public PriceList(Long id, double realPrice, double priceForMileage, double priceForCollisionDamageWavier, Ad ad) {
-        this.id = id;
+    public PriceList(double realPrice, double priceForMileage, double priceForCollisionDamageWavier, Set<Ad> ads) {
         this.realPrice = realPrice;
         this.priceForMileage = priceForMileage;
         this.priceForCollisionDamageWavier = priceForCollisionDamageWavier;
-        this.ad = ad;
+        this.ads = ads;
     }
 
     public Long getId() {
@@ -65,11 +65,11 @@ public class PriceList {
         this.priceForCollisionDamageWavier = priceForCollisionDamageWavier;
     }
 
-    public Ad getAd() {
-        return ad;
+    public Set<Ad> getAds() {
+        return ads;
     }
 
-    public void setAd(Ad ad) {
-        this.ad = ad;
+    public void setAds(Set<Ad> ads) {
+        this.ads = ads;
     }
 }

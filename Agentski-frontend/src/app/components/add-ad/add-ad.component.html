@@ -60,16 +60,17 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-            <label for="price">Price</label>
-            <input type="text" id="price" formControlName="price" class="form-control"
-                   [ngClass]="{ 'is-invalid': submitted && addAdForm.get('price').errors }" />
-            <div *ngIf="submitted && addAdForm.get('price').errors" class="invalid-feedback">
-              <div *ngIf="addAdForm.get('price').errors['required']">Phone Number is required</div><div *ngIf="addAdForm.get('price').errors['minlength']">A phone number must have at least 9
-                digits
-              </div>
+            <div>
+              <mat-form-field>
+                <mat-select id="price" formControlName="price" class="form-control" placeholder="Select a PriceList">
+                  <mat-option *ngFor="let option of priceLists" value="{{option.id}}">{{option.id}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <form>
+                <button mat-raised-button color="warn" (click)="view()">View pricelist</button>
+              </form>
             </div>
-
+            <div></div>
               <div class="form-group">
               <label for="mileage">Mileage</label>
               <input type="text" id="mileage" formControlName="mileage" class="form-control"
@@ -95,7 +96,7 @@
                 </div>
               </div>
 
-            </div>
+
             <div>
               <mat-form-field>
                 <mat-select id="cdw" formControlName="cdw" class="form-control" placeholder="Collision damage waiver">
@@ -161,7 +162,9 @@
                     <mat-option *ngFor="let option of fuelTypes" value="{{option.type}}">{{option.type}}</mat-option>
                   </mat-select>
                 </mat-form-field>
-            <button mat-raised-button style="position: center" color="primary" class="pull-right">Save</button>
+            <div>
+              <button mat-raised-button style="position: center" color="primary" class="pull-right">Save</button>
+            </div>
           </form>
         </mat-card>
     </div>

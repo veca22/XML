@@ -14,6 +14,8 @@ import {RateServiceService} from '../../services/rate-service.service';
 import {MessageService} from '../../services/message.service';
 import {Message} from '../../model/message';
 import {User} from '../../model/user';
+import {PriceList} from "../../model/priceList";
+import {PriceListService} from "../../services/price-list.service";
 
 @Component({
   selector: 'app-agent-home',
@@ -30,6 +32,7 @@ export class AgentHomeComponent implements OnInit {
   tmp3: Array<RentRequest>;
   adm: Array<Comment>;
   m: Array<User>;
+  pl: Array<PriceList>;
 
   constructor(private carTypeService: CarTypeService,
               private fuelTypeService: FuelTypeService,
@@ -38,7 +41,8 @@ export class AgentHomeComponent implements OnInit {
               private adService: AdService,
               private rentingService: RentServiceService,
               private rateService: RateServiceService,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private pricelistService: PriceListService) {
     this.t = this.carTypeService.getAllCarType();
     this.f = this.fuelTypeService.getAllFuelType();
     this.trans = this.transmissionTypeService.getAllTransmissionType();
@@ -47,6 +51,7 @@ export class AgentHomeComponent implements OnInit {
     this.adm = this.rateService.getCommentForOperation();
     this.tmp3 = this.rentingService.getUserRentedReservedAds(this.userService.getLoggedUser().email);
   //  this.m = this.messageService.getReceivers(this.userService.getLoggedUser());
+    this.pl = this.pricelistService.getAgentPricelists(this.userService.getLoggedUser().email);
   }
 
   ngOnInit() {

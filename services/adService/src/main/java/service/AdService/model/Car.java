@@ -30,10 +30,6 @@ public class Car {
     private TransmissionType transmissionType;
 
     @Column(nullable = false)
-    @Range(min = 0, max = 1000000)
-    private int price;
-
-    @Column(nullable = false)
     private int discount;
 
     @Column(nullable = false)
@@ -57,13 +53,12 @@ public class Car {
     @Column(nullable = false)
     private double averageRating = 0;
 
-    public Car(CarBrand carBrand, CarModel carModel, CarType carType, FuelType fuelType, TransmissionType transmissionType, @Range(min = 0, max = 1000000) int price, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {
+    public Car(CarBrand carBrand, CarModel carModel, CarType carType, FuelType fuelType, TransmissionType transmissionType, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating) {
         this.carBrand = carBrand;
         this.carModel = carModel;
         this.carType = carType;
         this.fuelType = fuelType;
         this.transmissionType = transmissionType;
-        this.price = price;
         this.discount = discount;
         this.mileage = mileage;
         this.carStatus = carStatus;
@@ -121,14 +116,6 @@ public class Car {
 
     public void setTransmissionType(TransmissionType transmissionType) {
         this.transmissionType = transmissionType;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public int getDiscount() {
@@ -196,7 +183,6 @@ public class Car {
                 ", carType=" + carType.toString() +
                 ", fuelType=" + fuelType.toString() +
                 ", transmissionType=" + transmissionType.toString() +
-                ", price=" + price +
                 ", discount=" + discount +
                 ", mileage=" + mileage +
                 ", carStatus=" + carStatus +

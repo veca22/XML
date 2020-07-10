@@ -57,6 +57,8 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { AddAgentComponent } from './components/add-agent/add-agent.component';
 import { AddFirmComponent } from './components/add-firm/add-firm.component';
 import { AdministratorPerimissionsComponent } from './components/administrator-perimissions/administrator-perimissions.component';
+import {AddPriceListComponent} from './components/add-price-list/add-price-list.component';
+import {PricelistViewDialogComponent} from './components/pricelist-view-dialog/pricelist-view-dialog.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,8 @@ import { AdministratorPerimissionsComponent } from './components/administrator-p
     AddAgentComponent,
     AddFirmComponent,
     AdministratorPerimissionsComponent,
-
+    AddPriceListComponent,
+    PricelistViewDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +131,8 @@ import { AdministratorPerimissionsComponent } from './components/administrator-p
 
   entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent,
     CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent, ConversationDialogComponent,
-  ReplyMessageDialogComponent, AdvancedSearchDialogComponent],
+	  ReplyMessageDialogComponent, AdvancedSearchDialogComponent, PricelistViewDialogComponent],
+
   providers: [],
   bootstrap: [AppComponent]
 })
