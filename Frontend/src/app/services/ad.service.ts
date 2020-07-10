@@ -12,6 +12,8 @@ import {CarStatus} from '../model/carStatus';
 import {AdWithTimes} from '../model/adWithTimes';
 import {UserService} from './user.service';
 import {AdvancedSearch} from '../model/advancedSearch';
+import {OwnersAndIds} from '../model/ownersAndIds';
+import {BundleModel} from '../model/bundleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,8 @@ export class AdService {
   clientAds: Array<Ad> = new Array<Ad>();
   type: string;
   send: Send;
+  ow: OwnersAndIds;
+  ows: Array<OwnersAndIds> = new Array<OwnersAndIds>();
   constructor(private router: Router, private http: HttpClient, private userService: UserService) {
    // this.getAllAds();
     this.send = new Send();
@@ -214,6 +218,12 @@ public changeRentStatus(ad) {
     return this.http.post(environment.gateway + environment.renting + '/reserveMy', this.send);
   }
 
+  public reserveBundle(a: BundleModel) {
+    let params = new HttpParams();
+    params = params.append('email', this.userService.getLoggedUser().email);
+    return this.http.post(environment.gateway + environment.renting + '/reserveBundle', a, {params});
+  }
+
   public getAllAdvanced(model: AdvancedSearch): Array<Ad> {
     this.http.post(environment.gateway + environment.renting + '/allAdvanced', model).subscribe((data: Ad[]) => {
         let flag = 0;
@@ -240,6 +250,33 @@ public changeRentStatus(ad) {
       }
     );
     return this.advancedAds;
+  }
+
+  public getOwners(models: AdWithTimes[]): Array<OwnersAndIds> {
+    this.http.post(environment.gateway + environment.renting + '/allOwners', models).subscribe((data: OwnersAndIds[]) => {
+        let flag = 0;
+
+        for (const c of data) {
+          console.log(c);
+          flag = 0;
+          this.ow = c;
+          for (const t of this.ows) {
+            if (c.client.id === t.client.id) {
+              flag = 1;
+            }
+          }
+
+          if (flag === 0) {
+            this.ows.push(this.ow);
+          }
+        }
+      },
+      // tslint:disable-next-line:no-shadowed-variable
+      error => {
+        console.log(error);
+      }
+    );
+    return this.ows;
   }
 
 }

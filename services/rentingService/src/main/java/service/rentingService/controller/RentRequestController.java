@@ -7,13 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.rentingService.dtos.AdAdvancedDTO;
-import service.rentingService.dtos.AdFilterDTO;
-import service.rentingService.dtos.AddCommentDTO;
-import service.rentingService.dtos.SendDTO;
+import service.rentingService.dtos.*;
 import service.rentingService.model.*;
 import service.rentingService.service.*;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -346,5 +344,101 @@ public class RentRequestController {
                     }
               return new ResponseEntity<>(ret, HttpStatus.OK);
    }
+
+    @PostMapping(value = "/allOwners", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OwnersAndAdsDTO>> adOwners(@RequestBody List<AdRentDTO> addtos){
+            List<AdRentDTO> lista=addtos;
+            List<Client> cls=new ArrayList<>();
+            List<OwnersAndIdsDTO> ows=new ArrayList<>();
+            List<OwnersAndAdsDTO> owsa=new ArrayList<>();
+            int flag=0;
+            int flag1=0;
+        System.out.println("metoda");
+            for(AdRentDTO a:lista){
+                Client c=clientService.findClientByAd(a.getAd());
+              //  System.out.println(c);
+                for(OwnersAndIdsDTO o:ows){
+                    if(o.getClient().getId()==c.getId()){
+                        flag=1;
+                        o.getIds().add(a.getAd().getId().toString());
+                        for(OwnersAndAdsDTO oa:owsa){
+                            if(oa.getClient().getId()==o.getClient().getId()){
+                                flag1=1;
+                                oa.getAds().add(a);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                if(flag==1){
+                     flag=0;
+                }else{
+                    OwnersAndIdsDTO os=new OwnersAndIdsDTO();
+                    os.setClient(c);
+                    os.getIds().add(a.getAd().getId().toString());
+                    ows.add(os);
+                }
+                if(flag1==1){
+                    flag1=0;
+                }else{
+                    OwnersAndAdsDTO oaa=new OwnersAndAdsDTO();
+                    oaa.setClient(c);
+                    oaa.getAds().add(a);
+                    owsa.add(oaa);
+                }
+            }
+            List<OwnersAndAdsDTO> adss=new ArrayList<>();
+            int flag2=0;
+            for(OwnersAndAdsDTO owa:owsa){
+                for(int i=0;i<owa.getAds().size()-1;i++){
+                    for(int j=1;j<owa.getAds().size();j++){
+                          if(owa.getAds().get(i).getAd().getStartOfAd()== DateTime.parse(owa.getAds().get(j).getStartTime()).toDate()
+                        && owa.getAds().get(i).getAd().getEndOfAd()== DateTime.parse(owa.getAds().get(j).getEndTime()).toDate()){
+                            OwnersAndAdsDTO q=new OwnersAndAdsDTO();
+                            q.setClient(owa.getClient());
+                            q.getAds().add(owa.getAds().get(i));
+                            q.getAds().add(owa.getAds().get(j));
+                            adss.add(q);
+                        }
+                    }
+                }
+            }
+            List<OwnersAndAdsDTO> ae=new ArrayList<>();
+            for(OwnersAndAdsDTO d:adss){
+                if(d.getAds().size()>1){
+                    ae.add(d);
+                }
+            }
+            return new ResponseEntity<>(ae, HttpStatus.OK);
+    }
+
+    @PostMapping("/reserveBundle")
+    public ResponseEntity reserveBundle(@RequestBody BundleDTO bundleDTO,@RequestParam(value = "email", required = true) String email){
+        RentRequest rr = new RentRequest();
+        Set<Car> carsForRent= new HashSet<>();
+        DateTime startD=new DateTime();
+        DateTime endD=new DateTime();
+        for(AdRentDTO a:bundleDTO.getAdsWithTimes()){
+            Ad ad = a.getAd();
+            startD = DateTime.parse(a.getStartTime());
+            endD = DateTime.parse(a.getEndTime());
+            carsForRent.add(a.getAd().getCar());
+        }
+        rr.setCarsForRent(carsForRent);
+        rr.setClient(clientService.findClientByEmail(email));
+        rr.setReservedFrom(startD.toDate());
+        rr.setReservedTo(endD.toDate());
+        rr.setRentRequestStatus(RentRequestStatus.PENDING);
+        rr.setTimeCreated(LocalDateTime.now());
+
+        Client client =clientService.findClientByEmail(email);
+        if(client.isAllowReservation() == true) {
+            rentRequestService.addRent(rr);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
 
 }
