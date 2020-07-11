@@ -59,6 +59,7 @@ import { AddFirmComponent } from './components/add-firm/add-firm.component';
 import { AdministratorPerimissionsComponent } from './components/administrator-perimissions/administrator-perimissions.component';
 import {AddPriceListComponent} from './components/add-price-list/add-price-list.component';
 import {PricelistViewDialogComponent} from './components/pricelist-view-dialog/pricelist-view-dialog.component';
+import { RateBundleComponent } from './components/rate-bundle/rate-bundle.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import {PricelistViewDialogComponent} from './components/pricelist-view-dialog/p
     AddFirmComponent,
     AdministratorPerimissionsComponent,
     AddPriceListComponent,
-    PricelistViewDialogComponent
+    PricelistViewDialogComponent,
+    RateBundleComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +133,7 @@ import {PricelistViewDialogComponent} from './components/pricelist-view-dialog/p
 
   entryComponents: [AddAdComponent, SearchResultDialogComponent, AdViewDialogComponent, AddPicturesDialogComponent,
     CartDialogComponent, RentDialogComponent, SendMessageDialogComponent, RateDialogComponent, ConversationDialogComponent,
-	  ReplyMessageDialogComponent, AdvancedSearchDialogComponent, PricelistViewDialogComponent],
+	  ReplyMessageDialogComponent, AdvancedSearchDialogComponent, PricelistViewDialogComponent, RateBundleComponent],
 
   providers: [],
   bootstrap: [AppComponent]

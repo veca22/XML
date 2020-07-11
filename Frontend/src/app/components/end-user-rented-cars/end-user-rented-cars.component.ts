@@ -8,6 +8,7 @@ import {SearchResultDialogComponent} from '../search-result-dialog/search-result
 import {RateDialogComponent} from '../rate-dialog/rate-dialog.component';
 import {AdViewDialogComponent} from '../ad-view-dialog/ad-view-dialog.component';
 import {SendMessageDialogComponent} from '../send-message-dialog/send-message-dialog.component';
+import {RateBundleComponent} from '../rate-bundle/rate-bundle.component';
 
 @Component({
   selector: 'app-end-user-rented-cars',
@@ -36,8 +37,8 @@ export class EndUserRentedCarsComponent implements OnInit {
     this.flag = await this.rentService.getFlagForRent(request.reservedTo);
     setTimeout(() => {
       if (this.flag === true) {
-        this.dialog.open(RateDialogComponent, {
-          width: '50%', disableClose: true, data: request,
+        this.dialog.open(RateBundleComponent, {
+          width: '50%', disableClose: true, data: request.carsForRent,
         });
       }
       }, 200);
