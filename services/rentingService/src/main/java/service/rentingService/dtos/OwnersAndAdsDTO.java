@@ -29,4 +29,12 @@ public class OwnersAndAdsDTO {
     public void setClient(Client client) {
         this.client = client;
     }
+
+    @Override
+    public String toString() {
+        return "OwnersAndAdsDTO{" +
+                "ads=" + ads +
+                ", client=" + client +
+                '}';
+    }
 }

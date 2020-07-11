@@ -7,6 +7,8 @@ import {AdService} from '../../services/ad.service';
 import {OwnersAndIds} from '../../model/ownersAndIds';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BundleModel} from '../../model/bundleModel';
+import {EndUserHomePageComponent} from '../end-user-home-page/end-user-home-page.component';
+import {RentingService} from '../../services/renting.service';
 
 @Component({
   selector: 'app-cart-dialog',
@@ -22,14 +24,22 @@ export class CartDialogComponent implements OnInit {
   owForm: FormGroup;
   ow: OwnersAndIds;
   bun: BundleModel;
-  constructor(public dialogRef: MatDialogRef<CartDialogComponent>,
-              public userService: UserService,
-              private adService: AdService,
-              private formBuilder: FormBuilder, ) {
-    this.adWithTimes = this.userService.getListCart();
-    this.ows = this.adService.getOwners(this.adWithTimes);
-    console.log(this.ows);
+ constructor(public dialogRef: MatDialogRef<CartDialogComponent>,
+             public userService: UserService,
+             private adService: AdService,
+             private formBuilder: FormBuilder,
+             private rentingService: RentingService) {
+    this.adWithTimes = this.rentingService.getCartAds();
+    console.log(this.adWithTimes);
+    // this.ows = await this.adService.getOwners(this.adWithTimes);
+    // console.log(this.ows);
+    this.metoda();
     this.dataSource = new MatTableDataSource<AdWithTimes>(this.adWithTimes);
+  }
+
+  async metoda() {
+    this.ows = await this.adService.getOwners(this.adWithTimes);
+    console.log(this.ows);
   }
 
   ngOnInit() {
@@ -40,6 +50,15 @@ export class CartDialogComponent implements OnInit {
 
   close() {
     this.adWithTimes.splice(0, this.adWithTimes.length);
+    this.ows.splice(0, this.ows.length);
+    this.rentingService.deleteCart().subscribe(
+      resl => {
+        console.log('deleted');
+      },
+      error => {
+        console.log('bad delete');
+      }
+    );
     this.dialogRef.close();
   }
 
@@ -53,6 +72,15 @@ export class CartDialogComponent implements OnInit {
       res => {
         this.deleteRow(a);
         alert('Reserved');
+        this.rentingService.deleteCart().subscribe(
+          resl => {
+            console.log('deleted');
+          },
+          error => {
+            console.log('bad delete');
+          }
+        );
+        this.close();
       },
       error => {
         alert('Error');
@@ -84,7 +112,16 @@ export class CartDialogComponent implements OnInit {
       res => {
         alert('Reserved');
         this.adWithTimes.splice(0, this.adWithTimes.length);
+        this.ows.splice(0, this.ows.length);
         this.dialogRef.close();
+        this.rentingService.deleteCart().subscribe(
+          resl => {
+            console.log('deleted');
+          },
+          error => {
+           console.log('bad delete');
+          }
+        );
       },
       error => {
         alert('Error');

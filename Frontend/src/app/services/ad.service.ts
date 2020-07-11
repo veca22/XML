@@ -225,7 +225,7 @@ public changeRentStatus(ad) {
     return this.http.post(environment.gateway + environment.renting + '/reserveBundle', a, {params});
   }
 
-  public getAllAdvanced(model: AdvancedSearch): Array<Ad> {
+  public  getAllAdvanced(model: AdvancedSearch): Array<Ad> {
     this.http.post(environment.gateway + environment.renting + '/allAdvanced', model).subscribe((data: Ad[]) => {
         let flag = 0;
 
@@ -253,7 +253,7 @@ public changeRentStatus(ad) {
     return this.advancedAds;
   }
 
-  public getOwners(models: AdWithTimes[]): Array<OwnersAndIds> {
+  public async getOwners(models: AdWithTimes[]): Promise<Array<OwnersAndIds>> {
     this.http.post(environment.gateway + environment.renting + '/allOwners', models).subscribe((data: OwnersAndIds[]) => {
         let flag = 0;
 

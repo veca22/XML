@@ -8,6 +8,7 @@ import { AdViewDialogComponent } from '../ad-view-dialog/ad-view-dialog.componen
 import {AdWithTimes} from '../../model/adWithTimes';
 import {AdsWithTimes} from '../../model/adsWithTimes';
 import {AdvancedSearchDialogComponent} from '../advanced-search-dialog/advanced-search-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-result-dialog',
@@ -25,7 +26,8 @@ export class SearchResultDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<SearchResultDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public adService: AdService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private router: Router) {
     this.adWithTimes = new AdWithTimes();
     this.adsWithTimes = new AdsWithTimes();
   }
@@ -41,6 +43,7 @@ export class SearchResultDialogComponent implements OnInit {
 
   close() {
     this.myResponse.splice(0, this.myResponse.length);
+    this.router.navigate(['endUser/home']);
     this.dialogRef.close();
   }
 

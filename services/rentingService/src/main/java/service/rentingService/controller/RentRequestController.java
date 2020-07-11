@@ -36,6 +36,9 @@ public class RentRequestController {
     @Autowired
     CarService carService;
 
+    @Autowired
+    CartService cartService;
+
     @GetMapping("/rentRequestsForUser")
     public ResponseEntity<List<RentRequest>> requestsForUsers(@RequestParam(value = "email", required = true) String email) {
         Client c = clientService.findClientByEmail(email);
@@ -294,22 +297,22 @@ public class RentRequestController {
                             }
                         }
                     }
-                if(ret!=null)
-                    if(addto.getPrice()!=null){
-                        for(Ad r:ret) {
-                            if (addto.getPrice().intValue()>r.getCar().getPrice()) {
-                                ret.remove(r);
-                            }
-                        }
-                    }
-                if(ret!=null)
-                    if(addto.getPrice2()!=null){
-                        for(Ad r:ret) {
-                            if (addto.getPrice2().intValue()<r.getCar().getPrice()) {
-                                ret.remove(r);
-                            }
-                        }
-                    }
+//                if(ret!=null)
+//                    if(addto.getPrice()!=null){
+//                        for(Ad r:ret) {
+//                            if (addto.getPrice().intValue()>r.getCar().getPrice()) {
+//                                ret.remove(r);
+//                            }
+//                        }
+//                    }
+//                if(ret!=null)
+//                    if(addto.getPrice2()!=null){
+//                        for(Ad r:ret) {
+//                            if (addto.getPrice2().intValue()<r.getCar().getPrice()) {
+//                                ret.remove(r);
+//                            }
+//                        }
+//                    }
                 if(ret!=null)
                     if(addto.getCdw()!=null){
                         for(Ad r:ret) {
@@ -349,7 +352,6 @@ public class RentRequestController {
     public ResponseEntity<List<OwnersAndAdsDTO>> adOwners(@RequestBody List<AdRentDTO> addtos){
             List<AdRentDTO> lista=addtos;
             List<Client> cls=new ArrayList<>();
-            List<OwnersAndIdsDTO> ows=new ArrayList<>();
             List<OwnersAndAdsDTO> owsa=new ArrayList<>();
             int flag=0;
             int flag1=0;
@@ -357,49 +359,43 @@ public class RentRequestController {
             for(AdRentDTO a:lista){
                 Client c=clientService.findClientByAd(a.getAd());
               //  System.out.println(c);
-                for(OwnersAndIdsDTO o:ows){
+                for(OwnersAndAdsDTO o:owsa){
                     if(o.getClient().getId()==c.getId()){
                         flag=1;
-                        o.getIds().add(a.getAd().getId().toString());
-                        for(OwnersAndAdsDTO oa:owsa){
-                            if(oa.getClient().getId()==o.getClient().getId()){
-                                flag1=1;
-                                oa.getAds().add(a);
-                                break;
-                            }
-                        }
+                        o.getAds().add(a);
                         break;
                     }
                 }
                 if(flag==1){
                      flag=0;
+                    System.out.println("usao sam 2");
                 }else{
-                    OwnersAndIdsDTO os=new OwnersAndIdsDTO();
+                    OwnersAndAdsDTO os=new OwnersAndAdsDTO();
                     os.setClient(c);
-                    os.getIds().add(a.getAd().getId().toString());
-                    ows.add(os);
-                }
-                if(flag1==1){
-                    flag1=0;
-                }else{
-                    OwnersAndAdsDTO oaa=new OwnersAndAdsDTO();
-                    oaa.setClient(c);
-                    oaa.getAds().add(a);
-                    owsa.add(oaa);
+                    os.getAds().add(a);
+                    owsa.add(os);
+                    System.out.println("usao sam 3");
                 }
             }
+            System.out.println(owsa.size());
             List<OwnersAndAdsDTO> adss=new ArrayList<>();
             int flag2=0;
             for(OwnersAndAdsDTO owa:owsa){
+                System.out.println(owa.getAds());
                 for(int i=0;i<owa.getAds().size()-1;i++){
                     for(int j=1;j<owa.getAds().size();j++){
-                          if(owa.getAds().get(i).getAd().getStartOfAd()== DateTime.parse(owa.getAds().get(j).getStartTime()).toDate()
-                        && owa.getAds().get(i).getAd().getEndOfAd()== DateTime.parse(owa.getAds().get(j).getEndTime()).toDate()){
+                        System.out.println(DateTime.parse(owa.getAds().get(i).getStartTime()).toDate());
+                        System.out.println(DateTime.parse(owa.getAds().get(j).getStartTime()).toDate());
+                        System.out.println(DateTime.parse(owa.getAds().get(i).getEndTime()).toDate());
+                        System.out.println(DateTime.parse(owa.getAds().get(j).getEndTime()).toDate());
+                    if((DateTime.parse(owa.getAds().get(i).getStartTime()).toDate()).equals(DateTime.parse(owa.getAds().get(j).getStartTime()).toDate())
+                        && (DateTime.parse(owa.getAds().get(i).getEndTime()).toDate()).equals( DateTime.parse(owa.getAds().get(j).getEndTime()).toDate())){
                             OwnersAndAdsDTO q=new OwnersAndAdsDTO();
                             q.setClient(owa.getClient());
                             q.getAds().add(owa.getAds().get(i));
                             q.getAds().add(owa.getAds().get(j));
                             adss.add(q);
+                            System.out.println("usao sam 4");
                         }
                     }
                 }
@@ -408,6 +404,7 @@ public class RentRequestController {
             for(OwnersAndAdsDTO d:adss){
                 if(d.getAds().size()>1){
                     ae.add(d);
+                System.out.println("usao sam 5");
                 }
             }
             return new ResponseEntity<>(ae, HttpStatus.OK);
@@ -438,6 +435,39 @@ public class RentRequestController {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @PostMapping(value = "/addToCart")
+    public String addToCart(@RequestBody AdRentDTO adRentDTO){
+        System.out.println(adRentDTO);
+        Cart c=cartService.findCartByAd(adRentDTO.getAd());
+        if (c == null){
+            Cart ct=new Cart();
+            ct.setAd(adRentDTO.getAd());
+            ct.setStartTime(DateTime.parse(adRentDTO.getStartTime()).toDate());
+            ct.setEndTime(DateTime.parse(adRentDTO.getEndTime()).toDate());
+            cartService.addCart(ct);
+        }
+        else{
+            return "Serial already exists";
+        }
+        return "";
+    }
+
+    @GetMapping(value = "/allCart")
+    public ResponseEntity<List<Cart>> allCart() {
+        return new ResponseEntity<>(cartService.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteCart")
+    public ResponseEntity deleteCart(@RequestParam(value = "email", required = true) String email){
+        List<Cart> carts= cartService.findAll();
+        if(carts==null){
+            return  new ResponseEntity<>(HttpStatus.OK);
+        }else {
+           cartService.deleteAll();
+            return  new ResponseEntity<>(HttpStatus.OK);
         }
     }
 
