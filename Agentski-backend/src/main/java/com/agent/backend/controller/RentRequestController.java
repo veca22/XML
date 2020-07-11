@@ -177,6 +177,7 @@ public class RentRequestController {
         c.setApproved(addCommentDTO.getComment().isApproved());
         c.setComment(addCommentDTO.getComment().getComment());
         c.setCommenter(addCommentDTO.getComment().getCommenter());
+        c.setCarRating(addCommentDTO.getCarRating());
         Ad ad = adService.findAdByCar(addCommentDTO.getCar());
         c.setAd(ad);
         commentService.addComment(c);
@@ -187,8 +188,13 @@ public class RentRequestController {
         Car car = ad.getCar();
         car.setMileage(addCommentDTO.getMileage() + car.getMileage());
         car.setCommentCount(car.getCommentCount() + 1);
+        double average = 0;
+        for(Comment comment : tmp) {
+            average = average + comment.getCarRating();
+            i++;
+        }
+        car.setAverageRating(average / i);
         carService.addCar(car);
-
 
         return new ResponseEntity<>(c, HttpStatus.OK);
     }
