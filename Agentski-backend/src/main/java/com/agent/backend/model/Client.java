@@ -25,7 +25,8 @@ import java.util.Set;
         "address",
         "role",
         "ads",
-        "adCounter"
+        "adCounter",
+        "allowReservation"
 })  //mozda dodati posle }, namespace = "nekiUri/client"
 
 public class Client {
@@ -87,6 +88,9 @@ public class Client {
     @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private int adCounter;
 
+    @Column()
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
+    private boolean allowReservation = true;
 
     public Client(){}
 
@@ -102,6 +106,7 @@ public class Client {
         this.address=address;
         this.role=Role.ENDUSER;
         this.adCounter = 0;
+        this.allowReservation = true;
     }
 
     //agent
@@ -219,5 +224,13 @@ public class Client {
 
     public void setAdCounter(int adCounter) {
         this.adCounter = adCounter;
+    }
+
+    public boolean isAllowReservation() {
+        return allowReservation;
+    }
+
+    public void setAllowReservation(boolean allowReservation) {
+        this.allowReservation = allowReservation;
     }
 }
