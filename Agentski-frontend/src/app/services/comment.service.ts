@@ -12,4 +12,7 @@ export class CommentService {
   public newComment(comment) {
     return this.http.post(environment.url + environment.renting + '/addComment', comment);
   }
+  public carMileage(mileage) {
+    return this.http.put(environment.url + environment.renting + '/addMileage', mileage);
+  }
 }

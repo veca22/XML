@@ -3,6 +3,7 @@ package com.agent.backend.controller;
 
 import com.agent.backend.dtos.AdFilterDTO;
 import com.agent.backend.dtos.AddCommentDTO;
+import com.agent.backend.dtos.AddMileageDto;
 import com.agent.backend.dtos.SendDTO;
 import com.agent.backend.model.*;
 import com.agent.backend.services.*;
@@ -240,5 +241,18 @@ public class RentRequestController {
         return new ResponseEntity<>(tmp, HttpStatus.OK);
     }
 
+    @PutMapping("renting/addMileage")
+    public ResponseEntity<Car> addMileage(@RequestBody AddMileageDto addMileageDto) {
+        Car car = carService.findCar(addMileageDto.getCar().getId());
+        car.setMileage(car.getMileage() + Integer.parseInt(addMileageDto.getMileage()));
+        Ad ad = adService.findAdByCar(car);
+        Client c = ad.getClient();
+        if(car.getDistanceAllowed() < Integer.parseInt(addMileageDto.getMileage())) {
+            c.setAllowReservation(false);
+        }
+        clientService.save(c);
+        carService.addCar(car);
+        return new ResponseEntity<>(car, HttpStatus.OK);
+    }
 
 }

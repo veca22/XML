@@ -32,6 +32,7 @@ import { RateDialogComponentComponent } from './components/rate-dialog-component
 import { AgentReservedCarsComponent } from './components/agent-reserved-cars/agent-reserved-cars.component';
 import { AddPriceListComponent } from './components/add-price-list/add-price-list.component';
 import { PricelistViewDialogComponent } from './components/pricelist-view-dialog/pricelist-view-dialog.component';
+import { DistanceDialogComponent } from './components/distance-dialog/distance-dialog.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { PricelistViewDialogComponent } from './components/pricelist-view-dialog
     AgentReservedCarsComponent,
     AddPriceListComponent,
     PricelistViewDialogComponent,
+    DistanceDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,8 @@ import { PricelistViewDialogComponent } from './components/pricelist-view-dialog
     ConversationDialogComponent,
     RateDialogComponentComponent,
     SendMessageDialogComponent,
-    PricelistViewDialogComponent
+    PricelistViewDialogComponent,
+    DistanceDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

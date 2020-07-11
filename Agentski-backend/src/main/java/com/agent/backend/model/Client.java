@@ -1,5 +1,7 @@
 package com.agent.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,7 +25,8 @@ import java.util.Set;
         "address",
         "role",
         "ads",
-        "adCounter"
+        "adCounter",
+        "allowReservation"
 })  //mozda dodati posle }, namespace = "nekiUri/client"
 
 public class Client {
@@ -78,12 +81,16 @@ public class Client {
 
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
+    @JsonIgnore
     private Set<Ad> ads;
 
     @Column(nullable = false)
     @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private int adCounter;
 
+    @Column()
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
+    private boolean allowReservation = true;
 
     public Client(){}
 
@@ -99,6 +106,7 @@ public class Client {
         this.address=address;
         this.role=Role.ENDUSER;
         this.adCounter = 0;
+        this.allowReservation = true;
     }
 
     //agent
@@ -216,5 +224,13 @@ public class Client {
 
     public void setAdCounter(int adCounter) {
         this.adCounter = adCounter;
+    }
+
+    public boolean isAllowReservation() {
+        return allowReservation;
+    }
+
+    public void setAllowReservation(boolean allowReservation) {
+        this.allowReservation = allowReservation;
     }
 }
