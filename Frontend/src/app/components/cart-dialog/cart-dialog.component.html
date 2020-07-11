@@ -30,7 +30,26 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
+<div class="main-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <mat-card>
+          <form [formGroup]="owForm" (ngSubmit)="onSubmit()">
+<div>
+  <mat-form-field>
+    <mat-select id="clients" formControlName="clients" class="form-control" placeholder="Select bundle">
+      <mat-option *ngFor="let option of ows" value="{{option.client.email}}">{{option.client.email}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+            <button mat-raised-button style="position: center" color="primary" class="pull-right">Bundle</button>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
 <mat-dialog-actions>
   <button class="mat-raised-button"(click)="close()">Close</button>
 </mat-dialog-actions>

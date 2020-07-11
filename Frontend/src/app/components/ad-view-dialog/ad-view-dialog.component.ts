@@ -11,6 +11,8 @@ import {UserService} from '../../services/user.service';
 import {PriceList} from '../../model/priceList';
 import {PriceListService} from '../../services/price-list.service';
 import {PricelistViewDialogComponent} from '../pricelist-view-dialog/pricelist-view-dialog.component';
+import {EndUserHomePageComponent} from '../end-user-home-page/end-user-home-page.component';
+import {RentingService} from '../../services/renting.service';
 @Component({
   selector: 'app-ad-view-dialog',
   templateUrl: './ad-view-dialog.component.html',
@@ -33,7 +35,8 @@ export class AdViewDialogComponent implements OnInit {
               public dialog: MatDialog, private http: HttpClient,
               private userService: UserService,
               private priceListService: PriceListService,
-              public dialog1: MatDialog) {
+              public dialog1: MatDialog,
+              private rentingService: RentingService) {
 
     this.adWithTimes = this.datas;
     this.click();
@@ -60,8 +63,6 @@ export class AdViewDialogComponent implements OnInit {
       price: new FormControl(this.priceList.id),
       carStatus: new FormControl(this.data.car.carStatus),
       childSeats: new FormControl(this.data.car.childSeats)
-
-
     });
   }
 
@@ -99,7 +100,17 @@ export class AdViewDialogComponent implements OnInit {
  }
 
  onSubmit() {
-    this.userService.addToList(this.adWithTimes);
+  //  this.userService.addToList(this.adWithTimes);
+   this.rentingService.newCartAd(this.adWithTimes).subscribe(
+     data => {
+       alert('Uspesno dodato u cart');
+       this.dialogRef.close();
+     },
+     error => {
+       alert('Error adding car brand');
+       console.log(error);
+     }
+   );
  }
 
   view() {

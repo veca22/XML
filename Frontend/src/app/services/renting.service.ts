@@ -4,6 +4,9 @@ import {Router} from '@angular/router';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../model/user';
 import {environment} from '../../environments/environment';
+import {CarBrand} from '../model/carBrand';
+import {AdWithTimes} from '../model/adWithTimes';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +17,11 @@ export class RentingService {
   requestsForUser: Array<RentRequest> = new Array<RentRequest>();
   userRentedAds: Array<RentRequest> = new Array<RentRequest>();
   flag: boolean;
+  // tslint:disable-next-line:align
+  ads: Array<AdWithTimes> = new Array<AdWithTimes>();
+  ad: AdWithTimes;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private userService: UserService) {
 
   }
 
@@ -71,6 +77,44 @@ export class RentingService {
     params = params.append('reservedTo', reservedTo);
     const response: any = await this.http.get(environment.gateway + environment.renting + '/rateCarFlag', {params}).toPromise();
     return response;
+  }
+
+  public newCartAd(ad) {
+    return this.http.post(environment.gateway + environment.renting + '/addToCart', ad);
+  }
+
+  public  getAllCart(): Array<AdWithTimes> {
+    this.ads = new Array<AdWithTimes>();
+    this.http.get(environment.gateway + environment.renting + '/allCart').subscribe((data: AdWithTimes[]) => {
+        let flag = 0;
+        for (const c of data) {
+          flag = 0;
+          this.ad = c;
+          for (const t of this.ads) {
+            if (c.ad.id === t.ad.id) {
+              flag = 1;
+            }
+          }
+          if (flag === 0) {
+            this.ads.push(this.ad);
+          }
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    return this.ads;
+  }
+
+  public getCartAds() {
+    return this.ads;
+  }
+
+  public deleteCart() {
+    let params = new HttpParams();
+    params = params.append('email', this.userService.getLoggedUser().email);
+   return  this.http.post(environment.gateway + environment.renting + '/deleteCart', params);
   }
 
 }
