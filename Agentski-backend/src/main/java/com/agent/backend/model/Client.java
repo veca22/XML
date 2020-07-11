@@ -1,5 +1,7 @@
 package com.agent.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -78,6 +80,7 @@ public class Client {
 
     @OneToMany(mappedBy = "client",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
+    @JsonIgnore
     private Set<Ad> ads;
 
     @Column(nullable = false)
