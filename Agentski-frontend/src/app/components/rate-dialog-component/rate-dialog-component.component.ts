@@ -11,6 +11,7 @@ export class Temp {
   comment: Comment;
   car: Car;
   mileage: number;
+  carRating: number;
 }
 
 @Component({
@@ -36,7 +37,8 @@ export class RateDialogComponentComponent implements OnInit {
   ngOnInit() {
     this.RateFormGroup = this.formBuilder.group({
       commentId: new FormControl(''),
-      mileage: new FormControl('')
+      mileage: new FormControl(''),
+      carRating: new FormControl('')
     });
   }
 
@@ -61,6 +63,7 @@ export class RateDialogComponentComponent implements OnInit {
     this.ret.comment = this.comment;
     this.ret.mileage = this.f.mileage.value;
     this.ret.car = this.data.carsForRent[0];
+    this.ret.carRating = this.f.carRating.value;
 
     this.commentService.newComment(this.ret).subscribe(
       data => {

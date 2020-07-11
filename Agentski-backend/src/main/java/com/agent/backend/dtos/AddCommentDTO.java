@@ -8,6 +8,7 @@ public class AddCommentDTO {
     private Comment comment;
     private Car car;
     private int mileage;
+    private int carRating;
 
     public Comment getComment() {
         return comment;
@@ -31,5 +32,13 @@ public class AddCommentDTO {
 
     public void setMileage(int mileage) {
         this.mileage = mileage;
+    }
+
+    public int getCarRating() {
+        return carRating;
+    }
+
+    public void setCarRating(int carRating) {
+        this.carRating = carRating;
     }
 }
