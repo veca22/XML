@@ -27,7 +27,12 @@
         <button mat-flat-button color="primary" (click)="message (request)"> Send message </button>
       </td>
     </ng-container>
-
+    <ng-container matColumnDef="allowed">
+      <th mat-header-cell *matHeaderCellDef> Distance allowed </th>
+      <td mat-cell *matCellDef="let request">
+        <button mat-flat-button color="primary" (click)="set_distance(request)"> Set </button>
+      </td>
+    </ng-container>
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

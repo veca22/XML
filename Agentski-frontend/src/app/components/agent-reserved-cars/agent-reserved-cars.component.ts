@@ -5,6 +5,7 @@ import {RentRequest} from '../../model/rentRequest';
 import {RentServiceService} from '../../services/rent-service.service';
 import {UserService} from '../../services/user.service';
 import {SendMessageDialogComponent} from '../send-message-dialog/send-message-dialog.component';
+import {DistanceDialogComponent} from "../distance-dialog/distance-dialog.component";
 
 @Component({
   selector: 'app-agent-reserved-cars',
@@ -14,7 +15,7 @@ import {SendMessageDialogComponent} from '../send-message-dialog/send-message-di
 export class AgentReservedCarsComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'message'];
+  displayedColumns: string[] = ['id', 'reservedFrom', 'reservedTo', 'cars', 'message', 'allowed'];
 
   flag: boolean;
 
@@ -23,7 +24,8 @@ export class AgentReservedCarsComponent implements OnInit {
 
   constructor(private rentService: RentServiceService,
               private userService: UserService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              public dialog1: MatDialog) {
     this.dataSource = new MatTableDataSource(rentService.getRentedReservedAds());
   }
 
@@ -45,6 +47,13 @@ export class AgentReservedCarsComponent implements OnInit {
     setTimeout(() => {
       this.dialog.open(SendMessageDialogComponent, {
         width: '60%', disableClose: true, data: request.id
+      }); }, 200);
+  }
+
+  set_distance(request) {
+    setTimeout(() => {
+      this.dialog.open(DistanceDialogComponent, {
+        width: '60%', disableClose: true, data: request
       }); }, 200);
   }
 

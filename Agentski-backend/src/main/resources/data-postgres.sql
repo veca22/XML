@@ -29,8 +29,8 @@ insert into transmission_type(id, serial_number, type) values (511, 'tr45', 'Aut
 insert into transmission_type(id, serial_number, type) values (512, 'tr12-2k', 'Manuelni 6');
 insert into transmission_type(id, serial_number, type) values (513, 'tr12-1k', 'Manuelni 5');
 
-insert into client(id, ad_counter,address,email,first_name,jmbg,last_name,password,personalid,phone_number,pib,role) values (500,0,'Asd 123','user@user.com','User','1234567893695','Useric','User123','','061111111111','','ENDUSER');
-insert into client(id, ad_counter,address,email,first_name,jmbg,last_name,password,personalid,phone_number,pib,role) values (501,0,'Dsa 321','agent@agent.com','Agent','','Agentic','Agent123','258963','061111111111','','AGENT');
+insert into client(id, ad_counter,address,email,first_name,jmbg,last_name,password,personalid,phone_number,pib,role,allow_reservation) values (500,0,'Asd 123','user@user.com','User','1234567893695','Useric','User123','','061111111111','','ENDUSER',true);
+insert into client(id, ad_counter,address,email,first_name,jmbg,last_name,password,personalid,phone_number,pib,role,allow_reservation) values (501,0,'Dsa 321','agent@agent.com','Agent','','Agentic','Agent123','258963','061111111111','','AGENT',true);
 insert into fuel_type(id, serial_number, type) values(277, '123b86', 'jeriDizel');
 insert into fuel_type(id, serial_number, type) values(300, '253ac', 'benzin');
 insert into fuel_type(id, serial_number, type) values(305, '152ca', 'plin');
