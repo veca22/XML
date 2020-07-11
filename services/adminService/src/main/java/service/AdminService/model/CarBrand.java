@@ -1,16 +1,28 @@
 package service.AdminService.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Set;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "CarBrand", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
+        "id",
+        "brand"
+})
 public class  CarBrand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String brand;
 
     public CarBrand() {
