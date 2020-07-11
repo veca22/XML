@@ -5,6 +5,7 @@ import com.agent.backend.model.Comment;
 import com.agent.backend.repository.AdRepo;
 import com.agent.backend.repository.CarBrandRepo;
 import com.agent.backend.repository.CommentRepo;
+import com.agent.backend.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -41,10 +42,14 @@ public class EndPoint {
     private CarBrandRepo carBrandRepo;
 
     @Autowired
-    public EndPoint(AdRepo adRepo, CommentRepo commentRepo, CarBrandRepo carBrandRepo) {
+    private MessageRepo messageRepo;
+
+    @Autowired
+    public EndPoint(AdRepo adRepo, CommentRepo commentRepo, CarBrandRepo carBrandRepo, MessageRepo messageRepo) {
         this.adRepo = adRepo;
         this.commentRepo = commentRepo;
         this.carBrandRepo = carBrandRepo;
+        this.commentRepo = commentRepo;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAdRequest")
@@ -70,6 +75,15 @@ public class EndPoint {
     public GetCarBrandResponse getCarBrand(@RequestPayload GetCarBrandRequest request){
         GetCarBrandResponse response = new GetCarBrandResponse();
         response.setBrand(carBrandRepo.findCarBrandById(request.getId()));
+
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getMessageRequest")
+    @ResponsePayload
+    public GetMessageResponse getMessage(@RequestPayload GetMessageRequest request){
+        GetMessageResponse response = new GetMessageResponse();
+        response.setMessage(messageRepo.findMessageById(request.getId()));
 
         return response;
     }

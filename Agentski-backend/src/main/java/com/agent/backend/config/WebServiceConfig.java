@@ -71,4 +71,20 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
         return new SimpleXsdSchema(new ClassPathResource("carbrands.xsd"));
     }
+
+    @Bean(name = "ourMessages")
+    public DefaultWsdl11Definition defaultWsdl11Definition4(XsdSchema messagesSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("MessagesPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://ftn.uns.ac.rs.tim13");
+        wsdl11Definition.setSchema(messagesSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema messagesSchema() {
+
+        return new SimpleXsdSchema(new ClassPathResource("message.xsd"));
+    }
 }
