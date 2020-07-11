@@ -7,13 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.rentingService.dtos.AdAdvancedDTO;
-import service.rentingService.dtos.AdFilterDTO;
-import service.rentingService.dtos.AddCommentDTO;
-import service.rentingService.dtos.SendDTO;
+import service.rentingService.dtos.*;
 import service.rentingService.model.*;
 import service.rentingService.service.*;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -37,6 +35,9 @@ public class RentRequestController {
 
     @Autowired
     CarService carService;
+
+    @Autowired
+    CartService cartService;
 
     @GetMapping("/rentRequestsForUser")
     public ResponseEntity<List<RentRequest>> requestsForUsers(@RequestParam(value = "email", required = true) String email) {
@@ -296,23 +297,24 @@ public class RentRequestController {
                             }
                         }
                     }
-                /*
-                if(ret!=null)
-                    if(addto.getPrice()!=null){
-                        for(Ad r:ret) {
-                            if (addto.getPrice().intValue()>r.getCar().getPrice()) {
-                                ret.remove(r);
-                            }
-                        }
-                    }
-                if(ret!=null)
-                    if(addto.getPrice2()!=null){
-                        for(Ad r:ret) {
-                            if (addto.getPrice2().intValue()<r.getCar().getPrice()) {
-                                ret.remove(r);
-                            }
-                        }
-                    } */
+
+//                if(ret!=null)
+//                    if(addto.getPrice()!=null){
+//                        for(Ad r:ret) {
+//                            if (addto.getPrice().intValue()>r.getCar().getPrice()) {
+//                                ret.remove(r);
+//                            }
+//                        }
+//                    }
+//                if(ret!=null)
+//                    if(addto.getPrice2()!=null){
+//                        for(Ad r:ret) {
+//                            if (addto.getPrice2().intValue()<r.getCar().getPrice()) {
+//                                ret.remove(r);
+//                            }
+//                        }
+//                    }
+
                 if(ret!=null)
                     if(addto.getCdw()!=null){
                         for(Ad r:ret) {
@@ -347,5 +349,128 @@ public class RentRequestController {
                     }
               return new ResponseEntity<>(ret, HttpStatus.OK);
    }
+
+    @PostMapping(value = "/allOwners", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OwnersAndAdsDTO>> adOwners(@RequestBody List<AdRentDTO> addtos){
+            List<AdRentDTO> lista=addtos;
+            List<Client> cls=new ArrayList<>();
+            List<OwnersAndAdsDTO> owsa=new ArrayList<>();
+            int flag=0;
+            int flag1=0;
+        System.out.println("metoda");
+            for(AdRentDTO a:lista){
+                Client c=clientService.findClientByAd(a.getAd());
+              //  System.out.println(c);
+                for(OwnersAndAdsDTO o:owsa){
+                    if(o.getClient().getId()==c.getId()){
+                        flag=1;
+                        o.getAds().add(a);
+                        break;
+                    }
+                }
+                if(flag==1){
+                     flag=0;
+                    System.out.println("usao sam 2");
+                }else{
+                    OwnersAndAdsDTO os=new OwnersAndAdsDTO();
+                    os.setClient(c);
+                    os.getAds().add(a);
+                    owsa.add(os);
+                    System.out.println("usao sam 3");
+                }
+            }
+            System.out.println(owsa.size());
+            List<OwnersAndAdsDTO> adss=new ArrayList<>();
+            int flag2=0;
+            for(OwnersAndAdsDTO owa:owsa){
+                System.out.println(owa.getAds());
+                for(int i=0;i<owa.getAds().size()-1;i++){
+                    for(int j=1;j<owa.getAds().size();j++){
+                        System.out.println(DateTime.parse(owa.getAds().get(i).getStartTime()).toDate());
+                        System.out.println(DateTime.parse(owa.getAds().get(j).getStartTime()).toDate());
+                        System.out.println(DateTime.parse(owa.getAds().get(i).getEndTime()).toDate());
+                        System.out.println(DateTime.parse(owa.getAds().get(j).getEndTime()).toDate());
+                    if((DateTime.parse(owa.getAds().get(i).getStartTime()).toDate()).equals(DateTime.parse(owa.getAds().get(j).getStartTime()).toDate())
+                        && (DateTime.parse(owa.getAds().get(i).getEndTime()).toDate()).equals( DateTime.parse(owa.getAds().get(j).getEndTime()).toDate())){
+                            OwnersAndAdsDTO q=new OwnersAndAdsDTO();
+                            q.setClient(owa.getClient());
+                            q.getAds().add(owa.getAds().get(i));
+                            q.getAds().add(owa.getAds().get(j));
+                            adss.add(q);
+                            System.out.println("usao sam 4");
+                        }
+                    }
+                }
+            }
+            List<OwnersAndAdsDTO> ae=new ArrayList<>();
+            for(OwnersAndAdsDTO d:adss){
+                if(d.getAds().size()>1){
+                    ae.add(d);
+                System.out.println("usao sam 5");
+                }
+            }
+            return new ResponseEntity<>(ae, HttpStatus.OK);
+    }
+
+    @PostMapping("/reserveBundle")
+    public ResponseEntity reserveBundle(@RequestBody BundleDTO bundleDTO,@RequestParam(value = "email", required = true) String email){
+        RentRequest rr = new RentRequest();
+        Set<Car> carsForRent= new HashSet<>();
+        DateTime startD=new DateTime();
+        DateTime endD=new DateTime();
+        for(AdRentDTO a:bundleDTO.getAdsWithTimes()){
+            Ad ad = a.getAd();
+            startD = DateTime.parse(a.getStartTime());
+            endD = DateTime.parse(a.getEndTime());
+            carsForRent.add(a.getAd().getCar());
+        }
+        rr.setCarsForRent(carsForRent);
+        rr.setClient(clientService.findClientByEmail(email));
+        rr.setReservedFrom(startD.toDate());
+        rr.setReservedTo(endD.toDate());
+        rr.setRentRequestStatus(RentRequestStatus.PENDING);
+        rr.setTimeCreated(LocalDateTime.now());
+
+        Client client =clientService.findClientByEmail(email);
+        if(client.isAllowReservation() == true) {
+            rentRequestService.addRent(rr);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @PostMapping(value = "/addToCart")
+    public String addToCart(@RequestBody AdRentDTO adRentDTO){
+        System.out.println(adRentDTO);
+        Cart c=cartService.findCartByAd(adRentDTO.getAd());
+        if (c == null){
+            Cart ct=new Cart();
+            ct.setAd(adRentDTO.getAd());
+            ct.setStartTime(DateTime.parse(adRentDTO.getStartTime()).toDate());
+            ct.setEndTime(DateTime.parse(adRentDTO.getEndTime()).toDate());
+            cartService.addCart(ct);
+        }
+        else{
+            return "Serial already exists";
+        }
+        return "";
+    }
+
+    @GetMapping(value = "/allCart")
+    public ResponseEntity<List<Cart>> allCart() {
+        return new ResponseEntity<>(cartService.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteCart")
+    public ResponseEntity deleteCart(@RequestParam(value = "email", required = true) String email){
+        List<Cart> carts= cartService.findAll();
+        if(carts==null){
+            return  new ResponseEntity<>(HttpStatus.OK);
+        }else {
+           cartService.deleteAll();
+            return  new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
 
 }

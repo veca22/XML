@@ -5,10 +5,11 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
         name = "", propOrder = {
-                "id"
+        "id"
 })
-@XmlRootElement(name = "getAdRequest", namespace = "http://ftn.uns.ac.rs.tim13")
-public class GetAdRequest {
+@XmlRootElement(name = "getCommentRequest", namespace = "http://ftn.uns.ac.rs.tim13")
+
+public class GetCommentRequest {
 
     @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     protected Long id;

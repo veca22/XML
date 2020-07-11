@@ -23,11 +23,10 @@ export class UserService {
   allUser: User;
   userForLogin: User;
   endUsersForOperations: Array<User> = new Array<User>();
-  adWithTimes: AdWithTimes[];
+  adWithTimes: Array<AdWithTimes> = new Array<AdWithTimes>();
 
   constructor(private router: Router, private http: HttpClient) {
     localStorage.setItem(TOKEN, JSON.stringify(this.user));
-    this.adWithTimes = new Array<AdWithTimes>();
     this.endUsersForOperations = this.getEndUsersForOperations();
   }
 
@@ -185,6 +184,8 @@ export class UserService {
 
   public addToList(ad: AdWithTimes) {
    let flag = 0;
+   console.log(ad);
+   // this.adWithTimes.push(ad);
    for (const c of this.adWithTimes) {
      if (c.ad.title === ad.ad.title) {
        flag = 1;
@@ -193,6 +194,7 @@ export class UserService {
    if (flag === 0) {
         this.adWithTimes.push(ad);
       }
+   console.log(this.adWithTimes);
 
   }
 

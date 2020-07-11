@@ -1,5 +1,7 @@
 package service.rentingService.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -42,6 +44,7 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Ad> ads;
 
@@ -202,6 +205,14 @@ public class Client {
 
     public void setReservationCanceledCounter(int reservationCanceledCounter) {
         this.reservationCanceledCounter = reservationCanceledCounter;
+    }
+
+    public Set<Ad> getAds() {
+        return ads;
+    }
+
+    public void setAds(Set<Ad> ads) {
+        this.ads = ads;
     }
 
     @Override
