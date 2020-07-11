@@ -1,28 +1,46 @@
 package service.AdminService.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @Table(name="users")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(
+        name = "User", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
+        "id",
+        "email",
+        "password",
+        "role",
+        "status"
+})
 public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column(nullable = false)
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String email;
 
     @Column(nullable = false)
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String password;
 
     @Column(nullable = false)
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     @Enumerated(EnumType.STRING)
     private Role role;
 
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private UserStatus status;
 
     public User(String email, String password, Role role, UserStatus status) {
