@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType(
-        name = "UserStatus"
+        name = "UserStatus", namespace = "http://ftn.uns.ac.rs.tim13"
 )
 @XmlEnum
 public enum UserStatus {

@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "FuelType", propOrder = {
+        name = "FuelType", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "type",
         "serialNumber"
@@ -18,15 +18,15 @@ import javax.xml.bind.annotation.XmlType;
 public class FuelType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String type;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String serialNumber;
 
     public FuelType() {

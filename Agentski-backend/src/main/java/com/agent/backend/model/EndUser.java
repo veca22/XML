@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "EndUSer", propOrder = {
+        name = "EndUSer", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "email",
         "password",
@@ -23,31 +23,31 @@ public class EndUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column(nullable = false,unique = true)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String email;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String password;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String firstName;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String lastName;
 
     @Column(name = "jmbg", unique = true, nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String jmbg;
 
     @Column(name = "phone_number",nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String phoneNumber;
 
     public EndUser() {

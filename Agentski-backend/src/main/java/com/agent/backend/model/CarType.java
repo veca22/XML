@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "CarType", propOrder = {
+        name = "CarType", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "type"
 })  //mozda dodati posle }, namespace = "nekiUri/car_type"
@@ -18,11 +18,11 @@ public class CarType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String type;
 
     public CarType() {

@@ -37,6 +37,38 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     @Bean
     public XsdSchema adsSchema() {
 
-        return new SimpleXsdSchema(new ClassPathResource("schema1.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("ad.xsd"));
+    }
+
+    @Bean(name = "ourComments")
+    public DefaultWsdl11Definition defaultWsdl11Definition2(XsdSchema commentsSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("CommentsPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://ftn.uns.ac.rs.tim13");
+        wsdl11Definition.setSchema(commentsSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema commentsSchema() {
+
+        return new SimpleXsdSchema(new ClassPathResource("comment.xsd"));
+    }
+
+    @Bean(name = "ourCarBrands")
+    public DefaultWsdl11Definition defaultWsdl11Definition3(XsdSchema carBrandsSchema) {
+        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+        wsdl11Definition.setPortTypeName("CarBrandsPort");
+        wsdl11Definition.setLocationUri("/ws");
+        wsdl11Definition.setTargetNamespace("http://ftn.uns.ac.rs.tim13");
+        wsdl11Definition.setSchema(carBrandsSchema);
+        return wsdl11Definition;
+    }
+
+    @Bean
+    public XsdSchema carBrandsSchema() {
+
+        return new SimpleXsdSchema(new ClassPathResource("carbrands.xsd"));
     }
 }

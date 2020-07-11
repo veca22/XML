@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "Comment", propOrder = {
+        name = "Comment", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "commenter",
         "comment",
@@ -22,30 +22,30 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "commenter_id", nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private User commenter;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String comment;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private boolean approved = false;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private int carRating;
 
 
     @ManyToOne
     @JoinColumn(name = "ad_id")
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Ad ad;
 
     public Comment() {

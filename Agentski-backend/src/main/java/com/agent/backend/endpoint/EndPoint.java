@@ -1,8 +1,10 @@
 package com.agent.backend.endpoint;
 
-import com.agent.backend.GetAdRequest;
-import com.agent.backend.GetAdResponse;
+import com.agent.backend.*;
+import com.agent.backend.model.Comment;
 import com.agent.backend.repository.AdRepo;
+import com.agent.backend.repository.CarBrandRepo;
+import com.agent.backend.repository.CommentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -33,13 +35,41 @@ public class EndPoint {
     private AdRepo adRepo;
 
     @Autowired
-    public EndPoint(AdRepo adRepo) { this.adRepo = adRepo;}
+    private CommentRepo commentRepo;
+
+    @Autowired
+    private CarBrandRepo carBrandRepo;
+
+    @Autowired
+    public EndPoint(AdRepo adRepo, CommentRepo commentRepo, CarBrandRepo carBrandRepo) {
+        this.adRepo = adRepo;
+        this.commentRepo = commentRepo;
+        this.carBrandRepo = carBrandRepo;
+    }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAdRequest")
     @ResponsePayload
     public GetAdResponse getAd(@RequestPayload GetAdRequest request){
         GetAdResponse response = new GetAdResponse();
         response.setAd(adRepo.findAdById(request.getId()));
+
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCommentRequest")
+    @ResponsePayload
+    public GetCommentResponse getComment(@RequestPayload GetCommentRequest request){
+        GetCommentResponse response = new GetCommentResponse();
+        response.setComment(commentRepo.findCommentById(request.getId()));
+
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCarBrandRequest")
+    @ResponsePayload
+    public GetCarBrandResponse getCarBrand(@RequestPayload GetCarBrandRequest request){
+        GetCarBrandResponse response = new GetCarBrandResponse();
+        response.setBrand(carBrandRepo.findCarBrandById(request.getId()));
 
         return response;
     }
