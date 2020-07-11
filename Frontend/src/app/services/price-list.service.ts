@@ -33,19 +33,11 @@ export class PriceListService {
   }
 
   // Ad id parametar
-  public getPriceListForDialog(id): PriceList {
+  public async getPriceListForDialog(id): Promise<PriceList> {
     let params = new HttpParams();
     params = params.append('id', id);
-    this.http.get(environment.gateway + environment.ad  + '/priceListByAdId', {params}).subscribe((data: PriceList) => {
-        console.log('Ispod za dialog');
-        console.log(data);
-        this.priceListForDialog = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    return this.priceListForDialog;
+    const response: any = await this.http.get(environment.gateway + environment.ad  + '/priceListByAdId', {params}).toPromise();
+    return response;
   }
 
 
@@ -59,6 +51,17 @@ export class PriceListService {
       if (c.id.toString() === id) {
         return c;
       }
+    }
+    return null;
+  }
+
+  public findPriceListByAdID(id) {
+    for (const c of this.agentPriceLists) {
+     for (const c1 of c.ads) {
+       if (c1.id === id) {
+         return c;
+       }
+     }
     }
     return null;
   }

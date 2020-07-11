@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit {
           console.log(error);
         }
       );
-    } else if (this.user.role === Role.ENDUSER && this.f.email.value === this.user.email && this.f.password.value === this.user.password) {
+    } else if (this.user.role === Role.ENDUSER && this.f.email.value === this.user.email && this.f.password.value === this.user.password && this.user.status === UserStatus.ACCEPTED) {
       this.userService.login(this.user).subscribe(
         data => {
             if (data !== null) {

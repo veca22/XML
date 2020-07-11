@@ -48,7 +48,10 @@ export class SearchResultDialogComponent implements OnInit {
   }
 
   detail(ad: Ad) {
+    console.log('Ad ispod')
+    console.log(ad);
     this.adWithTimes.ad = ad;
+
     setTimeout(() => {
   this.dialog.open(AdViewDialogComponent, {
     width: '60%', disableClose: true, data: this.adWithTimes
