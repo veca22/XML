@@ -13,12 +13,11 @@ import java.util.Set;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "Ad", propOrder = {
+        name = "Ad", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "car",
         "profilePicture",
         "title",
-        "pictureSet",
         "client",
         "startOfAd",
         "endOfAd",
@@ -33,62 +32,62 @@ public class Ad {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Car car;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String profilePicture;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String title;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @XmlElement
-    private Set<Picture> pictureSet;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
+//    private Set<Picture> pictureSet;
 
     //client
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Client client;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Date startOfAd;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Date endOfAd;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String description;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private boolean isActive;
 
 
     @OneToOne(fetch = FetchType.EAGER)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Client currentDriver;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ad",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Set<Comment> comments;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String place;
 
     public Ad() {
@@ -118,13 +117,13 @@ public class Ad {
         this.profilePicture = profilePicture;
     }
 
-    public Set<Picture> getPictureSet() {
-        return pictureSet;
-    }
-
-    public void setPictureSet(Set<Picture> pictureSet) {
-        this.pictureSet = pictureSet;
-    }
+//    public Set<Picture> getPictureSet() {
+//        return pictureSet;
+//    }
+//
+//    public void setPictureSet(Set<Picture> pictureSet) {
+//        this.pictureSet = pictureSet;
+//    }
 
     public Client getClient() {
         return client;

@@ -53,5 +53,6 @@ insert into car(id,average_rating,car_status,car_type_id,child_seats,collision_d
 insert into car(id,average_rating,car_status,car_type_id,child_seats,collision_damage_waiver,discount,distance_allowed,fuel_type_id,mileage,transmission_type_id,car_model_id,car_brand_id, comment_count) values (101,4,'RENTED',333,0,'false',10,100,277,80000,222,555,446, 3);
 insert into ad(id,description,end_of_ad,is_active,place,profile_picture,start_of_ad,title,car_id,client_id,current_driver_id)values(600,'dobar','2020-06-19 13:42:00',true,'Sabac',0,'2020-06-14 16:42:00','Audi', 100,501,null);
 insert into ad(id,description,end_of_ad,is_active,place,profile_picture,start_of_ad,title,car_id,client_id,current_driver_id)values(601,'dobar','2020-06-19 13:42:00',true,'Sabac',0,'2020-06-14 16:42:00','Audi', 101,501,null);
-insert into comment(id,approved,comment,ad_id,commenter_id, car_rating)values(800,true,'odlican',600,101,2);
+insert into comment(id,approved,comment,ad_id,commenter_id, car_rating) values(800,true,'odlican',600,101,2);
+insert into message(id, message_time, subject, text, receiver_id, sender_id) values(111, '2020-07-16 13:11:00', 'Proba', 'Kolko je ovo dobra', 122, 123);
 

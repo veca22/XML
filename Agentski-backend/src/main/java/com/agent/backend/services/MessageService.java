@@ -15,6 +15,8 @@ public class MessageService {
     @Autowired
     private MessageRepo messageRepo;
 
+    public Message findById(Long id) { return messageRepo.findMessageById(id); }
+
     public List<Message> findall() {return messageRepo.findAll();}
 
     public Message save(Message f) { return messageRepo.save(f);}

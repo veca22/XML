@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "Picture", propOrder = {
+        name = "Picture", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "picture",
         "ad",
@@ -22,19 +22,19 @@ import javax.xml.bind.annotation.XmlType;
 public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String picture;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Ad ad;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private boolean isDeleted;
 
     public Picture() {

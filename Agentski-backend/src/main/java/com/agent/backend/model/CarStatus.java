@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 
 //@XmlAccessorType(XmlAccessType.FIELD) ne znam da li ide i za enum kao i za obicne klase
 @XmlType(
-        name = "CarStatus"
+        name = "CarStatus", namespace = "http://ftn.uns.ac.rs.tim13"
 )
 @XmlEnum
 public enum CarStatus {

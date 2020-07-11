@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 @Table(name="users")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "User", propOrder = {
+        name = "User", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "email",
         "password",
@@ -22,25 +22,25 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String email;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String password;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Role role;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private UserStatus status;
 
     public User(String email, String password, Role role, UserStatus status) {

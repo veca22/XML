@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "TransmissionType", propOrder = {
+        name = "TransmissionType", namespace = "http://ftn.uns.ac.rs.tim13",propOrder = {
         "id",
         "serialNumber",
         "type"
@@ -18,15 +18,15 @@ import javax.xml.bind.annotation.XmlType;
 public class TransmissionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String serialNumber;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String type;
 
     public TransmissionType(Long id, String serialNumber, String type) {
