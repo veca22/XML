@@ -7,6 +7,8 @@ import {environment} from '../../environments/environment';
 import {CarBrand} from '../model/carBrand';
 import {AdWithTimes} from '../model/adWithTimes';
 import {UserService} from './user.service';
+import {BundleModel} from '../model/bundleModel';
+import {CommentBundle} from '../model/commentBundle';
 
 @Injectable({
   providedIn: 'root'
@@ -114,7 +116,11 @@ export class RentingService {
   public deleteCart() {
     let params = new HttpParams();
     params = params.append('email', this.userService.getLoggedUser().email);
-   return  this.http.post(environment.gateway + environment.renting + '/deleteCart', params);
+    return  this.http.post(environment.gateway + environment.renting + '/deleteCart', params);
+  }
+
+  public comBundle(a: Array<CommentBundle>) {
+    return this.http.post(environment.gateway + environment.renting + '/comBundle', a);
   }
 
 }
