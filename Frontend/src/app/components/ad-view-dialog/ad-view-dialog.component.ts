@@ -41,14 +41,13 @@ export class AdViewDialogComponent implements OnInit {
     this.adWithTimes = this.datas;
     this.click();
     this.data = this.adWithTimes.ad;
-    this.priceList = priceListService.findPricelistById(this.data.id.toString());
+    this.priceList = this.priceListService.findPriceListByAdID(this.data.id);
+    console.log(this.priceList);
     this.image = this.images[0];
 
   }
 
   ngOnInit() {
-
-
     this.adViewForm = this.formBuilder.group({
       title: new FormControl(this.data.title),
       description: new FormControl(this.data.description),
@@ -64,6 +63,7 @@ export class AdViewDialogComponent implements OnInit {
       carStatus: new FormControl(this.data.car.carStatus),
       childSeats: new FormControl(this.data.car.childSeats)
     });
+
   }
 
   get f() {
