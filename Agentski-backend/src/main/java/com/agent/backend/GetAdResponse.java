@@ -9,10 +9,10 @@ import javax.xml.bind.annotation.*;
         name = "", propOrder = {
                 "ad"
 })
-@XmlRootElement(name = "getAdResponse")
+@XmlRootElement(name = "getAdResponse", namespace = "http://ftn.uns.ac.rs.tim13")
 public class GetAdResponse {
 
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     protected Ad ad;
 
     public Ad getAd() {

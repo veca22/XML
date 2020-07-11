@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 @Table
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "Car", propOrder = {
+        name = "Car", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "carBrand",
         "carModel",
@@ -33,62 +33,62 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @ManyToOne
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private CarBrand carBrand;
 
     @ManyToOne
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private CarModel carModel;
 
     @OneToOne
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private CarType carType;
 
     @ManyToOne
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private FuelType fuelType;
 
     @ManyToOne
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private TransmissionType transmissionType;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private int discount;
 
     @Column(nullable = false)
     @Range(min = 0, max = 1000000)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private float mileage;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private CarStatus carStatus;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private float distanceAllowed;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private boolean collisionDamageWaiver = false;
 
     @Column(nullable = false)
     @Range(min = 0, max = 5)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private int childSeats;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private double averageRating = 0;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private int commentCount = 0;
 
     public Car(CarBrand carBrand, CarModel carModel, CarType carType, FuelType fuelType, TransmissionType transmissionType, int discount, @Range(min = 0, max = 1000000) float mileage, CarStatus carStatus, float distanceAllowed, boolean collisionDamageWaiver, @Range(min = 0, max = 5) int childSeats, double averageRating, int commentCount) {

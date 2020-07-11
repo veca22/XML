@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "Message", propOrder = {
+        name = "Message", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "sender",
         "receiver",
@@ -23,29 +23,29 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "sender_id", nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private User sender;
 
     @ManyToOne
     @JoinColumn(name = "receiver_id", nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private User receiver;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String text;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private String subject;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Date messageTime;
 
 

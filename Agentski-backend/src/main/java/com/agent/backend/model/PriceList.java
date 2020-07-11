@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "PriceList", propOrder = {
+        name = "PriceList", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "realPrice",
         "priceForMileage",
@@ -26,30 +26,30 @@ public class PriceList {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private double realPrice;   //stvarna cena auta
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private double priceForMileage; //cena za kilometrazu
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private double priceForCollisionDamageWavier;   //cena za collision
 
     @Column
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private int discountAfterDays;
 
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Set<Ad> ads = new HashSet<>();
 
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Client client;
 

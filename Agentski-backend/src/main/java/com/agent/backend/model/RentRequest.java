@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-        name = "RentRequest", propOrder = {
+        name = "RentRequest", namespace = "http://ftn.uns.ac.rs.tim13", propOrder = {
         "id",
         "reservedFrom",
         "reservedTo",
@@ -29,34 +29,34 @@ public class RentRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Long id;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Date reservedFrom;
 
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Date reservedTo;
 
     @JsonIgnore
     @Column(nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private LocalDateTime timeCreated;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private RentRequestStatus rentRequestStatus;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Set<Car> carsForRent = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
-    @XmlElement
+    @XmlElement(namespace = "http://ftn.uns.ac.rs.tim13")
     private Client client;
 
     public RentRequest() {
