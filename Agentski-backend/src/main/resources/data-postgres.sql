@@ -54,4 +54,5 @@ insert into ad(id,description,end_of_ad,is_active,place,profile_picture,start_of
 insert into ad(id,description,end_of_ad,is_active,place,profile_picture,start_of_ad,title,car_id,client_id,current_driver_id)values(601,'dobar','2020-06-19 13:42:00',true,'Sabac',0,'2020-06-14 16:42:00','Audi', 101,501,null);
 insert into comment(id,approved,comment,ad_id,commenter_id, car_rating) values(800,true,'odlican',600,101,2);
 insert into message(id, message_time, subject, text, receiver_id, sender_id) values(111, '2020-07-16 13:11:00', 'Proba', 'Kolko je ovo dobra', 122, 123);
+insert into message(id, message_time, subject, text, receiver_id, sender_id) values(112, '2020-07-01 14:11:00', 'Proba2', 'Kolko je ovo dobra fora', 123, 122);
 

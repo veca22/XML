@@ -49,6 +49,7 @@ insert into car_model(id, model) values (555, 'A6 2016');
 insert into car_model(id, model) values (556, 'Insignia 2020');
 insert into car_model(id, model) values (557, 'S500 2014');
 insert into car(id,average_rating,car_status,car_type_id,child_seats,collision_damage_waiver,discount,distance_allowed,fuel_type_id,mileage,transmission_type_id,car_model_id,car_brand_id) values (100,0,'RENTED',333,0,'false',10,100,277,60000,222,555,446);
+insert into message(id, message_time, subject, text, receiver_id, sender_id) values(211, '2020-07-16 13:11:00', 'Proba', 'Kolko je ovo dobra', 100, 101);
 
 
 
