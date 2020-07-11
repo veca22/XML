@@ -54,6 +54,8 @@ export class CarSearchComponent implements OnInit {
       this.adsWithTimes.ads = this.myResponse;
       this.adsWithTimes.startTime = this.model.startDate;
       this.adsWithTimes.endTime = this.model.endDate;
+      console.log('ISPOD TREBA');
+      console.log(this.adsWithTimes);
       setTimeout(() => {
       this.dialog.open(SearchResultDialogComponent, {
         width: '50%', disableClose: true, data: this.adsWithTimes,

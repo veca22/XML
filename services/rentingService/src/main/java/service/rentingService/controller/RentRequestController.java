@@ -296,6 +296,7 @@ public class RentRequestController {
                             }
                         }
                     }
+                /*
                 if(ret!=null)
                     if(addto.getPrice()!=null){
                         for(Ad r:ret) {
@@ -311,7 +312,7 @@ public class RentRequestController {
                                 ret.remove(r);
                             }
                         }
-                    }
+                    } */
                 if(ret!=null)
                     if(addto.getCdw()!=null){
                         for(Ad r:ret) {

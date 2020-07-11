@@ -299,15 +299,20 @@ public class AdController {
     @GetMapping(value = "/priceListByAdId")
     public ResponseEntity<PriceList> priceListForDialog(@RequestParam(value = "id", required = true) String id) {
         List<PriceList> all = priceListService.findAll();
+        PriceList p = new PriceList();
+        System.out.println(id);
         Long lid = Long.parseLong(id);
         for(PriceList priceList : all) {
             for(Ad ad : priceList.getAds()) {
+                System.out.println(ad.getId());
                 if(ad.getId() == lid) {
-                    return new ResponseEntity<>(priceList, HttpStatus.OK);
+                    System.out.println("Nasao");
+                    p = priceList;
+                    return new ResponseEntity<>(p, HttpStatus.OK);
                 }
             }
         }
 
-        return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(p, HttpStatus.FORBIDDEN);
     }
 }
